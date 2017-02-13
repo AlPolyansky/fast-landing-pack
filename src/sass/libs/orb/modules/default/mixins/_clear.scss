@@ -1,0 +1,22 @@
+@mixin clear($extend:true){
+
+// IE 8+
+
+
+
+@if($extend == false){
+	&:after{
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+
+@if($extend == true){
+	@extend %clear;
+}
+	
+
+
+}

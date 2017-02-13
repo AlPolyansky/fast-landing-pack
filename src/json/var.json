@@ -1,0 +1,6 @@
+{
+	"desktop"	: "1200px",
+	"notebook" : "992px",
+	"tablet" : "768px",
+	"phone" : "320px"
+}
