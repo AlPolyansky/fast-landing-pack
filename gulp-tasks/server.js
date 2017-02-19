@@ -1,16 +1,12 @@
-module.exports = function (libs,path){
+module.exports = function (libs,obj){
 
   // Данный таск сервер
 
   // libs - объект с Node.js настройками
-  // path - строка с путем, откуда запускать сервер
+  // Объект с настройками browserSync
 
 
   return function(){
-    libs.browserSync.init({
-      open: false,
-      server: path,
-      notify: false
-    });
+    libs.browserSync.init(obj);
   }
 };

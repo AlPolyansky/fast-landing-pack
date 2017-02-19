@@ -3,6 +3,9 @@ const plugins = require('gulp-load-plugins')(); // Автоматическая 
 const op = require('./options-gulp.js');  // Файл с настройками
 const fs = require('fs');     // Управление файлами
 const ftp = require('./ftp.json'); // Json файл с натстройками ftp
+const async = require('async');
+
+
 
 
 
@@ -13,11 +16,83 @@ const libs = {
 }
 
 
-const options = op.options;               // Объекс с натройками
-const sourse = op.sourse;                 // Объект с путями исходников
-const build = op.build;                   // Объект с путями скомпилированных файлов
-const dist = op.dist;                     // Объект с путями файлов продакшена
-const tasks = './' + sourse.tasks + '/';     // Путь к gulp таскам
+const sourse = op.path.sourse;                 // Объект с путями исходников
+const build = op.path.build;                   // Объект с путями скомпилированных файлов
+const dist = op.path.dist;                     // Объект с путями файлов продакшена
+const sprite = op.path.sprite();                 // Объект с путями png спрайтов
+const tasks = `./${sourse.tasks}/`;            // Путь к gulp таскам
+
+
+
+
+
+
+// Насттройки сервера
+
+let serverOp = {
+  open: op.open,
+  server: build.folder,
+  notify: false,
+};
+
+
+
+// Таск для сжатия изображений
+
+gulp.task('img-min', function(){
+  return gulp.src(`${sourse.folder}/${sourse.img}/**/*`)
+    .pipe(plugins.tinypng(op.tinypngKey))
+    .pipe(gulp.dest(`${sourse.folder}/${sourse.img}/min`))
+});
+
+
+// png спрайт
+
+gulp.task('png-sprite',function(cb){
+  if(op.sass){
+
+    var spriteData = 
+      gulp.src(`./${sourse.folder}/${sprite.folder}/**/*.png`)
+        .pipe(plugins.spritesmith({
+          imgName: `${sprite.imgName}.png`,
+          cssName: `_${sprite.fileName}.scss`,
+          cssFormat: 'scss',
+          imgPath: `../${sprite.img}/${sprite.imgName}.png`,
+          padding: sprite.padding,
+          cssOpts: {
+             cssSelector: function (item) {
+              return `.${sprite.prefix}` + item.name;
+            }
+          }
+      }))
+      spriteData.img.pipe(gulp.dest(`${sourse.folder}/${sprite.img}/`));
+      spriteData.css.pipe(gulp.dest(`${sourse.folder}/${sourse.sass}/${sprite.sassPath}`));
+
+
+    cb();
+  }else{
+    var spriteData = 
+      gulp.src(`./${sourse.folder}/${sprite.folder}/**/*.png`)
+        .pipe(plugins.spritesmith({
+          imgName: `${sprite.imgName}.png`,
+          cssName: `${sprite.fileName}.css`,
+          cssFormat: 'css',
+          imgPath: `../${sprite.img}/${sprite.imgName}.png`,
+          padding: sprite.padding,
+          cssOpts: {
+             cssSelector: function (item) {
+              return `.${sprite.prefix}` + item.name;
+            }
+          }
+      }))
+    spriteData.img.pipe(gulp.dest(`${build.folder}/${sprite.img}/`));
+    spriteData.css.pipe(gulp.dest(`${sourse.folder}/${sourse.css}/`))
+    cb();
+  }
+});
+
+
+const template = require(`${tasks}generate/${op.path.generate().template}.js`); 
 
 
 
@@ -27,25 +102,7 @@ const tasks = './' + sourse.tasks + '/';     // Путь к gulp таскам
 
 
 
-
-gulp.task('png-sprite',function(cb){
-
-// В разработке
-
-
-  var spriteData = 
-    gulp.src('./src/sprite/png/**/*.png')
-      .pipe(plugins.spritesmith({
-        imgName: 'sprite.png',
-        cssName: '_sprite.scss',
-        cssFormat: 'scss'
-      }))
-  spriteData.img.pipe(gulp.dest('src/img/icons/'));
-  spriteData.css.pipe(gulp.dest('src/sass/core/'))
-  cb();
-});
-
-// Функция для удаления оставления коментариев при удалении
+// Эта функция оставит указанные коментрии при удалении
 function cssCommentNoDel (str){
   return {
     preserve: function(comment){
@@ -59,54 +116,63 @@ function cssCommentNoDel (str){
 
 
 /*1*/  gulp.task( 'ftp-require' ,require(tasks + 'ftp')(gulp ,dist.folder + '/**/*', plugins,ftp));
-/*2*/  gulp.task( 'clean-build' , require(tasks + 'clean')(build.folder, libs));
-/*3*/  gulp.task( 'clean-dist' , require(tasks + 'clean')(dist.folder, libs));
-/*4*/  gulp.task( 'server' , require(tasks + 'server')(libs, build.folder));
-/*5*/  gulp.task( 'copy-imgs', require(tasks + 'copy')(gulp, sourse.folder + '/' + sourse.img + '/**/*', build.folder + '/' + build.img));
-/*6*/  gulp.task( 'copy-fonts', require(tasks + 'copy')(gulp, sourse.folder + '/' + sourse.fonts + '**/*', build.folder + '/' + build.fonts));
-/*7*/  gulp.task( 'script', require(tasks + 'script')(gulp, plugins, libs, op.jsCompile(), build.js_file,build.folder + '/' + build.js));
+/*2*/  gulp.task( 'clean-build' , require(`${tasks}clean`)(build.folder, libs));
+/*3*/  gulp.task( 'clean-dist' , require(`${tasks}clean`)(dist.folder, libs));
+/*4*/  gulp.task( 'server' , require(`${tasks}server`)(libs,serverOp));
+/*5*/  gulp.task( 'copy-imgs', require(`${tasks}copy`)(gulp, `${sourse.folder}/${sourse.img}/**/*`, `${build.folder}/${build.img}`));
+/*6*/  gulp.task( 'copy-fonts', require(`${tasks}copy`)(gulp, `${sourse.folder}/${sourse.fonts}/**/*`, `${build.folder}/${build.fonts}`));
+/*7*/  gulp.task( 'script', require(`${tasks}script`)(gulp, plugins, libs, op.path.jsCompile(), build.js_file, `${build.folder}/${build.js}`));
 
 /*8*/  gulp.task( 'mobile-pack', gulp.series(
 
-          require(tasks + 'remove-code')(gulp, plugins, {mobile: true} ,build.folder + '/index.html',dist.folder + '/'  + dist.sep +   '/' + dist.mobile),
-          require(tasks + 'remove-code')(gulp, plugins, {mobile: true} ,build.folder + '/' +  build.js + '/**/*', dist.folder + '/' + dist.sep + '/' +dist.mobile + '/' + dist.js),
-          require(tasks + 'remove-code')(gulp, plugins, {mobile: true} ,[build.folder + '/' + build.css + '/**/*','!' + build.folder + '/'+ build.css +'/media.css'],dist.folder + '/' +  dist.sep + '/' + dist.mobile + '/css'),
+          require(tasks + 'remove-code')(gulp, plugins, {mobile: true,noMobile: false,noDesktop: true,noResp: true,all:true} ,build.folder + '/index.html',dist.folder + '/'  + dist.sep +   '/' + dist.mobile),
+          require(tasks + 'remove-code')(gulp, plugins, {mobile: true,noMobile: false,noDesktop: true,noResp: true,all:true} ,build.folder + '/' +  build.js + '/**/*', dist.folder + '/' + dist.sep + '/' +dist.mobile + '/' + dist.js),
+          require(tasks + 'remove-code')(gulp, plugins, {mobile: true,noMobile: false,noDesktop: true,noResp: true,all:true} ,[build.folder + '/' + build.css + '/**/*','!' + build.folder + '/'+ build.css +'/media.css'],dist.folder + '/' +  dist.sep + '/' + dist.mobile + '/css'),
           require(tasks + 'copy')(gulp, [
             build.folder + '/' + build.img + '/**/*',
             '!' + build.folder + '/' + build.img + '/desktop',
             '!' + build.folder + '/' + build.img + '/desktop/**',
           ], dist.folder + '/' + dist.sep  + '/' + dist.mobile + '/' + dist.img),
-          require(tasks + 'del-comment')(gulp,plugins,{},dist.folder + '/' + dist.sep + '/' + dist.mobile + '/index.html',dist.folder + '/' + dist.sep + '/' + dist.mobile + '/'),
-          require(tasks + 'del-comment')(gulp,plugins,{},dist.folder + '/' + dist.sep + '/' + dist.mobile + '/**/*.js',dist.folder + '/' + dist.sep + '/' + dist.mobile + '/'),
-          require(tasks + 'del-css-comment')(gulp,plugins,cssCommentNoDel('==='),dist.folder + '/' + dist.sep + '/' + dist.mobile + '/' + dist.css +'/**/*', dist.folder +  '/' + dist.sep + '/' + dist.mobile + '/' + dist.css)
+          require(tasks + 'del-comment')(gulp,plugins,{safe:true},dist.folder + '/' + dist.sep + '/' + dist.mobile + '/index.html',dist.folder + '/' + dist.sep + '/' + dist.mobile + '/'),
+          require(tasks + 'del-comment')(gulp,plugins,{safe:true},dist.folder + '/' + dist.sep + '/' + dist.mobile + '/**/*.js',dist.folder + '/' + dist.sep + '/' + dist.mobile + '/'),
+          require(tasks + 'del-css-comment')(gulp,plugins,cssCommentNoDel('==='),dist.folder + '/' + dist.sep + '/' + dist.mobile + '/' + dist.css +'/**/*', dist.folder +  '/' + dist.sep + '/' + dist.mobile + '/' + dist.css),
+          require(tasks + 'clean')(`${dist.folder}/${dist.sep}/${dist.mobile}/${dist.css}/${sprite.fileName}.css`, libs)
        ));
 
 
 
 /*9*/  gulp.task( 'desktop-pack', gulp.series(
 
-          require(tasks + 'remove-code')(gulp, plugins, {desktop: true} ,build.folder + '/index.html', dist.folder + '/'  + dist.sep),
-          require(tasks + 'remove-code')(gulp, plugins, {desktop: true} ,build.folder + '/' +  build.js + '/**/*', dist.folder + '/' + dist.sep + '/' +  dist.js),
-          require(tasks + 'remove-code')(gulp, plugins, {desktop: true} ,build.folder +  '/' + build.css + '/**/*', dist.folder + '/' + dist.sep + '/' + dist.css),
+          require(tasks + 'remove-code')(gulp, plugins, {desktop: true,noMobile: true,noDesktop: false,noResp: true,all:true} ,`${build.folder}/**/*.html`, `${dist.folder}/${dist.sep}`),
+          require(tasks + 'remove-code')(gulp, plugins, {desktop: true,noMobile: true,noDesktop: false,noResp: true,all:true} ,build.folder + '/' +  build.js + '/**/*', dist.folder + '/' + dist.sep + '/' +  dist.js),
+          require(tasks + 'remove-code')(gulp, plugins, {desktop: true,noMobile: true,noDesktop: false,noResp: true,all:true} ,build.folder +  '/' + build.css + '/**/*', dist.folder + '/' + dist.sep + '/' + dist.css),
           require(tasks + 'copy')(gulp, [
             build.folder + '/' + build.img + '/**/*',
             '!' + build.folder + '/' + build.img + '/mobile',
             '!' + build.folder + '/' + build.img + '/mobile/**',
           ], dist.folder + '/' + dist.sep + '/' + dist.img),
-          require(tasks + 'del-comment')(gulp,plugins,{},dist.folder + '/' + dist.sep + '/index.html',dist.folder + '/' + dist.sep + '/'),
-          require(tasks + 'del-comment')(gulp,plugins,{},dist.folder + '/' + dist.sep + '/**/*.js',dist.folder + '/' + dist.sep + '/'),
-          require(tasks + 'del-css-comment')(gulp,plugins,cssCommentNoDel('==='),dist.folder + '/' + dist.sep + '/' + dist.css +'/**/*', dist.folder +  '/' + dist.sep + '/' + dist.css)
+          require(tasks + 'del-comment')(gulp,plugins,{safe:true},dist.folder + '/' + dist.sep + '/index.html',dist.folder + '/' + dist.sep + '/'),
+          require(tasks + 'del-comment')(gulp,plugins,{safe:true},dist.folder + '/' + dist.sep + '/**/*.js',dist.folder + '/' + dist.sep + '/'),
+          require(tasks + 'del-css-comment')(gulp,plugins,cssCommentNoDel('==='),dist.folder + '/' + dist.sep + '/' + dist.css +'/**/*', dist.folder +  '/' + dist.sep + '/' + dist.css),
+          require(tasks + 'clean')(`${dist.folder}/${dist.sep}/${dist.css}/${sprite.fileName}.css`, libs)
        ));
 
       
 
 /*10*/ gulp.task( 'responsive-pack' , gulp.series(
-
-        require(tasks + 'copy')(gulp,build.folder + '/**/*','./dist/responsive'),
-        require(tasks + 'del-comment')(gulp,plugins,{},dist.folder + '/' + dist.resp + '/index.html',dist.folder + '/' + dist.resp + '/'),
-        require(tasks + 'del-comment')(gulp,plugins,{},dist.folder + '/' + dist.resp + '/**/*.js',dist.folder + '/' + dist.resp + '/'),
-        require(tasks + 'del-css-comment')(gulp,plugins,cssCommentNoDel('==='),dist.folder + '/' + dist.resp + '/' + dist.css +'/**/*', dist.folder +  '/' + dist.resp + '/' + dist.css)
+        require(tasks + 'remove-code')(gulp, plugins, {resp: true,noMobile: true,noDesktop: true,noResp: false,all:true} ,`${build.folder}/**/*.html`, `${dist.folder}/${dist.resp}`),
+        require(tasks + 'remove-code')(gulp, plugins, {resp: true,noMobile: true,noDesktop: true,noResp: false,all:true} ,`${build.folder}/${build.js}/**/*`, `${dist.folder}/${dist.resp}/${dist.js}`),
+        require(tasks + 'remove-code')(gulp, plugins, {resp: true,noMobile: true,noDesktop: true,noResp: false,all:true} ,build.folder +  '/' + build.css + '/**/*', dist.folder + '/' + dist.resp + '/' + dist.css),
+        require(tasks + 'copy')(gulp,`${build.folder}/**/*`,`./${dist.folder}/${dist.resp}`),
+        require(tasks + 'del-comment')(gulp,plugins,{safe:true},dist.folder + '/' + dist.resp + '/index.html',dist.folder + '/' + dist.resp + '/'),
+        require(tasks + 'del-comment')(gulp,plugins,{safe:true},dist.folder + '/' + dist.resp + '/**/*.js',dist.folder + '/' + dist.resp + '/'),
+        require(tasks + 'del-css-comment')(gulp,plugins,cssCommentNoDel('==='),dist.folder + '/' + dist.resp + '/' + dist.css +'/**/*', dist.folder +  '/' + dist.resp + '/' + dist.css),
+        require(tasks + 'clean')(`${dist.folder}/${dist.resp}/${dist.css}/${sprite.fileName}.css`, libs)
       ));
+
+
+/*11*/  gulp.task( 'create' ,require(tasks + 'generate-folders')(sourse,template));
+/*12*/  gulp.task( 'generate-dist-list' ,require(tasks + 'generate-folders')(sourse,require(`${tasks}generate/dist.js`)));
   
 
 
@@ -121,43 +187,67 @@ function cssCommentNoDel (str){
 
 
 
+// Копирует html и перезагружает браузер
+gulp.task('html', function(){
+  return gulp.src(`${sourse.folder}/**/*.html`)
+    .pipe(gulp.dest(`${build.folder}`))
+    .pipe(libs.browserSync.reload({stream:true}));
+})
 
-// Style 
-// Таск работает с css файлами (sass)
 
-gulp.task('style', function(){
-  return gulp.src(op.sassCompile())
-    .pipe(plugins.sourcemaps.init())
 
-    // Создаем sass переменные на основе json
-    .pipe(plugins.jsonToSass({
-      jsonPath: `./${sourse.folder}/${sourse.json}/${sourse.jsonVars}`,
-      scssPath: `${sourse.folder}/${sourse.sass}/core/_var.scss`
-    }))
-    .pipe(plugins.sass({
-      outputStyle: 'expanded',
-      errLogToConsole: true,
-      //includePaths: ['src/sass']   ???!
-    })).on('error', plugins.notify.onError({title: 'Style'}))
-    .pipe(plugins.sourcemaps.write())
-    .pipe(gulp.dest(build.folder + '/' + build.css))
-    .pipe(libs.browserSync.stream())
+// Копирует и обновляет css
+gulp.task('style', function(cb){
+
+  if(!op.sass){
+
+  return gulp.src(`${sourse.folder}/${sourse.css}/**/*.css`)
+    .pipe(plugins.autoprefixer([op.prefix], {cascade: true}))
+    .pipe(gulp.dest(`${build.folder}/${build.css}`))
+
+
+  }else{
+    return cb();
+  }
 });
 
 
-// Pug
-// Таск работает с Pug файлами
+gulp.task('css-concat',function(cb){
+  if(!op.sass){
+    return gulp.src(op.path.cssCompile())
+    .pipe(plugins.concat(build.css_file))
+    .pipe(gulp.dest(`${build.folder}/${build.css}/`))
+    .pipe(libs.browserSync.reload({stream:true}));
+  }else{
+    cb();
+  }
+})
 
-gulp.task('pug', function(){
 
-  let langPath = './' + sourse.folder + '/' + sourse.json + '/' + sourse.lang + '/' +  options.lang + '.json';
+gulp.task('sass',function(cb){
+  if(op.sass){
+    return gulp.src(`${sourse.folder}/${sourse.sass}/**/*.scss`)
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.sass({
+        outputStyle: 'expanded',
+        errLogToConsole: true,
+      })).on('error', plugins.notify.onError({title: 'Style'}))
+    .pipe(plugins.autoprefixer([op.prefix], {cascade: true}))
+    .pipe(plugins.sourcemaps.write())
+    .pipe(gulp.dest(`${build.folder}/${build.css}`))
+    .pipe(libs.browserSync.stream())
+  }else{
+    return cb();
+  }
+  
+})
 
-  return gulp.src(op.pugFolders())
 
-    .pipe(plugins.data(function(file){
-        return JSON.parse(fs.readFileSync(langPath));
-      })).on('error', plugins.notify.onError({title: 'Json'}))
 
+
+gulp.task('pug', function(cb){
+  if(op.pug){
+  return gulp.src(`./${sourse.folder}/${sourse.pug}/**/*.pug`)
     .pipe(plugins.pug(
       {
         pretty: true
@@ -169,10 +259,12 @@ gulp.task('pug', function(){
         message: error.message
       }
     }))
-    .pipe(gulp.dest(build.folder))
+    .pipe(gulp.dest('build/'))
     .pipe(libs.browserSync.reload({stream:true}));
+  }else{
+    return cb();
+  }
 });
-
 
 
 
@@ -185,20 +277,19 @@ gulp.task('pug', function(){
 
 gulp.task('watch', function () {
 
-  // Слежка за sass файлами
-  gulp.watch([
-    sourse.folder + '/**/*.scss',
-    '!' + sourse.folder + '/**/_var.scss',
-  ], gulp.series('style'));
+  if(op.sass){
+    gulp.watch(`${sourse.folder}/${sourse.sass}/**/*.scss`, gulp.series('sass'));
+  }else{
+    gulp.watch(`${sourse.folder}/${sourse.css}/**/*.css`, gulp.series('style','css-concat'));
+  }
 
-  // слежка за pug файлами
-  gulp.watch(sourse.folder + '/' + sourse.pug + '/**/*.pug', gulp.series('pug'));
+  if(op.pug){
+    gulp.watch(`${sourse.folder}/**/*.pug`, gulp.series('pug'));
+  }else{
+    gulp.watch(`${sourse.folder}/*.html`, gulp.series('html'));
+  }
 
-  // слежка за js файлами
-  gulp.watch([
-   sourse.folder + '/'+ sourse.js +'/**/*.js',
-    ], gulp.series('script'));
-
+  gulp.watch(`${sourse.folder}/**/*.js`, gulp.series('script'));
 })
 
 
@@ -210,14 +301,22 @@ gulp.task('watch', function () {
 // =============================================================================
 
 
+
+
+
+
 gulp.task('build',gulp.series(
   'clean-build',
   'clean-dist',
-  'style',
-  'pug',
   'script',
   'copy-imgs',
-  'copy-fonts'
+  'copy-fonts',
+  'style',
+  'sass',
+  'html',
+  'pug',
+  'png-sprite',
+  'css-concat'
 ));
 
 
@@ -240,16 +339,15 @@ gulp.task('responsive',gulp.series(
 
 gulp.task('create-dist',gulp.series(
   'clean-dist',
-  'build',
   'mobile-pack',
   'desktop-pack',
-  'responsive-pack',
-  'clean-build'
+  'responsive-pack'
 ));
 
 gulp.task('dist',gulp.series(
   'create-dist',
-  require(tasks + 'server')(libs, dist.folder)
+  'generate-dist-list',
+  require(tasks + 'server')(libs,{open: op.open,server: dist.folder,notify: false})
 ))
 
 
@@ -268,6 +366,7 @@ gulp.task('default', gulp.series(
 
 gulp.task('ftp', gulp.series(
   'create-dist',
+  'generate-dist-list',
   'ftp-require'
 ))
 
