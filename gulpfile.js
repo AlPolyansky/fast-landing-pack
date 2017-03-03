@@ -160,10 +160,10 @@ function cssCommentNoDel (str){
       
 
 /*10*/ gulp.task( 'responsive-pack' , gulp.series(
+        require(tasks + 'copy')(gulp,`${build.folder}/**/*`,`./${dist.folder}/${dist.resp}`),
         require(tasks + 'remove-code')(gulp, plugins, {resp: true,noMobile: true,noDesktop: true,noResp: false,all:true} ,`${build.folder}/**/*.html`, `${dist.folder}/${dist.resp}`),
         require(tasks + 'remove-code')(gulp, plugins, {resp: true,noMobile: true,noDesktop: true,noResp: false,all:true} ,`${build.folder}/${build.js}/**/*`, `${dist.folder}/${dist.resp}/${dist.js}`),
         require(tasks + 'remove-code')(gulp, plugins, {resp: true,noMobile: true,noDesktop: true,noResp: false,all:true} ,build.folder +  '/' + build.css + '/**/*', dist.folder + '/' + dist.resp + '/' + dist.css),
-        require(tasks + 'copy')(gulp,`${build.folder}/**/*`,`./${dist.folder}/${dist.resp}`),
         require(tasks + 'del-comment')(gulp,plugins,{safe:true},dist.folder + '/' + dist.resp + '/index.html',dist.folder + '/' + dist.resp + '/'),
         require(tasks + 'del-comment')(gulp,plugins,{safe:true},dist.folder + '/' + dist.resp + '/**/*.js',dist.folder + '/' + dist.resp + '/'),
         require(tasks + 'del-css-comment')(gulp,plugins,cssCommentNoDel('==='),dist.folder + '/' + dist.resp + '/' + dist.css +'/**/*', dist.folder +  '/' + dist.resp + '/' + dist.css),
@@ -345,6 +345,7 @@ gulp.task('create-dist',gulp.series(
 ));
 
 gulp.task('dist',gulp.series(
+  'build',
   'create-dist',
   'generate-dist-list',
   require(tasks + 'server')(libs,{open: op.open,server: dist.folder,notify: false})

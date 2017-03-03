@@ -19,7 +19,7 @@ const options = {
   sass : false,                     // Использовать sass
   pug  : false,                      // Использовать pug
   prefix : 'last 15 versions',      // Настройки автопрефиксера
-  open : true,                     // Автоматически открывать новую вкладку для запуска gulp
+  open : false,                     // Автоматически открывать новую вкладку для запуска gulp
   tinypngKey : 'ключ с tinypng',    // Ключ полученный с сайта tiny https://tinypng.com/developers  , для сжатия
 
 
