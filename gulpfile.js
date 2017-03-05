@@ -19,7 +19,7 @@ const libs = {
 const sourse = op.path.sourse;                 // Объект с путями исходников
 const build = op.path.build;                   // Объект с путями скомпилированных файлов
 const dist = op.path.dist;                     // Объект с путями файлов продакшена
-const sprite = op.path.sprite();                 // Объект с путями png спрайтов
+const sprite = op.path.sprite();               // Объект с путями png спрайтов
 const tasks = `./${sourse.tasks}/`;            // Путь к gulp таскам
 
 
@@ -122,8 +122,9 @@ function cssCommentNoDel (str){
 /*5*/  gulp.task( 'copy-imgs', require(`${tasks}copy`)(gulp, `${sourse.folder}/${sourse.img}/**/*`, `${build.folder}/${build.img}`));
 /*6*/  gulp.task( 'copy-fonts', require(`${tasks}copy`)(gulp, `${sourse.folder}/${sourse.fonts}/**/*`, `${build.folder}/${build.fonts}`));
 /*7*/  gulp.task( 'script', require(`${tasks}script`)(gulp, plugins, libs, op.path.jsCompile(), build.js_file, `${build.folder}/${build.js}`));
+/*8*/  
 
-/*8*/  gulp.task( 'mobile-pack', gulp.series(
+/*9*/  gulp.task( 'mobile-pack', gulp.series(
 
           require(tasks + 'remove-code')(gulp, plugins, {mobile: true,noMobile: false,noDesktop: true,noResp: true,all:true} ,build.folder + '/index.html',dist.folder + '/'  + dist.sep +   '/' + dist.mobile),
           require(tasks + 'remove-code')(gulp, plugins, {mobile: true,noMobile: false,noDesktop: true,noResp: true,all:true} ,build.folder + '/' +  build.js + '/**/*', dist.folder + '/' + dist.sep + '/' +dist.mobile + '/' + dist.js),
@@ -141,7 +142,7 @@ function cssCommentNoDel (str){
 
 
 
-/*9*/  gulp.task( 'desktop-pack', gulp.series(
+/*10*/  gulp.task( 'desktop-pack', gulp.series(
 
           require(tasks + 'remove-code')(gulp, plugins, {desktop: true,noMobile: true,noDesktop: false,noResp: true,all:true} ,`${build.folder}/**/*.html`, `${dist.folder}/${dist.sep}`),
           require(tasks + 'remove-code')(gulp, plugins, {desktop: true,noMobile: true,noDesktop: false,noResp: true,all:true} ,build.folder + '/' +  build.js + '/**/*', dist.folder + '/' + dist.sep + '/' +  dist.js),
@@ -159,7 +160,7 @@ function cssCommentNoDel (str){
 
       
 
-/*10*/ gulp.task( 'responsive-pack' , gulp.series(
+/*11*/ gulp.task( 'responsive-pack' , gulp.series(
         require(tasks + 'copy')(gulp,`${build.folder}/**/*`,`./${dist.folder}/${dist.resp}`),
         require(tasks + 'remove-code')(gulp, plugins, {resp: true,noMobile: true,noDesktop: true,noResp: false,all:true} ,`${build.folder}/**/*.html`, `${dist.folder}/${dist.resp}`),
         require(tasks + 'remove-code')(gulp, plugins, {resp: true,noMobile: true,noDesktop: true,noResp: false,all:true} ,`${build.folder}/${build.js}/**/*`, `${dist.folder}/${dist.resp}/${dist.js}`),
@@ -171,8 +172,8 @@ function cssCommentNoDel (str){
       ));
 
 
-/*11*/  gulp.task( 'create' ,require(tasks + 'generate-folders')(sourse,template));
-/*12*/  gulp.task( 'generate-dist-list' ,require(tasks + 'generate-folders')(sourse,require(`${tasks}generate/dist.js`)));
+/*12*/  gulp.task( 'create' ,require(tasks + 'generate-folders')(sourse,template));
+/*13*/  gulp.task( 'generate-dist-list' ,require(tasks + 'generate-folders')(sourse,require(`${tasks}generate/dist.js`)));
   
 
 
@@ -259,12 +260,28 @@ gulp.task('pug', function(cb){
         message: error.message
       }
     }))
-    .pipe(gulp.dest('build/'))
+    .pipe(gulp.dest(`${build.folder}/`))
     .pipe(libs.browserSync.reload({stream:true}));
   }else{
     return cb();
   }
 });
+
+
+if(op.pixelGlass){
+  gulp.task('pixel-glass', gulp.series(
+    require(`${tasks}copy`)(gulp, ['gulp/libs/debug/pixel-glass/styles.css','gulp/libs/debug/pixel-glass/script.js'], `${build.folder}/debug/pixel-glass`),
+    require(tasks + 'generate-folders')(sourse,require(`${tasks}generate/pixelGlass.js`),'replace'),
+    require(`${tasks}include`)(gulp ,plugins,`${build.folder}/index.html`,`${build.folder}/`),
+    require(`${tasks}copy`)(gulp, `${sourse.folder}/pixel/**/*`, `${build.folder}/debug/pixel-glass`)
+  ));
+}else{
+  gulp.task('pixel-glass', function(cb){
+    return cb();
+  });
+}
+
+
 
 
 
@@ -316,7 +333,8 @@ gulp.task('build',gulp.series(
   'html',
   'pug',
   'png-sprite',
-  'css-concat'
+  'css-concat',
+  'pixel-glass'
 ));
 
 

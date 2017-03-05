@@ -16,12 +16,14 @@
 
 const options = {
 
-  sass : false,                     // Использовать sass
-  pug  : false,                      // Использовать pug
+  sass : true,                     // Использовать sass
+  pug  : true,                      // Использовать pug
   prefix : 'last 15 versions',      // Настройки автопрефиксера
   open : false,                     // Автоматически открывать новую вкладку для запуска gulp
   tinypngKey : 'ключ с tinypng',    // Ключ полученный с сайта tiny https://tinypng.com/developers  , для сжатия
-
+  //==== еше в разработке ====/
+  pixelGlass : true,                // Использовать pixel Glass для проверки на pixel perfect
+  //==== еше в разработке ====/
 
 
 
@@ -37,7 +39,7 @@ const options = {
   		js 			: 	'js',								    // Папка с модулями js
   		fonts 	:   'fonts',						    // Папка со шрифтами
   		img 		:   'img',						      // Папка с изображениями
-      tasks   :   'gulp-tasks' ,          // Папка с gulp тасками
+      tasks   :   'gulp' ,          // Папка с gulp тасками
       pug     :   'pug/pages'             // Папка с pug файлами для компилации в html (только если вы используете pug)
 
     },
@@ -51,7 +53,7 @@ const options = {
       fonts: 'fonts',							// Папка со шрифтами
       img: 'img',									// Папка с изображениями
       js_file: 'main.js',					// Файл с нашим js
-      css_file: 'main.css',       // Назавание файла в который объедениться все заданные файлы css
+      css_file: 'style.css',       // Назавание файла в который объедениться все заданные файлы css
     },
 
 
@@ -69,6 +71,17 @@ const options = {
 
     },
 
+    //==== еше в разработке ====/
+    pixel: {      // Настройки для pixel glass
+
+      folder            : 'pixel',      // Папка с png,jpg макетами сайта для проверки на совпадения,папка находятся в в директории с исходниками (src)
+      mobilePhoto       : '800.jpg',    // макет мобильной версии
+      desktopPhoto      : '2000.jpg',   // макет десктопной версии
+      mobileFirst       : true,         // Использовать mobileFirst (min-width) для смены макетов. В таком варианте мобильная версия будет идти первой.
+      breakPoint_1      : '991px',          // Точка когда происходить смена макетов
+
+    },
+    //==== еше в разработке ====/
 
 
    generate(){
@@ -134,8 +147,8 @@ const options = {
         // Тут пишем пути к css файлам , которые должны объединиться в один файл
         // Пример: this.sourse.folder + '/' + this.sourse.css + '/main.css',
 
-        this.sourse.folder + '/' + this.sourse.css + '/sprite.css',
-        this.sourse.folder + '/' + this.sourse.css + '/main.css',
+        //this.sourse.folder + '/' + this.sourse.css + '/sprite.css',
+        this.sourse.folder + '/' + this.sourse.css + '/style.css',
 
       ]
     },

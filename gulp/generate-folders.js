@@ -1,4 +1,4 @@
-module.exports = function (path,template){
+module.exports = function (path,template,replace){
 
   // Данный таск генерирует дерево файлов, если оно не создано и дополняет уже существующие.
 
@@ -7,6 +7,7 @@ module.exports = function (path,template){
   let fs = require('fs');
   let colors = require('colors');
   let createFile = require('create-file');
+  let del = require('del');
 
   
   var fileNumbers = 0;
@@ -17,7 +18,13 @@ module.exports = function (path,template){
   // Генератор папки
   let folderGenerator = function(folder,callback){
 
+
+
   	if((typeof folder === "object") && (folder !== null) ){
+      if(replace == 'replace'){
+        del.sync(folder.path);
+        console.log('Удален файл '.blue + folder.path.blue);
+      }
   		fs.stat(folder.path, function(err,stats){
   			if(!stats){
   				createFile(folder.path,folder.content,(err) => {
@@ -26,6 +33,7 @@ module.exports = function (path,template){
 	      	console.log('Создан файл '.blue + folder.path.blue);
 	      	callback();
 	      })
+
   			}
   			else{
   				callback();
@@ -33,6 +41,10 @@ module.exports = function (path,template){
   		})
   		
 		}else{
+      if(replace == 'replace'){
+        del.sync(folder);
+        console.log('Удалена папка '.green + folder.green);
+      }
 			fs.stat(folder, function(err,stats){
       if(!stats){
         fs.mkdir(folder,(err) =>{
