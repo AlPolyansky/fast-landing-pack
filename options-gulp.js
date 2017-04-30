@@ -16,13 +16,12 @@
 
 const options = {
 
-  sass : true,                     // Использовать sass
+  sass : true,                      // Использовать sass
   pug  : true,                      // Использовать pug
   prefix : 'last 15 versions',      // Настройки автопрефиксера
   open : false,                     // Автоматически открывать новую вкладку для запуска gulp
-  tinypngKey : 'ключ с tinypng',    // Ключ полученный с сайта tiny https://tinypng.com/developers  , для сжатия
   //==== еше в разработке ====/
-  pixelGlass : true,                // Использовать pixel Glass для проверки на pixel perfect
+  pixelGlass : false,                // Использовать pixel Glass для проверки на pixel perfect
   //==== еше в разработке ====/
 
 
@@ -39,7 +38,7 @@ const options = {
   		js 			: 	'js',								    // Папка с модулями js
   		fonts 	:   'fonts',						    // Папка со шрифтами
   		img 		:   'img',						      // Папка с изображениями
-      tasks   :   'gulp' ,          // Папка с gulp тасками
+      tasks   :   'gulp' ,                // Папка с gulp тасками
       pug     :   'pug/pages'             // Папка с pug файлами для компилации в html (только если вы используете pug)
 
     },
@@ -71,6 +70,8 @@ const options = {
 
     },
 
+
+
     //==== еше в разработке ====/
     pixel: {      // Настройки для pixel glass
 
@@ -82,6 +83,8 @@ const options = {
 
     },
     //==== еше в разработке ====/
+
+
 
 
    generate(){
@@ -102,7 +105,7 @@ const options = {
 
 
       return {
-        folder          : 'sprite',                 // Папка для хранения png файлов для будущего спрайта
+        folder          : 'sprite',                     // Папка для хранения png файлов для будущего спрайта
         imgName         : 'sprite',                     // Название готового файла с иконками 
         fileName        : 'sprite',                     // Название готового css/scss файла со стилями спрайта
         img             : imgPath + '/',                // Путь где будет лежать готовый png спрайт
@@ -138,6 +141,21 @@ const options = {
 
         //this.sourse.folder + '/' + path.sourse.js + '/libs/jquery.equalheight.min.js',
         this.sourse.folder + '/' + this.sourse.js + '/main.js',
+      ];
+    },
+
+    jsLibs(){
+
+      // js библиотеки, которые буду скопированный в проект
+
+      var path = this.sourse.folder + '/' + this.sourse.js + '/libs/';
+
+      return [
+         path + 'jquery.countdown.min.js',
+         path + 'jquery.placeholder.min.js',
+         //path + 'slick.min.js',
+         path + 'bxslider.js'
+         //path + 'modernizr-custom.js',
       ];
     },
 

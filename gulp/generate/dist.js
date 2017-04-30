@@ -9,6 +9,9 @@ let dist = path.dist;
 		{
 			path: `${dist.folder}/index.html`,
 			content: 
+				'<head>\n'+ 
+					'\t<meta charset="utf-8">' + 
+				'</head>\n' + 
 				'<body>\n' +
 					'\t<ul>\n' +
 						'\t\t<li>\n' +

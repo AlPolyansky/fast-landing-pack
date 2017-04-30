@@ -4,6 +4,7 @@ const op = require('./options-gulp.js');  // Файл с настройками
 const fs = require('fs');     // Управление файлами
 const ftp = require('./ftp.json'); // Json файл с натстройками ftp
 const async = require('async');
+const args = process.argv.slice(2);  // Массив с атрибутами, которые вводим в консоле
 
 
 
@@ -37,13 +38,6 @@ let serverOp = {
 
 
 
-// Таск для сжатия изображений
-
-gulp.task('img-min', function(){
-  return gulp.src(`${sourse.folder}/${sourse.img}/**/*`)
-    .pipe(plugins.tinypng(op.tinypngKey))
-    .pipe(gulp.dest(`${sourse.folder}/${sourse.img}/min`))
-});
 
 
 // png спрайт
@@ -125,7 +119,6 @@ function cssCommentNoDel (str){
 /*8*/  
 
 /*9*/  gulp.task( 'mobile-pack', gulp.series(
-
           require(tasks + 'remove-code')(gulp, plugins, {mobile: true,noMobile: false,noDesktop: true,noResp: true,all:true} ,build.folder + '/index.html',dist.folder + '/'  + dist.sep +   '/' + dist.mobile),
           require(tasks + 'remove-code')(gulp, plugins, {mobile: true,noMobile: false,noDesktop: true,noResp: true,all:true} ,build.folder + '/' +  build.js + '/**/*', dist.folder + '/' + dist.sep + '/' +dist.mobile + '/' + dist.js),
           require(tasks + 'remove-code')(gulp, plugins, {mobile: true,noMobile: false,noDesktop: true,noResp: true,all:true} ,[build.folder + '/' + build.css + '/**/*','!' + build.folder + '/'+ build.css +'/media.css'],dist.folder + '/' +  dist.sep + '/' + dist.mobile + '/css'),
@@ -174,8 +167,37 @@ function cssCommentNoDel (str){
 
 /*12*/  gulp.task( 'create' ,require(tasks + 'generate-folders')(sourse,template));
 /*13*/  gulp.task( 'generate-dist-list' ,require(tasks + 'generate-folders')(sourse,require(`${tasks}generate/dist.js`)));
-  
 
+
+/*14*/
+      gulp.task('data-parser',function(callback){
+        require(tasks + 'data-parser')('./build/index.html','./dist/asia/mobile/index.html','xd',callback);
+      });
+
+      gulp.task('data-parser-desktop',function(callback){
+        require(tasks + 'data-parser')('./build/index.html','./dist/asia/index.html','xd',callback);
+      });
+
+/*15*/
+      let parsData = {
+        type: 'data-parser',
+        server : `${dist.folder}/${dist.sep}/${dist.mobile}`
+      };
+      if(args[1] === '-d'){
+        parsData.type = 'data-parser-desktop';
+        parsData.server = `${dist.folder}/${dist.sep}`
+      }
+
+      gulp.task('data-parser-init',gulp.series(
+        parsData.type
+      ))
+
+
+/*16*/
+    gulp.task('reload',function(cb){
+      libs.browserSync.reload();
+      cb();
+    })
 
 
 
@@ -240,7 +262,6 @@ gulp.task('sass',function(cb){
   }else{
     return cb();
   }
-  
 })
 
 
@@ -260,8 +281,7 @@ gulp.task('pug', function(cb){
         message: error.message
       }
     }))
-    .pipe(gulp.dest(`${build.folder}/`))
-    .pipe(libs.browserSync.reload({stream:true}));
+    .pipe(gulp.dest(`${build.folder}/`));
   }else{
     return cb();
   }
@@ -277,6 +297,21 @@ if(op.pixelGlass){
   ));
 }else{
   gulp.task('pixel-glass', function(cb){
+    return cb();
+  });
+}
+
+
+
+// JS Библиотеки
+
+
+if(op.path.jsLibs().length){
+  gulp.task('js-libs', gulp.series(
+    require(`${tasks}copy`)(gulp, op.path.jsLibs(), `${build.folder}/${build.js}`)
+  ));
+}else{
+  gulp.task('js-libs', function(cb){
     return cb();
   });
 }
@@ -301,12 +336,30 @@ gulp.task('watch', function () {
   }
 
   if(op.pug){
-    gulp.watch(`${sourse.folder}/**/*.pug`, gulp.series('pug'));
+    gulp.watch(`${sourse.folder}/**/*.pug`, gulp.series('pug','reload'));
   }else{
-    gulp.watch(`${sourse.folder}/*.html`, gulp.series('html'));
+    gulp.watch(`${sourse.folder}/*.html`, gulp.series('html','reload'));
   }
 
   gulp.watch(`${sourse.folder}/**/*.js`, gulp.series('script'));
+})
+
+
+gulp.task('data-watch',function(){
+  if(op.pug){
+    if(parsData.type === 'data-parser-desktop'){
+      gulp.watch(`${sourse.folder}/**/*.pug`, gulp.series('pug','desktop-pack','data-parser-init','reload'));
+    }else{
+      gulp.watch(`${sourse.folder}/**/*.pug`, gulp.series('pug','mobile-pack','data-parser-init','reload'));
+    }
+    
+  }else{
+    if(parsData.type === 'data-parser-desktop'){
+      gulp.watch(`${sourse.folder}/*.html`, gulp.series('html','desktop-pack','data-parser-init','reload'));
+    }else{
+      gulp.watch(`${sourse.folder}/*.html`, gulp.series('html','mobile-pack','data-parser-init','reload'));
+    }
+  }
 })
 
 
@@ -334,7 +387,7 @@ gulp.task('build',gulp.series(
   'pug',
   'png-sprite',
   'css-concat',
-  'pixel-glass'
+  'js-libs'
 ));
 
 
@@ -367,6 +420,20 @@ gulp.task('dist',gulp.series(
   'create-dist',
   'generate-dist-list',
   require(tasks + 'server')(libs,{open: op.open,server: dist.folder,notify: false})
+))
+
+
+
+
+
+gulp.task('data' ,gulp.series(
+  'build',
+  'create-dist',
+  'data-parser-init',
+  gulp.parallel(
+    'data-watch',
+    require(tasks + 'server')(libs,{open: op.open,server: parsData.server,notify: false})
+  )
 ))
 
 

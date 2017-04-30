@@ -71,7 +71,5 @@ module.exports = function (path,template,replace){
 			console.log('Созданно папок '.green + folderNumbers);
 			callback();
 		})
-
-
 	};
 };
