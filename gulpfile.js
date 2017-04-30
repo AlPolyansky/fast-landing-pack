@@ -1,9 +1,9 @@
 const gulp = require('gulp'); // gulp
 const plugins = require('gulp-load-plugins')(); // Автоматическая подгрузка gulp плагинов
 const op = require('./options-gulp.js');  // Файл с настройками
-const fs = require('fs');     // Управление файлами
-const ftp = require('./ftp.json'); // Json файл с натстройками ftp
-const async = require('async');
+const fs = require('fs');// Управление файлами
+const ftp = require('./ftp.json');  // Json файл с натстройками ftp
+//const async = require('async'); 
 const args = process.argv.slice(2);  // Массив с атрибутами, которые вводим в консоле
 
 
