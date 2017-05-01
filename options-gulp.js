@@ -151,10 +151,10 @@ const options = {
       var path = this.sourse.folder + '/' + this.sourse.js + '/libs/';
 
       return [
-         path + 'jquery.countdown.min.js',
-         path + 'jquery.placeholder.min.js',
+         //path + 'jquery.countdown.min.js',
+         //path + 'jquery.placeholder.min.js',
          //path + 'slick.min.js',
-         path + 'bxslider.js'
+         //path + 'bxslider.js'
          //path + 'modernizr-custom.js',
       ];
     },

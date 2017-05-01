@@ -86,7 +86,10 @@ gulp.task('png-sprite',function(cb){
 });
 
 
-const template = require(`${tasks}generate/${op.path.generate().template}.js`); 
+const template = {
+  default: require(`${tasks}generate/${op.path.generate().template}.js`), 
+  dist: require(`${tasks}generate/dist.js`), 
+};
 
 
 
@@ -165,8 +168,8 @@ function cssCommentNoDel (str){
       ));
 
 
-/*12*/  gulp.task( 'create' ,require(tasks + 'generate-folders')(template,'replace'));
-/*13*/  gulp.task( 'generate-dist-list' ,require(tasks + 'generate-folders')(sourse,require(`${tasks}generate/dist.js`)));
+/*12*/  gulp.task( 'create' ,require(tasks + 'generate-folders')(template.default));
+/*13*/  gulp.task( 'generate-dist-list' ,require(tasks + 'generate-folders')(template.dist));
 
 
 /*14*/
@@ -418,7 +421,7 @@ gulp.task('create-dist',gulp.series(
 gulp.task('dist',gulp.series(
   'build',
   'create-dist',
-  //'generate-dist-list',
+  'generate-dist-list',
   require(tasks + 'server')(libs,{open: op.open,server: dist.folder,notify: false})
 ))
 
@@ -452,7 +455,7 @@ gulp.task('default', gulp.series(
 
 gulp.task('ftp', gulp.series(
   'create-dist',
-  //'generate-dist-list',
+  'generate-dist-list',
   'ftp-require'
 ))
 

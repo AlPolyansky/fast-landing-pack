@@ -1,10 +1,8 @@
-module.exports = function (){
-let path = require('../../options-gulp.js').path;
-
-let dist = path.dist;
+const path = require('../../options-gulp.js').path;
+const dist = path.dist;
 
 	
-	let foldersArray = [
+module.exports = [
 
 		{
 			path: `${dist.folder}/index.html`,
@@ -29,8 +27,4 @@ let dist = path.dist;
 	 
 
 
-	]
-
-
-	return foldersArray;
-}
+];
