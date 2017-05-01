@@ -165,7 +165,7 @@ function cssCommentNoDel (str){
       ));
 
 
-/*12*/  gulp.task( 'create' ,require(tasks + 'generate-folders')(sourse,template));
+/*12*/  gulp.task( 'create' ,require(tasks + 'generate-folders')(template,'replace'));
 /*13*/  gulp.task( 'generate-dist-list' ,require(tasks + 'generate-folders')(sourse,require(`${tasks}generate/dist.js`)));
 
 
@@ -418,7 +418,7 @@ gulp.task('create-dist',gulp.series(
 gulp.task('dist',gulp.series(
   'build',
   'create-dist',
-  'generate-dist-list',
+  //'generate-dist-list',
   require(tasks + 'server')(libs,{open: op.open,server: dist.folder,notify: false})
 ))
 
@@ -452,7 +452,7 @@ gulp.task('default', gulp.series(
 
 gulp.task('ftp', gulp.series(
   'create-dist',
-  'generate-dist-list',
+  //'generate-dist-list',
   'ftp-require'
 ))
 

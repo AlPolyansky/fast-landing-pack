@@ -1,7 +1,4 @@
-module.exports = function (){
 let options = require('../../options-gulp.js');
-
-
 let path = options.path.sourse;
 let generate = options.path.generate();
 let sourse = './' + path.folder;
@@ -27,7 +24,7 @@ if(options.sass){
 
 
 
-let foldersArray = 
+module.exports = 
   [
   	// ============= Папки из конфига 
   	sourse,
@@ -99,9 +96,3 @@ let foldersArray =
 
 
   ];
-
-
-
-  return foldersArray;
-
-}

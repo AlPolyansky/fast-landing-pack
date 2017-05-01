@@ -1,82 +1,31 @@
 const fs = require('fs');
 const async = require('async');
+const base = new (require('./base/_base.js'));
 
 
 
 
-let createFile = function(filePath,data = '',replace = false){
+let createFile = function(filePath,data = '',replace = false,totalCallback = function(){}){
 
 
-	let originPath = filePath;
+
+	arguments.forEach = [].forEach;
 
 
-	// Функция парсит строку с путем и разибивает на массив по слешку
-	// Создаем массив из объектов с самим елементом и путем
-	let strParse = (filePath) => {
-
-		var output = [];
-
-		let arrElem = filePath.split('/').filter((elem) => {
-			if(elem !== '.'){
-				return elem;
-			}
-		});
-
-		let arrPath = filePath.replace(/\//g, '/,').split(',');
-
-		if(arrPath[0] === './'){
-			// Если первый елемент массива './', то удалим его, а ко второму добавим ./
-			arrPath.splice(0,1);
-			arrPath.splice(0,1,'./' + arrPath[0]);
+	arguments.forEach(function(elem){
+		if(typeof(elem) === 'function'){
+			totalCallback = elem;
 		}
-
-		let totalPath = [];
-
-		for(let i = 0; i < arrElem.length; i++){
-
-				let next = arrPath[i + 1];
-				
-				
-				if(i == 0){
-					totalPath.push(arrPath[i]);
-				}
-				if(i > 0){
-					totalPath.push(totalPath[i - 1] + arrPath[i]);
-				}
-
-				output.push({
-					elem : arrElem[i],
-					path : arrPath[i],
-					totalPath: totalPath[i],
-				});
-		}
-
-		return output;
-	}
+	});
 
 
 
 
-	// Функция ищет наличие разрешения в строке, тем самым отличает файл от папка
-	// Возвращает file или dir
-	let fileOrFolder = (str) => {
-
-		
-		let patern = /\.[^.]/g
-
-		if(patern.test(str)){
-			return 'file';
-		}else{
-			return 'dir';
-		};
-	}
-
-
-
+	let originPath = arguments[0];
 	let createFileOrDir = function(originPath){
 
 		// 1) Создаем массив с данными о пути
-		let arr = strParse(originPath);
+		let arr = base.strParse(originPath);
 
 		// 2) Проверяем на сущестование пути
 		async.eachSeries(arr, (item,callback) => {
@@ -87,7 +36,7 @@ let createFile = function(filePath,data = '',replace = false){
 
 				if(exists){
 					// Если стоит флаг 'replace' (заменить) и это файл
-					if(replace === 'replace' && fileOrFolder(item.elem) === 'file'){
+					if(replace === 'replace' && base.fileOrFolder(item.elem) === 'file'){
 							// То перепишем
 							fs.writeFile(item.totalPath,data,(err) => {
 							if(err) throw err;
@@ -103,7 +52,7 @@ let createFile = function(filePath,data = '',replace = false){
 
 					// Определим:
 					// Если файл, запишем его
-					if(fileOrFolder(item.elem) === 'file'){
+					if(base.fileOrFolder(item.elem) === 'file'){
 
 						fs.writeFile(item.totalPath,data,(err) => {
 							if(err) throw err;
@@ -112,7 +61,7 @@ let createFile = function(filePath,data = '',replace = false){
 					}
 
 					// Если папка, то создадим её
-					if(fileOrFolder(item.elem) === 'dir'){
+					if(base.fileOrFolder(item.elem) === 'dir'){
 
 						fs.mkdir(item.totalPath,(err)=>{
 							if(err) throw err;
@@ -122,16 +71,19 @@ let createFile = function(filePath,data = '',replace = false){
 				}
 
 			},(err)=>{
-				throw err;
+				if(err) throw err;
 			});
-
+		},function(err){
+			if(err) throw err;
+			return totalCallback();
 		});
+		
 	}
 
-
 	createFileOrDir(originPath);
+	
 };
 
-module.exports = function (filePath,data,replace){
-	createFile(filePath,data,replace);
+module.exports = function (filePath,data,replace,totalCallback){
+	return createFile(filePath,data,replace,totalCallback);
 };

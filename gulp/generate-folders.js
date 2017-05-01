@@ -1,75 +1,40 @@
-module.exports = function (path,template,replace){
+const base = new (require('./base/_base.js'));
+const createFile = require('./create-file.js');
+const async = require('async');
 
-  // Данный таск генерирует дерево файлов, если оно не создано и дополняет уже существующие.
+module.exports = function (template,content = {},replace = false){
 
+  template = arguments[0];
+  content = arguments[1];
 
-  let async = require('async');
-  let fs = require('fs');
-  let colors = require('colors');
-  let createFile = require('create-file');
-  let del = require('del');
+  return function(cb){
 
-  
-  var fileNumbers = 0;
-  var folderNumbers = 0;
+    // Если шаблон - это строка, значит это путь, создаем файл или папку
+    if(typeof(template) === 'string'){
+      createFile(template,content,replace,cb());
+    }
+    // Если шаблон - это массив, то это шаблон, бежим по шаблонку
+    else if(Array.isArray(template)){
 
-
-
-  // Генератор папки
-  let folderGenerator = function(folder,callback){
-
-
-
-  	if((typeof folder === "object") && (folder !== null) ){
-      if(replace == 'replace'){
-        del.sync(folder.path);
-        console.log('Удален файл '.blue + folder.path.blue);
+      // Если второй аргумент раван replace, то это флаг для замены.
+      // (content уже вшит в массив шаблона)
+      if(content === 'replace'){
+        replace = 'replace';
       }
-  		fs.stat(folder.path, function(err,stats){
-  			if(!stats){
-  				createFile(folder.path,folder.content,(err) => {
-	      	if(err) throw err;
-	      	fileNumbers++;
-	      	console.log('Создан файл '.blue + folder.path.blue);
-	      	callback();
-	      })
 
-  			}
-  			else{
-  				callback();
-  			}
-  		})
-  		
-		}else{
-      if(replace == 'replace'){
-        del.sync(folder);
-        console.log('Удалена папка '.green + folder.green);
-      }
-			fs.stat(folder, function(err,stats){
-      if(!stats){
-        fs.mkdir(folder,(err) =>{
+      // Синхронно бежим по шаблону
+      async.eachSeries(template,(item,callback) => {
+          // Если элемент шаблона строка, то это путь к папке или пустому файлу
+          if(typeof(item) === 'string'){
+            createFile(item,'',replace,() => callback());
+          // Если элемент шаблона объект, то это файл с содержимым
+          }else if(typeof(item) === 'object'){
+            createFile(item.path,item.content,replace,() => callback());
+          }
+      },function(err){
           if(err) throw err;
-          folderNumbers++;
-        	console.log('Создана папка '.green + folder.green);
-          callback();
-        })
-      }else{
-        callback();
-      }
-    })
-  }
-};
-
-
-  return function(callback){
-		async.each(template(),(folder,callback_2)=>{
-
-			folderGenerator(folder,callback_2);
-
-		},()=>{
-			console.log('Созданно файлов '.blue + fileNumbers);
-			console.log('Созданно папок '.green + folderNumbers);
-			callback();
-		})
-	};
+          cb();
+      });
+    };
+  };
 };
