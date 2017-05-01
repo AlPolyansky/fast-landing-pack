@@ -1,6 +1,7 @@
-function Base(){
+const fs = require('fs');
+const path = require('path');
 
-};
+function Base(){};
 
 
 // Функция парсит строку с путем и разибивает на массив по слешку
@@ -57,6 +58,13 @@ Base.prototype.fileOrFolder = (str) => {
 	}else{
 		return 'dir';
 	};
+}
+
+// Функция фозвращает массив с названием папкок из директории
+
+Base.prototype.getDirectories = (srcpath) => {
+  return fs.readdirSync(srcpath)
+    .filter(file => fs.statSync(path.join(srcpath, file)).isDirectory())
 }
 
 

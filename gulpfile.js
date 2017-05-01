@@ -2,9 +2,11 @@ const gulp = require('gulp'); // gulp
 const plugins = require('gulp-load-plugins')(); // Автоматическая подгрузка gulp плагинов
 const op = require('./options-gulp.js');  // Файл с настройками
 const fs = require('fs');// Управление файлами
+const base = new (require('./gulp/base/_base.js'));
 const ftp = require('./ftp.json');  // Json файл с натстройками ftp
-//const async = require('async'); 
 const args = process.argv.slice(2);  // Массив с атрибутами, которые вводим в консоле
+
+
 
 
 
@@ -43,46 +45,84 @@ let serverOp = {
 // png спрайт
 
 gulp.task('png-sprite',function(cb){
-  if(op.sass){
 
-    var spriteData = 
-      gulp.src(`./${sourse.folder}/${sprite.folder}/**/*.png`)
-        .pipe(plugins.spritesmith({
-          imgName: `${sprite.imgName}.png`,
-          cssName: `_${sprite.fileName}.scss`,
-          cssFormat: 'scss',
-          imgPath: `../${sprite.img}/${sprite.imgName}.png`,
-          padding: sprite.padding,
-          cssOpts: {
-             cssSelector: function (item) {
-              return `.${sprite.prefix}` + item.name;
-            }
-          }
-      }))
-      spriteData.img.pipe(gulp.dest(`${sourse.folder}/${sprite.img}/`));
-      spriteData.css.pipe(gulp.dest(`${sourse.folder}/${sourse.sass}/${sprite.sassPath}`));
+ 
 
+  // Получаем папки со спрайтами
 
-    cb();
-  }else{
-    var spriteData = 
-      gulp.src(`./${sourse.folder}/${sprite.folder}/**/*.png`)
-        .pipe(plugins.spritesmith({
-          imgName: `${sprite.imgName}.png`,
-          cssName: `${sprite.fileName}.css`,
-          cssFormat: 'css',
-          imgPath: `../${sprite.img}/${sprite.imgName}.png`,
-          padding: sprite.padding,
-          cssOpts: {
-             cssSelector: function (item) {
-              return `.${sprite.prefix}` + item.name;
-            }
-          }
-      }))
-    spriteData.img.pipe(gulp.dest(`${build.folder}/${sprite.img}/`));
-    spriteData.css.pipe(gulp.dest(`${sourse.folder}/${sourse.css}/`))
-    cb();
+  let getSpriteFolders = function(){
+    let dirObj = [];
+    let parentFoders = base.getDirectories(`./${sourse.folder}/${sprite.folder}`).forEach( (elem) => {
+      base.getDirectories(`./${sourse.folder}/${sprite.folder}/${elem}`).forEach((chield) => {
+        dirObj.push({
+          parent: elem,
+          dir: chield
+        })
+      });
+    });
+    return dirObj;
   }
+
+
+
+
+  getSpriteFolders().forEach(function(elem){
+
+
+
+
+    if(op.sass){
+
+
+       // Если sass то выполняем этот код
+
+
+      var spriteData = 
+        gulp.src(`./${sourse.folder}/${sprite.folder}/${elem.parent}/${elem.dir}/**/*.png`)
+          .pipe(plugins.spritesmith({
+            imgName: `${elem.dir}.png`,
+            cssName: `_${elem.dir}.scss`,
+            cssFormat: 'css',
+            imgPath: `../${sprite.img}${elem.dir}.png`,
+            padding: sprite.padding,
+            cssOpts: {
+              cssSelector: function (item) {
+                return `%${sprite.prefix}` + item.name;
+              }
+            }
+        }))
+        spriteData.img.pipe(gulp.dest(`${sourse.folder}/${sprite.img}/`));
+        spriteData.css.pipe(gulp.dest(`${sourse.folder}/${sourse.sass}/${sprite.sassPath}`));
+
+      cb();
+    // Иначе выполняем этот код
+
+
+    }else{
+      var spriteData = 
+        gulp.src(`./${sourse.folder}/${sprite.folder}/**/*.png`)
+          .pipe(plugins.spritesmith({
+            imgName: `${sprite.imgName}.png`,
+            cssName: `${sprite.fileName}.css`,
+            cssFormat: 'css',
+            imgPath: `../${sprite.img}/${sprite.imgName}.png`,
+            padding: sprite.padding,
+            cssOpts: {
+               cssSelector: function (item) {
+                return `.${sprite.prefix}` + item.name;
+              }
+            }
+        }))
+      spriteData.img.pipe(gulp.dest(`${build.folder}/${sprite.img}/`));
+      spriteData.css.pipe(gulp.dest(`${sourse.folder}/${sourse.css}/`))
+      cb();
+    };
+
+  });
+
+
+
+
 });
 
 
@@ -254,6 +294,7 @@ gulp.task('sass',function(cb){
   if(op.sass){
     return gulp.src(`${sourse.folder}/${sourse.sass}/**/*.scss`)
     .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.sassGlob())
     .pipe(plugins.sass({
         outputStyle: 'expanded',
         errLogToConsole: true,
@@ -291,18 +332,7 @@ gulp.task('pug', function(cb){
 });
 
 
-if(op.pixelGlass){
-  gulp.task('pixel-glass', gulp.series(
-    require(`${tasks}copy`)(gulp, ['gulp/libs/debug/pixel-glass/styles.css','gulp/libs/debug/pixel-glass/script.js'], `${build.folder}/debug/pixel-glass`),
-    require(tasks + 'generate-folders')(sourse,require(`${tasks}generate/pixelGlass.js`),'replace'),
-    require(`${tasks}include`)(gulp ,plugins,`${build.folder}/index.html`,`${build.folder}/`),
-    require(`${tasks}copy`)(gulp, `${sourse.folder}/pixel/**/*`, `${build.folder}/debug/pixel-glass`)
-  ));
-}else{
-  gulp.task('pixel-glass', function(cb){
-    return cb();
-  });
-}
+
 
 
 

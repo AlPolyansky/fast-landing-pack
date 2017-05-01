@@ -2,11 +2,11 @@ let options = require('../../options-gulp.js');
 let path = options.path.sourse;
 let generate = options.path.generate();
 let sourse = './' + path.folder;
-let sprite = options.path.sprite();
+//let sprite = options.path.sprite();
 let sass_file = generate.css_file;
 let css_folder = path.css;
 
-let spriteFile = sourse + '/' + css_folder + '/' + sprite.fileName + '.css';
+//let spriteFile = sourse + '/' + css_folder + '/' + sprite.fileName + '.css';
 
 
 
@@ -15,7 +15,7 @@ let spriteFile = sourse + '/' + css_folder + '/' + sprite.fileName + '.css';
 if(options.sass){
   path.css = path.sass;
   sass_file = generate.css_file.replace('css','scss');
-  spriteFile = sourse + '/' + path.sass + '/'  + sprite.sassPath + '/_' + sprite.fileName + '.scss';
+  //spriteFile = sourse + '/' + path.sass + '/'  + sprite.sassPath + '/_' + sprite.fileName + '.scss';
 }
 
 
@@ -32,14 +32,9 @@ module.exports =
     sourse + '/' + path.css,
   	sourse + '/' + path.js,
   	sourse + '/' + path.img,
-    sourse + '/' + sprite.folder,
+    //sourse + '/' + sprite.folder,
 
   	// =============
-
-    {
-      path: spriteFile,
-      content: '',
-    },
 
     {
       path: sourse + '/' + path.css + '/' + sass_file,
