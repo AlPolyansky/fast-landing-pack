@@ -1,0 +1,69 @@
+include core/_mixins
+block variables
+doctype html
+html
+    head
+        //- style.
+        //-     html {
+        //-         background-repeat: no-repeat;
+        //-         background-position:  50% 0;
+        //-         background-image: url( "./debug/pixel-glass/800.jpg" );
+        //-     }
+        //-     @media ( min-width: 991px) {
+        //-         html {
+        //-             background-image: url( "./debug/pixel-glass/2000.jpg" );
+        //-         }
+        //-     }
+        //-     body{
+        //-         opacity: .5;
+        //-     }
+        //-link(rel='stylesheet', href='./debug/pixel-glass/styles.css')
+        meta(charset="utf-8")
+        title= pageTitle
+        meta(content="" name="author")
+        meta(content="" name="description")
+        meta(content="" name="keywords")
+        meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+        meta(content="width=device-width, initial-scale=1" name="viewport")
+        meta(content="ie=edge" http-equiv="x-ua-compatible")
+        meta(name="format-detection" content="telephone=no")
+        script(src='http://ctr-localhost.ru/vlad/jq.js')
+
+        //- Подключение шрифта
+        
+        //removeIf(noMobile)
+        link(href='https://fonts.googleapis.com/css?family=Comfortaa:300,400,700|Roboto:300,400,700&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese', rel='stylesheet')
+        //endRemoveIf(noMobile)
+        //removeIf(mobile)
+        link(href='https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,700|Comfortaa:300,400,700&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese', rel='stylesheet')
+        //endRemoveIf(mobile)
+
+        //- js библиотеки
+        //removeIf(dekstop)
+        //script(type='text/javascript', src='./js/bxslider.js')
+        //endRemoveIf(desktop)
+        //script(type='text/javascript', src='./js/jquery.placeholder.min.js')
+        //script(type='text/javascript', src='./js/jquery.countdown.min.js')
+
+
+        //- Подключаем css файлы
+        link(rel='stylesheet' href='./css/style.css')
+        //removeIf(mobile)
+        link(rel='stylesheet' href='./css/media.css')
+        //endRemoveIf(mobile)
+
+        
+        
+        
+        
+    //removeIf(all)
+    h1
+        123
+    //endRemoveIf(all)
+    body
+        .wrapper
+            block content
+        script(src='./js/main.js' defer)
+        //-script(src='./debug/pixel-glass/script.js', type='text/javascript')
+
+

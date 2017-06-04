@@ -1,0 +1,36 @@
+{
+  "name": "eclerr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulp/gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "browser-sync": "2.11.2",
+    "create-file": "^1.0.1",
+    "del": "^2.2.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-file-include": "^1.0.0",
+    "gulp-ftp": "^1.1.0",
+    "gulp-if": "^2.0.2",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-notify": "2.2.0",
+    "gulp-pug": "^3.2.0",
+    "gulp-remove-code": "^1.0.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-strip-code": "^0.1.4",
+    "gulp-strip-comments": "^2.4.4",
+    "gulp-strip-css-comments": "^1.2.0",
+    "gulp-tinypng": "^1.0.2",
+    "gulp-uglify": "^2.0.0",
+    "gulp-watch": "^4.3.11",
+    "gulp.spritesmith": "^6.3.0"
+  },
+  "author": "eclerr",
+  "license": "ISC",
+  "dependencies": {}
+}

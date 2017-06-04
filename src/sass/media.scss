@@ -1,0 +1,66 @@
+@import 'core/_var.scss';
+//@import 'libs/animate/_animate.scss';
+@import 'libs/orb/_orb.scss';
+
+
+
+$container: 980px;
+$gutter: 15px;
+
+
+
+
+
+$fontBase: 'Open Sans', sans-serif;
+
+$imgPath : '../img/desktop';
+
+
+
+
+/* removeIf(desktop) */
+@media only screen and (min-width: $notebook){
+/* endRemoveIf(desktop) */
+
+	body,html{
+		font-family: $fontBase;
+		/* removeIf(mobile) */
+		min-width: 975px;
+		/* endRemoveIf(mobile) */
+	}
+
+
+
+
+
+	.container{
+		max-width: $container;
+	}
+
+
+	.only{
+		&-mobile{
+			display: none;
+		}
+		&-desktop{
+			display: block;
+		}
+	}
+
+
+
+
+
+
+
+
+@import 'styles/desktop/_m--modules.scss';
+@import 'styles/desktop/_m--sections.scss';
+
+
+
+
+
+/* removeIf(desktop) */
+}
+/* endRemoveIf(desktop) */
