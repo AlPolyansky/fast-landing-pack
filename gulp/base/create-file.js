@@ -3,44 +3,49 @@ const async = require('async');
 const base = new (require('./_base.js'));
 
 
+// Функция создает файлы или папку
+
+module.exports = (params,totalCallback = function(){}) => {
+
+//=== Инициализируем параметры по умолчанию
+	const defaultParams = {
+    path: '',
+    content: '',
+    replace: false,
+  }
 
 
-let createFile = function(filePath,data = '',replace = false,totalCallback = function(){}){
+	let finalParams = defaultParams;
 
 
-
-	arguments.forEach = [].forEach;
-
-
-	arguments.forEach(function(elem){
-		if(typeof(elem) === 'function'){
-			totalCallback = elem;
+	for (let key in params) {
+		if (params.hasOwnProperty(key)) {
+			if (params[key] !== undefined) {
+				finalParams[key] = params[key];
+			}
 		}
-	});
+  }
+
+//=== Инициализируем параметры по умолчанию
 
 
 
+		let arr = base.strParse(params.path);
+		let replace = params.replace;
+		let data = params.content;
 
-	let originPath = arguments[0];
-	let createFileOrDir = function(originPath){
-
-		// 1) Создаем массив с данными о пути
-		let arr = base.strParse(originPath);
-
-		// 2) Проверяем на сущестование пути
 		async.eachSeries(arr, (item,callback) => {
-
 			fs.exists(item.totalPath,function(exists){
-
-				// Если существует файл или папка
+				let totalPath = item.totalPath; // Обсалютный путь элемента
+				let elem = item.elem;						// Элемент 
 
 				if(exists){
 					// Если стоит флаг 'replace' (заменить) и это файл
-					if(replace === 'replace' && base.fileOrFolder(item.elem) === 'file'){
+					if(replace && base.fileOrFolder(elem) === 'file'){
 							// То перепишем
-							fs.writeFile(item.totalPath,data,(err) => {
-							if(err) throw err;
-							callback();
+							fs.writeFile(totalPath,data,(err) => {
+								if(err) throw err;
+								callback();
 						});
 					}else{
 						// Иначе дальше
@@ -49,12 +54,11 @@ let createFile = function(filePath,data = '',replace = false,totalCallback = fun
 				}else{
 					
 					// Если не существует файла или папки
-
 					// Определим:
 					// Если файл, запишем его
-					if(base.fileOrFolder(item.elem) === 'file'){
+					if(base.fileOrFolder(elem) === 'file'){
 
-						fs.writeFile(item.totalPath,data,(err) => {
+						fs.writeFile(totalPath,data,(err) => {
 							if(err) throw err;
 							callback();
 						});
@@ -78,12 +82,4 @@ let createFile = function(filePath,data = '',replace = false,totalCallback = fun
 			return totalCallback();
 		});
 		
-	}
-
-	createFileOrDir(originPath);
-	
-};
-
-module.exports = function (filePath,data,replace,totalCallback){
-	return createFile(filePath,data,replace,totalCallback);
 };

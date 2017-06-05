@@ -61,22 +61,24 @@ module.exports = function (params){
     let packDir;
     let removeValue;
 
+    
+
     switch (params.type) {
       case 'mobile':
         packDir = 'asia/mobile';
         removeValue = defaultParams.mobileFlags;
         break;
       case 'desktop':
-        packDir = 'asia/desktop';
+        packDir = 'asia';
         removeValue = defaultParams.desktopFlags;
+        break;
       case 'resp':
         packDir = 'responsive';
         removeValue = defaultParams.respFlags;
+        break;
       default:
         break;
     }
-
-
   // Удаляет код в комментариях HTML
   gulp.task( 'remove-code-HTML', tasks['remove-code']({
     files: './build/index.html',

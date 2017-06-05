@@ -149,8 +149,15 @@ gulp.task( 'resp-pack', tasks[ 'create-pack' ]({
 }));
 
 // - Создаем файл со списком
-gulp.task( 'generate-dist-list' ,tasks[ 'generate-folders']({
-  template: require('./gulp/generate/dist.js'),
+gulp.task('generate-dist-list',tasks[ 'generate-folders']({
+  template: './gulp/generate/dist.js',
+}));
+
+// - Создаем сервер для продакшена 
+gulp.task( 'dist-server' ,tasks.server({
+    open: op.open,
+    server: dist.folder,
+    notify: false
 }));
 
 
@@ -218,12 +225,12 @@ gulp.task('create-dist',gulp.series([
   'resp-pack'
 ]));
 
-// gulp.task('dist',gulp.series(
-//   'build',
-//   'create-dist',
-//   'generate-dist-list',
-//   require(tasksPath + 'server')(libs,{open: op.open,server: dist.folder,notify: false})
-// ))
+gulp.task('dist',gulp.series([
+  'build',
+  'create-dist',
+  'generate-dist-list',
+  'dist-server'
+]))
 
 
 
