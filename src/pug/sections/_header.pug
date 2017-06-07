@@ -1,5 +1,46 @@
-.container
-	//- класс для отправки формы js_submit
-	//- класс для скрола к форме toform
-	.button
-		button.button__text Заказать
+header.header
+	.header-top
+		.container
+			.header-top__grid
+				.header-top__part
+					.logo
+						.grid
+							.grid__part
+								img(src="./img/logo.png", alt="")
+							.grid__part
+								h1.logo__name DIABETEGEN FORTE
+								p.text 
+									|Интернет-магазин косметического крема
+									|Работаем по России
+				.header-top__part
+					.button__wrap.only-desktop
+						.button.button--light.button-popup
+							button.button__text Заказать
+	.header-content
+		.container
+			.header-content__part
+				.header__title
+					p.text--bg.text Здоровая кожа
+					br
+					p.text--bg.text всего за 27 дней
+				.header-content__text
+					p.text С помощью косметического крема из Европы DIABETEGEN&nbsp;FORTE
+				.prod
+					.sale
+						.sale__content
+							.sale__num 50%
+							.sale__text скидка
+					//removeIf(desktop)
+					img.only-mobile(src="./img/prod.png", alt="")
+					//endRemoveIf(desktop)
+					//removeIf(mobile)
+					img.only-desktop(src="./img/desktop/prod.png", alt="")
+					//endRemoveIf(mobile)
+				.only-desktop
+					.header__info
+						p.text Протестирован дерматологами
+					.button__wrap
+						.button.toform-1
+							button.button__text Заказать сейчас
+
+		

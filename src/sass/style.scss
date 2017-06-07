@@ -2,10 +2,8 @@
 // libs
 
 @import 'libs/orb/_orb.scss';
-@import 'libs/normalize/_normalize.scss';
-@import 'libs/_slick.scss';
 //@import 'libs/normalize/_normalize.scss';
-
+//@import 'libs/_slick.scss';
 
 
 
@@ -37,3 +35,11 @@
 
 
 
+.only{
+	&-mobile{
+		display: block;
+	}
+	&-desktop{
+		display: none;
+	}
+}

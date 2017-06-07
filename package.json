@@ -1,6 +1,6 @@
 {
   "name": "eclerr",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "gulp/gulpfile.js",
   "scripts": {
@@ -28,7 +28,8 @@
     "gulp-tinypng": "^1.0.2",
     "gulp-uglify": "^2.0.0",
     "gulp-watch": "^4.3.11",
-    "gulp.spritesmith": "^6.3.0"
+    "gulp.spritesmith": "^6.3.0",
+    "vinyl-ftp": "^0.6.0"
   },
   "author": "eclerr",
   "license": "ISC",

@@ -1,0 +1,33 @@
+.popup.only-desktop
+	.popup__inner
+		.close
+		.form__wrap
+			form(method='POST' action='#').form
+				.form__title Оформление заказа
+				.form__inner
+					.form__field-wrap
+						.field
+							.field__select-wrap
+								.field__arrow
+								select#country_code_selector.field__select.field__part(name='country_code')
+									option(value='RU') Россия
+						.field
+							input.field__input.field__part(type='text' name='name' placeholder='Ваше имя')
+						.field
+							input.field__input.field__part.only_number(type='text' name='phone' placeholder='Номер телефона')
+						.field.field__info
+							.field__row
+								.field__text.field__label Старая цена:
+								del.field__number.field__label {{ old_price }} {{ currency }}
+							.field__row
+								.field__text.field__label Цена:
+								.field__number.field__label {{ price }} {{ currency }}
+							.field__row
+								.field__text.field__label Доставка:
+								.field__number.field__label {{ shipment_price }} {{ currency }}
+							.field__row
+								.field__text.field__label Итого:
+								.field__number.field__label {{ total_price|int }} {{ currency }}
+					.button
+						button.button__text.js_submit 
+							|Заказать 

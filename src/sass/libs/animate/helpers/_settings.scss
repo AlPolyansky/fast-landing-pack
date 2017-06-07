@@ -49,7 +49,7 @@ $hinge-translate 				: 700px !default;
 
 $use-all                    :   false !default; // all animations status
 $use-fade               :   $use-all !default; // all fades
-$use-bounce             :   $use-all !default; // all bounces
+$use-bounce             :   true !default; // all bounces
 $use-rotate             :   $use-all !default; // all rotates
 $use-slide              :   $use-all !default; // all slide animations
 $use-flipers            :   $use-all !default; // all flip animations
@@ -167,7 +167,7 @@ $use-rollOut 			:	$use-special !default;
 
 
 // Zoom In
-$use-zoom-in            :   $use-zoom !default;
+$use-zoom-in            :   true !default;
 $use-zoomIn 			:	$use-zoom-in !default;
 $use-zoomInDown 		:	$use-zoom-in !default;
 $use-zoomInLeft 		:	$use-zoom-in !default;

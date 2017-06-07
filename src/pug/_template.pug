@@ -1,23 +1,9 @@
 include core/_mixins
 block variables
+
 doctype html
 html
     head
-        //- style.
-        //-     html {
-        //-         background-repeat: no-repeat;
-        //-         background-position:  50% 0;
-        //-         background-image: url( "./debug/pixel-glass/800.jpg" );
-        //-     }
-        //-     @media ( min-width: 991px) {
-        //-         html {
-        //-             background-image: url( "./debug/pixel-glass/2000.jpg" );
-        //-         }
-        //-     }
-        //-     body{
-        //-         opacity: .5;
-        //-     }
-        //-link(rel='stylesheet', href='./debug/pixel-glass/styles.css')
         meta(charset="utf-8")
         title= pageTitle
         meta(content="" name="author")
@@ -32,18 +18,18 @@ html
         //- Подключение шрифта
         
         //removeIf(noMobile)
-        link(href='https://fonts.googleapis.com/css?family=Comfortaa:300,400,700|Roboto:300,400,700&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese', rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic-ext', rel='stylesheet')
         //endRemoveIf(noMobile)
+
         //removeIf(mobile)
-        link(href='https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,700|Comfortaa:300,400,700&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese', rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Roboto:300,400,500,700&subset=cyrillic-ext', rel='stylesheet')
         //endRemoveIf(mobile)
 
         //- js библиотеки
-        //removeIf(dekstop)
-        //script(type='text/javascript', src='./js/bxslider.js')
-        //endRemoveIf(desktop)
-        //script(type='text/javascript', src='./js/jquery.placeholder.min.js')
-        //script(type='text/javascript', src='./js/jquery.countdown.min.js')
+        //- script(type='text/javascript', src='./js/jquery.placeholder.min.js')
+        //- script(type='text/javascript', src='./js/jquery.countdown.min.js')
+        script(type='text/javascript', src='./js/bxslider.js')
+            script(type='text/javascript', src='./js/jquery.dotdotdot.min.js')
 
 
         //- Подключаем css файлы
@@ -56,10 +42,7 @@ html
         
         
         
-    //removeIf(all)
-    h1
-        123
-    //endRemoveIf(all)
+
     body
         .wrapper
             block content

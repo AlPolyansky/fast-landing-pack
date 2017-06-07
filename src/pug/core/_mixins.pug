@@ -26,9 +26,9 @@ mixin sandwich(lineCount,noJS)
 mixin angle(side)
 	-var points
 	-if(side == 'right')
-			- points = '0,0  100,50  0,100'
+			- points = '0,0  10,0  100,50  10,100 0,100 '
 	-if(side == 'left')
-			- points = '100,0  100,100  0,50'
+			- points = '90,0 100,0  100,100 90,100  0,50'
 	-if(side == 'top')
 			- points = '50,0  100,100 0,100'
 	-if(side == 'bottom')

@@ -1,16 +1,25 @@
-module.exports = function (gulp,files,plugins,obj){
+const gulp = require('gulp');
+const ftp = require( 'vinyl-ftp' );
+const config = require('../../ftp.json');
 
-  // Данный таск переносит файлы на удаленный сервер
+// Отрпаляет файлы по ftp
+// params       - объект с параметрами
+// params.files - строка(массив) с путем исходных файлов
+// params.dest  - строка с путем , куда скопировать файлы
 
-  // gulp  		- переменная с подключенным gulp
-  // files 		- строка с путем к исходным файлам
-  // plugins 	- объект с gulp плагинами
-  // obj 			- объект с ftp настройками
+module.exports = function (params){
+
+	function getFtpConnection() {  
+	    return ftp.create(config);
+	}
 
 
-  return function(callback){
+  return function(){
 
-		return gulp.src(files)
-		    .pipe(plugins.ftp(obj))
+  	var conn = getFtpConnection();
+
+		return gulp.src(params.files,  {buffer: false })
+		 	.pipe( conn.newer( config.remotePath ) )
+		 	.pipe( conn.dest( config.remotePath ) )
 	};
 };

@@ -1,6 +1,5 @@
 @import 'core/_var.scss';
-//@import 'libs/animate/_animate.scss';
-@import 'libs/orb/_orb.scss';
+@import 'libs/animate/_animate.scss';
 
 
 
@@ -8,12 +7,85 @@ $container: 980px;
 $gutter: 15px;
 
 
+.hide {
+    opacity: 0;
+}
 
-
-
+//removeIf(mobile)
 $fontBase: 'Open Sans', sans-serif;
+//endRemoveIf(mobile)
 
 $imgPath : '../img/desktop';
+
+
+
+
+
+
+
+
+@keyframes bounceIn-0 {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+		transform: scale(1);
+  }
+  70% {
+		transform: scale(0.99);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn-1 {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+		transform: scale(1.1);
+  }
+  70% {
+		transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn-2 {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+		transform: scale(1.3);
+  }
+  70% {
+		transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bounceIn-0 {
+  animation-name: bounceIn-0;
+}
+
+.bounceIn-1{
+	animation-name: bounceIn-1;
+}
+
+.bounceIn-2{
+	animation-name: bounceIn-2;
+}
 
 
 
@@ -22,6 +94,8 @@ $imgPath : '../img/desktop';
 @media only screen and (min-width: $notebook){
 /* endRemoveIf(desktop) */
 
+
+@import 'libs/orb/_orb.scss';
 	body,html{
 		font-family: $fontBase;
 		/* removeIf(mobile) */
@@ -38,15 +112,6 @@ $imgPath : '../img/desktop';
 	}
 
 
-	.only{
-		&-mobile{
-			display: none;
-		}
-		&-desktop{
-			display: block;
-		}
-	}
-
 
 
 
@@ -58,6 +123,35 @@ $imgPath : '../img/desktop';
 @import 'styles/desktop/_m--sections.scss';
 
 
+
+	.only{
+		&-mobile{
+			display: none;
+		}
+		&-desktop{
+			display: block;
+		}
+	}
+
+
+	.t{
+		&--bold-desktop{
+			font-weight: 700;
+		}
+		&--bold-mobile{
+			font-weight: inherit;
+		}
+		&--border-up{
+			border-top: 4px solid;
+			padding-top: 11px;
+			display: inline-block;
+		}
+		&--border-down{
+			border-bottom: 4px solid;
+			padding-bottom: 11px;
+			display: inline-block;
+		}
+}
 
 
 

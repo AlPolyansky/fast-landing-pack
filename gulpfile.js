@@ -10,78 +10,15 @@ const sourse = op.path.sourse;                 // Объект с путями �
 const build = op.path.build;                   // Объект с путями скомпилированных файлов
 const dist = op.path.dist;                     // Объект с путями файлов продакшена
 const sprite = op.path.sprite();               // Объект с путями png спрайтов
-const tasksPath = `./${sourse.tasks}/`;         // Путь к gulp таскам
 
 
 
 const tasks = require('./gulp/tasks-init.js');  // Подключаем таски
 
 
-// png спрайт
-
-gulp.task('png-sprite',function(cb){
-  if(op.sass){
-
-    var spriteData = 
-      gulp.src(`./${sourse.folder}/${sprite.folder}/**/*.png`)
-        .pipe(plugins.spritesmith({
-          imgName: `${sprite.imgName}.png`,
-          cssName: `_${sprite.fileName}.scss`,
-          cssFormat: 'scss',
-          imgPath: `../${sprite.img}/${sprite.imgName}.png`,
-          padding: sprite.padding,
-          cssOpts: {
-             cssSelector: function (item) {
-              return `.${sprite.prefix}` + item.name;
-            }
-          }
-      }))
-      spriteData.img.pipe(gulp.dest(`${sourse.folder}/${sprite.img}/`));
-      spriteData.css.pipe(gulp.dest(`${sourse.folder}/${sourse.sass}/${sprite.sassPath}`));
-
-
-    cb();
-  }else{
-    var spriteData = 
-      gulp.src(`./${sourse.folder}/${sprite.folder}/**/*.png`)
-        .pipe(plugins.spritesmith({
-          imgName: `${sprite.imgName}.png`,
-          cssName: `${sprite.fileName}.css`,
-          cssFormat: 'css',
-          imgPath: `../${sprite.img}/${sprite.imgName}.png`,
-          padding: sprite.padding,
-          cssOpts: {
-             cssSelector: function (item) {
-              return `.${sprite.prefix}` + item.name;
-            }
-          }
-      }))
-    spriteData.img.pipe(gulp.dest(`${build.folder}/${sprite.img}/`));
-    spriteData.css.pipe(gulp.dest(`${sourse.folder}/${sourse.css}/`))
-    cb();
-  }
-});
-
-
-const template = require(`./gulp/generate/${op.path.generate().template}.js`); 
-
-
-
 // ================================  Таски  ====================================
 // =============================================================================
 // =============================================================================
-
-
-
-
-
-/*1*/  gulp.task( 'ftp-require' ,require(tasksPath + 'ftp')(gulp ,dist.folder + '/**/*', plugins,ftp));
-
-
-// /*12*/  gulp.task( 'create' ,require(tasksPath + 'generate-folders')(sourse,template));
-
-  
-
 
 
 
@@ -116,7 +53,7 @@ gulp.task( 'sass' ,tasks.sass({
 
 // - Копируем изображения
 
-gulp.task( 'copy-img' ,tasks.copy({                             
+gulp.task( 'copy-image' ,tasks.copy({                             
   files:  `${sourse.folder}/${sourse.img}/**/*`, 
   dest:  `${build.folder}/${build.img}`
 }));
@@ -160,6 +97,10 @@ gulp.task( 'dist-server' ,tasks.server({
     notify: false
 }));
 
+gulp.task( 'ftp-require' ,tasks.ftp({
+  files: './dist/**/*'
+}));
+
 
 // ================================  Вотчер  ===================================
 // =============================================================================
@@ -186,7 +127,7 @@ gulp.task('watch', function () {
 
   watch(`./src/img/**/*`, gulp.series([
     tasks.clean({files: `./build/img`}),
-    'copy-img',
+    'copy-image',
     reload
   ]))
 
@@ -210,7 +151,7 @@ gulp.task('watch', function () {
 gulp.task('build',gulp.series([
     'clean-dist',
     'clean-build',
-    'copy-img',
+    'copy-image',
     'copy-fonts',
     'script',
     'sass',
@@ -246,9 +187,62 @@ gulp.task('default', gulp.series([
 ]));
 
 
-// gulp.task('ftp', gulp.series(
-//   'create-dist',
-//   'generate-dist-list',
-//   'ftp-require'
-// ))
+gulp.task('ftp', gulp.series(
+  'create-dist',
+  'generate-dist-list',
+  'ftp-require'
+))
 
+
+
+
+
+
+
+// png спрайт
+
+// gulp.task('png-sprite',function(cb){
+//   if(op.sass){
+
+//     var spriteData = 
+//       gulp.src(`./${sourse.folder}/${sprite.folder}/**/*.png`)
+//         .pipe(plugins.spritesmith({
+//           imgName: `${sprite.imgName}.png`,
+//           cssName: `_${sprite.fileName}.scss`,
+//           cssFormat: 'scss',
+//           imgPath: `../${sprite.img}/${sprite.imgName}.png`,
+//           padding: sprite.padding,
+//           cssOpts: {
+//              cssSelector: function (item) {
+//               return `.${sprite.prefix}` + item.name;
+//             }
+//           }
+//       }))
+//       spriteData.img.pipe(gulp.dest(`${sourse.folder}/${sprite.img}/`));
+//       spriteData.css.pipe(gulp.dest(`${sourse.folder}/${sourse.sass}/${sprite.sassPath}`));
+
+
+//     cb();
+//   }else{
+//     var spriteData = 
+//       gulp.src(`./${sourse.folder}/${sprite.folder}/**/*.png`)
+//         .pipe(plugins.spritesmith({
+//           imgName: `${sprite.imgName}.png`,
+//           cssName: `${sprite.fileName}.css`,
+//           cssFormat: 'css',
+//           imgPath: `../${sprite.img}/${sprite.imgName}.png`,
+//           padding: sprite.padding,
+//           cssOpts: {
+//              cssSelector: function (item) {
+//               return `.${sprite.prefix}` + item.name;
+//             }
+//           }
+//       }))
+//     spriteData.img.pipe(gulp.dest(`${build.folder}/${sprite.img}/`));
+//     spriteData.css.pipe(gulp.dest(`${sourse.folder}/${sourse.css}/`))
+//     cb();
+//   }
+// });
+
+
+// const template = require(`./gulp/generate/${op.path.generate().template}.js`); 
