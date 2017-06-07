@@ -68,4 +68,17 @@ Base.prototype.getDirectories = (srcpath) => {
 }
 
 
+
+// Метод не возвращает null, если путь для require не найден
+Base.prototype.require = (path) => {
+	let output;
+  try{
+    output = require(path);
+  } catch (err){
+    output = {};
+  }
+  return output;
+}
+
+
 module.exports = Base;

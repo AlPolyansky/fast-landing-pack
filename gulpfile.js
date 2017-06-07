@@ -1,8 +1,8 @@
 const gulp = require('gulp'); // gulp
+const _base = new (require('./gulp/base/_base.js'));
 const plugins = require('gulp-load-plugins')(); // Автоматическая подгрузка gulp плагинов
 const op = require('./options-gulp.js');  // Файл с настройками
 const fs = require('fs');     // Управление файлами
-const ftp = require('./ftp.json'); // Json файл с натстройками ftp
 const watch = plugins.watch;
 
 
@@ -97,12 +97,16 @@ gulp.task( 'dist-server' ,tasks.server({
     notify: false
 }));
 
+
 gulp.task( 'ftp-require' ,tasks.ftp({
   files: './dist/**/*',
-  config: require('./ftp.json'),
+  config: _base.require('./ftp.json'),
 }));
 
 
+gulp.task('create-start-template',tasks[ 'generate-folders']({
+  template: './gulp/generate/default.js',
+}));
 // ================================  Вотчер  ===================================
 // =============================================================================
 // =============================================================================
@@ -192,6 +196,10 @@ gulp.task('ftp', gulp.series(
   'create-dist',
   'generate-dist-list',
   'ftp-require'
+))
+
+gulp.task('create', gulp.series(
+  'create-start-template'
 ))
 
 
