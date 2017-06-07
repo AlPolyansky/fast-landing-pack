@@ -1,17 +1,22 @@
 const gulp = require('gulp');
+const gutil = require('gulp-util');
 const ftp = require( 'vinyl-ftp' );
-const config = require('../../ftp.json');
+
 
 // Отрпаляет файлы по ftp
-// params       - объект с параметрами
-// params.files - строка(массив) с путем исходных файлов
-// params.dest  - строка с путем , куда скопировать файлы
+// params       	- объект с параметрами
+// params.files 	- строка(массив) с путем исходных файлов
+// params.config 	- объект с настройками vinyl-ftp
 
 module.exports = function (params){
+
+	const config = params.config;
 
 	function getFtpConnection() {  
 	    return ftp.create(config);
 	}
+
+	config.log = gutil.log;
 
 
   return function(){

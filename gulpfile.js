@@ -98,7 +98,8 @@ gulp.task( 'dist-server' ,tasks.server({
 }));
 
 gulp.task( 'ftp-require' ,tasks.ftp({
-  files: './dist/**/*'
+  files: './dist/**/*',
+  config: require('./ftp.json'),
 }));
 
 
