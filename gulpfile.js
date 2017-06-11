@@ -9,17 +9,20 @@ const watch = plugins.watch;
 const sourse = op.path.sourse;                 // Объект с путями исходников
 const build = op.path.build;                   // Объект с путями скомпилированных файлов
 const dist = op.path.dist;                     // Объект с путями файлов продакшена
-const sprite = op.path.sprite();               // Объект с путями png спрайтов
 
 
 
 const tasks = require('./gulp/tasks-init.js');  // Подключаем таски
 
 
+
+
+
+
+
 // ================================  Таски  ====================================
 // =============================================================================
 // =============================================================================
-
 
 
 // - Удаляем папку dist
@@ -41,15 +44,86 @@ gulp.task( 'build-server' ,tasks.server({
 
 // - Выполняем таск script
 gulp.task( 'script' ,tasks.script({                           
-  files:   `${sourse.folder}/js/main.js`, 
+  files:   `${sourse.folder}/js/**/*.js`, 
   build:  `${build.folder}/${build.js}`
 }));
 
 // - Выполняем таск sass
-gulp.task( 'sass' ,tasks.sass({                              
-  files:   `${sourse.folder}/${sourse.sass}/**/*.scss`, 
-  build:  `${build.folder}/${build.css}`
-}));
+
+
+function sass(wathFile = ''){
+  //console.log(err);
+  tasks.sass({                            
+    files:   [
+        `${sourse.folder}/${sourse.sass}/media.scss`,
+        `${sourse.folder}/${sourse.sass}/style.scss`,
+      ], 
+    build:  `${build.folder}/${build.css}`,
+    autoprefixer: op.prefix,
+    wathFile: wathFile,
+    errCb(){
+      sass()
+    }
+  })();
+}
+
+// function sassErr(err){
+//   gulp.task( 'sass' ,tasks.sass({                            
+//     files:   [
+//         `${sourse.folder}/${sourse.sass}/media.scss`,
+//         `${sourse.folder}/${sourse.sass}/style.scss`,
+//       ], 
+//     build:  `${build.folder}/${build.css}`,
+//     autoprefixer: op.prefix,
+//     err: err,
+//     errCB(){
+//       console.log(12);
+//     }
+//   }));
+// }
+
+//.on('error', plugins.notify.onError({title: 'Style'}))
+
+
+
+// function getSassErr(err){
+
+
+
+//   return gulp.task('sass',function(){
+//     return gulp.src([
+//         `${sourse.folder}/${sourse.sass}/media.scss`,
+//         `${sourse.folder}/${sourse.sass}/style.scss`,
+//       ])
+//         .pipe(plugins.sourcemaps.init())
+//         .pipe(plugins.sass({
+//             outputStyle: 'expanded',
+//             errLogToConsole: true,
+//           })).on('error', function(err){
+
+//             console.log(err.messageOriginal);
+
+//             //plugins.notify.onError({title: 'Style'}).call(this,err)
+//             this.emit('end');
+//         })
+//         .pipe(plugins.autoprefixer(op.prefix, {cascade: true}))
+//         .pipe(plugins.sourcemaps.write())
+//         .pipe(gulp.dest(`${build.folder}/${build.css}`))
+//         .pipe(global._browserSync.stream())
+//   })
+
+// };
+
+
+
+
+gulp.task('concat',function(callback){
+    gulp.src('./src/js/main.js')
+    .pipe(plugins.concat("main.js"))
+    .pipe(gulp.dest('./build/js/'))
+
+  callback();
+})
 
 // - Копируем изображения
 
@@ -112,31 +186,64 @@ gulp.task('create-start-template',tasks[ 'generate-folders']({
 // =============================================================================
 // Слежка за файлами
 
+
+
+
+
+
+// function sass(file){
+//   return gulp.src([
+//     `${sourse.folder}/${sourse.sass}/media.scss`,
+//     `${sourse.folder}/${sourse.sass}/style.scss`,
+//   ])
+//     .pipe(plugins.sourcemaps.init())
+//     .pipe(plugins.sass({
+//         outputStyle: 'expanded',
+//         errLogToConsole: true,
+//       })).on('error', function(err){
+//         let arr = file.split('\\');
+//         if(err.messageOriginal.indexOf(arr[arr.length - 1]) + 1){
+//           console.log('error');
+//         }else{
+//           plugins.notify.onError({title: 'Style'}).call(this,err)
+//         }
+//         this.emit('end');
+//     })
+//     .pipe(plugins.autoprefixer(op.prefix, {cascade: true}))
+//     .pipe(plugins.sourcemaps.write())
+//     .pipe(gulp.dest(`${build.folder}/${build.css}`))
+//     .pipe(global._browserSync.stream())
+// }
+
+
+
 gulp.task('watch', function () {
 
   const reload = global._browserSync.reload;
 
-  watch(`${sourse.folder}/${sourse.sass}/**/*.scss`,gulp.series([
-    'sass'
-  ]))
+  gulp.watch(`${sourse.folder}/${sourse.sass}/**/*.scss`).on('change',(file) =>{
+    gulp.series(function sassWatch(){
+      sass(file);
+    })();     
+  });
 
   watch(`${sourse.folder}/**/*.pug`,gulp.series([
     'pug',
     reload
   ]))
 
-  watch(`./src/**/*.js`,gulp.series([
-    'script',
+  watch(`./${sourse.folder}/**/*.js`,gulp.series([
+    'concat',
     reload
   ]))
 
-  watch(`./src/img/**/*`, gulp.series([
+  watch(`./${sourse.folder}/img/**/*`, gulp.series([
     tasks.clean({files: `./build/img`}),
     'copy-image',
     reload
   ]))
 
-  watch(`./src/fonts/**/*`, gulp.series([
+  watch(`./${sourse.folder}/fonts/**/*`, gulp.series([
     tasks.clean({files: `./build/fonts`}),
     'copy-fonts',
     reload
@@ -158,8 +265,11 @@ gulp.task('build',gulp.series([
     'clean-build',
     'copy-image',
     'copy-fonts',
-    'script',
-    'sass',
+    'concat',
+    function buildSass(cb){
+      sass();
+      cb();
+    },
     'pug',
   ]));
 
