@@ -4,6 +4,7 @@ const plugins = require('gulp-load-plugins')(); // Автоматическая 
 const op = require('./options-gulp.js');  // Файл с настройками
 const fs = require('fs');     // Управление файлами
 const watch = plugins.watch;
+const args = process.argv.slice(2);
 
 
 const sourse = op.path.sourse;                 // Объект с путями исходников
@@ -48,11 +49,11 @@ gulp.task( 'script' ,tasks.script({
   build:  `${build.folder}/${build.js}`
 }));
 
-// - Выполняем таск sass
 
+
+// - Выполняем таск sass (оберка нужня для исправления ошибки sublime text 3)
 
 function sass(wathFile = ''){
-  //console.log(err);
   tasks.sass({                            
     files:   [
         `${sourse.folder}/${sourse.sass}/media.scss`,
@@ -66,55 +67,6 @@ function sass(wathFile = ''){
     }
   })();
 }
-
-// function sassErr(err){
-//   gulp.task( 'sass' ,tasks.sass({                            
-//     files:   [
-//         `${sourse.folder}/${sourse.sass}/media.scss`,
-//         `${sourse.folder}/${sourse.sass}/style.scss`,
-//       ], 
-//     build:  `${build.folder}/${build.css}`,
-//     autoprefixer: op.prefix,
-//     err: err,
-//     errCB(){
-//       console.log(12);
-//     }
-//   }));
-// }
-
-//.on('error', plugins.notify.onError({title: 'Style'}))
-
-
-
-// function getSassErr(err){
-
-
-
-//   return gulp.task('sass',function(){
-//     return gulp.src([
-//         `${sourse.folder}/${sourse.sass}/media.scss`,
-//         `${sourse.folder}/${sourse.sass}/style.scss`,
-//       ])
-//         .pipe(plugins.sourcemaps.init())
-//         .pipe(plugins.sass({
-//             outputStyle: 'expanded',
-//             errLogToConsole: true,
-//           })).on('error', function(err){
-
-//             console.log(err.messageOriginal);
-
-//             //plugins.notify.onError({title: 'Style'}).call(this,err)
-//             this.emit('end');
-//         })
-//         .pipe(plugins.autoprefixer(op.prefix, {cascade: true}))
-//         .pipe(plugins.sourcemaps.write())
-//         .pipe(gulp.dest(`${build.folder}/${build.css}`))
-//         .pipe(global._browserSync.stream())
-//   })
-
-// };
-
-
 
 
 gulp.task('concat',function(callback){
@@ -172,6 +124,8 @@ gulp.task( 'dist-server' ,tasks.server({
 }));
 
 
+
+
 gulp.task( 'ftp-require' ,tasks.ftp({
   files: './dist/**/*',
   config: _base.require('./ftp.json'),
@@ -181,45 +135,55 @@ gulp.task( 'ftp-require' ,tasks.ftp({
 gulp.task('create-start-template',tasks[ 'generate-folders']({
   template: './gulp/generate/default.js',
 }));
+
+
+
+// - Определяем тип data парсера (редактируем мобильную версию или десктопную)
+let dataServerPath = './dist/asia/mobile/';
+let dataParserType = function(){
+  let output;
+  if(args[1] === '-d'){
+    output = {
+      firstIndex: './build/index.html',
+      lastIndex: './dist/asia/index.html',
+      dataName: 'xd'
+    }
+    dataServerPath = './dist/asia/'
+  }else{
+    output = {
+      firstIndex: './build/index.html',
+      lastIndex: './dist/asia/mobile/index.html',
+      dataName: 'xd'
+    }
+  }
+
+  return output;
+}
+
+// - Запускаем data парсер c нужными параметрами
+gulp.task('data-parser-init',tasks[ 'data-parser-init'](dataParserType()));
+
+
+// - Создаем сервер для data парсера 
+gulp.task( 'data-server' ,tasks.server({
+    open: false,
+    server: dataServerPath,
+    notify: false
+}));
+
+
+
+
 // ================================  Вотчер  ===================================
 // =============================================================================
 // =============================================================================
 // Слежка за файлами
 
-
-
-
-
-
-// function sass(file){
-//   return gulp.src([
-//     `${sourse.folder}/${sourse.sass}/media.scss`,
-//     `${sourse.folder}/${sourse.sass}/style.scss`,
-//   ])
-//     .pipe(plugins.sourcemaps.init())
-//     .pipe(plugins.sass({
-//         outputStyle: 'expanded',
-//         errLogToConsole: true,
-//       })).on('error', function(err){
-//         let arr = file.split('\\');
-//         if(err.messageOriginal.indexOf(arr[arr.length - 1]) + 1){
-//           console.log('error');
-//         }else{
-//           plugins.notify.onError({title: 'Style'}).call(this,err)
-//         }
-//         this.emit('end');
-//     })
-//     .pipe(plugins.autoprefixer(op.prefix, {cascade: true}))
-//     .pipe(plugins.sourcemaps.write())
-//     .pipe(gulp.dest(`${build.folder}/${build.css}`))
-//     .pipe(global._browserSync.stream())
-// }
-
-
+const reload = global._browserSync.reload;
 
 gulp.task('watch', function () {
 
-  const reload = global._browserSync.reload;
+  
 
   gulp.watch(`${sourse.folder}/${sourse.sass}/**/*.scss`).on('change',(file) =>{
     gulp.series(function sassWatch(){
@@ -250,6 +214,17 @@ gulp.task('watch', function () {
   ]))
   
 })
+
+
+gulp.task('data-watch', function () {
+  watch(`${sourse.folder}/**/*.pug`,gulp.series([
+    'pug',
+    'mobile-pack',
+    'desktop-pack',
+    'data-parser-init',
+    reload
+  ]))
+});
 
 
 // ================================ Порядок выполнения тасков ==================
@@ -311,6 +286,18 @@ gulp.task('ftp', gulp.series(
 gulp.task('create', gulp.series(
   'create-start-template'
 ))
+
+
+
+gulp.task('data' ,gulp.series([
+  'build',
+  'create-dist',
+  'data-parser-init',
+  gulp.parallel([
+    'data-watch',
+    'data-server'
+  ])
+]))
 
 
 
