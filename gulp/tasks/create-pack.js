@@ -1,6 +1,8 @@
 const gulp = require('gulp');
 const plugins = require('gulp-load-plugins')();
 const tasks = require('../tasks-init.js');
+const path = require('path');
+
 
 
 // Создает мобильную версию проекта
@@ -142,6 +144,8 @@ module.exports = function (params){
     dest: `./dist/${packDir}/css`,
   }))
 
+  
+
 	return gulp.series([
     'remove-code-HTML',
     'remove-code-JS',
@@ -149,6 +153,6 @@ module.exports = function (params){
     'copy-img',
     'del-comment-HTML',
     'del-comment-JS',
-    'del-comment-CSS'
+    'del-comment-CSS',
   ])
 };

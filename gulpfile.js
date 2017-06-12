@@ -173,6 +173,19 @@ gulp.task( 'data-server' ,tasks.server({
 
 
 
+gulp.task( 'data-parser-auto', function(cb){
+  if(args[1] === '-auto'){
+    require('./gulp/base/data-parser-auto.js')({
+      index: `./build/index.html`,
+      dataName: 'xd'
+    },cb);
+  }else{
+    cb();
+  }
+});
+
+
+
 
 // ================================  Вотчер  ===================================
 // =============================================================================
@@ -258,6 +271,7 @@ gulp.task('create-dist',gulp.series([
 
 gulp.task('dist',gulp.series([
   'build',
+  'data-parser-auto',
   'create-dist',
   'generate-dist-list',
   'dist-server'
