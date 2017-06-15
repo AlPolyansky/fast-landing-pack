@@ -21,15 +21,18 @@
 		font-size: 20px;
 	}
 	.text{
-		font-size: 18px;
+		font-size: 16px;
+		font-weight: 400;
+		color: rgb(77, 47, 60);
+		line-height: 1.1;
 	}
 	.grid{
 		&__part{
 			&:first-of-type{
-				padding-top: 2px;
+				//padding-top: 0px;
 			}
 			&:last-of-type{
-				padding-top: 0;
+				padding-top: 9px;
 				padding-left: 15px;
 			}
 		}
@@ -550,6 +553,13 @@
 .popup--show{
 	opacity: 1;
 	visibility: visible;
+}
+
+
+.field{
+	.only-mobile{
+		display: none;
+	}
 }
 
 

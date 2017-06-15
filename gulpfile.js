@@ -80,7 +80,7 @@ gulp.task('concat',function(callback){
 // - Копируем изображения
 
 gulp.task( 'copy-image' ,tasks.copy({                             
-  files:  `${sourse.folder}/${sourse.img}/**/*`, 
+  files:  `${sourse.folder}/${sourse.img}/**/*.+(jpg|png|gif|svg|tiff)`, 
   dest:  `${build.folder}/${build.img}`
 }));
 
@@ -92,7 +92,7 @@ gulp.task( 'copy-fonts' ,tasks.copy({
 
 // - Компилируем Pug
 gulp.task( 'pug' ,tasks.pug({                            
-  files:  `./${sourse.folder}/${sourse.pug}/**/*.pug`, 
+  files:  `./${sourse.folder}/${sourse.pugRoot}/${sourse.pug}/**/*.pug`, 
   dest:  `${build.folder}/`
 }));
 
@@ -214,9 +214,15 @@ gulp.task('watch', function () {
     reload
   ]))
 
-  watch(`./${sourse.folder}/img/**/*`, gulp.series([
+  watch(`./${sourse.folder}/img/**/*.+(jpg|png|gif|svg|tiff)`, gulp.series([
     tasks.clean({files: `./build/img`}),
     'copy-image',
+    reload
+  ]))
+
+  watch(`./${sourse.folder}/fonts/**/*`, gulp.series([
+    tasks.clean({files: `./build/fonts`}),
+    'copy-fonts',
     reload
   ]))
 
@@ -229,6 +235,30 @@ gulp.task('watch', function () {
 })
 
 
+
+gulp.task( 'clean-test' ,tasks.clean({
+  files: `./build/img`
+}));
+
+// gulp.task('watcher', function() {  
+//   watch(`${sourse.folder}/img/**/*`, function(obj){
+//     console.log(obj());
+//     if( obj.type === 'changed') {
+      
+//       gulp.src( obj.path, { "base": `${sourse.folder}/img/`})
+//       .pipe(gulp.dest('./build/img'));
+//     }
+//   })
+// });
+
+// gulp.task('test', gulp.series([
+//   'clean-test',
+//   'copy-image'
+//   'watcher',
+
+// ]));
+
+
 gulp.task('data-watch', function () {
   watch(`${sourse.folder}/**/*.pug`,gulp.series([
     'pug',
@@ -238,6 +268,10 @@ gulp.task('data-watch', function () {
     reload
   ]))
 });
+
+
+
+
 
 
 // ================================ Порядок выполнения тасков ==================
@@ -313,6 +347,11 @@ gulp.task('data' ,gulp.series([
   ])
 ]))
 
+
+// - Генерируем структуру проекта
+gulp.task('create',tasks[ 'generate-folders']({
+  template: './gulp/generate/blank.js',
+}));
 
 
 

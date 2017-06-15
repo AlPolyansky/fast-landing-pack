@@ -24,7 +24,8 @@ const options = {
   		fonts 	:   'fonts',						    // Папка со шрифтами
   		img 		:   'img',						      // Папка с изображениями
       tasks   :   'gulp/tasks' ,          // Папка с gulp тасками
-      pug     :   'pug/pages'             // Папка с pug файлами для компилации в html (только если вы используете pug)
+      pugRoot :   'pug',                  // Корневая папка для pug
+      pug     :   'pages'                 // Папка с pug файлами для компилации в html (только если вы используете pug)
 
     },
 

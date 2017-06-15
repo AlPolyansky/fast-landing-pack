@@ -1,36 +1,60 @@
-// Пустой шаблон для генерации дерева файлов
+const config = require('../../options-gulp.js');
+const templates = require('../base/templateIniter.js');
+const path = config.path;
+const sourse = path.sourse;
 
-// В массив foldersArray можно писать строки , они будут папками
 
-// Также в массив можно добавить объект такого типа
-// 		{
-//				path: строка с путем, куда сгенерируется файл
-//				content: 	строка с контентом в данном файле
-//		}
 
-// Специальные символы:
-// \t - табуляция
-// \n - перенос строки 
 
-module.exports = function (){
-let path = require('../../options-gulp.js').path.sourse;  // Подключенный файл с настройками (со всеми путями)
-	
-	let foldersArray = [
 
-		'test',
 
+// Инициализуем настройки пользователя
+
+let style = config.sass ? sourse.sass : sourse.css;
+
+let htmlOutput = {};
+
+
+
+//====== Инициализуем html или pug файл
+if(config.pug){
+	htmlOutput.path 		= `./${sourse.folder}/${sourse.pugRoot}/templates/_default.pug`
+	//htmlOutput.content = 
+}else{
+	//htmlOutput.path
+}
+
+
+
+// Создаем структуру
+
+module.exports = function (){	
+	return [
+
+		// Ключевые файлы
 		{
-			path: 'test/index.html',
-			content : 
-				'<body>\n' + 
-					'\t<h1>Hello world</h1>\n'+
-				'</body>'
-		}
+      path: `./ftp.json`,
+      content: 
+      '{\n' +
+        '\t"host": "your_host",\n' +
+        '\t"user": "your_login",\n' +
+        '\t"pass": "ftp_pass",\n' +
+        '\t"remotePath" : "/yourPath/"\n' +
+      '}'
+    },
 
+		// Корневые папки
+		{path: './' + sourse.folder},										// Корневой коталог с исходинка 
+		{path: `./${sourse.folder}/${style}`},					// Папка со стилями
+		{path: `./${sourse.folder}/${config.pug ?	sourse.pugRoot : ''}`},						// Папка с pug файлами, если требуется
+		{path: `./${sourse.folder}/${sourse.img}`},			// Папка с изображениями
+		{path: `./${sourse.folder}/${sourse.fonts}`},		// Папка с изображениями
+		{path: `./${sourse.folder}/${sourse.js}`},			// Папка с js
+
+		// Базовые файлы
+		{path: `./${sourse.folder}/${sourse.js}/main.js`},
+		//htmlOutput
 
 
 	]
-
-
-	return foldersArray;
-}
+};

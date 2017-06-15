@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-
+const plugins = require('gulp-load-plugins')();
 
 // Копирует файлы
 // params       - объект с параметрами
@@ -11,6 +11,7 @@ const gulp = require('gulp');
 module.exports = function dataParser (params){
   return function(){
 		return gulp.src(params.files)
+			.pipe(plugins.changed(params.dest))
 		  .pipe(gulp.dest(params.dest));
 	};
 };

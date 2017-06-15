@@ -1,5 +1,5 @@
 @import 'core/_var.scss';
-//sssss@import 'libs/animate/_animate.scss';
+@import 'libs/animate/_animate.scss';
 
 
 
@@ -9,7 +9,6 @@ $gutter: 15px;
 
 .hide {
     opacity: 0;
-    background: #000;
 }
 
 //removeIf(mobile)

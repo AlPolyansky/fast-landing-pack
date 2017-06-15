@@ -1,18 +1,18 @@
-
 .title{
-	//@extend %reset;
+	@extend %reset;
 	color: $colorLight;
 	text-align: center;
 	font-size: 20px;
 	font-weight: 700;
 }
+
 .text{
-	//@extend %reset;sss
+	@extend %reset;
 	font-weight: 300;
 	line-height: 1.2;
 }
 
-// сеткаs
+// сетка
 .grid{
 	display: table;
 	width: 100%;
@@ -37,7 +37,7 @@
 	display: inline-block;
 	text-align: left;
 	&__name{
-		//@extend %reset;
+		@extend %reset;
 		color: $colorBase;
 		font-weight: 700;
 		margin-bottom: 5px;
@@ -45,6 +45,9 @@
 
 	.text{
 		font-size: 14px;
+		font-weight: 400;
+		color: rgb(77, 47, 60);
+		line-height: 1.1;
 	}
 
 	.grid{
@@ -53,7 +56,7 @@
 				width: 75px;
 			}
 			&:last-of-type{
-				padding-top: 4px;
+				padding-top: 10px;
 				padding-left: 10px;
 			}
 		}
@@ -429,6 +432,12 @@ $button--transition : all .3s;									// transition
 	display: inline-block;
 }
 
+
+.field{
+	.only-mobile{
+		display: table;
+	}
+}
 
 
 

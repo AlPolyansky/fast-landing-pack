@@ -55,7 +55,9 @@ module.exports = function (params) {
       }else if(typeof(item) === 'object'){
         createFile({
             path: item.path,
-            content: item.content
+            content: item.content || '',
+            //FIX
+            replace: true
           },() => callback());
         }
     },function(err){
