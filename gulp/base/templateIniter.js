@@ -8,7 +8,7 @@ module.exports = ((params) => {
 	let depPath = path.resolve(`./gulp/generate/files/default/css/test.js`);
 	isdir(depPath,function(err,dir){
 		if(err) throw err;
-		console.log(dir);
+		//console.log(dir);
 	});
 
 

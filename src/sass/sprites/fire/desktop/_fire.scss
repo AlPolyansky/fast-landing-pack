@@ -1,0 +1,123 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$bg-2-name: 'bg-2';
+$bg-2-x: 0px;
+$bg-2-y: 0px;
+$bg-2-offset-x: 0px;
+$bg-2-offset-y: 0px;
+$bg-2-width: 2118px;
+$bg-2-height: 723px;
+$bg-2-total-width: 2118px;
+$bg-2-total-height: 1669px;
+$bg-2-image: '../build/img/sprite.png';
+$bg-2: (0px, 0px, 0px, 0px, 2118px, 723px, 2118px, 1669px, '../build/img/sprite.png', 'bg-2', );
+$fire-2-name: 'fire-2';
+$fire-2-x: 0px;
+$fire-2-y: 723px;
+$fire-2-offset-x: 0px;
+$fire-2-offset-y: -723px;
+$fire-2-width: 897px;
+$fire-2-height: 463px;
+$fire-2-total-width: 2118px;
+$fire-2-total-height: 1669px;
+$fire-2-image: '../build/img/sprite.png';
+$fire-2: (0px, 723px, 0px, -723px, 897px, 463px, 2118px, 1669px, '../build/img/sprite.png', 'fire-2', );
+$fire-4-name: 'fire-4';
+$fire-4-x: 0px;
+$fire-4-y: 1186px;
+$fire-4-offset-x: 0px;
+$fire-4-offset-y: -1186px;
+$fire-4-width: 687px;
+$fire-4-height: 483px;
+$fire-4-total-width: 2118px;
+$fire-4-total-height: 1669px;
+$fire-4-image: '../build/img/sprite.png';
+$fire-4: (0px, 1186px, 0px, -1186px, 687px, 483px, 2118px, 1669px, '../build/img/sprite.png', 'fire-4', );
+$fire-name: 'fire';
+$fire-x: 687px;
+$fire-y: 1186px;
+$fire-offset-x: -687px;
+$fire-offset-y: -1186px;
+$fire-width: 1363px;
+$fire-height: 209px;
+$fire-total-width: 2118px;
+$fire-total-height: 1669px;
+$fire-image: '../build/img/sprite.png';
+$fire: (687px, 1186px, -687px, -1186px, 1363px, 209px, 2118px, 1669px, '../build/img/sprite.png', 'fire', );
+$spritesheet-width: 2118px;
+$spritesheet-height: 1669px;
+$spritesheet-image: '../build/img/sprite.png';
+$spritesheet-sprites: ($bg-2, $fire-2, $fire-4, $fire, );
+$spritesheet: (2118px, 1669px, '../build/img/sprite.png', $spritesheet-sprites, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

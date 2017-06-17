@@ -43,14 +43,14 @@ async.series([
 					chield.each(function(i,elem){
 
 						if(elem.type === 'text'){
-							$(elem.parent).attr(params.dataName,randomstring.generate({length: 5,charset: 'alphabetic'}) +  '-'+ iter);
+							$(elem.parent).attr('data' + params.dataName,randomstring.generate({length: 5,charset: 'alphabetic'}) +  '-'+ iter);
 							iter++;
 						}
 						else if(elem.type === 'tag'){
 							if(elem.name !== 'form'){
 								addRandoData($(elem));
 							}else{
-								$(elem).attr('data-xd',randomstring.generate({length: 5,charset: 'alphabetic'}) +  '-'+ iter);
+								$(elem).attr('data' + params.dataName,randomstring.generate({length: 5,charset: 'alphabetic'}) +  '-'+ iter);
 								iter++;
 							}
 						}

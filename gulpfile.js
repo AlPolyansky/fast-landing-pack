@@ -236,9 +236,15 @@ gulp.task('watch', function () {
 
 
 
-gulp.task( 'clean-test' ,tasks.clean({
-  files: `./build/img`
+gulp.task( 'png-sprite' ,tasks['png-sprite']({
+  spriteFolder: `./${sourse.folder}/sprites`,
+  userConfig: op,
 }));
+
+
+// gulp.task( 'clean-test' ,tasks.clean({
+//   files: `./build/img`
+// }));
 
 // gulp.task('watcher', function() {  
 //   watch(`${sourse.folder}/img/**/*`, function(obj){
