@@ -14,7 +14,7 @@
 @import 'core/_var.scss';
 @import 'core/_base.scss';
 @import 'core/_sprite.scss';
-@import 'sprites/fire/mobile/_fire.scss';
+//@import 'sprites/fire/mobile/_fire.scss';
 
 
 
@@ -43,4 +43,17 @@
 	&-desktop{
 		display: none;
 	}
+}
+
+
+
+
+
+
+.fire-1{
+	width: 120px;
+	height: 220px;
+	background-color: red;
+	background: no-repeat center / contain;
+	background-image: url(mobile-5.png);
 }

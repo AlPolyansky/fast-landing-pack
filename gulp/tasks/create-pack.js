@@ -3,6 +3,7 @@ const plugins = require('gulp-load-plugins')();
 const tasks = require('../tasks-init.js');
 const path = require('path');
 const config = require('../../options-gulp.js');
+const through = require('through2');
 const configPath = config.path;
 
 
@@ -65,6 +66,7 @@ module.exports = function (params){
     let packDir;
     let removeValue;
     let copyImageParams;
+    let removeCodeCSSParams;
 
     
 
@@ -87,6 +89,22 @@ module.exports = function (params){
           dest: `./dist/${packDir}/img`
             
         }
+
+        removeCodeCSSParams = {
+          files: 
+            config.mobileFirst ?  
+              [
+                './build/css/**/*',
+                '!./build/css/media.css',
+              ]
+              :
+              [
+                './build/css/**/*',
+              ],
+          opt: removeValue,
+          dest: `./dist/${packDir}/css`,
+        }
+
         break;
       case 'desktop':
         packDir = 'asia';
@@ -105,6 +123,26 @@ module.exports = function (params){
           ,
           dest: `./dist/${packDir}/img`
         }
+
+        removeCodeCSSParams = {
+          files: 
+            config.mobileFirst ?  
+              [
+                './build/css/**/*',
+              ]
+              :
+              [
+                './build/css/**/*',
+                '!./build/css/media.css',
+              ],
+          opt: removeValue,
+          dest: `./dist/${packDir}/css`,
+        }
+
+
+
+
+
         break;
       case 'resp':
         packDir = 'responsive';
@@ -113,6 +151,13 @@ module.exports = function (params){
           files:  `./${configPath.build.folder}/${configPath.build.img}/**/*`,
           dest:   `./dist/${packDir}/img`
         }
+
+        removeCodeCSSParams = {
+          files: './build/css/**/*',
+          opt: removeValue,
+          dest: `./dist/${packDir}/css`,
+        }
+
         break;
       default:
         break;
@@ -134,11 +179,7 @@ module.exports = function (params){
   }))
 
   // Удаляет код в комментариях CSS
-  gulp.task( 'remove-code-CSS', tasks['remove-code']({
-    files: './build/css/**/*',
-    opt: removeValue,
-    dest: `./dist/${packDir}/css`,
-  }))
+  gulp.task( 'remove-code-CSS', tasks['remove-code'](removeCodeCSSParams))
 
 
   // Копируем изображения
@@ -175,6 +216,32 @@ module.exports = function (params){
     dest: `./dist/${packDir}/css`,
   }))
 
+  gulp.task( 'fix-url-css', function(){
+    return gulp.src(`./dist/${packDir}/css/**/*`)
+      .pipe(through.obj(function (chunk, enc, cb) {
+          let str = '' + chunk._contents;
+          let chunkPath = chunk.path;
+          let pattern;
+          let result;
+
+
+          if(params.type == 'desktop'){
+            pattern = /\/desktop\//g;
+            result = str.replace(pattern,'/');
+            chunk._contents = Buffer.from(result, 'utf8');
+          }
+
+          if(params.type == 'mobile'){
+            pattern = /\/mobile\//g;
+            result = str.replace(pattern,'/');
+            chunk._contents = Buffer.from(result, 'utf8');
+          }
+
+          cb(null, chunk);
+      }))
+      .pipe(gulp.dest(`./dist/${packDir}/css`))
+  });
+
   
 
 	return gulp.series([
@@ -185,5 +252,6 @@ module.exports = function (params){
     'del-comment-HTML',
     'del-comment-JS',
     'del-comment-CSS',
+    'fix-url-css',
   ])
 };

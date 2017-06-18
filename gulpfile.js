@@ -64,7 +64,8 @@ function sass(wathFile = ''){
     wathFile: wathFile,
     errCb(){
       sass()
-    }
+    },
+    mobileFirst: op.mobileFirst
   })();
 }
 
@@ -277,6 +278,8 @@ gulp.task( 'png-sprite' ,tasks['png-sprite']({
   spriteFolder: `./${sourse.folder}/sprites`,
   userConfig: op,
 }));
+
+
 
 
 gulp.task('data-watch', function () {
