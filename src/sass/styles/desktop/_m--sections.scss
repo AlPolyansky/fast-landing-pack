@@ -1,0 +1,476 @@
+
+
+.header{
+	&-top{
+
+		.logo{
+			max-width: 300px;
+		}
+
+		&__grid{
+			@extend .grid;
+		}
+
+		&__part{
+			@extend .grid__part;
+			vertical-align: middle;
+			&:first-of-type{
+
+			}
+			&:last-of-type{
+				text-align: right;
+			}
+		}
+
+	}
+
+	&-content{
+		.container{
+			padding-bottom: 30px;
+			&:before{
+				content: '';
+				display: block;
+				background-image: url(woman-1.jpg);
+				width: 852px;
+				height: 666px;
+				left: -300px;
+				bottom: -40px;
+			}
+		}
+		&__part{
+			max-width: 500px;
+		}
+
+		&__text{
+			font-size: 22px;
+			font-weight: 300;
+			max-width: 80%;
+			.text{
+				font-weight: inherit;
+			}
+		}
+		.button{
+			font-weight: 700;
+		}
+	}
+
+
+	.button__wrap{
+		text-align: inherit;
+	}
+
+	.text--bg{
+		margin-bottom: 10px;
+	}
+
+
+
+	.prod{
+		margin-bottom: 20px;
+		.sale{
+			top: -5px;
+			right: -5px;
+			&:before{
+				content: '';
+				display: block;
+				width: 111%;
+				padding-bottom: 111%;
+			}
+		}
+	}
+
+	&__info{
+		margin-bottom: 20px;
+	}
+
+}
+
+
+
+
+
+.s-help{
+	background: #FC374E;
+	color: $colorLight;
+	font-size: 22px;
+	.title{
+		margin-bottom: 40px;
+		color: $colorLight;
+	}
+	.container{
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}
+	.avatar{
+		margin-bottom: 10px;
+	}
+}
+
+
+
+.s-form{
+	background-color: transparent;
+	background: no-repeat center / cover;
+	background-image: url(bg-1.jpg);
+	position: relative;
+	font-size: 28px;
+	&:before{
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #fff;
+		opacity: .65;
+	}
+	.container{
+		padding-top: 80px;
+		padding-bottom: 80px;
+	}
+
+	&__grid{
+		@extend .grid;
+	}
+
+	&__part{
+		@extend .grid__part;
+		&:first-of-type{
+			vertical-align: middle;
+		}
+		&:last-of-type{
+			text-align: center;
+		}
+	}
+
+	.form__wrap{
+		display: inline-block;
+		width: 100%;
+	}
+
+	.prod{
+		&:after{
+			display: none;
+		}
+	}
+
+	.title{
+		text-transform: uppercase;
+		font-size: 36px;
+		margin-bottom: 10px;
+	}
+	.text{
+		font-weight: 400;
+	}
+	.form__info{
+		.text{
+			font-size: 16px;
+			font-weight: 300;
+		}
+	}
+}
+
+
+
+
+.s-descr{
+	background-color: #FC374E;
+	.container{
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}
+	.title{
+		font-size: 36px;
+		margin-bottom: 30px;
+	}
+
+	.price{
+		&__content{
+			display: inline-block;
+			max-width: 100%;
+		}
+	}
+
+
+}
+
+
+
+
+.s-skills{
+	background: no-repeat center / cover;
+	background-image: url(woman-2.jpg);
+	position: relative;
+	min-height: 500px;
+	&:before{
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #fff;
+		opacity: .65;
+	}
+
+	&__grid{
+		@extend %reset;
+		@extend .grid;
+		margin-bottom: 8px;
+		&:last-of-type{
+			margin-bottom: 0;
+		}
+	}
+	&__content{
+		position: relative;
+		&:before,&:after{
+			content: '';
+			display: block;
+			position: absolute;
+			background: no-repeat center / contain;
+		}
+		&:after{
+			top: 0;
+			right: 140px;
+			width: 115px;
+			height: 104px;
+			background-image: url(label.png);
+		}
+		&:before{
+			width: 124px;
+			height: 304px;
+			top: 0;
+			right: 0;
+			background-image: url(prod-2.png);
+		}
+	}
+	&__part{
+		@extend %reset;
+		@extend .grid__part;
+		padding-left: 20px;
+	}
+	.title__wrap{
+		text-align: center;
+		margin-bottom: 30px;
+	}
+	.title{
+		font-size: 36px;
+	}
+	.container{
+		padding-top: 90px;
+		padding-bottom: 90px;
+	}
+
+	.text{
+		font-size: 18px;
+	}
+
+}
+
+
+
+
+
+
+
+
+.s-reviews{
+	.container{
+		padding-top: 94px;
+		padding-bottom: 57px;
+	}
+	.title{
+		font-size: 44px;
+		margin-bottom: 36px;
+		line-height: 1.3;
+		&__wrap{
+			text-align: center;
+		}
+	}
+
+	.reviews{
+		margin-bottom: 40px;
+	}
+
+	.button{
+		font-weight: 700;
+	}
+}
+
+
+
+
+.s-change{
+	background: #FCEEDB;
+	&__slider-wrap{
+		max-width: 680px;
+		margin: 0 auto;
+		background: #fff;
+		padding: 10px;
+	}
+	.container{
+		padding-top: 40px;
+		padding-bottom: 60px;
+	}
+	.title{
+		margin-bottom: 40px;
+		&__wrap{
+			text-align: center;
+
+		}
+		line-height: 1.3;
+		display: inline-block;
+	}
+}
+
+
+
+.s-diploms{
+	
+	.container{
+		padding-top: 65px;
+		padding-bottom: 60px;
+	}
+	.title{
+		&__wrap{
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		font-size: 44px;
+		line-height: 1.3;
+	}
+	&__top{
+		img{
+			display: inline-block;
+		}
+		margin-bottom: 60px;
+	}
+
+	&__grid{
+		@extend .grid;
+	}
+
+	&__part{
+		@extend .grid__part;
+		&:last-of-type{
+			padding-left: 10px;
+		}
+	}
+
+	&__list{
+		@extend %reset;
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 1.3;
+	}
+	&__item{
+		@extend %reset;
+		font-weight: inherit;
+		margin-bottom: 5px;
+		position: relative;
+		padding-left: 15px;
+		&:before{
+			content: '';
+			display: block;
+			position: absolute;
+			top: 10px;
+			left: 0;
+			width: 5px;
+			height: 5px;
+			background-color: #333;
+			border-radius: 50%;
+		}
+	}
+}
+
+
+
+
+.s-serf{
+	.title__wrap{
+		text-align: center;
+	}
+	.title{
+		font-size: 44px;
+		line-height: 1.3;
+		margin-bottom: 40px;
+	}
+	.container{
+		padding-top: 40px;
+		padding-bottom: 60px;
+	}
+
+	&__grid{
+		@extend .grid;
+		max-width: 90%;
+		margin: 0 auto;
+		margin-bottom: 20px;
+		&:last-of-type{
+			margin-bottom: 0;
+		}
+	}
+
+	&__part{
+		@extend .grid__part;
+	}
+
+	&__content{
+		text-align: center;
+
+		img{
+			max-width: 252px;
+			display: inline-block;
+			border: 5px solid #333;
+		}
+	}
+}
+
+
+
+.s-cow{
+	.container{
+		padding-top: 40px;
+		padding-bottom: 40px;
+
+	}
+	
+	.title__wrap{
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.title{
+		font-size: 44px;
+		line-height: 1.3;
+	}
+
+	.list{
+		max-width: 720px;
+		position: relative;
+		z-index: 1;
+	}
+
+	&__content{
+		position: relative;
+		&:before{
+			content: '';
+			display: block;
+			position: absolute;
+			width: 267px;
+			height: 250px;
+			background: no-repeat center / contain;
+			background-image: url(cows-e.jpg);
+			top: -40px;
+			right: -15px;
+		}
+	}
+
+	.list{
+		@extend .grid;
+		&__item{
+			@extend .grid__part;
+		}
+	}
+}

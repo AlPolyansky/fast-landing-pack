@@ -1,8 +1,5 @@
 @import 'core/_var.scss';
-//@import 'libs/animate/_animate.scss';
-
-
-
+@import 'libs/animate/_animate.scss';
 
 
 
@@ -11,7 +8,7 @@ $gutter: 15px;
 
 
 .hide {
-	opacity: 0;
+    opacity: 0;
 }
 
 //removeIf(mobile)
@@ -98,8 +95,6 @@ $imgPath : '../img/desktop';
 /* endRemoveIf(desktop) */
 
 
-//@import 'sprites/fire/desktop/_fire.scss';
-
 @import 'libs/orb/_orb.scss';
 	body,html{
 		font-family: $fontBase;
@@ -159,26 +154,7 @@ $imgPath : '../img/desktop';
 }
 
 
-.fire-1{
-	width: 120px;
-	height: 220px;
-	background-color: red;
-	background: no-repeat center / contain;
-	background-image: url(desktop-5.png);
-}
-
-
 
 /* removeIf(desktop) */
 }
 /* endRemoveIf(desktop) */
-
-
-
-
-
-
-
-
-
-
