@@ -2,6 +2,8 @@ const gulp = require('gulp');
 const plugins = require('gulp-load-plugins')();
 const tasks = require('../tasks-init.js');
 const path = require('path');
+const config = require('../../options-gulp.js');
+const configPath = config.path;
 
 
 
@@ -62,6 +64,7 @@ module.exports = function (params){
 
     let packDir;
     let removeValue;
+    let copyImageParams;
 
     
 
@@ -69,18 +72,53 @@ module.exports = function (params){
       case 'mobile':
         packDir = 'asia/mobile';
         removeValue = defaultParams.mobileFlags;
+        copyImageParams = {
+          files: config.mobileFirst ? 
+            [
+              `./${configPath.build.folder}/${configPath.build.img}/**/*`,
+              `!./${configPath.build.folder}/${configPath.build.img}/desktop/**/*`,
+              `!./${configPath.build.folder}/${configPath.build.img}/desktop`,
+            ]
+            :
+            [
+              `./${configPath.build.folder}/${configPath.build.img}/mobile/**/*`,
+            ]
+          ,
+          dest: `./dist/${packDir}/img`
+            
+        }
         break;
       case 'desktop':
         packDir = 'asia';
         removeValue = defaultParams.desktopFlags;
+        copyImageParams = {
+          files: (!config.mobileFirst) ? 
+            [
+              `./${configPath.build.folder}/${configPath.build.img}/**/*`,
+              `!./${configPath.build.folder}/${configPath.build.img}/mobile/**/*`,
+              `!./${configPath.build.folder}/${configPath.build.img}/mobile`,
+            ]
+            :
+            [
+              `./${configPath.build.folder}/${configPath.build.img}/desktop/**/*`,
+            ]
+          ,
+          dest: `./dist/${packDir}/img`
+        }
         break;
       case 'resp':
         packDir = 'responsive';
         removeValue = defaultParams.respFlags;
+        copyImageParams = {
+          files:  `./${configPath.build.folder}/${configPath.build.img}/**/*`,
+          dest:   `./dist/${packDir}/img`
+        }
         break;
       default:
         break;
     }
+
+
   // Удаляет код в комментариях HTML
   gulp.task( 'remove-code-HTML', tasks['remove-code']({
     files: './build/index.html',
@@ -102,16 +140,9 @@ module.exports = function (params){
     dest: `./dist/${packDir}/css`,
   }))
 
+
   // Копируем изображения
-  gulp.task( 'copy-img', tasks['copy']({
-    files: [
-        './build/img/**/*',
-        //'!./build/img/mobile',
-        //'!./build/img/mobile/**',
-        //'!./build/img/mobile/**/*'
-      ],
-    dest: `./dist/${packDir}/img`,
-  }))
+  gulp.task( 'copy-img', tasks['copy'](copyImageParams))
 
 
   // Удаялем комментарии из HTML

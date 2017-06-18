@@ -23,7 +23,8 @@ const options = {
       sass    :   'sass',                 // Папка с sass файлами (только если вы используете sass)
   		js 			: 	'js',								    // Папка с модулями js
   		fonts 	:   'fonts',						    // Папка со шрифтами
-  		img 		:   'img',						      // Папка с изображениями
+  		imgMobile 		:   'img-mobile',						       // Папка с изображениями для мобильной версии
+      imgDesktop    :   'img-desktop',                  // Папка с изображениями для десктопнйо версии
       tasks   :   'gulp/tasks' ,          // Папка с gulp тасками
       pugRoot :   'pug',                  // Корневая папка для pug
       pug     :   'pages'                 // Папка с pug файлами для компилации в html (только если вы используете pug)

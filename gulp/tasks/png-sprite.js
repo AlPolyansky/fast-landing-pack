@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const fs = require('fs');
 const path = require('path');
+const createFile = require('../base/create-file.js');
 const plugins = require('gulp-load-plugins')();
 
 // Создаем png спрайт
@@ -8,213 +9,208 @@ const plugins = require('gulp-load-plugins')();
 // params.src 	-	строка или массив с путем , откуда брать спрайты (указывается корневая папка сос прайтами)
 
 
-module.exports = function pngSprite (params){
+module.exports = function pngSprite(params) {
 
-	const config = params.userConfig;
-	let rootPath = params.spriteFolder;
-	let cash = [];
-	let sprites = [
+    const config = params.userConfig;
+    let rootPath = params.spriteFolder;
+    let cash = [];
+    let sprites = [
 
-	];
+    ];
 
-	// Определяет папку, возвращает bool
-	const isDir = totalPath => fs.lstatSync(totalPath).isDirectory();
+    // Определяет папку, возвращает bool
+    const isDir = totalPath => fs.lstatSync(totalPath).isDirectory();
 
-	// Функция принимает путь, и смотрим вложения по этому пути (папки файлы)
-	const initRootSprites = (rootPath,spriteNameReplace = true) =>{
-		// Инициализируем дефолтный таск
-		let defaultSprite = {
-			spriteName: 'sprite',
-			images: [],
-		};
-
-
-
-		// Бежим по первому уровню спрайтов, инициализируем имена
-		fs.readdirSync(rootPath).forEach(item => {
-			let spritePath = path.resolve(rootPath,item);
-			let folderName = item;
-
-			if(isDir(spritePath)){
-				// Кешируем имена спрайтов
-				if(spriteNameReplace){
-					cash.push(item);
-				}else{
-					console.log(spritePath,item);
-					//dirObj.desktop = item === 'desktop' ? true : false;
-					//dirObj.mobile = item === 'mobile' ? true: false;
+    // Функция принимает путь, и смотрим вложения по этому пути (папки файлы)
+    const initRootSprites = (rootPath, spriteNameReplace = true) => {
+        // Инициализируем дефолтный таск
+        let defaultSprite = {
+            spriteName: 'sprite',
+            images: [],
+        };
 
 
 
-					//(cash[cash.length - 1],item);
-					// Достаем направления спрайтов (desktop,mobile)
-				}
-				initRootSprites(rootPath + '/' + item,false);
+        // Бежим по первому уровню спрайтов, инициализируем имена
+        fs.readdirSync(rootPath).forEach(item => {
+            let spritePath = path.resolve(rootPath, item);
+            let folderName = item;
+
+            if (isDir(spritePath)) {
+                // Кешируем имена спрайтов
+                if (spriteNameReplace) {
+                    cash.push(item);
+                } else {
+                    //dirObj.desktop = item === 'desktop' ? true : false;
+                    //dirObj.mobile = item === 'mobile' ? true: false;
 
 
-			}else{
-				// Если файл
 
-				cash.forEach(cashItem => {
-					if(spritePath.indexOf(cashItem) + 1){
-						defaultSprite.spriteName =  cashItem;
-					}else{
-						defaultSprite.spriteName =  'sprite';
-					};
+                    //(cash[cash.length - 1],item);
+                    // Достаем направления спрайтов (desktop,mobile)
+                }
+                initRootSprites(rootPath + '/' + item, false);
 
 
-				});
+            } else {
+                // Если файл
 
-				defaultSprite.images.push(spritePath);
-				if(defaultSprite.spriteName.indexOf('--i') + 1){
-					//console.log(defaultSprite);
-					defaultSprite.icons = true;
-				}else{
-					defaultSprite.icons = false;
-				}
+                cash.forEach(cashItem => {
+                    if (spritePath.indexOf(cashItem) + 1) {
+                        defaultSprite.spriteName = cashItem;
+                    } else {
+                        defaultSprite.spriteName = 'sprite';
+                    };
 
 
-				if(rootPath.indexOf('--i') + 1){
-					defaultSprite.icons = true;
-				}
+                });
 
-				//console.log(params.src);
+                defaultSprite.images.push(spritePath);
+                if (defaultSprite.spriteName.indexOf('--i') + 1) {
+                    //console.log(defaultSprite);
+                    defaultSprite.icons = true;
+                } else {
+                    defaultSprite.icons = false;
+                }
 
-			}
-		});
-		if(defaultSprite.images.length){
-			// Запиываем конечный варинт;
-			
-			sprites.push(defaultSprite);
-		}
-	};
 
+                if (rootPath.indexOf('--i') + 1) {
+                    defaultSprite.icons = true;
+                }
+
+                //console.log(params.src);
+
+            }
+        });
+        if (defaultSprite.images.length) {
+            // Запиываем конечный варинт;
+
+            sprites.push(defaultSprite);
+        }
+    };
 
 
 
 
 
-	initRootSprites(rootPath);
 
-	//console.log(sprites);
+    initRootSprites(rootPath);
 
-
-	const dirIdent = (images) => {
-		let output = '';
-		images.forEach(image =>{
-			let pathArr = image.split(path.sep);
-
-			switch(pathArr[pathArr.length - 2]){
-				case 'desktop':
-					output = 'desktop';
-
-					//cash[spriteName].desktop = true;
-					break;
-				case 'mobile':
-					output = 'mobile';
-					//cash[spriteName].mobile = true;
-					break;
-			}
-		})
-
-		return output;
-	}
+    //console.log(sprites);
 
 
-	const createSprite = (arr) =>{
-			let sourseFolder = config.path.sourse.folder;
-			let imgFolder = config.path.sourse.img;
-			let sassFolder = config.path.sourse.sass;
-			let spriteNames = {};
-			
+    const dirIdent = (images) => {
+        let output = '';
+        images.forEach(image => {
+            let pathArr = image.split(path.sep);
 
-			
+            switch (pathArr[pathArr.length - 2]) {
+                case 'desktop':
+                    output = 'desktop';
 
-			arr.forEach(item => {
-				spriteNames[item.spriteName] = {};
-				// item.images.forEach(image =>{
-				// 		let pathArr = image.split(path.sep);
+                    //cash[spriteName].desktop = true;
+                    break;
+                case 'mobile':
+                    output = 'mobile';
+                    //cash[spriteName].mobile = true;
+                    break;
+            }
+        })
 
-				// 		switch(pathArr[pathArr.length - 2]){
-				// 			case 'desktop':
-				// 				output = 'desktop';
-
-				// 				spriteNames[spriteName].desktop = true;
-				// 				break;
-				// 			case 'mobile':
-				// 				output = 'mobile';
-				// 				spriteNames[spriteName].mobile = true;
-				// 				break;
-				// 		}
-				// 	})
-				//console.log(spriteNames);
-
-				let direction = dirIdent(item.images);
+        return output;
+    }
 
 
-				let options = config.sass ?
-					{
-						cssFormat: 'scss',
-						cssName: `_${item.spriteName}.scss`,
-						imgName: item.spriteName + '.png',
-						classType: '%'
-					}
-
-					:
-
-					{
-						cssFormat: 'css',
-						cssName: `${item.spriteName}.css`,
-						imgName: item.spriteName + '.png',
-						classType: '.'
-					}
+    const createSprite = (arr) => {
+        let sourseFolder = config.path.sourse.folder;
+        let imgFolder = config.path.sourse.img;
+        let sassFolder = config.path.sourse.sass;
+        let spriteNames = {};
 
 
 
 
+        arr.forEach(item => {
+            spriteNames[item.spriteName] = {};
+            // item.images.forEach(image =>{
+            // 		let pathArr = image.split(path.sep);
 
-				if(item.spriteName.indexOf('--i')){
-					options.cssName = options.cssName.replace('--i','');
-					options.imgName = options.imgName.replace('--i','');
-					options.classType = '.'
-				}
+            // 		switch(pathArr[pathArr.length - 2]){
+            // 			case 'desktop':
+            // 				output = 'desktop';
 
+            // 				spriteNames[spriteName].desktop = true;
+            // 				break;
+            // 			case 'mobile':
+            // 				output = 'mobile';
+            // 				spriteNames[spriteName].mobile = true;
+            // 				break;
+            // 		}
+            // 	})
+            //console.log(spriteNames);
 
-				//console.log(options.cssName);
-
-				let spriteData;
-				spriteData = gulp.src(item.images)
-				.pipe(plugins.spritesmith({
-	          imgName: options.imgName,
-	          cssName: options.cssName,
-	          cssFormat: options.cssFormat,
-	          imgPath: `../build/img/sprite.png`,
-	          cssOpts: {
-	             cssSelector: function (item) {
-	              return `${options.classType}i-` + item.name;
-	            }
-	          }
-	      }))
+            let direction = dirIdent(item.images);
 
 
+            let options = config.sass ? {
+                cssFormat: 'css',
+                cssName: `_${item.spriteName}.scss`,
+                imgName: item.spriteName + '.png',
+                classType: '%'
+            }
 
-	      //console.log(path.resolve(sourseFolder,imgFolder,direction))
+            :
 
-	      spriteData.img.pipe(gulp.dest(path.resolve(sourseFolder,imgFolder,direction)));
-				spriteData.css.pipe(gulp.dest(path.resolve(sourseFolder,sassFolder,'sprites',item.spriteName,direction)));
-
-				})
-	}
-
-
-	
+            {
+                cssFormat: 'css',
+                cssName: `${item.spriteName}.css`,
+                imgName: item.spriteName + '.png',
+                classType: '.'
+            }
 
 
 
- 	return function(cb){
- 		createSprite(sprites);
-		cb();
-	};
+
+
+            if (item.spriteName.indexOf('--i')) {
+                options.cssName = options.cssName.replace('--i', '');
+                options.imgName = options.imgName.replace('--i', '');
+                options.classType = '.'
+            }
+
+
+            //console.log(options.cssName);
+            let i = 0;
+            let spriteData;
+            spriteData = gulp.src(item.images)
+                .pipe(plugins.spritesmith({
+                    imgName: options.imgName,
+                    cssName: options.cssName,
+                    cssFormat: options.cssFormat,
+                    imgPath: `#{$imgPath}/${options.imgName}`,
+                    cssOpts: {
+                        cssSelector: function(item) {
+
+                            return `${options.classType}${options.imgName.replace('.png','')}-` + i++;
+                        }
+                    }
+                }))
+            spriteData.img.pipe(gulp.dest(path.resolve(sourseFolder, imgFolder, direction)));
+            spriteData.css.pipe(gulp.dest(path.resolve(sourseFolder, sassFolder, 'sprites', item.spriteName, direction)));
+        })
+
+
+    }
+
+
+
+
+
+
+    return function(cb) {
+        createSprite(sprites);
+        cb();
+    };
 };
 
 

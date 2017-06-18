@@ -1,5 +1,8 @@
 @import 'core/_var.scss';
-@import 'libs/animate/_animate.scss';
+//@import 'libs/animate/_animate.scss';
+
+
+
 
 
 
@@ -8,7 +11,7 @@ $gutter: 15px;
 
 
 .hide {
-    opacity: 0;
+	opacity: 0;
 }
 
 //removeIf(mobile)
@@ -94,6 +97,8 @@ $imgPath : '../img/desktop';
 @media only screen and (min-width: $notebook){
 /* endRemoveIf(desktop) */
 
+
+@import 'sprites/fire/desktop/_fire.scss';
 
 @import 'libs/orb/_orb.scss';
 	body,html{

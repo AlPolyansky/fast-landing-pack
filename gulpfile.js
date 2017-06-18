@@ -77,12 +77,46 @@ gulp.task('concat',function(callback){
   callback();
 })
 
-// - Копируем изображения
 
-gulp.task( 'copy-image' ,tasks.copy({                             
-  files:  `${sourse.folder}/${sourse.img}/**/*.+(jpg|png|gif|svg|tiff)`, 
-  dest:  `${build.folder}/${build.img}`
-}));
+
+// - Копируем изображения
+const copyImageFilter = (params) => {
+  // params - mobileFirst
+  return params.mobileFirst 
+    ? {
+      files:  `${sourse.folder}/${params.folder}/**/*.+(jpg|png|gif|svg|tiff)`, 
+      dest:  `${build.folder}/${build.img}`, 
+    }
+    : {
+      files:  `${sourse.folder}/${params.folder}/**/*.+(jpg|png|gif|svg|tiff)`, 
+      dest:  `${build.folder}/${build.img}/${params.dir}`,
+    }
+
+}
+
+gulp.task( 'copy-image-mobile' ,tasks.copy(copyImageFilter({
+  mobileFirst: op.mobileFirst,
+  folder: sourse.imgMobile,
+  dir: 'mobile'
+})));
+
+gulp.task( 'copy-image-desktop' ,tasks.copy(copyImageFilter({
+  mobileFirst: !op.mobileFirst,
+  folder: sourse.imgDesktop,
+  dir: 'desktop'
+})));
+
+
+gulp.task( 'copy-image' , gulp.series([
+  'copy-image-mobile',
+  'copy-image-desktop',
+]))
+
+
+
+
+
+
 
 // - Копируем шрифты
 gulp.task( 'copy-fonts' ,tasks.copy({                             
@@ -214,7 +248,10 @@ gulp.task('watch', function () {
     reload
   ]))
 
-  watch(`./${sourse.folder}/img/**/*.+(jpg|png|gif|svg|tiff)`, gulp.series([
+  watch([
+      `./${sourse.folder}/${sourse.imgMobile}/**/*.+(jpg|png|gif|svg|tiff)`,
+      `./${sourse.folder}/${sourse.imgDesktop}/**/*.+(jpg|png|gif|svg|tiff)`, 
+    ], gulp.series([
     tasks.clean({files: `./build/img`}),
     'copy-image',
     reload
@@ -240,29 +277,6 @@ gulp.task( 'png-sprite' ,tasks['png-sprite']({
   spriteFolder: `./${sourse.folder}/sprites`,
   userConfig: op,
 }));
-
-
-// gulp.task( 'clean-test' ,tasks.clean({
-//   files: `./build/img`
-// }));
-
-// gulp.task('watcher', function() {  
-//   watch(`${sourse.folder}/img/**/*`, function(obj){
-//     console.log(obj());
-//     if( obj.type === 'changed') {
-      
-//       gulp.src( obj.path, { "base": `${sourse.folder}/img/`})
-//       .pipe(gulp.dest('./build/img'));
-//     }
-//   })
-// });
-
-// gulp.task('test', gulp.series([
-//   'clean-test',
-//   'copy-image'
-//   'watcher',
-
-// ]));
 
 
 gulp.task('data-watch', function () {
@@ -299,6 +313,7 @@ gulp.task('build',gulp.series([
       cb();
     },
     'pug',
+    //'png-sprite',
   ]));
 
 
