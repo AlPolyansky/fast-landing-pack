@@ -61,9 +61,9 @@ const options = {
 
    generate(){
     return {
-      template: 'default',                   // Шаблон для генерации файлов( находятся в gulp-tasks/generate)
-      css_file: 'main.css',                 // Файл css который сгенерируется (Если включен sass , файл будет находится в директории sass , с резрешение .scss)
-      js_file: 'main.js',                   // Файл js который сгенерируется
+      template: 'default',         // Шаблон для генерации файлов( находятся в gulp-tasks/generate)
+      css_file: 'main.css',        // Файл css который сгенерируется (Если включен sass , файл будет находится в директории sass , с резрешение .scss)
+      js_file: 'main.js',          // Файл js который сгенерируется
     }
 
   },

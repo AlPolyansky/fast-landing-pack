@@ -1,5 +1,4 @@
 const config = require('../../options-gulp.js');
-const templates = require('../base/templateIniter.js');
 const path = config.path;
 const sourse = path.sourse;
 

@@ -274,10 +274,10 @@ gulp.task('watch', function () {
 
 
 
-gulp.task( 'png-sprite' ,tasks['png-sprite']({
-  spriteFolder: `./${sourse.folder}/sprites`,
-  userConfig: op,
-}));
+// gulp.task( 'png-sprite' ,tasks['png-sprite']({
+//   spriteFolder: `./${sourse.folder}/sprites`,
+//   userConfig: op,
+// }));
 
 
 
@@ -374,58 +374,5 @@ gulp.task('data' ,gulp.series([
 
 // - Генерируем структуру проекта
 gulp.task('create',tasks[ 'generate-folders']({
-  template: './gulp/generate/blank.js',
+  template: './gulp/generate/default.js',
 }));
-
-
-
-
-
-
-// png спрайт
-
-// gulp.task('png-sprite',function(cb){
-//   if(op.sass){
-
-//     var spriteData = 
-//       gulp.src(`./${sourse.folder}/${sprite.folder}/**/*.png`)
-//         .pipe(plugins.spritesmith({
-//           imgName: `${sprite.imgName}.png`,
-//           cssName: `_${sprite.fileName}.scss`,
-//           cssFormat: 'scss',
-//           imgPath: `../${sprite.img}/${sprite.imgName}.png`,
-//           padding: sprite.padding,
-//           cssOpts: {
-//              cssSelector: function (item) {
-//               return `.${sprite.prefix}` + item.name;
-//             }
-//           }
-//       }))
-//       spriteData.img.pipe(gulp.dest(`${sourse.folder}/${sprite.img}/`));
-//       spriteData.css.pipe(gulp.dest(`${sourse.folder}/${sourse.sass}/${sprite.sassPath}`));
-
-
-//     cb();
-//   }else{
-//     var spriteData = 
-//       gulp.src(`./${sourse.folder}/${sprite.folder}/**/*.png`)
-//         .pipe(plugins.spritesmith({
-//           imgName: `${sprite.imgName}.png`,
-//           cssName: `${sprite.fileName}.css`,
-//           cssFormat: 'css',
-//           imgPath: `../${sprite.img}/${sprite.imgName}.png`,
-//           padding: sprite.padding,
-//           cssOpts: {
-//              cssSelector: function (item) {
-//               return `.${sprite.prefix}` + item.name;
-//             }
-//           }
-//       }))
-//     spriteData.img.pipe(gulp.dest(`${build.folder}/${sprite.img}/`));
-//     spriteData.css.pipe(gulp.dest(`${sourse.folder}/${sourse.css}/`))
-//     cb();
-//   }
-// });
-
-
-// const template = require(`./gulp/generate/${op.path.generate().template}.js`); 
