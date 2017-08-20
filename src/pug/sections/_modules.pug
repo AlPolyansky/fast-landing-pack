@@ -1,31 +1,153 @@
-//removeIf(mobile)
-section.s-graf.only-desktop
-	.container
-		h2.title Положительно заряженный диод
-		.s-graf__grid
-			.s-graf__part
-				.graf
-					.graf__inner
-						.prod
-							img.prod__img(src="img/desktop/prod-2.png", alt="")
-					ul.graf__list
-						li.graf__item ГЦ 70
-						li.graf__item ГЦ 60
-						li.graf__item ГЦ 50
-						li.graf__item ГЦ 40
-						li.graf__item ГЦ 30
-						li.graf__item ГЦ 20
-						li.graf__item ГЦ 10
-					.graf__text Отрицательно заряженный диод
-			.s-graf__part
-				.arrow__wrap
-					.arrow__border
-						+angle('right')
-					.arrow.arrow--base
-						+angle('right')
-						.arrow__inner
-							h3.arrow__title Power Box выравнивает течение энергии.
-							p.text.arrow__text Электромагнитное действие снижает амплитуду колебания рабочей сети и преобразует переменный ток в постоянный.
-				.s-graf__content
-					p.text Стабильное напряжение экономит расход электроэнергии и делает его более функциональным.
-//endRemoveIf(mobile)
+style(data-xd!='zzxCUiw-2').
+  .wrapper{
+  	background-color: pink;
+  }
+  .row{
+  	border-top: 1px solid #ddd;
+  	border-bottom: 1px solid #ddd;
+  	margin-top: 20px;
+  	margin-bottom: 20px;
+  	padding: 20px 0;
+  }
+  
+.container
+  //- Заголовок в шапке
+  .row
+    h1.toptitle(data-xd!='nUqpoFR-5') Платите в 2 раза #[span.toptitle__imp.t--imp меньше!]
+  //- Стрелка
+  .row
+    .arrow
+      +angle('left')
+      .arrow__inner
+  //- Лейбл
+  .row
+    .label.only-desktop
+      .arrow__wrap
+        span.angle.arrow--border
+          svg(version!='1.1' xml:space!='preserve' viewbox!='0 0 100 100' preserveaspectratio!='none')
+            polyline(points!="0 0, 90 50, 0 100")
+        .arrow
+          +angle('right')
+          .arrow__inner(data-xd!='UNrUcFM-17') Осталось товаров #[br] на складе: #[span.label__count 1]
+  //- Скидка
+  .row
+    .sale
+      .sale__inner
+        p.sale__num(data-xd!='ecOsYNw-23') 50%
+        p.sale__text(data-xd!='KRINaxX-24') Скидка
+  //- Продукт
+  .row
+    .prod
+      .sale
+        .sale__inner
+          p.sale__num(data-xd!='HNxGuqt-29') 50%
+          p.sale__text(data-xd!='QFTZKKV-30') Скидка
+      //removeIf(desktop)
+      img.only-mobile(src!="img/prod.png" alt!="")
+      //endRemoveIf(desktop)
+      //removeIf(mobile)
+      img.only-desktop(src!="img/desktop/prod.png" alt!="")
+      //endRemoveIf(mobile)
+  //- Кнопка
+  .row
+    .button__wrap
+      .button
+        button.button__text(data-xd!='UKlDVSj-36') Заказать сейчас
+  //- Скиллы
+  .row(style!='text-align: right;')
+    .arrow.skills__arrow
+      +angle('left')
+      .arrow__inner
+        ul.skills
+          li.skill
+            .skill__grid
+              .skill__part
+                i.ico.i-fork
+              .skill__part
+                p.text.skill__head(data-xd!='ymZbRBl-46') Снижает потребление
+                p.text.skill__text(data-xd!='oqkSDyX-47') электроэнергии до 45%
+          li.skill
+            .skill__grid
+              .skill__part
+                i.ico.i-fork-2
+              .skill__part
+                p.text.skill__head(data-xd!='WuAeAjt-53') Продлевает
+                p.text.skill__text(data-xd!='eNBiWtK-54') службу техники
+          li.skill
+            .skill__grid
+              .skill__part
+                i.ico.i-tor
+              .skill__part
+                p.text.skill__head(data-xd!='uArarCN-60') Защищает от
+                p.text.skill__text(data-xd!='YQAkQOY-61') перепадов энергии
+  //- subtitle
+  .row(style!='text-align: right;')
+    .subtitle
+      .arrow
+        +angle('left')
+        .arrow__inner
+          h2.subtitle__top(data-xd!='trlGEFf-66') Power Box
+          h3.subtitle__bottom(data-xd!='hdDXmbV-67') Простой способ экономии электроэнергии
+  //- форма
+  .row(style!='text-align: right;')
+    .form__wrap
+      form#toform.form(method!='POST' action!='#')
+        .price
+          .price__inner
+            p.price__text(data-xd!='uqVamzn-73') Старая цена: 
+            del.price__old(data-xd!='SmBMoiR-74') {{old_price}} {{currency}}
+            .price__new(data-xd!='soWnQsf-75') {{price}} {{currency}}
+          +angle('bottom')
+        .form__title(data-xd!='ooYGDMI-76') Оформление заказа
+        .form__inner
+          .form__field-wrap
+            .field
+              .field__select-wrap
+                .field__arrow
+                select#country_code_selector.field__select.field__part(name!='country_code')
+                  option(value!='RU' data-xd!='FBAIdQa-83') Россия
+            .field
+              input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
+            .field
+              input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
+            .field.field__info
+              .field__row
+                .field__text.field__label(data-xd!='vEDvIKT-90') Доставка:
+                .field__number.field__label(data-xd!='dHalmqC-91') {{ shipment_price }} {{ currency }}
+              .field__row
+                .field__text.field__label(data-xd!='WJZiLWI-93') Итого:
+                .field__number.field__label(data-xd!='iyLsaYQ-94') {{ total_price|int }} {{ currency }}
+          .button
+            button.button__text.js_submit(data-xd!='CGkPWbq-96')  
+              | Заказать сейчас
+          .prod.only-desktop
+            .sale
+              .sale__inner
+                p.sale__num(data-xd!='JJsIIVM-100') 50%
+                p.sale__text(data-xd!='GxYygIZ-101') Скидка
+            //removeIf(desktop)
+            img.only-mobile(src!="img/prod.png" alt!="")
+            //endRemoveIf(desktop)
+            //removeIf(mobile)
+            img.only-desktop(src!="img/desktop/prod.png" alt!="")
+            //endRemoveIf(mobile)
+  //- Цена
+  .row
+    .price
+      .price__inner
+        p.price__text(data-xd!='iUdXZQV-107') Старая цена: 
+        del.price__old(data-xd!='KVtjzeK-108') {{old_price}} {{currency}}
+        .price__new(data-xd!='zxmmstN-109') {{price}} {{currency}}
+      +angle('bottom')
+  //- Сетка списка
+  .row
+    .list
+      .list__part(data-xd!='xrbqPjH-112') 1
+      .list__part(data-xd!='HgjRvnD-113') 2
+  //- Сетка раскладушка
+  .row
+    .g-cot
+      .g-cot__part(data-xd!='qgSpdQg-116') 1
+      .g-cot__part(data-xd!='utgtqyr-117') 2
+      .g-cot__part(data-xd!='uMdvgIX-118') 3
+  //- Заслуги

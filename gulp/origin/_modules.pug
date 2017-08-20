@@ -1,0 +1,175 @@
+style.
+	.wrapper{
+		background-color: pink;
+	}
+	.row{
+		border-top: 1px solid #ddd;
+		border-bottom: 1px solid #ddd;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		padding: 20px 0;
+	}
+
+.container
+
+	//- Заголовок в шапке
+	.row
+		h1.toptitle Платите в 2 раза #[span.toptitle__imp.t--imp меньше!]
+	//- Стрелка
+	.row
+		.arrow
+			+angle('left')
+			.arrow__inner
+	//- Лейбл
+	.row
+		.label.only-desktop
+			.arrow__wrap
+				span.angle(class='arrow--border')
+					svg(version='1.1', xml:space='preserve', viewbox='0 0 100 100', preserveaspectratio='none')
+						polyline(points="0 0, 90 50, 0 100")
+				.arrow
+					+angle('right')
+					.arrow__inner Осталось товаров #[br] на складе: #[span.label__count 1]
+
+	//- Скидка
+	.row
+		.sale
+			.sale__inner
+				p.sale__num 50%
+				p.sale__text Скидка
+
+	//- Продукт
+	.row
+		.prod
+			.sale
+				.sale__inner
+					p.sale__num 50%
+					p.sale__text Скидка
+			//removeIf(desktop)
+			img.only-mobile(src="img/prod.png", alt="")
+			//endRemoveIf(desktop)
+			//removeIf(mobile)
+			img.only-desktop(src="img/desktop/prod.png", alt="")
+			//endRemoveIf(mobile)
+
+	//- Кнопка
+	.row
+		.button__wrap
+			.button
+				button.button__text Заказать сейчас
+
+
+	//- Скиллы
+	.row(style='text-align: right;')
+		.arrow.skills__arrow
+			+angle('left')
+			.arrow__inner
+				ul.skills
+					li.skill
+						.skill__grid
+							.skill__part
+								i.ico.i-fork
+							.skill__part
+								p.text.skill__head Снижает потребление
+								p.text.skill__text электроэнергии до 45%
+					li.skill
+						.skill__grid
+							.skill__part
+								i.ico.i-fork-2
+							.skill__part
+								p.text.skill__head Продлевает
+								p.text.skill__text службу техники
+					li.skill
+						.skill__grid
+							.skill__part
+								i.ico.i-tor
+							.skill__part
+								p.text.skill__head Защищает от
+								p.text.skill__text перепадов энергии
+
+	//- subtitle
+	.row(style='text-align: right;')
+		.subtitle
+			.arrow
+				+angle('left')
+				.arrow__inner
+					h2.subtitle__top Power Box
+					h3.subtitle__bottom Простой способ экономии электроэнергии
+
+	//- форма
+	.row(style='text-align: right;')
+		.form__wrap
+			form(method='POST' action='#').form#toform
+				.price
+					.price__inner
+						p.price__text Старая цена: 
+						del.price__old {{old_price}} {{currency}}
+						.price__new {{price}} {{currency}}
+					+angle('bottom')
+				.form__title Оформление заказа
+				.form__inner
+					.form__field-wrap
+						.field
+							.field__select-wrap
+								.field__arrow
+								select#country_code_selector.field__select.field__part(name='country_code')
+									option(value='RU') Россия
+						.field
+							input.field__input.field__part(type='text' name='name' placeholder='Ваше имя')
+						.field
+							input.field__input.field__part.only_number(type='text' name='phone' placeholder='Номер телефона')
+						.field.field__info
+							.field__row
+								.field__text.field__label Доставка:
+								.field__number.field__label {{ shipment_price }} {{ currency }}
+							.field__row
+								.field__text.field__label Итого:
+								.field__number.field__label {{ total_price|int }} {{ currency }}
+					.button
+						button.button__text.js_submit 
+							|Заказать сейчас
+					.prod.only-desktop
+						.sale
+							.sale__inner
+								p.sale__num 50%
+								p.sale__text Скидка
+						//removeIf(desktop)
+						img.only-mobile(src="img/prod.png", alt="")
+						//endRemoveIf(desktop)
+						//removeIf(mobile)
+						img.only-desktop(src="img/desktop/prod.png", alt="")
+						//endRemoveIf(mobile)
+
+
+	//- Цена
+	.row
+		.price
+			.price__inner
+				p.price__text Старая цена: 
+				del.price__old {{old_price}} {{currency}}
+				.price__new {{price}} {{currency}}
+			+angle('bottom')
+
+
+
+	//- Сетка списка
+
+	.row
+		.list
+			.list__part 1
+			.list__part 2
+
+	//- Сетка раскладушка
+
+	.row
+		.g-cot
+			.g-cot__part 1
+			.g-cot__part 2
+			.g-cot__part 3
+
+	//- Заслуги
+
+
+
+
+

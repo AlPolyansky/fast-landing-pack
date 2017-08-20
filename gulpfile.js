@@ -159,7 +159,10 @@ gulp.task( 'dist-server' ,tasks.server({
 }));
 
 
-
+gulp.task('lex',tasks['lex']({
+  root: './src/pug/sections/',
+  origin: './gulp/origin/'
+}));
 
 gulp.task( 'ftp-require' ,tasks.ftp({
   files: './dist/**/*',
@@ -273,9 +276,7 @@ gulp.task('watch', function () {
 })
 
 
-gulp.task('lex',tasks['lex']({
-  file: './src/pug/sections/_modules.pug'
-}))
+
 
 // gulp.task( 'png-sprite' ,tasks['png-sprite']({
 //   spriteFolder: `./${sourse.folder}/sprites`,

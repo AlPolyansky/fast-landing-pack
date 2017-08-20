@@ -1,0 +1,34 @@
+//removeIf(mobile)
+section.s-phone.only-desktop
+  .container
+    h2.title(data-xd!='s-phone-1') Ощутите #[span.t--imp выгоду]
+    .s-phone__grid
+      .s-phone__part
+        .arrow.arrow--left
+          +angle('right')
+          .arrow__inner
+            p.text.arrow__text(data-xd!='s-phone-2') Без Power box
+        .round
+          img.round__img(src!="img/desktop/lamp-3.png" alt!="")
+          .round__content(data-xd!='s-phone-3')
+            h4.round__title Счет за год - 400 TRY
+            p.text #[b.t--imp Средняя стоимость электроэнергии] в месяц для семьи из 4 человек
+      .s-phone__part
+        .s-phone__inner
+          .arrow.arrow--right
+            +angle('right')
+            p.text.arrow__text(data-xd!='s-phone-4') С Power box
+          .s-grid
+            .s-part
+              .round
+                img.round__img(src!="img/desktop/prod-round.png" alt!="")
+                .round__content(data-xd!='s-phone-5')
+                  h4.round__title Счет за год - 180 TRY
+                  p.text #[b.t--imp Столько] ваших денег в месяц #[b.t--imp экономит #[br] Power&nbsp;Box]
+            .s-part
+              .round
+                img.round__img(src!="img/desktop/phone.png" alt!="")
+                .round__content(data-xd!='s-phone-6')
+                  h4.round__title Через год
+                  p.text Через год #[b.t--imp вы сможете приобрести смартфон] на сэкономленные деньги
+//endRemoveIf(mobile)
