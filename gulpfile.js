@@ -108,10 +108,10 @@ gulp.task( 'copy-image-desktop' ,tasks.copy(copyImageFilter({
 })));
 
 
-gulp.task( 'copy-image' , gulp.series([
-  'copy-image-mobile',
-  'copy-image-desktop',
-]))
+gulp.task('copy-image' , tasks.copy({
+  files: `${sourse.folder}/${sourse.img}/**/*.+(jpg|png|gif|svg|tiff)`,
+  dest: `${build.folder}/${build.img}/`
+}))
 
 
 
@@ -253,8 +253,7 @@ gulp.task('watch', function () {
   ]))
 
   watch([
-      `./${sourse.folder}/${sourse.imgMobile}/**/*.+(jpg|png|gif|svg|tiff)`,
-      `./${sourse.folder}/${sourse.imgDesktop}/**/*.+(jpg|png|gif|svg|tiff)`, 
+      `./${sourse.folder}/${sourse.img}/**/*.+(jpg|png|gif|svg|tiff)`,
     ], gulp.series([
     tasks.clean({files: `./build/img`}),
     'copy-image',
@@ -319,8 +318,7 @@ gulp.task('build',gulp.series([
       sass();
       cb();
     },
-    'pug',
-    //'png-sprite',
+    'pug'
   ]));
 
 
