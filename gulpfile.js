@@ -273,6 +273,9 @@ gulp.task('watch', function () {
 })
 
 
+gulp.task('lex',tasks['lex']({
+  file: './src/pug/sections/_modules.pug'
+}))
 
 // gulp.task( 'png-sprite' ,tasks['png-sprite']({
 //   spriteFolder: `./${sourse.folder}/sprites`,
