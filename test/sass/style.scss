@@ -1,0 +1,18 @@
+// libs
+@import 'libs/orb/_orb.scss';
+
+
+// core
+@import 'core/_var.scss';
+@import 'core/_base.scss'
+
+
+
+.only{
+	&-mobile{
+		display: block;
+	}
+	&-desktop{
+		display: none;
+	}
+}

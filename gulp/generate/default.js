@@ -1,11 +1,13 @@
 let path = require('../../options-gulp.js').path;
+
+// Все пути запимываются от корня !
+
 module.exports = function (){
-
-
 let dist = path.dist;
 
   
   let foldersArray = [
+
     // ftp.json
     {
       path: `./ftp.json`,
@@ -18,8 +20,20 @@ let dist = path.dist;
       '}'
     }
 
+  ];
+
+
+  let cloneArray = [
+    {
+      root: './gulp/generate/files/default',
+      output: './test'
+    }
+
   ]
 
 
-  return foldersArray;
+  return {
+    foldersArray,
+    cloneArray,
+  };
 }

@@ -1,4 +1,5 @@
 const fs = require('fs');
+const copydir = require('copy-dir');
 const path = require('path');
 
 function Base(){};
@@ -78,6 +79,17 @@ Base.prototype.require = (path) => {
     output = {};
   }
   return output;
+}
+
+
+
+// Фунция клонирует все содержимое из директории root (включая вложенные файлы и папки)
+// и выгружает по нужному пути (path)
+Base.prototype.deepClone = (root,path,cb) => {
+	return copydir(root, path, err => {
+		if(err) throw err;
+			return cb();
+	})
 }
 
 
