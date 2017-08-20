@@ -49,6 +49,11 @@ gulp.task( 'script' ,tasks.script({
   build:  `${build.folder}/${build.js}`
 }));
 
+// - Выполняем таск script
+
+
+
+
 
 
 // - Выполняем таск sass (оберка нужня для исправления ошибки sublime text 3)
@@ -113,6 +118,12 @@ gulp.task('copy-image' , tasks.copy({
   dest: `${build.folder}/${build.img}/`
 }))
 
+
+
+gulp.task( 'script-libs' ,tasks.copy({                           
+  files:   op.path.jsLibs(), 
+  dest:  `${build.folder}/${build.js}`
+}));
 
 
 
@@ -314,6 +325,7 @@ gulp.task('build',gulp.series([
     'copy-image',
     'copy-fonts',
     'concat',
+    'script-libs',
     function buildSass(cb){
       sass();
       cb();

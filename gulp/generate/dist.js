@@ -32,5 +32,7 @@ let dist = path.dist;
 	]
 
 
-	return foldersArray;
+	return {
+		foldersArray
+	};
 }

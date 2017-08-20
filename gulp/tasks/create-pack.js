@@ -110,17 +110,7 @@ module.exports = function (params){
         packDir = 'asia';
         removeValue = defaultParams.desktopFlags;
         copyImageParams = {
-          files: (!config.mobileFirst) ? 
-            [
-              `./${configPath.build.folder}/${configPath.build.img}/**/*`,
-              `!./${configPath.build.folder}/${configPath.build.img}/mobile/**/*`,
-              `!./${configPath.build.folder}/${configPath.build.img}/mobile`,
-            ]
-            :
-            [
-              `./${configPath.build.folder}/${configPath.build.img}/desktop/**/*`,
-            ]
-          ,
+          files: `./${configPath.build.folder}/${configPath.build.img}/**/*`,
           dest: `./dist/${packDir}/img`
         }
 
@@ -206,6 +196,16 @@ module.exports = function (params){
   }))
 
 
+  gulp.task( 'copy-js', tasks['copy']({
+    files: [
+      `./${configPath.build.folder}/${configPath.build.js}/**/*`,
+      `!./${configPath.build.folder}/${configPath.build.js}/main.js`,
+    ],
+    dest: `./dist/${packDir}/js` 
+  }));
+
+
+
   // Удаялем комментарии из CSS
 
 
@@ -279,7 +279,8 @@ module.exports = function (params){
     'del-comment-HTML',
     'del-comment-JS',
     'del-comment-CSS',
-    'fix-url-HTML',
-    'fix-url-css',
+    'copy-js'
+    //'fix-url-HTML',
+    //'fix-url-css',
   ])
 };

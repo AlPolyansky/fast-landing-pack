@@ -1,6 +1,6 @@
 style.
 	.wrapper{
-		background-color: pink;
+		background-color: #555;
 	}
 	.row{
 		border-top: 1px solid #ddd;
@@ -10,102 +10,77 @@ style.
 		padding: 20px 0;
 	}
 
+	.center{
+		text-align: center;
+	}
+
+	.right{
+		text-align: right;
+	}
+
 .container
 
-	//- Заголовок в шапке
+	//- Logo
 	.row
-		h1.toptitle Платите в 2 раза #[span.toptitle__imp.t--imp меньше!]
-	//- Стрелка
-	.row
-		.arrow
-			+angle('left')
-			.arrow__inner
-	//- Лейбл
-	.row
-		.label.only-desktop
-			.arrow__wrap
-				span.angle(class='arrow--border')
-					svg(version='1.1', xml:space='preserve', viewbox='0 0 100 100', preserveaspectratio='none')
-						polyline(points="0 0, 90 50, 0 100")
-				.arrow
-					+angle('right')
-					.arrow__inner Осталось товаров #[br] на складе: #[span.label__count 1]
-
-	//- Скидка
-	.row
-		.sale
-			.sale__inner
-				p.sale__num 50%
-				p.sale__text Скидка
-
-	//- Продукт
-	.row
-		.prod
-			.sale
-				.sale__inner
-					p.sale__num 50%
-					p.sale__text Скидка
+		h1.logo
 			//removeIf(desktop)
-			img.only-mobile(src="img/prod.png", alt="")
-			//endRemoveIf(desktop)
-			//removeIf(mobile)
-			img.only-desktop(src="img/desktop/prod.png", alt="")
+			.logo__part.only-desktop-t
+				img(src="img/desktop/logo.png", alt="").logo__img
 			//endRemoveIf(mobile)
+			.logo__part
+				span.logo__text NANO 
+				span.logo__text SAPPHIRE
 
-	//- Кнопка
 	.row
-		.button__wrap
-			.button
-				button.button__text Заказать сейчас
+		h2.toptitle
+			span.toptitle__top Надежный щит
+			span.toptitle__bottom Для твоего гаджета
 
+	.row
+		.price
+			del.price__item.price__old 
+				|1 999 000 
+				span.price__cur руб.
+			p.price__item.price__new
+				|990 000 
+				span.price__cur руб.
 
-	//- Скиллы
-	.row(style='text-align: right;')
-		.arrow.skills__arrow
-			+angle('left')
-			.arrow__inner
-				ul.skills
-					li.skill
-						.skill__grid
-							.skill__part
-								i.ico.i-fork
-							.skill__part
-								p.text.skill__head Снижает потребление
-								p.text.skill__text электроэнергии до 45%
-					li.skill
-						.skill__grid
-							.skill__part
-								i.ico.i-fork-2
-							.skill__part
-								p.text.skill__head Продлевает
-								p.text.skill__text службу техники
-					li.skill
-						.skill__grid
-							.skill__part
-								i.ico.i-tor
-							.skill__part
-								p.text.skill__head Защищает от
-								p.text.skill__text перепадов энергии
+	.row
+		.button.toform
+			button.button__text Заказать сейчас
 
-	//- subtitle
-	.row(style='text-align: right;')
-		.subtitle
-			.arrow
-				+angle('left')
-				.arrow__inner
-					h2.subtitle__top Power Box
-					h3.subtitle__bottom Простой способ экономии электроэнергии
+	//- Скилы
+	.row
+		.skills
+			.skills__part
+				ul.list
+					li.list__item
+						.list__part
+							i.ico.i-mark
+						.list__part
+							p.text #[b.t--imp.t--bold.t--block Защищает экран] при падении и ударах
+					li.list__item
+						.list__part
+							i.ico.i-mark
+						.list__part
+							p.text Удаляет и  #[b.t--imp.t--bold.t--block предовращает царапины]
+			.skills__part
+				ul.list
+					li.list__item
+						.list__part
+							i.ico.i-mark
+						.list__part
+							p.text #[b.t--imp.t--bold.t--block Улучшает работу] Touch screen
+					li.list__item
+						.list__part
+							i.ico.i-mark
+						.list__part
+							p.text Упаковки хватит #[b.t--imp.t--bold.t--block на 10 экранов]
 
-	//- форма
-	.row(style='text-align: right;')
+	//- Форма
+	.row
 		.form__wrap
 			form(method='POST' action='#').form#toform
-				.price
-					.price__inner
-						p.price__text Старая цена: 
-						del.price__old {{old_price}} {{currency}}
-						.price__new {{price}} {{currency}}
-					+angle('bottom')
 				.form__title Оформление заказа
 				.form__inner
 					.form__field-wrap
@@ -127,49 +102,171 @@ style.
 								.field__number.field__label {{ total_price|int }} {{ currency }}
 					.button
 						button.button__text.js_submit 
-							|Заказать сейчас
-					.prod.only-desktop
-						.sale
-							.sale__inner
-								p.sale__num 50%
-								p.sale__text Скидка
-						//removeIf(desktop)
-						img.only-mobile(src="img/prod.png", alt="")
-						//endRemoveIf(desktop)
-						//removeIf(mobile)
-						img.only-desktop(src="img/desktop/prod.png", alt="")
-						//endRemoveIf(mobile)
+							|Заказать Сейчас
 
 
-	//- Цена
+
+
+	//- Продукт
 	.row
-		.price
-			.price__inner
-				p.price__text Старая цена: 
-				del.price__old {{old_price}} {{currency}}
-				.price__new {{price}} {{currency}}
-			+angle('bottom')
+		.prod
+			//removeIf(desktop)
+			img.prod__img.only-mobile(src="img/prod.png", alt="")
+			//endRemoveIf(desktop)
+			//removeIf(mobile)
+			img.prod__img.only-desktop(src="img/desktop/prod.png", alt="")
+			//endRemoveIf(mobile)
 
 
+	//- Скидка
+	.row.right
+		.sale
+			span.angle.angle__left.only-mobile
+				svg(version='1.1', xml:space='preserve', viewbox='0 0 100 100', preserveaspectratio='none')
+					polygon(points='0,50 30,0 100,0 50,100  30,100')
+					defs
+						linearGradient(id='arrowGradient-left' x1="100%" x2="0" y1="100%" y2="0")
+							stop.sale__stop-1(offset="5%")
+							stop.sale__stop-2(offset="95%")
+			span.angle.angle__right.only-desktop
+				svg(version='1.1', xml:space='preserve', viewbox='0 0 100 100', preserveaspectratio='none')
+					polygon(points='0,0 60,0 100,50 60,100 30,100')
+					defs
+						linearGradient(id='arrowGradient-right' x1="25%" y1="0%" x2="75%" y2="100%")
+							stop(offset="0%" style="stop-color:rgb(253,83,117);stop-opacity:1")
+							stop(offset="49%" style="stop-color:rgb(251,58,96);stop-opacity:1")
+							stop(offset="100%" style="stop-color:rgb(251,52,91);stop-opacity:1")
+			.sale__inner
+				.sale__part
+					p.sale__num 50
+				.sale__part
+					p.sale__perc %
+					p.sale__text скидка
 
-	//- Сетка списка
+
+	//- Скидка
+	.row
+		.sale.sale--down
+			.sale__inner
+				p.sale__num 
+					|50
+					span.sale__perc %
+				p.sale__text скидка
+			span.angle.angle__bottom
+				svg(version='1.1', xml:space='preserve', viewbox='0 0 100 100', preserveaspectratio='none')
+					polygon(points='0,0 100,70 50,100 0,70')
+					defs
+						linearGradient(id='arrowGradient-bottom' x1="100%" y1="98%" x2="0%" y2="2%")
+								stop(offset="0%" style="stop-color:#FC3E64;stop-opacity:1")
+								stop(offset="50%" style="stop-color:#FC3E64;stop-opacity:1")
+								stop(offset="100%" style="stop-color:rgb(253,83,116);stop-opacity:1")
 
 	.row
-		.list
-			.list__part 1
-			.list__part 2
+		.cover
+			h3.cover__title Nano Sapphere
+			.cover__info
+				p.text Срок защиты: #[b.t--ex.t--bold до 1 года]
+			.cover__content
+				ul.list
+					li.list__item
+						.list__part
+							i.ico.i-tick
+						.list__part
+							p.text Легко наносится
+					li.list__item
+						.list__part
+							i.ico.i-tick
+						.list__part
+							p.text Не заметен на стекле
+					li.list__item
+						.list__part
+							i.ico.i-tick
+						.list__part
+							p.text Укрепляет экран
+					li.list__item
+						.list__part
+							i.ico.i-tick
+						.list__part
+							p.text Повышает четкость изображения
+			.cover__bottom
+				.button.toform
+					button.button__text Заказать Сейчас
 
-	//- Сетка раскладушка
+
+	//- cover--dark
+	.row
+		.cover.cover--dark.only-desktop
+			h3.cover__title Защитная пленка
+			.cover__info
+				p.text Срок защиты: #[b.t--bold до 3 месяцев]
+			.cover__content
+				ul.list
+					li.list__item
+						.list__part
+							i.ico.i-no
+						.list__part
+							p.text Легко появляются царапины
+					li.list__item
+						.list__part
+							i.ico.i-no
+						.list__part
+							p.text Возникают пузыри, которые ухудшают работу Touch Screen
+					li.list__item
+						.list__part
+							i.ico.i-no
+						.list__part
+							p.text Ухудшается яркость
+			.cover__bottom
+
+
+	//- price-list
+
+	.price-list.only-desktop
+		ul.price-list__row
+			li.price-list__part 
+				p.text.price__text iPhone 6
+			li.price-list__part 7 000 {{currency}}.
+		ul.price-list__row
+			li.price-list__part 
+				p.text.price__text iPhone 6+
+			li.price-list__part 11 500 {{currency}}.
+		ul.price-list__row
+			li.price-list__part
+				p.text.price__text Samsung Galaxy S6
+			li.price-list__part 11 500 {{currency}}.
+		ul.price-list__row
+			li.price-list__part
+				p.text.price__text iPad Air 2
+			li.price-list__part 12 000 {{currency}}.
+		ul.price-list__row
+			li.price-list__part
+				p.text.price__text iPad Mini 4
+			li.price-list__part 9 000 {{currency}}.
+		ul.price-list__row
+			li.price-list__part
+				p.text.price__text Nokia Lumia 920
+			li.price-list__part 5 000 {{currency}}.
+
+
+	//- aim
 
 	.row
-		.g-cot
-			.g-cot__part 1
-			.g-cot__part 2
-			.g-cot__part 3
+		.aim
+			.aim__border
+			.aim__inner
 
-	//- Заслуги
+	//- secret
+	.row
+		.secret.secret--light
+			p.text.secret__text Top Secret
 
 
+	//- photo
 
+	.row
+		.photo
+			.photo__img
 
-
+	.row
+		.photo.photo--big
+			.photo__img

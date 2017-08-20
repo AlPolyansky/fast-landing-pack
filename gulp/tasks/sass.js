@@ -32,30 +32,30 @@ module.exports = function (params){
           this.emit('end');
       })
       .pipe(plugins.autoprefixer(params.autoprefixer, {cascade: true}))
-      .pipe(through.obj(function (chunk, enc, cb) {
-        let pattern = /url\(/g;
-        let str = '' + chunk._contents;
-        let chunkPath = chunk.path;
-        let result;
+      // .pipe(through.obj(function (chunk, enc, cb) {
+      //   let pattern = /url\(/g;
+      //   let str = '' + chunk._contents;
+      //   let chunkPath = chunk.path;
+      //   let result;
 
 
-        if(chunkPath.indexOf('style.css') + 1){
-          result = str.replace(pattern,'url(../img/');
-        }
+      //   if(chunkPath.indexOf('style.css') + 1){
+      //     result = str.replace(pattern,'url(../img/');
+      //   }
         
-        if(chunkPath.indexOf('media.css') + 1){
-          if(params.mobileFirst){
-           result = str.replace(pattern,'url(../img/desktop/');
-          }else{
-            result = str.replace(pattern,'url(../img/mobile/');
-          }
-        }
+      //   if(chunkPath.indexOf('media.css') + 1){
+      //     if(params.mobileFirst){
+      //      result = str.replace(pattern,'url(../img/desktop/');
+      //     }else{
+      //       result = str.replace(pattern,'url(../img/mobile/');
+      //     }
+      //   }
 
 
 
-        chunk._contents = Buffer.from(result, 'utf8');
-        cb(null, chunk)
-      }))
+      //   chunk._contents = Buffer.from(result, 'utf8');
+      //   cb(null, chunk)
+      // }))
       .pipe(plugins.sourcemaps.write())
       .pipe(gulp.dest(params.build))
       .pipe(global._browserSync.stream())
