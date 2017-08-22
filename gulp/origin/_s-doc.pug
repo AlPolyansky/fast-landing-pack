@@ -1,0 +1,35 @@
+section.s-doc
+  .container
+    ul.s-doc__list.s-doc__slider
+      li.s-doc__item.s-doc__item--first
+        .doc
+          //removeIf(desktop)
+          img.doc__img.only-mobile-di(src!="img/doc-2.jpg" alt!="")
+          //endRemoveIf(desktop)
+          //removeIf(mobile)
+          img.doc__img.only-desktop(src!="img/desktop/doc-2.jpg" alt!="")
+          //endRemoveIf(mobile)
+      li.s-doc__item.s-doc__item--middle
+        .doc
+          .doc__wrap.doc__wrap--first
+            //removeIf(desktop)
+            img.doc__img.only-mobile-di(src!="img/doc-3.jpg" alt!="")
+            //endRemoveIf(desktop)
+            //removeIf(mobile)
+            img.doc__img.only-desktop(src!="img/desktop/doc-3.jpg" alt!="")
+            //endRemoveIf(mobile)
+          .doc__wrap.doc__wrap--last
+            //removeIf(desktop)
+            img.doc__img.only-mobile-di(src!="img/doc-4.jpg" alt!="")
+            //endRemoveIf(desktop)
+            //removeIf(mobile)
+            img.doc__img.only-desktop(src!="img/desktop/doc-4.jpg" alt!="")
+            //endRemoveIf(mobile)
+      li.s-doc__item.s-doc__item--last
+        .doc
+          //removeIf(desktop)
+          img.doc__img.only-mobile-di(src!="img/doc-1.jpg" alt!="")
+          //endRemoveIf(desktop)
+          //removeIf(mobile)
+          img.doc__img.only-desktop(src!="img/desktop/doc-1.jpg" alt!="")
+          //endRemoveIf(mobile)

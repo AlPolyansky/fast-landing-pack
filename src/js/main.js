@@ -132,86 +132,31 @@ var _bxInnit = function(elem,opt){
 
 
 //removeIf(desktop)
-_bxInnit('.bxslider',{
+_bxInnit('.s-doc__slider',{
       adaptiveHeight: false,
       swipeThreshold: 40,
       controls: false,
       auto: false,
       pause: 7000,
       autoHover: true,
-      slideSelector: '.reviews__item',
+      slideSelector: '.s-doc__item',
+      slideMargin: 5,
+   });
+
+_bxInnit('.review__slider',{
+      adaptiveHeight: false,
+      swipeThreshold: 40,
+      controls: false,
+      auto: false,
+      pause: 7000,
+      autoHover: true,
+      slideSelector: '.s-review__item',
       slideMargin: 5,
    });
 //endRemoveIf(desktop)
 
 
-
-
-
-
-
-var _countDown = function(elem){
-
-	var timerTime = 20000;
-	var minutes = 15; 
-
-
-
-	if(!elem){
-		elem = $('.count-down');
-	}else{
-		elem;
-	}
-
-
-	var counter = elem;
-
-	var value = counter.eq(1).text();
-
-	var date = new Date();
- 	date.setTime(date.getTime() + (minutes * 60 * 1000));
-
-
-	if($.cookie('counter') == undefined){
-		$.cookie('counter', (value),{ expires: date });
-	}
-
-	num = $.cookie('counter');
-
-	if($.cookie('counter') == null){
-		num = value;
-	}
-
-	counter.text(num);
-
-	if(num < 2){
-		counter.text(1);
-	}
-
-  function Random(min, max) {
- 			return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
-
-
-	var count = counter.text();
-	var setTimer = setInterval(function(){
-
-				if(num > 1){
-					num = num - Random(0,1);
-					counter.text(num);
-				}
-				$.cookie('counter', (num),{ expires: date });
-				if(num < 2){
-					clearInterval(setTimer);
-					$.cookie('counter', (1),{ expires: date });
-				}
-
-
-			}, timerTime);
-	}
-
-//toForm();
-//_countDown();
+toForm();
 
 
 });

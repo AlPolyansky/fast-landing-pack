@@ -1,4 +1,4 @@
-style(data-xd!='sJClVkh-2').
+style.
   .wrapper{
   	background-color: #555;
   }
@@ -22,28 +22,28 @@ style(data-xd!='sJClVkh-2').
   //- Logo
   .row
     h1.logo
+      //removeIf(desktop)
       .logo__part.only-desktop-t
-        //removeIf(mobile)
         img.logo__img(src!="img/desktop/logo.png" alt!="")
-        //endRemoveIf(mobile)
+      //endRemoveIf(mobile)
       .logo__part
-        span.logo__text(data-xd!='iWyIAET-9') NANO 
-        span.logo__text(data-xd!='nPudhNI-10') SAPPHIRE
+        span.logo__text(data-xd!='kVIyRLe-8') NANO 
+        span.logo__text(data-xd!='eopNlBf-10') SAPPHIRE
   .row
     h2.toptitle
-      span.toptitle__top(data-xd!='QOkNorw-13') Надежный щит
-      span.toptitle__bottom(data-xd!='mjiQADd-14') Для твоего гаджета
+      span.toptitle__top(data-xd!='TPxbNQc-13') Надежный щит
+      span.toptitle__bottom(data-xd!='MRPoOXu-14') Для твоего гаджета
   .row
     .price
-      del.price__item.price__old(data-xd!='egAvBou-17')  
+      del.price__item.price__old(data-xd!='pmkIPjw-17')  
         | 1 999 000 
         span.price__cur руб.
-      p.price__item.price__new(data-xd!='GpMlfAc-19')
+      p.price__item.price__new(data-xd!='hBPgKeN-19')
         | 990 000 
         span.price__cur руб.
   .row
     .button.toform
-      button.button__text(data-xd!='qPVIQAX-23') Заказать сейчас
+      button.button__text(data-xd!='kYUpZPO-23') Заказать сейчас
   //- Скилы
   .row
     .skills
@@ -53,49 +53,49 @@ style(data-xd!='sJClVkh-2').
             .list__part
               i.ico.i-mark
             .list__part
-              p.text(data-xd!='aYBGnIL-32') #[b.t--imp.t--bold.t--block Защищает экран] при падении и ударах
+              p.text(data-xd!='WLTDWjW-32') #[b.t--imp.t--bold.t--block Защищает экран] при падении и ударах
           li.list__item
             .list__part
               i.ico.i-mark
             .list__part
-              p.text(data-xd!='XpgBDVf-38') Удаляет и  #[b.t--imp.t--bold.t--block предовращает царапины]
+              p.text(data-xd!='gPYUpTZ-38') Удаляет и  #[b.t--imp.t--bold.t--block предовращает царапины]
       .skills__part
         ul.list
           li.list__item
             .list__part
               i.ico.i-mark
             .list__part
-              p.text(data-xd!='qoYeCzL-46') #[b.t--imp.t--bold.t--block Улучшает работу] Touch screen
+              p.text(data-xd!='nVQhWSo-46') #[b.t--imp.t--bold.t--block Улучшает работу] Touch screen
           li.list__item
             .list__part
               i.ico.i-mark
             .list__part
-              p.text(data-xd!='GnNAldm-52') Упаковки хватит #[b.t--imp.t--bold.t--block на 10 экранов]
+              p.text(data-xd!='rLrouPi-52') Упаковки хватит #[b.t--imp.t--bold.t--block на 10 экранов]
   //- Форма
   .row
     .form__wrap
       form#toform.form(method!='POST' action!='#')
-        .form__title(data-xd!='DKxDdWy-57') Оформление заказа
+        .form__title(data-xd!='aIyUsUe-57') Оформление заказа
         .form__inner
           .form__field-wrap
             .field
               .field__select-wrap
                 .field__arrow
                 select#country_code_selector.field__select.field__part(name!='country_code')
-                  option(value!='RU' data-xd!='ygZXSyk-64') Россия
+                  option(value!='RU') Россия
             .field
               input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
             .field
               input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
             .field.field__info
               .field__row
-                .field__text.field__label(data-xd!='JkSWdrN-71') Доставка:
-                .field__number.field__label(data-xd!='gztZcEE-72') {{ shipment_price }} {{ currency }}
+                .field__text.field__label(data-xd!='GRQIkeh-71') Доставка:
+                .field__number.field__label(data-xd!='JyzizeW-72') {{ shipment_price }} {{ currency }}
               .field__row
-                .field__text.field__label(data-xd!='txwlIXS-74') Итого:
-                .field__number.field__label(data-xd!='YMCcDvn-75') {{ total_price|int }} {{ currency }}
+                .field__text.field__label(data-xd!='lzJzMjh-74') Итого:
+                .field__number.field__label(data-xd!='JgsribR-75') {{ total_price|int }} {{ currency }}
           .button
-            button.button__text.js_submit(data-xd!='PpWTdgA-77')  
+            button.button__text.js_submit(data-xd!='sUficmK-77')  
               | Заказать Сейчас
   //- Продукт
   .row
@@ -126,18 +126,18 @@ style(data-xd!='sJClVkh-2').
               stop(offset!="100%" style!="stop-color:rgb(251,52,91);stop-opacity:1")
       .sale__inner
         .sale__part
-          p.sale__num(data-xd!='XVrYXJT-101') 50
+          p.sale__num(data-xd!='wIihaOw-101') 50
         .sale__part
-          p.sale__perc(data-xd!='RlXsZYn-103') %
-          p.sale__text(data-xd!='TkdzttN-104') скидка
+          p.sale__perc(data-xd!='PcGgfXE-103') %
+          p.sale__text(data-xd!='ldfviTm-104') скидка
   //- Скидка
   .row
     .sale.sale--down
       .sale__inner
-        p.sale__num(data-xd!='KCPCTdp-108')  
+        p.sale__num(data-xd!='DcQObRh-108')  
           | 50
           span.sale__perc %
-        p.sale__text(data-xd!='YDycSSi-110') скидка
+        p.sale__text(data-xd!='qRuelud-110') скидка
       span.angle.angle__bottom
         svg(version!='1.1' xml:space!='preserve' viewbox!='0 0 100 100' preserveaspectratio!='none')
           polygon(points!='0,0 100,70 50,100 0,70')
@@ -148,84 +148,84 @@ style(data-xd!='sJClVkh-2').
               stop(offset!="100%" style!="stop-color:rgb(253,83,116);stop-opacity:1")
   .row
     .cover
-      h3.cover__title(data-xd!='SAleOFZ-121') Nano Sapphere
+      h3.cover__title(data-xd!='zpRLNHl-121') Nano Sapphere
       .cover__info
-        p.text(data-xd!='EokuFkt-123') Срок защиты: #[b.t--ex.t--bold до 1 года]
+        p.text(data-xd!='KKtFhRJ-123') Срок защиты: #[b.t--ex.t--bold до 1 года]
       .cover__content
         ul.list
           li.list__item
             .list__part
               i.ico.i-tick
             .list__part
-              p.text(data-xd!='FAYpOyg-131') Легко наносится
+              p.text(data-xd!='gqklyDa-131') Легко наносится
           li.list__item
             .list__part
               i.ico.i-tick
             .list__part
-              p.text(data-xd!='lVEkOAV-136') Не заметен на стекле
+              p.text(data-xd!='rckeKCI-136') Не заметен на стекле
           li.list__item
             .list__part
               i.ico.i-tick
             .list__part
-              p.text(data-xd!='dubbQnk-141') Укрепляет экран
+              p.text(data-xd!='ycYPNIf-141') Укрепляет экран
           li.list__item
             .list__part
               i.ico.i-tick
             .list__part
-              p.text(data-xd!='OJqwjWx-146') Повышает четкость изображения
+              p.text(data-xd!='XGLpJXb-146') Повышает четкость изображения
       .cover__bottom
         .button.toform
-          button.button__text(data-xd!='ZpmDRoD-149') Заказать Сейчас
+          button.button__text(data-xd!='lUNDvUd-149') Заказать Сейчас
   //- cover--dark
   .row
     .cover.cover--dark.only-desktop
-      h3.cover__title(data-xd!='aEZaxPo-152') Защитная пленка
+      h3.cover__title(data-xd!='OVALBxX-152') Защитная пленка
       .cover__info
-        p.text(data-xd!='XsAHkdc-154') Срок защиты: #[b.t--bold до 3 месяцев]
+        p.text(data-xd!='JHFixOy-154') Срок защиты: #[b.t--bold до 3 месяцев]
       .cover__content
         ul.list
           li.list__item
             .list__part
               i.ico.i-no
             .list__part
-              p.text(data-xd!='VbpmkUp-162') Легко появляются царапины
+              p.text(data-xd!='XfBMpxX-162') Легко появляются царапины
           li.list__item
             .list__part
               i.ico.i-no
             .list__part
-              p.text(data-xd!='nQMwjJc-167') Возникают пузыри, которые ухудшают работу Touch Screen
+              p.text(data-xd!='jnrrwGB-167') Возникают пузыри, которые ухудшают работу Touch Screen
           li.list__item
             .list__part
               i.ico.i-no
             .list__part
-              p.text(data-xd!='MKZyDXE-172') Ухудшается яркость
+              p.text(data-xd!='WGoKmdf-172') Ухудшается яркость
       .cover__bottom
   //- price-list
   .price-list.only-desktop
     ul.price-list__row
       li.price-list__part  
-        p.text.price__text(data-xd!='yUfNKha-177') iPhone 6
-      li.price-list__part(data-xd!='UpeQTYF-178') 7 000 {{currency}}.
+        p.text.price__text(data-xd!='eiHIKIp-177') iPhone 6
+      li.price-list__part(data-xd!='SjmMboU-178') 7 000 {{currency}}.
     ul.price-list__row
       li.price-list__part  
-        p.text.price__text(data-xd!='gXMaIVU-181') iPhone 6+
-      li.price-list__part(data-xd!='SBZlnlM-182') 11 500 {{currency}}.
+        p.text.price__text(data-xd!='RNFyhCh-181') iPhone 6+
+      li.price-list__part(data-xd!='dDJVnTh-182') 11 500 {{currency}}.
     ul.price-list__row
       li.price-list__part
-        p.text.price__text(data-xd!='fZJcrsc-185') Samsung Galaxy S6
-      li.price-list__part(data-xd!='xJMMzth-186') 11 500 {{currency}}.
+        p.text.price__text(data-xd!='yNPvzUY-185') Samsung Galaxy S6
+      li.price-list__part(data-xd!='xxrRwPX-186') 11 500 {{currency}}.
     ul.price-list__row
       li.price-list__part
-        p.text.price__text(data-xd!='PhXjBzB-189') iPad Air 2
-      li.price-list__part(data-xd!='etpjJqu-190') 12 000 {{currency}}.
+        p.text.price__text(data-xd!='xyyAfiF-189') iPad Air 2
+      li.price-list__part(data-xd!='YXLLGZj-190') 12 000 {{currency}}.
     ul.price-list__row
       li.price-list__part
-        p.text.price__text(data-xd!='vGrmIud-193') iPad Mini 4
-      li.price-list__part(data-xd!='JVTjRxo-194') 9 000 {{currency}}.
+        p.text.price__text(data-xd!='ZaHTJCy-193') iPad Mini 4
+      li.price-list__part(data-xd!='LZjwBNu-194') 9 000 {{currency}}.
     ul.price-list__row
       li.price-list__part
-        p.text.price__text(data-xd!='ZamIpsm-197') Nokia Lumia 920
-      li.price-list__part(data-xd!='wVxdXoD-198') 5 000 {{currency}}.
+        p.text.price__text(data-xd!='KUwyhDb-197') Nokia Lumia 920
+      li.price-list__part(data-xd!='qNGeUPP-198') 5 000 {{currency}}.
   //- aim
   .row
     .aim
@@ -234,7 +234,7 @@ style(data-xd!='sJClVkh-2').
   //- secret
   .row
     .secret.secret--light
-      p.text.secret__text(data-xd!='jXntCWj-205') Top Secret
+      p.text.secret__text(data-xd!='WFtAjhL-205') Top Secret
   //- photo
   .row
     .photo

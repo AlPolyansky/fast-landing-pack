@@ -58,21 +58,34 @@ gulp.task( 'script' ,tasks.script({
 
 // - Выполняем таск sass (оберка нужня для исправления ошибки sublime text 3)
 
-function sass(wathFile = ''){
-  tasks.sass({                            
+// function sass(wathFile = ''){
+//   tasks.sass({                            
+//     files:   [
+//         `${sourse.folder}/${sourse.sass}/media.scss`,
+//         `${sourse.folder}/${sourse.sass}/style.scss`,
+//       ], 
+//     build:  `${build.folder}/${build.css}`,
+//     autoprefixer: op.prefix,
+//     wathFile: wathFile,
+//     errCb(){
+//       sass()
+//     },
+//     mobileFirst: op.mobileFirst
+//   })();
+// }
+
+gulp.task( 'sass' ,tasks.sass({                            
     files:   [
         `${sourse.folder}/${sourse.sass}/media.scss`,
         `${sourse.folder}/${sourse.sass}/style.scss`,
       ], 
     build:  `${build.folder}/${build.css}`,
-    autoprefixer: op.prefix,
-    wathFile: wathFile,
-    errCb(){
-      sass()
-    },
-    mobileFirst: op.mobileFirst
-  })();
-}
+    autoprefixer: op.prefix
+  }));
+
+
+
+
 
 
 gulp.task('concat',function(callback){
@@ -170,7 +183,12 @@ gulp.task( 'dist-server' ,tasks.server({
 }));
 
 
-gulp.task('lex',tasks['lex']({
+gulp.task('lex',tasks['data-pug-parser']({
+  root: './src/pug/sections/',
+  origin: './gulp/origin/'
+}));
+
+gulp.task('lex-del',tasks['del-data-pug-init']({
   root: './src/pug/sections/',
   origin: './gulp/origin/'
 }));
@@ -247,11 +265,11 @@ gulp.task('watch', function () {
 
   
 
-  gulp.watch(`${sourse.folder}/${sourse.sass}/**/*.scss`).on('change',(file) =>{
-    gulp.series(function sassWatch(){
-      sass(file);
-    })();     
-  });
+
+
+  watch(`${sourse.folder}/${sourse.sass}/**/*.scss`,gulp.series([
+    'sass'
+  ]))
 
   watch(`${sourse.folder}/**/*.pug`,gulp.series([
     'pug',
@@ -326,10 +344,11 @@ gulp.task('build',gulp.series([
     'copy-fonts',
     'concat',
     'script-libs',
-    function buildSass(cb){
-      sass();
-      cb();
-    },
+    // function buildSass(cb){
+    //   sass();
+    //   cb();
+    // },
+    'sass',
     'pug'
   ]));
 

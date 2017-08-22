@@ -6,10 +6,17 @@ const randomstring = require("randomstring");
 const createFile = require('../base/create-file.js');
 
 
+// Простовляет data-xd в pug исходники
+// params - объект с параметрами
+// params.root -  директория откуда взять pug файлы для data-xd генерации
+// сb - функция коллбек
+
+
+
+// ! Адаптировать, Укоротить!
+
 
 module.exports = function (params,cb){
-	// Простовляет data-xd в pug исходники
-	// param.file - директория откуда взять pug файлы для data-xd генерации
 
 	let lex = require('pug-lexer');
 
@@ -18,8 +25,14 @@ module.exports = function (params,cb){
 		let iter = 1;
 		let ast = parse(tokens, {src});
 
+
+
+
 		ast = walk(ast, function(node, replace){
-			if(node.type === 'Tag'){
+			if(node.type === 'Tag' 
+				&& node.name !== 'style'
+				&& node.name !== 'script'){
+
 				iter++;
 				let children = node.block.nodes;
 
@@ -34,6 +47,10 @@ module.exports = function (params,cb){
 					let flag = true;
 
 					if(item.type === 'Text'){
+
+						if(node.name === 'option'){
+							return false;
+						}
 
 						let str = item.val.trim();
 						node.attrs.forEach(attr => {
@@ -53,9 +70,35 @@ module.exports = function (params,cb){
 						}
 					}
 				})
+
+
+				if(node.name === 'select'){
+					let attrInit = true;
+					node.attrs.forEach(attr => {
+						if(attr.name === 'data-xd'){
+							attrInit = false;
+						}
+					})
+
+					if(attrInit){
+						node.attrs.push({
+					  	name: 'data-xd',
+					    val: `\'${randomstring.generate({length: 7,charset: 'alphabetic'})}-${iter}\'`,
+					    mustEscape: false,
+					  })
+					}
+				}
+
+
 			}
 		},function after(node, replace){
-			if(node.type === 'Tag' && node.name !== 'style' && node.name !== 'script'){
+			if(
+				node.type === 'Tag' 
+				&& node.name !== 'style'
+				&& node.name !== 'script'
+				&& node.name !== 'option'
+			){
+
 				let children = node.block.nodes;
 				if(node.dataXd){
 					node.parent.attrs.forEach( attr => {

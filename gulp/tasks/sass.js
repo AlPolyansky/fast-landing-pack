@@ -20,42 +20,8 @@ module.exports = function (params){
       .pipe(plugins.sass({
           outputStyle: 'expanded',
           errLogToConsole: true,
-        })).on('error', function(err){
-          
-          let arr = params.wathFile.split('\\');
-
-          if(err.messageOriginal.indexOf(arr[arr.length - 1] + '.') + 1){
-            params.errCb();
-          }else{
-            plugins.notify.onError({title: 'Style'}).call(this,err)
-          }
-          this.emit('end');
-      })
+        })).on('error', plugins.notify.onError({title: 'Style'}))
       .pipe(plugins.autoprefixer(params.autoprefixer, {cascade: true}))
-      // .pipe(through.obj(function (chunk, enc, cb) {
-      //   let pattern = /url\(/g;
-      //   let str = '' + chunk._contents;
-      //   let chunkPath = chunk.path;
-      //   let result;
-
-
-      //   if(chunkPath.indexOf('style.css') + 1){
-      //     result = str.replace(pattern,'url(../img/');
-      //   }
-        
-      //   if(chunkPath.indexOf('media.css') + 1){
-      //     if(params.mobileFirst){
-      //      result = str.replace(pattern,'url(../img/desktop/');
-      //     }else{
-      //       result = str.replace(pattern,'url(../img/mobile/');
-      //     }
-      //   }
-
-
-
-      //   chunk._contents = Buffer.from(result, 'utf8');
-      //   cb(null, chunk)
-      // }))
       .pipe(plugins.sourcemaps.write())
       .pipe(gulp.dest(params.build))
       .pipe(global._browserSync.stream())
