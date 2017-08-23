@@ -1,9 +1,0 @@
-@mixin cloth($type: after, $z: null){
-	&:#{$type}{
-		@extend %cloth;
-		@if($z != null){
-			z-index: $z;
-		}
-		
-	}
-}

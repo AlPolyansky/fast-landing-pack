@@ -7,7 +7,7 @@
 const options = {
 
   sass : true,                     // Использовать sass
-  pug  : true,                     // Использовать pug
+  pug  : false,                     // Использовать pug
   prefix : 'last 15 versions',     // Настройки автопрефиксера
   open : false,                    // Автоматически открывать новую вкладку для запуска gulp
   mobileFirst: true,               // Разработка в стиле mobileFirst
@@ -39,7 +39,7 @@ const options = {
       fonts: 'fonts',							// Папка со шрифтами
       img: 'img',									// Папка с изображениями
       js_file: 'main.js',					// Файл с нашим js
-      css_file: 'style.css',       // Назавание файла в который объедениться все заданные файлы css
+      css_file: 'style.css',      // Назавание файла в который объедениться все заданные файлы css
     },
 
 
@@ -58,11 +58,14 @@ const options = {
     },
 
 
+  other: {
+
+  },
+
+
    generate(){
     return {
       template: 'default',         // Шаблон для генерации файлов( находятся в gulp-tasks/generate)
-      css_file: 'main.css',        // Файл css который сгенерируется (Если включен sass , файл будет находится в директории sass , с резрешение .scss)
-      js_file: 'main.js',          // Файл js который сгенерируется
     }
 
   },
@@ -90,7 +93,7 @@ const options = {
          //path + 'jquery.countdown.min.js',
          //path + 'jquery.placeholder.min.js',
          //path + 'slick.min.js',
-         path + 'bxslider.js'
+         //path + 'bxslider.js'
          //path + 'modernizr-custom.js',
       ];
     },

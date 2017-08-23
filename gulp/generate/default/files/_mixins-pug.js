@@ -1,0 +1,21 @@
+module.exports = params => {
+
+
+let content = 
+`mixin angle(side,className)
+	-var points
+	-className = className || ''
+	-if(side == 'right')
+			- points = '0,0  10,0  100,50  10,100 0,100 '
+	-if(side == 'left')
+			- points = '90,0 100,0  100,100 90,100  0,50'
+	-if(side == 'top')
+			- points = '50,0  100,100 0,100'
+	-if(side == 'bottom')
+			- points = '0,0 100,0 50,100'
+	span.angle(class='angle__' + side + ' ' + className)
+		svg(version='1.1', xml:space='preserve', viewbox='0 0 100 100', preserveaspectratio='none')
+			polygon(points=points)`;
+
+return content;
+}

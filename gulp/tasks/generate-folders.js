@@ -64,7 +64,7 @@ module.exports = function (params) {
                 path: item.path,
                 content: item.content || '',
                 //FIX
-                replace: true
+                replace: replace
               },() => callback());
             }
         },function(err){

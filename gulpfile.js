@@ -49,31 +49,10 @@ gulp.task( 'script' ,tasks.script({
   build:  `${build.folder}/${build.js}`
 }));
 
+
+
+
 // - Выполняем таск script
-
-
-
-
-
-
-// - Выполняем таск sass (оберка нужня для исправления ошибки sublime text 3)
-
-// function sass(wathFile = ''){
-//   tasks.sass({                            
-//     files:   [
-//         `${sourse.folder}/${sourse.sass}/media.scss`,
-//         `${sourse.folder}/${sourse.sass}/style.scss`,
-//       ], 
-//     build:  `${build.folder}/${build.css}`,
-//     autoprefixer: op.prefix,
-//     wathFile: wathFile,
-//     errCb(){
-//       sass()
-//     },
-//     mobileFirst: op.mobileFirst
-//   })();
-// }
-
 gulp.task( 'sass' ,tasks.sass({                            
     files:   [
         `${sourse.folder}/${sourse.sass}/media.scss`,
@@ -95,35 +74,6 @@ gulp.task('concat',function(callback){
 
   callback();
 })
-
-
-
-// - Копируем изображения
-const copyImageFilter = (params) => {
-  // params - mobileFirst
-  return params.mobileFirst 
-    ? {
-      files:  `${sourse.folder}/${params.folder}/**/*.+(jpg|png|gif|svg|tiff)`, 
-      dest:  `${build.folder}/${build.img}`, 
-    }
-    : {
-      files:  `${sourse.folder}/${params.folder}/**/*.+(jpg|png|gif|svg|tiff)`, 
-      dest:  `${build.folder}/${build.img}/${params.dir}`,
-    }
-
-}
-
-gulp.task( 'copy-image-mobile' ,tasks.copy(copyImageFilter({
-  mobileFirst: op.mobileFirst,
-  folder: sourse.imgMobile,
-  dir: 'mobile'
-})));
-
-gulp.task( 'copy-image-desktop' ,tasks.copy(copyImageFilter({
-  mobileFirst: !op.mobileFirst,
-  folder: sourse.imgDesktop,
-  dir: 'desktop'
-})));
 
 
 gulp.task('copy-image' , tasks.copy({
@@ -149,6 +99,8 @@ gulp.task( 'copy-fonts' ,tasks.copy({
   dest:  `${build.folder}/${build.fonts}`
 }));
 
+
+
 // - Компилируем Pug
 gulp.task( 'pug' ,tasks.pug({                            
   files:  `./${sourse.folder}/${sourse.pugRoot}/${sourse.pug}/**/*.pug`, 
@@ -170,10 +122,14 @@ gulp.task( 'resp-pack', tasks[ 'create-pack' ]({
   type: 'resp'
 }));
 
+
+
 // - Создаем файл со списком
 gulp.task('generate-dist-list',tasks[ 'generate-folders']({
   template: './gulp/generate/dist.js',
 }));
+
+
 
 // - Создаем сервер для продакшена 
 gulp.task( 'dist-server' ,tasks.server({
@@ -183,10 +139,10 @@ gulp.task( 'dist-server' ,tasks.server({
 }));
 
 
-gulp.task( 'ftp-require' ,tasks.ftp({
-  files: './dist/**/*',
-  config: _base.require('./ftp.json'),
-}));
+// gulp.task( 'ftp-require' ,tasks.ftp({
+//   files: './dist/**/*',
+//   config: _base.require('./ftp.json'),
+// }));
 
 
 
@@ -201,7 +157,8 @@ gulp.task('lex',tasks['data-pug-parser']({
 
 
 gulp.task('create-start-template',tasks[ 'generate-folders']({
-  template: './gulp/generate/default.js',
+  template: './gulp/generate/default/default.js',
+  replace: true,
 }));
 
 
@@ -262,12 +219,9 @@ gulp.task( 'data-parser-auto', function(cb){
 
 const reload = global._browserSync.reload;
 
+
+// Классический вотчер для build
 gulp.task('watch', function () {
-
-  
-
-
-
   watch(`${sourse.folder}/${sourse.sass}/**/*.scss`,gulp.series([
     'sass'
   ]))
@@ -306,15 +260,7 @@ gulp.task('watch', function () {
 
 
 
-
-// gulp.task( 'png-sprite' ,tasks['png-sprite']({
-//   spriteFolder: `./${sourse.folder}/sprites`,
-//   userConfig: op,
-// }));
-
-
-
-
+// Вотчер в режиме data-xd
 gulp.task('data-watch', function () {
   watch(`${sourse.folder}/**/*.pug`,gulp.series([
     'pug',
@@ -324,11 +270,6 @@ gulp.task('data-watch', function () {
     reload
   ]))
 });
-
-
-
-
-
 
 // ================================ Порядок выполнения тасков ==================
 // =============================================================================
@@ -344,11 +285,7 @@ gulp.task('build',gulp.series([
     'copy-image',
     'copy-fonts',
     'concat',
-    'script-libs',
-    // function buildSass(cb){
-    //   sass();
-    //   cb();
-    // },
+    //'script-libs',
     'sass',
     'pug'
   ]));
@@ -383,15 +320,12 @@ gulp.task('default', gulp.series([
 ]));
 
 
-gulp.task('ftp', gulp.series(
-  'create-dist',
-  'generate-dist-list',
-  'ftp-require'
-))
+// gulp.task('ftp', gulp.series(
+//   'create-dist',
+//   'generate-dist-list',
+//   'ftp-require'
+// ))
 
-gulp.task('create', gulp.series(
-  'create-start-template'
-))
 
 
 
@@ -407,6 +341,6 @@ gulp.task('data' ,gulp.series([
 
 
 // - Генерируем структуру проекта
-gulp.task('create',tasks[ 'generate-folders']({
-  template: './gulp/generate/default.js',
-}));
+gulp.task('create', gulp.series(
+  'create-start-template'
+))
