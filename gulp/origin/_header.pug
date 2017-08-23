@@ -7,11 +7,11 @@ header.header
         img.logo__img(src!="img/desktop/logo.png" alt!="")
       //endRemoveIf(mobile)
       .logo__part
-        span.logo__text(data-xd!='IiQlrwE-9') NANO 
-        span.logo__text(data-xd!='TTwyOrw-10') SAPPHIRE
+        span.logo__text NANO 
+        span.logo__text SAPPHIRE
     h2.toptitle
-      span.toptitle__top(data-xd!='KftMKSE-12') Надежный щит
-      span.toptitle__bottom(data-xd!='lhdpbOU-13') Для твоего гаджета
+      span.toptitle__top Надежный щит
+      span.toptitle__bottom Для твоего гаджета
     //removeIf(mobile)
     .skills.only-desktop
       .skills__part
@@ -20,37 +20,37 @@ header.header
             .list__part
               i.ico.i-mark
             .list__part
-              p.text(data-xd!='eMqgmIB-21') #[b.t--imp.t--bold.t--block Защищает экран] при падении и ударах
+              p.text #[b.t--imp.t--bold.t--block Защищает экран] при падении и ударах
           li.list__item
             .list__part
               i.ico.i-mark
             .list__part
-              p.text(data-xd!='bOYnLuM-27') Удаляет и  #[b.t--imp.t--bold.t--block предовращает царапины]
+              p.text Удаляет и  #[b.t--imp.t--bold.t--block предовращает царапины]
       .skills__part
         ul.list
           li.list__item
             .list__part
               i.ico.i-mark
             .list__part
-              p.text(data-xd!='ogpBoIO-35') #[b.t--imp.t--bold.t--block Улучшает работу] Touch screen
+              p.text #[b.t--imp.t--bold.t--block Улучшает работу] Touch screen
           li.list__item
             .list__part
               i.ico.i-mark
             .list__part
-              p.text(data-xd!='tGqLnSc-41') Упаковки хватит #[b.t--imp.t--bold.t--block на 10 экранов]
+              p.text Упаковки хватит #[b.t--imp.t--bold.t--block на 10 экранов]
     //endRemoveIf(mobile)
     .header__grid
       .header__part
         //removeIf(mobile)
         .form__wrap.only-desktop
           form.form(method!='POST' action!='#')
-            .form__title(data-xd!='PLhxVVB-47') Оформление заказа
+            .form__title Оформление заказа
             .form__inner
               .form__field-wrap
                 .field
                   .field__select-wrap
                     .field__arrow
-                    select#country_code_selector.field__select.field__part(name!='country_code' data-xd!='gkniHyF-53' data-xd!='zftMmjW-53')
+                    select#country_code_selector.field__select.field__part(name!='country_code')
                       option(value!='RU') Россия
                 .field
                   input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
@@ -58,13 +58,13 @@ header.header
                   input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
                 .field.field__info
                   .field__row
-                    .field__text.field__label(data-xd!='mTTPabm-61') Доставка:
-                    .field__number.field__label(data-xd!='PlpzOFj-62') {{ shipment_price }} {{ currency }}
+                    .field__text.field__label Доставка:
+                    .field__number.field__label {{ shipment_price }} {{ currency }}
                   .field__row
-                    .field__text.field__label(data-xd!='ZQKDZLp-64') Итого:
-                    .field__number.field__label(data-xd!='Pqliqtn-65') {{ total_price|int }} {{ currency }}
+                    .field__text.field__label Итого:
+                    .field__number.field__label {{ total_price|int }} {{ currency }}
               .button
-                button.button__text.js_submit(data-xd!='gnXxRxG-67')  
+                button.button__text.js_submit  
                   | Заказать Сейчас
         //endRemoveIf(mobile)
       .header__part
@@ -94,19 +94,19 @@ header.header
                     stop(offset!="100%" style!="stop-color:rgb(251,52,91);stop-opacity:1")
             .sale__inner
               .sale__part
-                p.sale__num(data-xd!='PVvhjXl-91') 50
+                p.sale__num 50
               .sale__part
-                p.sale__perc(data-xd!='loipQay-93') %
-                p.sale__text(data-xd!='FKgnwOo-94') скидка
+                p.sale__perc %
+                p.sale__text скидка
         .price
-          del.price__item.price__old(data-xd!='BNKmEzT-96')  
+          del.price__item.price__old  
             | {{old_price}}
             span.price__cur {{currency}}
-          p.price__item.price__new(data-xd!='qvLXFqz-98')
+          p.price__item.price__new
             | {{price}}
             span.price__cur {{currency}}
     .button.toform.only-mobile
-      button.button__text(data-xd!='XWfNLid-101') Заказать сейчас
+      button.button__text Заказать сейчас
     .skills.only-mobile
       .skills__part
         ul.list
@@ -114,21 +114,21 @@ header.header
             .list__part
               i.ico.i-mark
             .list__part
-              p.text(data-xd!='mRgDQQN-109') #[b.t--imp.t--bold.t--block Защищает экран] при падении и ударах
+              p.text #[b.t--imp.t--bold.t--block Защищает экран] при падении и ударах
           li.list__item
             .list__part
               i.ico.i-mark
             .list__part
-              p.text(data-xd!='boSDtdZ-115') Удаляет и  #[b.t--imp.t--bold.t--block предовращает царапины]
+              p.text Удаляет и  #[b.t--imp.t--bold.t--block предовращает царапины]
       .skills__part
         ul.list
           li.list__item
             .list__part
               i.ico.i-mark
             .list__part
-              p.text(data-xd!='WouqKeJ-123') #[b.t--imp.t--bold.t--block Улучшает работу] Touch screen
+              p.text #[b.t--imp.t--bold.t--block Улучшает работу] Touch screen
           li.list__item
             .list__part
               i.ico.i-mark
             .list__part
-              p.text(data-xd!='LbZXjFn-129') Упаковки хватит #[b.t--imp.t--bold.t--block на 10 экранов]
+              p.text Упаковки хватит #[b.t--imp.t--bold.t--block на 10 экранов]

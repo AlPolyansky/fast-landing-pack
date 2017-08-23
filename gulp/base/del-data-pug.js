@@ -14,7 +14,6 @@ const createFile = require('../base/create-file.js');
 
 
 module.exports = function (params,cb){
-
 		let lex = require('pug-lexer');
 
 		let src = fs.readFileSync(params.root,'utf-8');
@@ -22,13 +21,20 @@ module.exports = function (params,cb){
 		let ast = parse(tokens, {src});
 
 		ast = walk(ast, null ,function after(node, replace){
-
+			if(node.type === 'Tag'){
+				node.attrs = node.attrs.filter( attr => {
+					if(attr.name !== 'data-xd'){
+						return true;
+					}
+				});
+			}
+			
 		});
 
 
 	const output = genSource(ast);
 	createFile({
-		path: params.root,
+		path: params.clone + params.item,
 		content: output,
 		replace: true,
 	},cb)

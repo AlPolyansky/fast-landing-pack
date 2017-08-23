@@ -18,7 +18,9 @@ module.exports = function (params){
 			  		if(err) throw err;
 			  		async.eachSeries(files,(item,cal_3) => {
 			  			require('../base/del-data-pug.js')({
-			  				root: params.root + item
+			  				root: params.root + item,
+			  				clone: params.origin,
+			  				item
 			  			},
 			  			cal_3);
 			  		},err =>{

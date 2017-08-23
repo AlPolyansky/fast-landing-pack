@@ -183,20 +183,21 @@ gulp.task( 'dist-server' ,tasks.server({
 }));
 
 
+gulp.task( 'ftp-require' ,tasks.ftp({
+  files: './dist/**/*',
+  config: _base.require('./ftp.json'),
+}));
+
+
+
+//=========================  Таски для data-xd   =========================
+
+
 gulp.task('lex',tasks['data-pug-parser']({
   root: './src/pug/sections/',
   origin: './gulp/origin/'
 }));
 
-gulp.task('lex-del',tasks['del-data-pug-init']({
-  root: './src/pug/sections/',
-  origin: './gulp/origin/'
-}));
-
-gulp.task( 'ftp-require' ,tasks.ftp({
-  files: './dist/**/*',
-  config: _base.require('./ftp.json'),
-}));
 
 
 gulp.task('create-start-template',tasks[ 'generate-folders']({
