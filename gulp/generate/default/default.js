@@ -21,7 +21,21 @@ module.exports = function (){
     template = {path: ''},
     pagesPug = {path: ''},
     headerPug = {path: ''},
-    mixinsPug = {path: ''};
+    mixinsPug = {path: ''},
+    styleFile = {path: ''},
+    mediaFile = {path: ''},
+    baseFile = {path : ''},
+    varsFile = {path : ''},
+    modulesScss = {path : ''},
+    sectionsScss = {path : ''},
+    mediaModulesScss = {path : ''},
+    mediaSectionsScss = {path : ''};
+
+
+
+  // Объекты клонирования
+
+  let scssLibs = {root : '',output: ''}
 
     if(params.pug){
       const pugTemplate = require('./files/_template-pug.js')(params);
@@ -36,6 +50,35 @@ module.exports = function (){
     }else{
       const htmlFile = require('./files/index-html.js')(params);
       template = {path: `./${src.folder}/index.html`,content: htmlFile};
+    }
+
+
+    if(params.sass){
+      const scssContent = require('./files/style-scss.js')();
+      const mediaContent = require('./files/media-scss.js')(params);
+      const baseContent = require('./files/_base-scss.js')(params);
+      const varsContent = require('./files/_var-scss.js')(params);
+
+      styleFile = {path: `./${src.folder}/${src.sass}/style.scss`,content: scssContent};
+      mediaFile = {path: `./${src.folder}/${src.sass}/media.scss`,content: mediaContent};
+      baseFile = {path: `./${src.folder}/${src.sass}/core/_base.scss`,content: baseContent};
+      varsFile = {path: `./${src.folder}/${src.sass}/core/_vars.scss`,content: varsContent};
+
+      
+      let folderTypeMobile = params.mobileFirst ? 'mobile' : 'desktop';
+      let folderTypeDesktop = params.mobileFirst ? 'desktop' : 'mobile';
+
+      modulesScss = {path: `./${src.folder}/${src.sass}/styles/${folderTypeMobile}/_modules.scss`};
+      sectionsScss = {path: `./${src.folder}/${src.sass}/styles/${folderTypeMobile}/_sections.scss`};
+      mediaModulesScss = {path: `./${src.folder}/${src.sass}/styles/${folderTypeDesktop}/_m--modules.scss`};
+      mediaSectionsScss = {path: `./${src.folder}/${src.sass}/styles/${folderTypeDesktop}/_m--sections.scss`};
+
+      // Клонировние
+
+      scssLibs = {
+        root: './gulp/generate/default/libs/scss',
+        output: `./${src.folder}/${src.sass}/libs/`
+      }
     }
 
   //------  Пользовательская логика
@@ -72,7 +115,19 @@ module.exports = function (){
     template,
     pagesPug,
     headerPug,
-    mixinsPug
+    mixinsPug,
+    // - css (scss)
+    styleFile,
+    mediaFile,
+    baseFile,
+    varsFile,
+    modulesScss,
+    sectionsScss,
+    mediaModulesScss,
+    mediaSectionsScss,
+    // - js
+    {path: `./${src.folder}/${src.js}/${build.js_file}`},
+
 
   ];
 
@@ -80,11 +135,7 @@ module.exports = function (){
   // Массив с файлами, которые будут клонированы
   // объект - директория (клонируется вся директория с поддиректориями)
   const cloneArray = [
-    // {
-    //   root: './gulp/generate/files/default',
-    //   output: './test'
-    // }
-
+    scssLibs
   ]
 
 

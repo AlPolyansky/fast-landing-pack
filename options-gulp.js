@@ -5,9 +5,8 @@
 
 
 const options = {
-
   sass : true,                     // Использовать sass
-  pug  : false,                     // Использовать pug
+  pug  : true,                     // Использовать pug
   prefix : 'last 15 versions',     // Настройки автопрефиксера
   open : false,                    // Автоматически открывать новую вкладку для запуска gulp
   mobileFirst: true,               // Разработка в стиле mobileFirst
