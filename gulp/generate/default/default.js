@@ -45,7 +45,11 @@ module.exports = function (){
 
       template = {path: `./${src.folder}/${src.pugRoot}/_template.pug`,content: pugTemplate};
       pagesPug = {path: `./${src.folder}/${src.pugRoot}/${src.pug}/index.pug`, content: pugIndex};
-      headerPug = {path: `./${src.folder}/${src.pugRoot}/sections/_header.pug`, content: `h1 Привет! Я готов к верстке!`};
+      headerPug = {path: `./${src.folder}/${src.pugRoot}/sections/_header.pug`, content: 
+        `header.header
+          .container
+            h1 Привет! Я готов к верстке!`
+      };
       mixinsPug = {path: `./${src.folder}/${src.pugRoot}/core/_mixins.pug`, content: pugMixins};
     }else{
       const htmlFile = require('./files/index-html.js')(params);
@@ -54,7 +58,7 @@ module.exports = function (){
 
 
     if(params.sass){
-      const scssContent = require('./files/style-scss.js')();
+      const scssContent = require('./files/style-scss.js')(params);
       const mediaContent = require('./files/media-scss.js')(params);
       const baseContent = require('./files/_base-scss.js')(params);
       const varsContent = require('./files/_var-scss.js')(params);

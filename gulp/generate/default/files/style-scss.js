@@ -1,5 +1,10 @@
 module.exports = params => {
 
+const 
+		mobileFirst = params.mobileFirst,
+		styleFolder = mobileFirst ? 'mobile' : 'desktop';
+
+
 let content = 
 	`
 // libs
@@ -12,8 +17,8 @@ let content =
 @import 'core/_base.scss';
 
 // Основные стили
-@import 'styles/mobile/_modules.scss';
-@import 'styles/mobile/_sections.scss';
+@import 'styles/${styleFolder}/_modules.scss';
+@import 'styles/${styleFolder}/_sections.scss';
 
 
 

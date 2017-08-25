@@ -1,7 +1,18 @@
 module.exports = params => {
 
 	const 
-		mobileFirst = params.mobileFirst;
+		mobileFirst = params.mobileFirst,
+        minWidth = mobileFirst ? 
+        ''
+        :
+        `body{
+            //removeIf(noDesktop)
+            min-width: 975px;
+            //removeIf(noDesktop)
+            /*removeIf(desktop)*/
+            min-width: 100%;
+            /*endRemoveIf(desktop)*/
+    }`;
 
 
 	let content = 
@@ -38,6 +49,8 @@ body,html{
     font-family: $fontBase;
     color: #3e3e3e;
 }
+
+${minWidth}
 
 .wrapper{
     width: 100%;

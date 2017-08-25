@@ -3,26 +3,24 @@
 
 
 
-$container: 980px;
+$container: 320px;
 $gutter: 15px;
 
 
 
-$imgPath : '../img/desktop';
+$imgPath : '../img/mobile';
 
 
 
-/* removeIf(desktop) */
-@media only screen and (min-width: $notebook ){
-/* endRemoveIf(desktop) */
+/* removeIf(mobile) */
+@media only screen and (max-width: $notebook - 1px){
+/* endRemoveIf(mobile) */
 
     @import 'libs/orb/_orb.scss';
 
     body,html{
         font-family: $fontBase;
-        /* removeIf(mobile) */
-        min-width: 975px;
-        /* endRemoveIf(mobile) */
+        
     }
 
 
@@ -41,23 +39,23 @@ $imgPath : '../img/desktop';
 
 
 
-@import 'styles/desktop/_m--modules.scss';
-@import 'styles/desktop/_m--sections.scss';
+@import 'styles/mobile/_m--modules.scss';
+@import 'styles/mobile/_m--sections.scss';
 
 
 
     .only{
         &-mobile{
-            display: none;
+            display: block;
         }
         &-desktop{
-            display: block;
+            display: none;
         }
     }
 
 
 
 
-/* removeIf(desktop) */
+/* removeIf(mobile) */
 }
-/* endRemoveIf(desktop) */
+/* endRemoveIf(mobile) */

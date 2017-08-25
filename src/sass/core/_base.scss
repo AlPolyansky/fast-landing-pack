@@ -32,6 +32,15 @@ body,html{
     color: #3e3e3e;
 }
 
+body{
+            //removeIf(noDesktop)
+            min-width: 975px;
+            //removeIf(noDesktop)
+            /*removeIf(desktop)*/
+            min-width: 100%;
+            /*endRemoveIf(desktop)*/
+    }
+
 .wrapper{
     width: 100%;
     overflow: hidden;
