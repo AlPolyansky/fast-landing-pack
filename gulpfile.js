@@ -11,10 +11,10 @@ const sourse = op.path.sourse;                 // Объект с путями �
 const build = op.path.build;                   // Объект с путями скомпилированных файлов
 const dist = op.path.dist;                     // Объект с путями файлов продакшена
 
-
-
 const tasks = require('./gulp/tasks-init.js');  // Подключаем таски
 
+
+let htmlTemplate = 'html';
 
 
 
@@ -63,8 +63,10 @@ gulp.task( 'sass' ,tasks.sass({
   }));
 
 
-
-
+gulp.task('html' , tasks.copy({
+  files: `${sourse.folder}/**/*.html`,
+  dest: `${build.folder}`
+}))
 
 
 gulp.task('concat',function(callback){
@@ -123,7 +125,6 @@ gulp.task( 'resp-pack', tasks[ 'create-pack' ]({
 }));
 
 
-
 // - Создаем файл со списком
 gulp.task('generate-dist-list',tasks[ 'generate-folders']({
   template: './gulp/generate/dist.js',
@@ -137,12 +138,6 @@ gulp.task( 'dist-server' ,tasks.server({
     server: dist.folder,
     notify: false
 }));
-
-
-// gulp.task( 'ftp-require' ,tasks.ftp({
-//   files: './dist/**/*',
-//   config: _base.require('./ftp.json'),
-// }));
 
 
 
@@ -255,6 +250,11 @@ gulp.task('watch', function () {
     'copy-fonts',
     reload
   ]))
+
+  watch(`./${sourse.folder}/**/*.html`, gulp.series([
+    'html',
+    reload
+  ]))
   
 })
 
@@ -287,7 +287,7 @@ gulp.task('build',gulp.series([
     'concat',
     //'script-libs',
     'sass',
-    'pug'
+    htmlTemplate = op.pug ? 'pug' : 'html', 
   ]));
 
 
