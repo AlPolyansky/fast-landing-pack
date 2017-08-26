@@ -28,7 +28,9 @@ module.exports = params => {
     <!-- Удалить при заливке -->
   </head>
   <body>
-    <h1>Привет! Я готов к верстке</h1>
+    <div class="container">
+        <h1>Привет! Я готов к верстке</h1>
+    </div>
     <script src="${jsPath}"></script>
   </body>
 </html>`;

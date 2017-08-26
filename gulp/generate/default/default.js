@@ -29,7 +29,8 @@ module.exports = function (){
     modulesScss = {path : ''},
     sectionsScss = {path : ''},
     mediaModulesScss = {path : ''},
-    mediaSectionsScss = {path : ''};
+    mediaSectionsScss = {path : ''},
+    cssFile = {path : ''};
 
 
 
@@ -83,6 +84,9 @@ module.exports = function (){
         root: './gulp/generate/default/libs/scss',
         output: `./${src.folder}/${src.sass}/libs/`
       }
+    }else{
+      const cssContent = require('./files/style-css.js')(params);
+      cssFile = {path: `./${src.folder}/${src.css}/style.css`, content: cssContent};
     }
 
   //------  Пользовательская логика
@@ -120,7 +124,7 @@ module.exports = function (){
     pagesPug,
     headerPug,
     mixinsPug,
-    // - css (scss)
+    // - scss
     styleFile,
     mediaFile,
     baseFile,
@@ -129,6 +133,8 @@ module.exports = function (){
     sectionsScss,
     mediaModulesScss,
     mediaSectionsScss,
+    // - css
+    cssFile,
     // - js
     {path: `./${src.folder}/${src.js}/${build.js_file}`},
 

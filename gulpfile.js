@@ -15,6 +15,7 @@ const tasks = require('./gulp/tasks-init.js');  // Подключаем таск
 
 
 let htmlTemplate = 'html';
+let stylePrepros = 'css';
 
 
 
@@ -60,7 +61,14 @@ gulp.task( 'sass' ,tasks.sass({
       ], 
     build:  `${build.folder}/${build.css}`,
     autoprefixer: op.prefix
-  }));
+}));
+
+
+gulp.task( 'css' ,tasks.css({                            
+  files: `${sourse.folder}/${sourse.css}/**/*.css`,
+  build:  `${build.folder}/${build.css}`,
+  autoprefixer: op.prefix
+}));
 
 
 gulp.task('html' , tasks.copy({
@@ -221,6 +229,10 @@ gulp.task('watch', function () {
     'sass'
   ]))
 
+  watch(`${sourse.folder}/${sourse.css}/**/*.css`,gulp.series([
+    'css'
+  ]))
+
   watch(`${sourse.folder}/**/*.pug`,gulp.series([
     'pug',
     reload
@@ -285,9 +297,8 @@ gulp.task('build',gulp.series([
     'copy-image',
     'copy-fonts',
     'concat',
-    //'script-libs',
-    'sass',
-    htmlTemplate = op.pug ? 'pug' : 'html', 
+    htmlTemplate = op.pug ? 'pug' : 'html',
+    stylePrepros = op.sass ? 'sass' : 'css',
   ]));
 
 
