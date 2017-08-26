@@ -103,7 +103,7 @@ const options = {
         // Тут пишем пути к css файлам , которые должны объединиться в один файл
         // Пример: this.sourse.folder + '/' + this.sourse.css + '/main.css',
 
-        //this.sourse.folder + '/' + this.sourse.css + '/sprite.css',
+        //this.sourse.folder + '/' + this.sourse.css + '/media.css',
         this.sourse.folder + '/' + this.sourse.css + '/style.css',
 
       ]

@@ -70,9 +70,9 @@ gulp.task('html' , tasks.copy({
 
 
 gulp.task('concat',function(callback){
-    gulp.src('./src/js/main.js')
+    gulp.src([`./${sourse.folder}/${sourse.js}/main.js`])
     .pipe(plugins.concat("main.js"))
-    .pipe(gulp.dest('./build/js/'))
+    .pipe(gulp.dest(`./${build.folder}/${build.js}/`))
 
   callback();
 })
