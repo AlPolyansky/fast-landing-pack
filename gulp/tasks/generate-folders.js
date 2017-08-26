@@ -77,6 +77,9 @@ module.exports = function (params) {
 
       callback_2 => {
         async.eachSeries(objClone,(item,callback) => {
+          if(!Object.keys(item).length){
+            return callback();
+          }
           base.deepClone(
             path.resolve(item.root),
             path.resolve(item.output),

@@ -35,7 +35,7 @@ module.exports = function (){
 
   // Объекты клонирования
 
-  let scssLibs = {root : '',output: ''}
+  let scssLibs = {};
 
     if(params.pug){
       const pugTemplate = require('./files/_template-pug.js')(params);
