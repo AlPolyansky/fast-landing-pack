@@ -3,8 +3,9 @@ module.exports = params => {
 	const 
 		mobileFirst = params.mobileFirst,
 		delFlag = mobileFirst ? 'mobile' : 'desktop',
-		jsPath = params.path.build.js + '/' + params.path.build.js_file;
-		cssPath = params.path.build.css + '/' + params.path.build.css_file;;
+		jsPath = params.path.build.js + '/' + params.path.build.js_file,
+		cssPath = params.path.build.css + '/' + params.path.build.css_file,
+        mediaCss = params.sass ? `<link rel="stylesheet" href="${params.path.build.css}/media.css">` : '';
 
 	let content = 
 	`<!DOCTYPE html>
@@ -20,6 +21,7 @@ module.exports = params => {
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="${cssPath}">
+    ${mediaCss}
     <!-- Удалить при заливке -->
     <script src="http://ctr-localhost.ru/vlad/jq.js"></script>
     <!-- Удалить при заливке -->

@@ -43,14 +43,20 @@ async.series([
 					chield.each(function(i,elem){
 
 						if(elem.type === 'text'){
-							$(elem.parent).attr('data' + params.dataName,randomstring.generate({length: 5,charset: 'alphabetic'}) +  '-'+ iter);
+							if($(elem.parent).attr(`data-${params.dataName}`)){
+								return false;
+							}
+							$(elem.parent).attr('data-' + params.dataName,randomstring.generate({length: 5,charset: 'alphabetic'}) +  '-' + iter);
 							iter++;
 						}
 						else if(elem.type === 'tag'){
 							if(elem.name !== 'form'){
 								addRandoData($(elem));
 							}else{
-								$(elem).attr('data' + params.dataName,randomstring.generate({length: 5,charset: 'alphabetic'}) +  '-'+ iter);
+								if($(elem).attr(`data-${params.dataName}`)){
+									return false;
+								}
+								$(elem).attr('data-' + params.dataName,randomstring.generate({length: 5,charset: 'alphabetic'}) +  '-' + iter);
 								iter++;
 							}
 						}

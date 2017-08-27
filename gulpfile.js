@@ -14,8 +14,9 @@ const dist = op.path.dist;                     // Объект с путями �
 const tasks = require('./gulp/tasks-init.js');  // Подключаем таски
 
 
-let htmlTemplate = 'html';
-let stylePrepros = 'css';
+let 
+  htmlTemplate = 'html',
+  stylePrepros = 'css';
 
 
 
@@ -149,20 +150,33 @@ gulp.task( 'dist-server' ,tasks.server({
 
 
 
+gulp.task('create-start-template',tasks[ 'generate-folders']({
+  template: './gulp/generate/default/default.js',
+  replace: false,
+}));
+
+
 //=========================  Таски для data-xd   =========================
 
 
-gulp.task('lex',tasks['data-pug-parser']({
+gulp.task('data-pug',tasks['data-pug-parser']({
   root: './src/pug/sections/',
   origin: './gulp/origin/'
 }));
 
 
-
-gulp.task('create-start-template',tasks[ 'generate-folders']({
-  template: './gulp/generate/default/default.js',
-  replace: true,
+gulp.task('data-html',tasks['data-parser-auto-init']({
+  index: `./src/index.html`,
+  dataName: 'xd'
 }));
+
+gulp.task('lex',gulp.series([
+  htmlTemplate = op.pug ? 'data-pug' : 'data-html'
+]));
+
+
+
+
 
 
 
@@ -201,16 +215,7 @@ gulp.task( 'data-server' ,tasks.server({
 
 
 
-gulp.task( 'data-parser-auto', function(cb){
-  if(args[1] === '-auto'){
-    require('./gulp/base/data-parser-auto.js')({
-      index: `./build/index.html`,
-      dataName: 'xd'
-    },cb);
-  }else{
-    cb();
-  }
-});
+
 
 
 
@@ -274,8 +279,8 @@ gulp.task('watch', function () {
 
 // Вотчер в режиме data-xd
 gulp.task('data-watch', function () {
-  watch(`${sourse.folder}/**/*.pug`,gulp.series([
-    'pug',
+  watch(`${sourse.folder}/**/*.${htmlTemplate = op.pug ? 'pug' : 'html'}`,gulp.series([
+    htmlTemplate = op.pug ? 'pug' : 'html',
     'mobile-pack',
     'desktop-pack',
     'data-parser-init',
@@ -311,7 +316,6 @@ gulp.task('create-dist',gulp.series([
 
 gulp.task('dist',gulp.series([
   'build',
-  'data-parser-auto',
   'create-dist',
   'generate-dist-list',
   'dist-server'
