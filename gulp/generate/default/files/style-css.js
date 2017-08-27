@@ -8,16 +8,18 @@ const
         mediaWidht =  mobileFirst ? 'min' : 'max',
         breakPoint = mobileFirst ? '992px' : '991px';
         desktopMinWidth = 
-        `/*removeIf(noDesktop)*/
-        body {
-            min-width: 975px;
-            /*removeIf(desktop)*/
-            min-width: 100%;
-            /*endRemoveIf(desktop)*/
-    }
-    /*endRemoveIf(noDesktop)*/`,
+`/*removeIf(noDesktop)*/
+body {
+    min-width: 975px;
+    /*removeIf(desktop)*/
+    min-width: 100%;
+    /*endRemoveIf(desktop)*/
+}
+/*endRemoveIf(noDesktop)*/`
         desktopFlag = mobileFirst ? 'desktop' : 'mobile',
-        mobileFlag = mobileFirst ? 'mobile' : 'desktop';
+        mobileFlag = mobileFirst ? 'mobile' : 'desktop',
+        onlyMobile = mobileFirst ? 'block' : 'none',
+        onlyDesktop = mobileFirst ? 'none' : 'block';
 
 
 let content = 
@@ -53,6 +55,8 @@ body, html {
   color: #3e3e3e;
 }
 
+
+${desktopMinWidth = mobileFirst ? '' : desktopMinWidth}
 
 
 .wrapper {
@@ -117,15 +121,15 @@ body, html {
 }
 
 .only-mobile {
-  display: block;
+  display: ${onlyMobile};
 }
 
 .only-desktop {
-  display: none;
+  display: ${onlyDesktop};
 }
 
 
-/*Тут пишем ваши стили*/
+/*============ Тут пишем ваши стили ============*/
 
 
 /* removeIf(${mobileFlag}) */
@@ -139,19 +143,19 @@ body, html {
   }
 
 
-  ${desktopMinWidth}
+  ${desktopMinWidth = mobileFirst ? desktopMinWidth : ''}
 
   .container {
     max-width: ${mediaContainer};
   }
   .only-mobile {
-    display: block;
+    display: ${onlyDesktop};
   }
   .only-desktop {
-    display: none;
+    display: ${onlyMobile};
   }
 
-  /*Тут пишем ваши media стили*/
+  /*============ Тут пишем ваши media стили ============*/
 
 /* removeIf(${desktopFlag}) */
 }

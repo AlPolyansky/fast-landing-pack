@@ -9,7 +9,7 @@ const options = {
   pug  : false,                     // Использовать pug
   prefix : 'last 15 versions',     // Настройки автопрефиксера
   open : false,                    // Автоматически открывать новую вкладку для запуска gulp
-  mobileFirst: true,               // Разработка в стиле mobileFirst
+  mobileFirst: false,               // Разработка в стиле mobileFirst
 
   path:{
 
