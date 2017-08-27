@@ -20,9 +20,6 @@ module.exports = params => {
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="${cssPath}">
-    <!--removeIf(${delFlag})-->
-    <link rel="stylesheet" href="css/media.css">
-    <!--endRemoveIf(${delFlag})-->
     <!-- Удалить при заливке -->
     <script src="http://ctr-localhost.ru/vlad/jq.js"></script>
     <!-- Удалить при заливке -->

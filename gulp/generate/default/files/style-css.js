@@ -7,14 +7,17 @@ const
         mediaContainer = mobileFirst ? '980px' : '320px',
         mediaWidht =  mobileFirst ? 'min' : 'max',
         breakPoint = mobileFirst ? '992px' : '991px';
-        desktopMinWidth = mobileFirst ? '' : 
-        `body {
+        desktopMinWidth = 
+        `/*removeIf(noDesktop)*/
+        body {
             min-width: 975px;
             /*removeIf(desktop)*/
             min-width: 100%;
             /*endRemoveIf(desktop)*/
-    }`,
-        mediaFlag = mobileFirst ? 'mobile' : 'desktop';
+    }
+    /*endRemoveIf(noDesktop)*/`,
+        desktopFlag = mobileFirst ? 'desktop' : 'mobile',
+        mobileFlag = mobileFirst ? 'mobile' : 'desktop';
 
 
 let content = 
@@ -50,7 +53,7 @@ body, html {
   color: #3e3e3e;
 }
 
-${desktopMinWidth}
+
 
 .wrapper {
   width: 100%;
@@ -122,15 +125,22 @@ ${desktopMinWidth}
 }
 
 
+/*Тут пишем ваши стили*/
 
 
-/* removeIf(${mediaFlag}) */
+/* removeIf(${mobileFlag}) */
+
+/* removeIf(${desktopFlag}) */
 @media only screen and (${mediaWidht}-width: ${breakPoint}) {
-/* endRemoveIf(${mediaFlag}) */
+/* endRemoveIf(${desktopFlag}) */
 
   body, html {
     font-family: "Roboto", sans-serif;
   }
+
+
+  ${desktopMinWidth}
+
   .container {
     max-width: ${mediaContainer};
   }
@@ -141,9 +151,15 @@ ${desktopMinWidth}
     display: none;
   }
 
-/* removeIf(${mediaFlag}) */
+  /*Тут пишем ваши media стили*/
+
+/* removeIf(${desktopFlag}) */
 }
-/* endRemoveIf(${mediaFlag}) */`;
+/* endRemoveIf(${desktopFlag}) */
+
+
+/* endRemoveIf(${mobileFlag}) */
+`;
 
 	return content;
 }
