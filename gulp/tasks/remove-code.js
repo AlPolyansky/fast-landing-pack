@@ -10,8 +10,8 @@ const plugins = require('gulp-load-plugins')();
 // params.dest  - строка с путем , куда скопировать файлы
 
 module.exports = function removeCode (params){
-	return function(){
-		return gulp.src(params.files)
+	return function(callback){
+		return gulp.src(params.files).on('error',() => callback())
     .pipe(plugins.removeCode(params.opt))
     .pipe(gulp.dest(params.dest))
 	};

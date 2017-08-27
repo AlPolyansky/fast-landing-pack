@@ -94,15 +94,15 @@ module.exports = function (params){
           files: 
             config.mobileFirst ?  
               [
-                './build/css/**/*',
-                '!./build/css/media.css',
+                `./${configPath.build.folder}/${configPath.build.css}/**/*`,
+                `!./${configPath.build.folder}/${configPath.build.css}/media.css`,
               ]
               :
               [
-                './build/css/**/*',
+                `./${configPath.build.folder}/${configPath.build.css}/**/*`,
               ],
           opt: removeValue,
-          dest: `./dist/${packDir}/css`,
+          dest: `./dist/${packDir}/${configPath.build.css}`,
         }
 
         break;
@@ -111,7 +111,7 @@ module.exports = function (params){
         removeValue = defaultParams.desktopFlags;
         copyImageParams = {
           files: `./${configPath.build.folder}/${configPath.build.img}/**/*`,
-          dest: `./dist/${packDir}/img`
+          dest: `./dist/${packDir}/${configPath.build.img}`
         }
 
         removeCodeCSSParams = {
@@ -201,7 +201,7 @@ module.exports = function (params){
       `./${configPath.build.folder}/${configPath.build.js}/**/*`,
       `!./${configPath.build.folder}/${configPath.build.js}/main.js`,
     ],
-    dest: `./dist/${packDir}/js` 
+    dest: `./dist/${packDir}/${configPath.build.js}` 
   }));
 
 
@@ -217,57 +217,57 @@ module.exports = function (params){
   }))
 
 
-  gulp.task( 'fix-url-HTML', function(){
-    return gulp.src(`./dist/${packDir}/**/*.html`)
-      .pipe(through.obj(function (chunk, enc, cb) {
-          let str = '' + chunk._contents;
-          let chunkPath = chunk.path;
-          let pattern;
-          let result;
+  // gulp.task( 'fix-url-HTML', function(){
+  //   return gulp.src(`./dist/${packDir}/**/*.html`)
+  //     .pipe(through.obj(function (chunk, enc, cb) {
+  //         let str = '' + chunk._contents;
+  //         let chunkPath = chunk.path;
+  //         let pattern;
+  //         let result;
 
 
-          if(params.type == 'desktop'){
-            pattern = /\/desktop\//g;
-            result = str.replace(pattern,'/');
-            chunk._contents = Buffer.from(result, 'utf8');
-          }
+  //         if(params.type == 'desktop'){
+  //           pattern = /\/desktop\//g;
+  //           result = str.replace(pattern,'/');
+  //           chunk._contents = Buffer.from(result, 'utf8');
+  //         }
 
-          if(params.type == 'mobile'){
-            pattern = /\/mobile\//g;
-            result = str.replace(pattern,'/');
-            chunk._contents = Buffer.from(result, 'utf8');
-          }
+  //         if(params.type == 'mobile'){
+  //           pattern = /\/mobile\//g;
+  //           result = str.replace(pattern,'/');
+  //           chunk._contents = Buffer.from(result, 'utf8');
+  //         }
 
-          cb(null, chunk);
-      }))
-      .pipe(gulp.dest(`./dist/${packDir}/`))
-  });
+  //         cb(null, chunk);
+  //     }))
+  //     .pipe(gulp.dest(`./dist/${packDir}/`))
+  // });
 
-  gulp.task( 'fix-url-css', function(){
-    return gulp.src(`./dist/${packDir}/css/**/*`)
-      .pipe(through.obj(function (chunk, enc, cb) {
-          let str = '' + chunk._contents;
-          let chunkPath = chunk.path;
-          let pattern;
-          let result;
+  // gulp.task( 'fix-url-css', function(){
+  //   return gulp.src(`./dist/${packDir}/css/**/*`)
+  //     .pipe(through.obj(function (chunk, enc, cb) {
+  //         let str = '' + chunk._contents;
+  //         let chunkPath = chunk.path;
+  //         let pattern;
+  //         let result;
 
 
-          if(params.type == 'desktop'){
-            pattern = /\/desktop\//g;
-            result = str.replace(pattern,'/');
-            chunk._contents = Buffer.from(result, 'utf8');
-          }
+  //         if(params.type == 'desktop'){
+  //           pattern = /\/desktop\//g;
+  //           result = str.replace(pattern,'/');
+  //           chunk._contents = Buffer.from(result, 'utf8');
+  //         }
 
-          if(params.type == 'mobile'){
-            pattern = /\/mobile\//g;
-            result = str.replace(pattern,'/');
-            chunk._contents = Buffer.from(result, 'utf8');
-          }
+  //         if(params.type == 'mobile'){
+  //           pattern = /\/mobile\//g;
+  //           result = str.replace(pattern,'/');
+  //           chunk._contents = Buffer.from(result, 'utf8');
+  //         }
 
-          cb(null, chunk);
-      }))
-      .pipe(gulp.dest(`./dist/${packDir}/css`))
-  });
+  //         cb(null, chunk);
+  //     }))
+  //     .pipe(gulp.dest(`./dist/${packDir}/css`))
+  // });
 
   
 
@@ -280,7 +280,5 @@ module.exports = function (params){
     'del-comment-JS',
     'del-comment-CSS',
     'copy-js'
-    //'fix-url-HTML',
-    //'fix-url-css',
   ])
 };

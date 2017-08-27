@@ -5,11 +5,12 @@
 
 
 const options = {
-  sass : true,                     // Использовать sass
+  sass : false,                     // Использовать sass
   pug  : false,                     // Использовать pug
   prefix : 'last 15 versions',     // Настройки автопрефиксера
   open : false,                    // Автоматически открывать новую вкладку для запуска gulp
-  mobileFirst: false,               // Разработка в стиле mobileFirst
+  mobileFirst: false,              // Разработка в стиле mobileFirst,
+  template: 'default',             // Шаблон для генерации файлов( находятся в gulp-tasks/generate)
 
   path:{
 
@@ -44,7 +45,6 @@ const options = {
 
     dist: {       // Файлы для продакшена
 
-
       folder: 'dist',             // Папка где лежат файлы продакшена
       css: 'css',                 // Папка со стилями
       js: 'js',                   // Папка со скриптами
@@ -57,19 +57,6 @@ const options = {
     },
 
 
-  other: {
-
-  },
-
-
-   generate(){
-    return {
-      template: 'default',         // Шаблон для генерации файлов( находятся в gulp-tasks/generate)
-    }
-
-  },
-
-
     //=================== JS модули для компиляции ===================
 
 
@@ -79,8 +66,7 @@ const options = {
         // Важен порядок файлов
         // Пример: this.sourse.folder + '/' + path.sourse.js + '/app.js',
 
-        //this.sourse.folder + '/' + path.sourse.js + '/libs/jquery.equalheight.min.js',
-        this.sourse.folder + '/' + this.sourse.js + '/main.js',
+        `${this.sourse.folder}/${this.sourse.js}/main.js`,
       ];
     },
 

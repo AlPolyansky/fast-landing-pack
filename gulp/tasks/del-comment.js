@@ -14,8 +14,8 @@ const plugins = require('gulp-load-plugins')();
 module.exports = function (params){
   let plugin = params.css === true ? 'stripCssComments' : 'stripComments';
 
-  return function delCommets(){
-		return gulp.src(params.files)
+  return function delCommets(callback){
+		return gulp.src(params.files).on('error',() => callback())
 			.pipe(plugins[plugin](params.opt))
 		  .pipe(gulp.dest(params.dest));
 	};

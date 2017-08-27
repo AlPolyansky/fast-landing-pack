@@ -79,11 +79,9 @@ gulp.task('html' , tasks.copy({
 
 
 gulp.task('concat',function(callback){
-    gulp.src([`./${sourse.folder}/${sourse.js}/main.js`])
+  return gulp.src(op.path.jsCompile()).on('error', () => callback())
     .pipe(plugins.concat("main.js"))
     .pipe(gulp.dest(`./${build.folder}/${build.js}/`))
-
-  callback();
 })
 
 
@@ -160,13 +158,13 @@ gulp.task('create-start-template',tasks[ 'generate-folders']({
 
 
 gulp.task('data-pug',tasks['data-pug-parser']({
-  root: './src/pug/sections/',
+  root: `./${sourse.folder}/${sourse.pugRoot}/sections/`,
   origin: './gulp/origin/'
 }));
 
 
 gulp.task('data-html',tasks['data-parser-auto-init']({
-  index: `./src/index.html`,
+  index: `./${sourse.folder}/index.html`,
   dataName: 'xd'
 }));
 
