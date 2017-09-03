@@ -84,7 +84,7 @@ module.exports = function (params){
             ]
             :
             [
-              `./${configPath.build.folder}/${configPath.build.img}/mobile/**/*`,
+              `./${configPath.build.folder}/${configPath.build.img}/**/*`,
             ]
           ,
           dest: `./dist/${packDir}/img`
@@ -113,6 +113,22 @@ module.exports = function (params){
         copyImageParams = {
           files: `./${configPath.build.folder}/${configPath.build.img}/**/*`,
           dest: `./dist/${packDir}/${configPath.build.img}`
+        }
+
+        copyImageParams = {
+          files: config.mobileFirst ? 
+            [
+              `./${configPath.build.folder}/${configPath.build.img}/**/*`,
+            ]
+            :
+            [
+              `./${configPath.build.folder}/${configPath.build.img}/**/*`,
+              `!./${configPath.build.folder}/${configPath.build.img}/mobile/**/*`,
+              `!./${configPath.build.folder}/${configPath.build.img}/mobile`,
+            ]
+          ,
+          dest: `./dist/${packDir}/img`
+            
         }
 
         removeCodeCSSParams = {
@@ -221,7 +237,8 @@ module.exports = function (params){
   gulp.task( 'remove-duplicate-img', tasks['remove-duplicate-img-init']({
     type: params.type,
     mobileFirst: config.mobileFirst,
-    root: `./dist/${packDir}/${configPath.build.img}`
+    root: `./dist/${packDir}/${configPath.build.img}`,
+    enable: config.removeDuplicateImg,
   }))  
 
 	return gulp.series([

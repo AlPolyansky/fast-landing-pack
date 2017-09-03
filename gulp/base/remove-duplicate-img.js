@@ -2,16 +2,22 @@ const fs = require('fs');
 const path = require('path');
 const base = new (require('./_base.js'));
 const del = require('del');
-	
+
+
+
+
+// Модуль ищет фотографии с одинаковым именем и удяляем лишнее
+
+
 function deepReaddirSync(dir, parent) {
     var result = result || [];
     var contents = fs.readdirSync(dir);
     var parent = parent || '';
     dir = dir.substr(dir.length - 1) !== path.sep ? dir + path.sep : dir;
 
+
     contents.forEach(function (item) {
-    		let fileName = item;
-    		
+    	let fileName = item;	
         let filePath = dir + item;
 
         var stats = fs.statSync(filePath);
@@ -31,14 +37,13 @@ function deepReaddirSync(dir, parent) {
 }
 
 module.exports = function (params,cb){
+    if(!params.enable) return cb();
 
-    let type = params.mobileFist ? 'mobile' : 'desktop';
+    let type = params.mobileFirst ? 'desktop' : 'mobile';
 
 	if(params.type === type){
-		
 		let temp = [];
 		let items = deepReaddirSync(params.root);
-
 
         let filtered = items.filter( (item,index,arr) => {
             let fileName = item.fileName;
@@ -52,18 +57,17 @@ module.exports = function (params,cb){
             return iter > 1;
         })
 
+
+
+
         
         filtered.forEach( item => {
+            
             if(item.parent !== type){
+
                 del.sync(item.filePath);
             }
         }) 
-
-        //console.log(newArr);
-
-		// items.forEach( item => {
-		// 	console.log(item);
-		// });
 
 	}
 	return cb();

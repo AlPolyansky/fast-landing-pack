@@ -11,6 +11,7 @@ const options = {
   open : false,                    // Автоматически открывать новую вкладку для запуска gulp
   mobileFirst: true,              // Разработка в стиле mobileFirst,
   template: 'default',             // Шаблон для генерации файлов( находятся в gulp-tasks/generate)
+  removeDuplicateImg: true,       // Читстить фотографии при сборке
 
   path:{
 
