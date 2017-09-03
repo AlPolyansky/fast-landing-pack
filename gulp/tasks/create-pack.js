@@ -231,7 +231,8 @@ module.exports = function (params){
     files: `./dist/${packDir}/css/**/*.css`,
     opt: cssCommentNoDel('==='),
     dest: `./dist/${packDir}/css`,
-  }))
+  }));
+
 
 
   gulp.task( 'remove-duplicate-img', tasks['remove-duplicate-img-init']({
@@ -239,7 +240,13 @@ module.exports = function (params){
     mobileFirst: config.mobileFirst,
     root: `./dist/${packDir}/${configPath.build.img}`,
     enable: config.removeDuplicateImg,
-  }))  
+  }));
+
+
+  gulp.task( 'clean-html', tasks['clean-html-init']({
+    index: `./dist/${packDir}`,
+  }));
+
 
 	return gulp.series([
     'remove-code-HTML',
@@ -250,6 +257,7 @@ module.exports = function (params){
     'del-comment-JS',
     'del-comment-CSS',
     'copy-js',
-    'remove-duplicate-img'
+    'remove-duplicate-img',
+    'clean-html'
   ])
 };
