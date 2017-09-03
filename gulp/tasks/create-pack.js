@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const fs = require('fs');
 const plugins = require('gulp-load-plugins')();
 const tasks = require('../tasks-init.js');
 const path = require('path');
@@ -217,59 +218,11 @@ module.exports = function (params){
   }))
 
 
-  // gulp.task( 'fix-url-HTML', function(){
-  //   return gulp.src(`./dist/${packDir}/**/*.html`)
-  //     .pipe(through.obj(function (chunk, enc, cb) {
-  //         let str = '' + chunk._contents;
-  //         let chunkPath = chunk.path;
-  //         let pattern;
-  //         let result;
-
-
-  //         if(params.type == 'desktop'){
-  //           pattern = /\/desktop\//g;
-  //           result = str.replace(pattern,'/');
-  //           chunk._contents = Buffer.from(result, 'utf8');
-  //         }
-
-  //         if(params.type == 'mobile'){
-  //           pattern = /\/mobile\//g;
-  //           result = str.replace(pattern,'/');
-  //           chunk._contents = Buffer.from(result, 'utf8');
-  //         }
-
-  //         cb(null, chunk);
-  //     }))
-  //     .pipe(gulp.dest(`./dist/${packDir}/`))
-  // });
-
-  // gulp.task( 'fix-url-css', function(){
-  //   return gulp.src(`./dist/${packDir}/css/**/*`)
-  //     .pipe(through.obj(function (chunk, enc, cb) {
-  //         let str = '' + chunk._contents;
-  //         let chunkPath = chunk.path;
-  //         let pattern;
-  //         let result;
-
-
-  //         if(params.type == 'desktop'){
-  //           pattern = /\/desktop\//g;
-  //           result = str.replace(pattern,'/');
-  //           chunk._contents = Buffer.from(result, 'utf8');
-  //         }
-
-  //         if(params.type == 'mobile'){
-  //           pattern = /\/mobile\//g;
-  //           result = str.replace(pattern,'/');
-  //           chunk._contents = Buffer.from(result, 'utf8');
-  //         }
-
-  //         cb(null, chunk);
-  //     }))
-  //     .pipe(gulp.dest(`./dist/${packDir}/css`))
-  // });
-
-  
+  gulp.task( 'remove-duplicate-img', tasks['remove-duplicate-img-init']({
+    type: params.type,
+    mobileFirst: config.mobileFirst,
+    root: `./dist/${packDir}/${configPath.build.img}`
+  }))  
 
 	return gulp.series([
     'remove-code-HTML',
@@ -279,6 +232,7 @@ module.exports = function (params){
     'del-comment-HTML',
     'del-comment-JS',
     'del-comment-CSS',
-    'copy-js'
+    'copy-js',
+    'remove-duplicate-img'
   ])
 };
