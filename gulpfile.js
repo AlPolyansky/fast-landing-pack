@@ -14,6 +14,21 @@ const dist = op.path.dist;                     // Объект с путями �
 const tasks = require('./gulp/tasks-init.js');  // Подключаем таски
 
 
+
+// Записываем глобально данные о языке
+let globData = _base.glob();
+globData.langs.indexOf(op.lang) === -1 ? globData.langs.push(op.lang) : globData.langs;
+
+if(globData.arrayVersionLang.length > 1){
+  globData.arrayVersionLang.splice(0,1);
+}
+globData.arrayVersionLang.push(op.lang);
+globData.beforeLang = globData.langs.length > 1 ?  globData.arrayVersionLang[0] : null;
+globData.currentLang = op.lang; 
+_base.changeGlob(globData);
+
+
+
 let 
   htmlTemplate = 'html',
   stylePrepros = 'css';
@@ -175,6 +190,25 @@ gulp.task('lex',gulp.series([
 
 
 
+gulp.task( 'clean-src' ,tasks.clean({
+  files: sourse.folder
+}))
+
+gulp.task('copy-src' , tasks.copy({
+  files: `./gulp/translate/${op.lang}/**/*`,
+  dest: `./${sourse.folder}`
+}))
+
+
+gulp.task('select-lang' , gulp.series([
+  'clean-src',
+  'copy-src',
+]));
+
+
+gulp.task('bung',function(cb){
+  return cb();
+})
 
 
 
@@ -212,7 +246,6 @@ gulp.task( 'data-server' ,tasks.server({
     server: dataServerPath,
     notify: false
 }));
-
 
 
 
@@ -292,11 +325,27 @@ gulp.task('data-watch', function () {
 // =============================================================================
 // =============================================================================
 
+let langFolder = op.lang;
+
+if(globData.arrayVersionLang[0] !== globData.arrayVersionLang[1]){
+  langFolder = globData.arrayVersionLang[0];
+}
 
 
 
+gulp.task('replace-src',gulp.series([
+  tasks.clean({files: `./gulp/translate/${langFolder}`}),
+  tasks.copy({                        
+    files:  `./${sourse.folder}/**/*`, 
+    dest:  `./gulp/translate/${langFolder}`
+  })
+]));
+let replaceLang = '';
+let selectLang = '';
 
 gulp.task('build',gulp.series([
+    replaceLang = globData.beforeLang ? 'replace-src' : 'bung',
+    selectLang = globData.beforeLang ? 'select-lang' : 'bung',
     'clean-dist',
     'clean-build',
     'copy-image',
@@ -355,6 +404,9 @@ gulp.task('data' ,gulp.series([
 gulp.task('create', gulp.series(
   'create-start-template'
 ))
+
+
+
 
 
 

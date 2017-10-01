@@ -1,0 +1,335 @@
+style.
+  body{
+  	background-color: #fff;
+  }
+  
+  .row{
+  	border-top: 1px solid red;
+  	border-bottom: 1px solid red;
+  	padding-top: 20px;
+  	padding-bottom: 20px;
+  	margin-top: 20px;
+  	margin-bottom: 20px;
+  }
+  
+  .right{
+  	text-align: right;
+  }
+  
+  .left{
+  	text-align: left;
+  }
+  
+  .center{
+  	text-align: center;
+  }
+  
+  .dark{
+  	background-color: #b4d6e3;
+  }
+  
+  .red{
+  	color: red;
+  }
+  
+  
+.container
+  //- first
+  .row
+    .first
+      .first__part
+        h2.first__title(data-xd!='FIhETMm-6') Средство
+      .first__part
+        .first__num
+          span.first__num-text(data-xd!='GWzzhyS-9') №1
+  .row
+    p.topinfo(data-xd!='pXrKVix-11') Для азиатской, сухой и склонной к пигментации кожи
+  .row.right
+    ul.label
+      li.label__item.label--1
+      li.label__item.label--2
+      li.label__item.label--3
+  .row
+    h1.toptitle
+      span.toptitle__top(data-xd!='ANrpDOB-19') Micellar 
+      span.toptitle__bottom(data-xd!='PVlEbij-20') Water
+  .row
+    .steps
+      ul.steps__grid
+        li.steps__part
+          p.text(data-xd!='NjkBpkC-25') Превосходная кожа в
+        li.steps__part
+          .steps__num(data-xd!='dnmUiJi-27') 4 шага
+  .row
+    .sale
+      .sale__inner
+        p.sale__num(data-xd!='DbAFLvr-31') 50%
+        p.sale__text(data-xd!='OrjyTcj-32') OFF
+  .row
+    .price
+      .price__grid
+        li.price__part.price__part-old
+          p.price__text(data-xd!='bfMYNyK-37') Старая цена
+          del.price__old(data-xd!='ZWAYHxv-38') {{ old_price }}{{ currency }}
+        li.price__part.price__part-new
+          .price__angle
+            .price__angle-inner
+              p.price__info
+                span.price__info-text(data-xd!='GDheRuK-43') Новая цена
+              p.price__num
+                span.price__num-text.price__new(data-xd!='jvthkNH-45') {{ price }}{{ currency }}
+  .row
+    .button__wrap
+      .button.toform
+        button.button__text(data-xd!='nluBuHt-49') Заказать сейчас
+  .row
+    ul.skills
+      li.skills__item
+        .skills__part
+          i.ico.i-mark
+        .skills__part(data-xd!='otJLpHf-55') Очищение
+      li.skills__item
+        .skills__part
+          i.ico.i-mark
+        .skills__part(data-xd!='XcndSrR-59') Отбеливание
+      li.skills__item
+        .skills__part
+          i.ico.i-mark
+        .skills__part(data-xd!='gGoUGMh-63') Увлажнение
+      li.skills__item
+        .skills__part
+          i.ico.i-mark
+        .skills__part(data-xd!='MOjWYJF-67') Защита
+  .row
+    .prod
+      //removeIf(desktop)
+      .only-mobile
+        img.prod__img(src!="img/prod.png" alt!="")
+      //endRemoveIf(desktop)
+      //removeIf(mobile)
+      .only-desktop
+        img.prod__img(src!="img/desktop/prod.png" alt!="")
+      //endRemoveIf(mobile)
+  .row
+    .form__wrap
+      form#toform.form(method!='POST' action!='#')
+        .form__title(data-xd!='IqxFmyO-77') Оформление заказа
+        .form__inner
+          .form__field-wrap
+            .field
+              .field__select-wrap
+                .field__arrow
+                select#country_code_selector.field__select.field__part(name!='country_code' data-xd!='EWZGxTm-83')
+                  option(value!='RU') Россия
+            .field
+              input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
+            .field
+              input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
+            .field.field__info
+              .field__row
+                .field__text.field__label(data-xd!='PwLaqHl-91') Доставка:
+                .field__number.field__label(data-xd!='KMKzfam-92') {{ shipment_price }} {{ currency }}
+              .field__row
+                .field__text.field__label(data-xd!='TFcVJzC-94') Итого:
+                .field__number.field__label(data-xd!='YGvsbiX-95') {{ total_price|int }} {{ currency }}
+          .button
+            button.button__text.js_submit(data-xd!='mVbVtks-97')  
+              | Заказать сейчас
+  .row
+    .warn.only-desktop
+      p.text(data-xd!='SXMocvG-100') Внимание! Акция до конца дня!
+  .row
+    h2.title
+      span.title__text(data-xd!='wHaNOAD-103') Micellar 
+      span.title__text(data-xd!='mDKNrkt-104') waterf
+      .title__info(data-xd!='iENkeUt-105') которые уже попробовали
+  .row.dark
+    .book
+      ul.book__grid
+        li.book__part
+          p.text.book__toptext(data-xd!='fQrAWuT-110') Открытие революционной молекулы мицеллы - основы Micellar water, стало прорывом современной косметологии.
+          .magnet
+            h4.magnet__title(data-xd!='QemFSIV-112') Эти микрочастицы работают как #[b.t--imp магнит]
+            p.magnet__text.text(data-xd!='NGSKmjL-114') вытягивают из кожи загрязнения и удерживают их в себе.
+        li.book__part
+          .micel
+            .micel__img
+            .micel__info
+              span.micel__text(data-xd!='Lvmokiz-119') Мицеллы
+              span.micel__text(data-xd!='HndGpop-120') Загрязнения
+          p.text(data-xd!='lhTHLIj-121') #[span.t--imp Мицеллы] очищают кожу  не только от косметики, но и от излишков себума, токсинов и свободных радикалов.
+  .row
+    .band.band--blue
+      .band__inner
+        p.text(data-xd!='tjspJcG-126') Киви-антиоксидант
+  .row
+    .ball
+      .ball__inner
+  .row
+    ul.list.list--disk
+      li.list__item
+        .list__part
+          span.list__ball
+        .list__part  
+          p.text.text--dark(data-xd!='ljqrKyA-136') Вытяжка из нерафинированного #[span.t--imp масла арганы активизирует выработку протеина.]
+      li.list__item
+        .list__part
+          span.list__ball
+        .list__part  
+          p.text.text--dark(data-xd!='ioqMkDP-142') Высокий уровень белка в коже позволяет не образовываться морщинам и устраняет пигментные несовершенства на уровне дермы.
+  .row
+    ul.consists
+      li.consist.consist--yellow
+        .band
+          .band__inner
+            p.text(data-xd!='QJHRYJK-148') Свежесть и молодость
+        ul.list.list--disk
+          li.list__item
+            .list__part
+              span.list__ball
+            .list__part  
+              p.text.text--dark(data-xd!='AfoeWai-154') Вытяжка из нерафинированного #[span.t--imp.t--bold масла арганы активизирует выработку протеина.]
+          li.list__item
+            .list__part
+              span.list__ball
+            .list__part  
+              p.text.text--dark(data-xd!='APSwfhe-160') Высокий уровень белка в коже позволяет не образовываться морщинам и устраняет пигментные несовершенства на уровне дермы.
+      li.consist.consist--green
+        .band
+          .band__inner
+            p.text(data-xd!='RrQmbFK-164') Киви-антиоксидант
+        ul.list.list--disk
+          li.list__item
+            .list__part
+              span.list__ball
+            .list__part  
+              p.text.text--dark(data-xd!='bqOWuHH-170') #[span.t--imp.t--bold Вытяжки из киви ускоряют  процесс деления и созревания кератиноцитов] в подкожном жировом слое.
+          li.list__item
+            .list__part
+              span.list__ball
+            .list__part  
+              p.text.text--dark(data-xd!='MFDZXKV-176') Эти клетки составляют основу кожи и отвечают за уровень выработки здорового пигмента.
+          li.list__item
+            .list__part
+              span.list__ball
+            .list__part  
+              p.text.text--dark(data-xd!='XbPxgHD-181') Результат - свежий и здоровый тон лица.
+      li.consist.consist--blue
+        .band
+          .band__inner
+            p.text(data-xd!='AAGaEhI-185') Увлажнение
+        ul.list.list--disk
+          li.list__item
+            .list__part
+              span.list__ball
+            .list__part  
+              p.text.text--dark(data-xd!='KnBCLTp-191') #[span.t--imp.t--bold Экстракт оливы] питает кожу  и   сохраняет необходимый уровень влаги в тканях.
+          li.list__item
+            .list__part
+              span.list__ball
+            .list__part  
+              p.text.text--dark(data-xd!='nCgoZLZ-197') Вытяжка из косточки оливы создает невесомую пленку-барьер, защищая кожу от негативного влияния внешней среды.
+  .row
+    .gmo
+      .gmo__inner
+        h4.title(data-xd!='avELpnn-201') ВАЖНО
+        p.text.t--light.t--ttu(data-xd!='YcESEjb-202') Гиполаллергенно и нетоксично
+  .row
+    .calendar
+      .calendar__skew
+      .calendar__inner
+        p.text(data-xd!='VJAPfAs-207') Минимальная продолжительность использования #[span.t--bold.t--imp 4 недели]
+  .row
+    .card
+      ul.card__grid
+        li.card__part
+          .gmo
+            .gmo__inner
+              h4.title(data-xd!='GzOomxl-215') ВАЖНО
+              p.text.t--light.t--ttu(data-xd!='xhcOYcz-216') Гиполаллергенно и нетоксично
+        li.card__part
+          .calendar
+            .calendar__skew
+            .calendar__inner
+              p.text(data-xd!='FjMJnzD-221') Минимальная продолжительность использования #[span.t--bold.t--imp 4 недели]
+  .row
+    .num.num--bg
+      .num__inner
+        .num__border
+        p.text(data-xd!='ZzroPDb-227') 1
+  .row
+    .box.box--red.only-desktop
+      span.box__inner(data-xd!='iUhBUWY-230') ДО
+  .row
+    .doc
+      .doc__inner
+        .doc__content
+          h4.doc__name(data-xd!='LJzzout-235') Иванов И. П.
+          h5.doc__info(data-xd!='PLgrYgu-236') Врач - дерматолог косметологического центра
+  .row
+    ul.list.list--disk.list--icons
+      li.list__item.only-desktop
+        .list__part
+          span.list__ball
+          i.ico.i-cos
+        .list__part  
+          p.text.text--dark(data-xd!='WcxZAXL-244') Ежедневно  каждая девушка использует большое количество уходовой и декоративной косметики. Кремы, тоники, лосьоны и сыворотки - десятки различных флаконов и баночек все равно не приносят желаемого эффекта. Кожа все так же стянута и жирный блеск никуда не уходит.
+      li.list__item
+        .list__part
+          span.list__ball
+          i.ico.i-spray
+        .list__part
+          h5.list__title #[b.t--bold(data-xd!='wiagHVd-251') #[span.t--imp Micellar&nbsp;Water] с успехом заменит многочисленные и малоэффективные средства.]
+          p.text.text--dark(data-xd!='AhLHzwZ-253') Эта мицеллярная вода уникальна - ее можно смело считать уходовым средством номер один. Micellar&nbsp;Water не просто очищает кожу от загрязнений, она бережно ухаживает за ней и защищает.
+      li.list__item
+        .list__part
+          span.list__ball
+          i.ico.i-head
+        .list__part
+          p.text.text--dark(data-xd!='WFJxxya-259') #[b.t--bold #[span.t--imp Мои клиентки] отметили] значительное улучшение состояния лица: тонизирование, увлажненность, свежесть и легкий лифтинг-эффект. А ровный тон кожи позволяет меньше использовать декоративную косметику.
+  .row
+    .shtamp.only-desktop
+      .shtamp__inner
+        p.text(data-xd!='cjEgLzN-265') Одобрено
+  .row
+    .natural.only-desktop
+      .natural__inner
+        span.natural__num(data-xd!='KDORRYD-269') 100%
+        span.natural__text(data-xd!='ewBCoFj-270') натуральные компоненты
+  .row.center.dark
+    .frame
+      .frame__inner
+        i.frame__img.photo.photo-1
+  .row.dark
+    .user
+      .frame
+        .frame__inner
+          i.frame__img.photo.photo-5
+      .box
+        .box__inner
+          span.user__name(data-xd!='DxxLPgn-282') ИРЭН 
+          span.user__age(data-xd!='yXWhEOA-283') 37 лет
+  .row.center
+    .timer
+      h5.timer__title
+        p.text(data-xd!='RssyjxF-287') До конца акции осталось:
+      ul.timer__list
+        li.timer__item.timer__hours
+          span.timer__num.timer__first
+          span.timer__num.timer__last
+          p.timer__info(data-xd!='hEyTWpQ-292') часов
+        li.timer__item.timer__min
+          span.timer__num.timer__first
+          span.timer__num.timer__last
+          p.timer__info(data-xd!='HAlfoRm-296') минут
+        li.timer__item.timer__sec
+          span.timer__num.timer__first
+          span.timer__num.timer__last
+          p.timer__info(data-xd!='yRifJPk-300') секунд
+  .row
+    .counter
+      ul.counter__grid
+        li.counter__part  
+          span.counter__num(data-xd!='dXvIuDq-305') 40
+        li.counter__part
+          p.text(data-xd!='nRcelmR-307') упаковок осталось

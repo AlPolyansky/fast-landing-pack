@@ -9,10 +9,10 @@ const options = {
   pug  : true,                     // Использовать pug
   prefix : 'last 15 versions',     // Настройки автопрефиксера
   open : false,                    // Автоматически открывать новую вкладку для запуска gulp
-  mobileFirst: true,              // Разработка в стиле mobileFirst,
+  mobileFirst: true,                // Разработка в стиле mobileFirst,
   template: 'default',             // Шаблон для генерации файлов( находятся в gulp-tasks/generate)
   removeDuplicateImg: false,       // Читстить фотографии при сборке
-  translate: 'ru',                // Язык исзодников
+  lang: 'en',                      // Язык исходников 
 
   path:{
 

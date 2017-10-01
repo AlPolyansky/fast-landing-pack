@@ -6,33 +6,35 @@ const plugins = require('gulp-load-plugins')();
 const fs = require('fs');
 const path = require('path');
 const async = require('async');
+const args = process.argv.slice(2);
 
 // Переводи Исходники на нужный язык
 
-module.exports = function removeDuplicateImg (params){
+module.exports = function translate (params){
+  let lang = args[1] ? args[1].replace('-','') : '';
 
 
-	//Копируем исходники
+	//Копируем старые исходники
   gulp.task( 'copy-src', tasks['copy']({
     files: `./${config.path.sourse.folder}/**/*`,
-    dest: `./gulp/translate/ru` 
+    dest: `./gulp/translate/${config.lang}` 
   }));
 
   // /f/f - костыль, чтобы распаковывалось в нужное место
 
   gulp.task('unzip',function(){
-  	return gulp.src(`./translate/${config.translate}/*.zip`)
+  	return gulp.src(`./translate/${lang}/*.zip`)
   			.pipe(plugins.unzip())
-  			.pipe(gulp.dest(`./translate/${config.translate}/tmp/f/f`))
+  			.pipe(gulp.dest(`./translate/${lang}/tmp/f/f`))
   });
 
   gulp.task('html2pug',function(){
-  	return gulp.src(`./translate/${config.translate}/tmp/index-target.html`)
+  	return gulp.src(`./translate/${lang}/tmp/index-target.html`)
   		.pipe(plugins.html2pug())
-  		.pipe(gulp.dest(`./translate/${config.translate}/tmp/`))
+  		.pipe(gulp.dest(`./translate/${lang}/tmp/`))
   });
 
-   gulp.task('translate-src',function(cb){
+   gulp.task('translate-src', function(cb){
    	let pugRoot = path.resolve(`./${src.folder}/${src.pugRoot}/sections/`);
 
    	async.series([
@@ -45,7 +47,9 @@ module.exports = function removeDuplicateImg (params){
 		   			require('../base/pug-translater.js')({
 			   			root: pugRoot,
 			   			itemPath: pugRoot + '/' + item,
-			   			item: item
+			   			item: item,
+              indexPath: `./translate/${lang}/tmp/index-target.pug`,
+              output: `./gulp/translate/${lang}/${src.pugRoot}/sections/${item}/`,
 		   			},cb_2);
 		   		},err =>{
 			  		if(err) throw err;
@@ -62,10 +66,23 @@ module.exports = function removeDuplicateImg (params){
 	  });  	
   });
 
+
+  gulp.task( 'clean-tmp' ,tasks.clean({
+    files: `./translate/${lang}/tmp`
+  }));
+
+  gulp.task( 'copy-translate-src', tasks['copy']({
+    files: `./${config.path.sourse.folder}/**/*`,
+    dest: `./gulp/translate/${lang}` 
+  }));
+
+
 	return gulp.series([
 		'copy-src',
 		'unzip',
 		'html2pug',
-		'translate-src'
+		'translate-src',
+    'clean-tmp',
+    'copy-translate-src'
 	]);
 };

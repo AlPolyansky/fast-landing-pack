@@ -5,13 +5,15 @@ const genSource = require('pug-source-gen');
 const walk = require('pug-walk');
 const fs = require('fs');
 const path = require('path');
-const indexTarget = fs.readFileSync(path.resolve(`./translate/${config.translate}/tmp/index-target.pug`),'utf-8');
+
 let lex = require('pug-lexer');
 const createFile = require('../base/create-file.js');
 
 module.exports = function (params,cb){
 
 	// Сканируем и кешируем index-target
+	let indexTarget = fs.readFileSync(path.resolve(params.indexPath),'utf-8');
+
 	let indexTargetTokens = lex(indexTarget);
 	let indexTargetAst = parse(indexTargetTokens, {indexTarget});
 	let indexData = [];
@@ -52,7 +54,7 @@ module.exports = function (params,cb){
 
 
 		createFile({
-			path: params.itemPath,
+			path: params.output,
 			content: genSource(currentPugtAst),
 			replace: true,
 		},cb);

@@ -92,5 +92,13 @@ Base.prototype.deepClone = (root,path,cb) => {
 	})
 }
 
+Base.prototype.changeGlob = (data) =>{
+	fs.writeFileSync(path.resolve('./gulp/base/_global.json'),JSON.stringify(data,null,2));
+};
+
+Base.prototype.glob = function(){
+	return JSON.parse(fs.readFileSync(path.resolve('./gulp/base/_global.json'),'utf-8'));
+};
+
 
 module.exports = Base;
