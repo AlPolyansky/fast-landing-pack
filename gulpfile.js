@@ -103,9 +103,9 @@ gulp.task( 'script-libs' ,tasks.copy({
 
 
 // - Копируем шрифты
-gulp.task( 'copy-fonts' ,tasks.copy({                             
-  files:  `${sourse.folder}/${sourse.fonts}/**/*`, 
-  dest:  `${build.folder}/${build.fonts}`
+gulp.task( 'copy-font' ,tasks.copy({                        
+  files:  `./${sourse.folder}/${sourse.fonts}/**/*`, 
+  dest:  `./${build.folder}/${build.fonts}`
 }));
 
 
@@ -171,6 +171,8 @@ gulp.task('data-html',tasks['data-parser-auto-init']({
 gulp.task('lex',gulp.series([
   htmlTemplate = op.pug ? 'data-pug' : 'data-html'
 ]));
+
+
 
 
 
@@ -298,8 +300,9 @@ gulp.task('build',gulp.series([
     'clean-dist',
     'clean-build',
     'copy-image',
-    'copy-fonts',
+    'copy-font',
     'concat',
+    'script-libs',
     htmlTemplate = op.pug ? 'pug' : 'html',
     stylePrepros = op.sass ? 'sass' : 'css',
   ]));
@@ -333,11 +336,6 @@ gulp.task('default', gulp.series([
 ]));
 
 
-// gulp.task('ftp', gulp.series(
-//   'create-dist',
-//   'generate-dist-list',
-//   'ftp-require'
-// ))
 
 
 
@@ -357,3 +355,9 @@ gulp.task('data' ,gulp.series([
 gulp.task('create', gulp.series(
   'create-start-template'
 ))
+
+
+
+gulp.task('translate',tasks['translate']({
+
+}));

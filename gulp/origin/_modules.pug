@@ -1,0 +1,178 @@
+style.
+  body{
+  	background-color: #0facd1;
+  }
+  
+  .row{
+  	border-top: 1px solid red;
+  	border-bottom: 1px solid red;
+  	padding-top: 20px;
+  	padding-bottom: 20px;
+  	margin-top: 20px;
+  	margin-bottom: 20px;
+  }
+  
+  .right{
+  	text-align: right;
+  }
+  
+  .left{
+  	text-align: left;
+  }
+  
+  .center{
+  	text-align: center;
+  }
+  
+  .dark{
+  	background-color: #b4d6e3;
+  }
+  
+  .bg-light{
+    background-color: #fff;
+  }
+  
+  .red{
+  	color: red;
+  }
+  
+  .bg-red{
+    background-color: red;
+  }
+  
+  .light-color{
+    color: #fff;
+  }
+  
+  
+  
+  
+.row.light-color.center
+  .container
+    .toptitle
+      .toptitle__inner  
+        p.text Разработано специально для #[span.t--imp азиатского] типа кожи
+      .toptitle__border
+        include ../svg/_border.pug
+.row.light-color.center
+  .container
+    h1.topname.t--ttu
+      span.text Nourishing
+      span.text.t--bold.topname__bottom Day Cream
+.row.light-color.center
+  .container
+    .paint
+      p.text.paint__top  
+        span.paint__text ОСВЕТЛЕНИЕ ПИГМЕНТАЦИИ #[span.only-desktop на]
+        span.paint__svg
+          include ../svg/_paint.pug
+      p.text.paint__bottom #[span.only-mobile на] 3 тона
+.row.light-color.center
+  .container
+    .button.toform
+      a.button__text(href!="") Заказать сейчас
+.row.light-color.center
+  .container
+    .prod
+      //removeIf(desktop)
+      img.only-mobile(src!="img/prod.png" alt!="")
+      //endRemoveIf(desktop)
+      //removeIf(mobile)
+      img.only-desktop(src!="img/desktop/prod.png" alt!="")
+      //endRemoveIf(mobile)
+.row.light-color.center
+  .container
+    .sale
+      .sale__inner
+        span.sale__num -50
+        span.sale__perc %
+.row.right.bg-light
+  .container
+    .band-ar
+      .band-ar__inner
+        p.text Формула "White Light"
+      +angle('left')
+.row.only-desktop.center.bg-light
+  .container
+    .bacilli
+      .bacilli__inner ФОРМУЛА ЗДОРОВОЙ КОЖИ
+.row.center
+  .container
+    .cover
+      .cover__inner
+.row.center
+  .container
+    .cover
+      .cover__inner
+        ul.list
+          li.list__item
+            .list__part
+              i.ico.i-shield
+            .list__part
+              h3.list__title Блокирует
+              p.text избыточную выработку меланина
+          li.list__item
+            .list__part
+              i.ico.i-hear
+            .list__part
+              h3.list__title Отбеливает
+              p.text и выравнивает тон лица
+          li.list__item
+            .list__part
+              i.ico.i-cap
+            .list__part
+              h3.list__title Восстанавливает
+              p.text гидробаланс кожи
+          li.list__item
+            .list__part
+              i.ico.i-cap
+            .list__part
+              h3.list__title Разглаживает
+              p.text морщины и замедляет старение
+.row.center.bg-light
+  .container
+    .price
+      .price__top  
+        del.price__item.price__old
+          span.price__text Старая цена 
+          span.price__num {{old_price}} {{currency}}
+      .price__bottom
+        .price__shadow
+        span.price__num {{price}} {{currency}}
+.row.center
+  .container
+    .form__wrap
+      form#toform.form(method!='POST' action!='#')
+        .form__title Оформление #[span.form__title-text заказа]
+        .price
+          .price__top  
+            del.price__item.price__old
+              span.price__text Старая цена 
+              span.price__num {{old_price}} {{currency}}
+          .price__bottom
+            .price__shadow
+            span.price__num {{price}} {{currency}}
+        .form__inner
+          .form__field-wrap
+            .field
+              .field__select-wrap
+                .field__arrow
+                select#country_code_selector.field__select.field__part(name!='country_code')
+                  option(value!='RU') Россия
+            .field
+              input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
+            .field
+              input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
+            .field.field__info
+              .field__row
+                .field__text.field__label Доставка:
+                .field__number.field__label {{ shipment_price }} {{ currency }}
+              .field__row
+                .field__text.field__label Итого:
+                .field__number.field__label {{ total_price|int }} {{ currency }}
+          .button
+            button.button__text.js_submit  
+              | Заказать сейчас
+          .timer
+            p.text Осталось всего
+            p.text.timer__imp #[span.timer__num 7] упаковок!   

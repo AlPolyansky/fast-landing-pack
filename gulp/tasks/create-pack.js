@@ -193,6 +193,15 @@ module.exports = function (params){
   gulp.task( 'copy-img', tasks['copy'](copyImageParams))
 
 
+   // Копируем шрифты
+  gulp.task( 'copy-fonts', tasks['copy']({
+    files: [
+      `./${configPath.build.folder}/${configPath.build.fonts}/**/*`,
+    ],
+    dest: `./dist/${packDir}/${configPath.build.fonts}` 
+  }));
+
+
   // Удаялем комментарии из HTML
   gulp.task( 'del-comment-HTML', tasks['del-comment']({
     files: `./dist/${packDir}/index.html`,
@@ -245,6 +254,7 @@ module.exports = function (params){
 
   gulp.task( 'clean-html', tasks['clean-html-init']({
     index: `./dist/${packDir}`,
+    enable: config.removeDuplicateImg,
   }));
 
 
@@ -257,6 +267,7 @@ module.exports = function (params){
     'del-comment-JS',
     'del-comment-CSS',
     'copy-js',
+    'copy-fonts',
     'remove-duplicate-img',
     'clean-html'
   ])

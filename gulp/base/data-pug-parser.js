@@ -13,7 +13,7 @@ const createFile = require('../base/create-file.js');
 
 
 
-// ! Адаптировать, Укоротить!
+// ! Адаптировать, Ускоротить!
 
 
 module.exports = function (params,cb){
@@ -82,6 +82,24 @@ module.exports = function (params,cb){
 
 					if(attrInit){
 						node.attrs.push({
+					  	name: 'data-xd',
+					    val: `\'${randomstring.generate({length: 7,charset: 'alphabetic'})}-${iter}\'`,
+					    mustEscape: false,
+					  })
+					}
+				}
+
+
+				if(node.name === 'input'){
+					let attrInit = true;
+					node.parent.attrs.forEach(attr => {
+						if(attr.name === 'data-xd'){
+							attrInit = false;
+						}
+					})
+
+					if(attrInit){
+						node.parent.attrs.push({
 					  	name: 'data-xd',
 					    val: `\'${randomstring.generate({length: 7,charset: 'alphabetic'})}-${iter}\'`,
 					    mustEscape: false,

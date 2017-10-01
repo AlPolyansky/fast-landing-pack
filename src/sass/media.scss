@@ -1,0 +1,65 @@
+@import 'core/_vars.scss';
+
+
+
+
+$container: 980px;
+$gutter: 15px;
+
+
+
+$imgPath : '../img/desktop';
+
+$fontExtra: 'Exo 2', sans-serif;
+
+
+
+/* removeIf(desktop) */
+@media only screen and (min-width: $notebook ){
+/* endRemoveIf(desktop) */
+
+    @import 'libs/orb/_orb.scss';
+
+    body,html{
+        font-family: $fontBase;
+        /* removeIf(mobile) */
+        min-width: 975px;
+        /* endRemoveIf(mobile) */
+    }
+
+
+
+
+
+    .container{
+        max-width: $container;
+    }
+
+
+
+
+
+
+
+
+
+@import 'styles/desktop/_m--modules.scss';
+@import 'styles/desktop/_m--sections.scss';
+
+
+
+    .only{
+        &-mobile{
+            display: none;
+        }
+        &-desktop{
+            display: block;
+        }
+    }
+
+
+
+
+/* removeIf(desktop) */
+}
+/* endRemoveIf(desktop) */

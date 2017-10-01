@@ -1,0 +1,39 @@
+section.s-what
+  .container
+    h2.title
+      span.title__inner ЧТО БУДЕТ #[span.title__middle ЕСЛИ ВОВРЕМЯ НЕ ОСТАНОВИТЬ] #[span.title__bottom ГИПЕРПИГМЕНТАЦИЮ]
+    //removeIf(mobile)
+    .frames.only-mobile
+      .frame
+        .frame__inner.photo.photo-1
+      .frame.frame--right
+        .frame__inner.photo.photo-2
+    //endRemoveIf(mobile)
+    ul.s-what__grid
+      li.s-what__part
+        .frame
+          .frame__inner.photo.photo-1
+      li.s-what__part
+        //removeIf(mobile)
+        .only-desktop
+          .band-ar
+            .band-ar__inner
+              p.text ВСЕГДА
+            +angle('left')
+            +angle('right')
+          .s-what__top
+            p.text Даже если пятна временно прекратили появляться на вашей коже.
+          .virus
+            .virus__inner
+              .virus__round
+              .virus__lines
+                span.virus__line.virus__line--1
+                span.virus__line.virus__line--2
+                span.virus__line.virus__line--3
+                span.virus__line.virus__line--4
+        //endRemoveIf(mobile)
+        h3.virus__title Меланоциты
+        p.text образовывают скопления внутри эпидермиса, а только потом проявляются на лице и теле. Пигментные пятна на коже головы могут привести к облысению.
+      li.s-what__part
+        .frame.frame--right
+          .frame__inner.photo.photo-2

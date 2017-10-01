@@ -1,0 +1,40 @@
+section.s-cream
+  .container
+    .s-cream__top.only-desktop
+      h2.title Эффективность #[span.t--block Nourishing #[span.title__name Day Cream]]
+      p.text доказана результатами клинических исследований, проведенных под дерматологическим контролем при участии  женщин с разными типами кожи:
+    .s-cream__middle
+      ul.s-cream__grid
+        li.s-cream__part
+          .achiev
+            .num 49 000
+              .num__svg
+                include ../svg/_line-2.pug
+            h3.text женщин купили #[span.t--bold.t--ex.t--ttu Nourishing Day Cream] повторно 
+        li.s-cream__part
+          .achiev
+            .num 87%
+              .num__svg
+                include ../svg/_line-2.pug
+            h3.text отметили заметное #[span.t--bold.t--ex улучшение равномерности цвета кожи] лица
+        li.s-cream__part
+          .achiev
+            .num 93%
+              .num__svg
+                include ../svg/_line-2.pug
+            h3.text отметили #[span.t--bold.t--ex омолаживающий эффект и разглаживание] даже самых глубоких морщин
+        li.s-cream__part
+          .achiev
+            .num 9
+              .num__svg
+                include ../svg/_line-2.pug
+            h3.text #[span.t--bold.t--ex нанесений] достаточно для получения видимых улучшений
+    .s-cream__bottom
+      .cream
+        .cream__num 99#[span.cream__dev ,]9 #[span.cream__perc %]
+        p.text женщин, учавствующих в тестировании продукта, остались  довольны результатами  и перешли на уход
+        .cream__name Nourishing #[span.cream__name-text Day Cream]
+        //removeIf(mobile)
+        .prod
+          img(src!="img/desktop/prod-2.png" alt!="")
+        //endRemoveIf(mobile)

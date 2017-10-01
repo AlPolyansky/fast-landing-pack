@@ -11,7 +11,8 @@ const options = {
   open : false,                    // Автоматически открывать новую вкладку для запуска gulp
   mobileFirst: true,              // Разработка в стиле mobileFirst,
   template: 'default',             // Шаблон для генерации файлов( находятся в gulp-tasks/generate)
-  removeDuplicateImg: true,       // Читстить фотографии при сборке
+  removeDuplicateImg: false,       // Читстить фотографии при сборке
+  translate: 'ru',                // Язык исзодников
 
   path:{
 
@@ -76,10 +77,10 @@ const options = {
       var path = this.sourse.folder + '/' + this.sourse.js + '/libs/';
 
       return [
-         //path + 'jquery.countdown.min.js',
+         path + 'jquery.countdown.min.js',
          //path + 'jquery.placeholder.min.js',
          //path + 'slick.min.js',
-         //path + 'bxslider.js'
+         path + 'bxslider.js'
          //path + 'modernizr-custom.js',
       ];
     },

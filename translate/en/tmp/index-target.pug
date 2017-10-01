@@ -1,0 +1,586 @@
+doctype html
+html(dir='ltr')
+  head
+    meta(charset='utf-8')
+    title Micellar water
+    meta(content='', name='author')
+    meta(content='', name='description')
+    meta(content='', name='keywords')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    meta(content='width=device-width,initial-scale=1', name='viewport')
+    meta(content='ie=edge', http-equiv='x-ua-compatible')
+    meta(name='format-detection', content='telephone=no')
+    link(rel='stylesheet', href='polyansky/09.2017/MicellarLand/responsive/css/style.css')
+    link(rel='stylesheet', href='polyansky/09.2017/MicellarLand/responsive/css/media.css')
+    link(href='https://fonts.googleapis.com/css?family=Exo+2:300,400,700,400i|Roboto:300,400,700', rel='stylesheet')
+    script(src='cdn/jq.js')
+    script(src='polyansky/09.2017/MicellarLand/responsive/js/jquery.countdown.min.js')
+    script(src='polyansky/09.2017/MicellarLand/responsive/js/bxslider.js')
+    script(src='polyansky/09.2017/MicellarLand/responsive/js/main.js')
+  body
+    .wrapper
+      header.header
+        .header__top
+          .container.header__top-container
+            ul.header__top-grid
+              li.header__top-part
+                .first
+                  .first__part
+                    h2.first__title(data-xd='CoaMYze-9') Skincare product
+                  .first__part
+                    .first__num
+                      span.first__num-text(data-xd='CAMZdax-12') №1
+              li.header__top-part
+                .header__info
+                  p.text(data-xd='gUyBGRN-15')
+                    | for the Asian skin as well as for dry and prone to pigmentation
+                    span.header__info-text skin types
+            ul.label
+              li.label__item.label--1
+              li.label__item.label--2
+              li.label__item.label--3
+        .header__content
+          .container.header__content-container
+            .header__content-grid
+              .header__content-part
+                h1.toptitle
+                  span.toptitle__top(data-xd='vRTFkIp-26') Micellar
+                  span.toptitle__bottom(data-xd='UBWtHdy-27') Water
+                .steps
+                  ul.steps__grid
+                    li.steps__part
+                      p.text(data-xd='ROqWWfw-31') Excellent skin in
+                    li.steps__part
+                      .steps__num(data-xd='LuXVBVD-33') 4 steps
+                ul.skills
+                  li.skills__item
+                    .skills__part
+                      i.ico.i-mark
+                    .skills__part(data-xd='oqNKEtL-38') Cleansing
+                  li.skills__item
+                    .skills__part
+                      i.ico.i-mark
+                    .skills__part(data-xd='eQnqpYt-42') Whitening
+                  li.skills__item
+                    .skills__part
+                      i.ico.i-mark
+                    .skills__part(data-xd='nmrmSFz-46') Moisturizing
+                  li.skills__item
+                    .skills__part
+                      i.ico.i-mark
+                    .skills__part.header__skill--last(data-xd='ujcsGTw-50') Protection
+                .sale
+                  .sale__inner
+                    p.sale__num(data-xd='FlZRbtj-53') 50%
+                    p.sale__text(data-xd='xIDleaZ-54') OFF
+                .prod
+                  .only-mobile
+                    img.prod__img(src='polyansky/09.2017/MicellarLand/responsive/img/prod.png', alt='')
+                  .only-desktop
+                    img.prod__img(src='polyansky/09.2017/MicellarLand/responsive/img/desktop/prod.png', alt='')
+              .header__content-part
+                .price
+                  .price__grid
+                    li.price__part.price__part-old
+                      p.price__text(data-xd='tacOPYu-64') Old price
+                      del.price__old(data-xd='xzSSLHk-65') {{ old_price }}{{ currency }}
+                    li.price__part.price__part-new
+                      .price__angle
+                        .price__angle-inner
+                          p.price__info
+                            span.price__info-text(data-xd='yuCRyox-70') New price
+                          p.price__num
+                            span.price__num-text.price__new(data-xd='OYLrNsr-72') {{ price }}{{ currency }}
+                .button__wrap.only-mobile
+                  .button.toform
+                    button.button__text(data-xd='AqqOeeA-75') Order now
+                .form__wrap
+                  form.form.only-desktop(method='POST', action='#')
+                    .form__title(data-xd='XUlObVC-78') Place your order
+                    .form__inner
+                      .form__field-wrap
+                        .field
+                          .field__select-wrap
+                            .field__arrow
+                            select.field__select.field__part#country_code_selector(name='country_code', data-xd='kFLezfM-84')
+                              option(value='TH') Thailand
+                        .field
+                          input.field__input.field__part(type='text', name='name', placeholder='Your name')
+                        .field
+                          input.field__input.field__part.only_number(type='text', name='phone', placeholder='Telephone Number')
+                        .field.field__info
+                          .field__row
+                            .field__text.field__label(data-xd='sazzSXu-92') Shipping:
+                            .field__number.field__label(data-xd='IazyhjF-93') {{ shipment_price }} {{ currency }}
+                          .field__row
+                            .field__text.field__label(data-xd='AbyNaqi-95') Total
+                            .field__number.field__label(data-xd='qepCsme-96') {{ total_price|int }} {{ currency }}
+                      .button
+                        button.button__text.js_submit(data-xd='KNzsYqF-98') Order now
+            .warn__wrap
+              .warn.only-desktop
+                p.text(data-xd='tqarshS-101') Attention! Promotion is valid till the end of the day!
+      section.s-book
+        .container
+          h2.title.title--border
+            span.title__text.t--imp(data-xd='anzqxCi-5') Micellar
+            span.title__text(data-xd='BNszcHN-6') water
+            .title__info(data-xd='nnufdgy-7') care of subcutaneous level
+          .s-book__content
+            p.text(data-xd='rRiEAFS-9') The discovery of the revolutionary molecule, micelles - the basis of Micellar water, has become a breakthrough in the modern cosmetology.
+          .book
+            ul.book__grid
+              li.book__part
+                p.text.book__toptext(data-xd='uBKywjn-13') The discovery of the revolutionary molecule micelles - the basis of Micellar water, has become a breakthrough in modern cosmetology.
+                .magnet
+                  h4.magnet__title(data-xd='hoHuLdG-15')
+                    | These microparticles work as
+                    b.t--imp MAGNET
+                  p.magnet__text.text(data-xd='kHrNYvk-17') they pull the impurities from the skin and keep them to themselves.
+              li.book__part
+                .micel
+                  .micel__img
+                  .micel__info
+                    span.micel__text(data-xd='CLCMaln-22') Micelles
+                    span.micel__text(data-xd='EQhWghU-23') Impurities
+                p.text(data-xd='MLRaQFo-24')
+                  span.t--imp Micelles
+                  | cleanse the skin not only after effects of cosmetics but also from surplus sebum, toxins, and free radicals.
+      section.s-change
+        .container
+          h2.title.title--border
+            span.title__text(data-xd='tTluctC-5')
+              span.t--imp healthy and shiny
+              | skin
+            .title__info(data-xd='ajqwMuq-7') free from impurities!
+          .s-change__content
+            p.text(data-xd='xdxZQHI-9')
+              | Ultra-light formula penetrates
+              b.t--bold.t--imp.t--ttu deeper
+              | into the skin cells, in comparison with other solutions.
+              span.text__block
+                | It lets the skin get filled with useful components
+                b.t--bold.t--imp.t--ttu MAXIMUM
+          .skinbox.only-desktop
+            .band
+              .band__inner
+                p.text(data-xd='bcIIcKD-16') Skin before and after the use of
+                p.text.t--imp.t--bold(data-xd='BHmXPdN-17') Micellar water
+            .skinbox__inner
+              .skinbox__grid
+                .skinbox__part
+                  .box.box--red
+                    span.box__inner(data-xd='vQODmGV-22') Before
+                .skinbox__part
+                  .box
+                    span.box__inner(data-xd='CaNulMk-25') After
+              .skin
+                .skin__part.skin--before
+                .skin__part.skin__devider
+                  span.arrow
+                  span.arrow
+                  span.arrow
+                .skin__part.skin--after
+            .chain
+              ul.chain__grid
+                li.chain__part
+                  .ball
+                    .ball__inner
+                li.chain__part
+                  .ball
+                    .ball__inner
+                li.chain__part
+                  .ball
+                    .ball__inner
+                li.chain__part
+                  .ball
+                    .ball__inner
+          ul.rolls
+            li.roll
+              .num.num--bg
+                .num__inner
+                  .num__border
+                  p.text(data-xd='BpgUTZI-52') 1
+              h4.roll__title(data-xd='nqLGxmV-53') NEUTRALIZES
+              p.text(data-xd='RHiRSnw-54') coloring effect of melanin
+            li.roll
+              .num.num--bg
+                .num__inner
+                  .num__border
+                  p.text(data-xd='dCvfZUx-59') 2
+              h4.roll__title(data-xd='okAbVYT-60') BRIGHTENS
+              p.text(data-xd='lgEVbHD-61') dark parts of the skin
+            li.roll
+              .num.num--bg
+                .num__inner
+                  .num__border
+                  p.text(data-xd='mRDRIky-66') 3
+              h4.roll__title(data-xd='SxcHxgY-67') BLOCKS
+              p.text(data-xd='kTxOfBQ-68') re-emergence of the pigmentation
+            li.roll
+              .num.num--bg
+                .num__inner
+                  .num__border
+                  p.text(data-xd='WtQwUWE-73') 4
+              h4.roll__title(data-xd='GLVWcZb-74') PROTECTS
+              p.text(data-xd='ruXnJPQ-75') the cells from the influence of aggressive environmental factors
+      section.s-woman.only-desktop
+        .container
+          .s-woman__leaf
+          .s-woman__leafs
+          .prod
+            img.prod__img(src='polyansky/09.2017/MicellarLand/responsive/img/desktop/product-2.png', alt='')
+          .stat
+            ul.stat__grid
+              li.stat__part
+                .stat__num(data-xd='woKaMgq-11') 49,000
+                p.text(data-xd='aPIXdtx-12') women bought Micellar water repeatedly
+              li.stat__part
+                .stat__num(data-xd='wZftpMI-14') 97%
+                p.text(data-xd='yHtoAPh-15') have confirmed the brightening of the skin
+              li.stat__part
+                .stat__num(data-xd='jCOmMXW-17') 87%
+                p.text(data-xd='QpOjxlp-18') have noted improvements in the uniformity of the colour of the facial skin.
+          .stat.stat--last
+            ul.stat__grid
+              li.stat__part
+                .stat__num(data-xd='EouKRAp-22') 99.8%
+                p.text(data-xd='MbbWOrk-23') are completely satisfied with the product
+              li.stat__part
+                .stat__num(data-xd='vcxvGTh-25') 9
+                p.text(data-xd='UHrmebx-26') Applying is enough to get the visible improvements
+      section.s-consist
+        .container
+          h2.title.title--border
+            span.title__text.t--imp(data-xd='IqJWBvC-5') Micellar
+            span.title__text(data-xd='ENAKjiv-6') water
+            .title__info(data-xd='UZjVTEE-7')
+              | safe and effective
+              span.only-mobile 100% natural components
+          .natural.only-desktop
+            .natural__inner
+              span.natural__num(data-xd='OZqlQDW-11') 100%
+              span.natural__text(data-xd='aruRTew-12') natural components
+          .s-consist__inner
+            .s-consist__grid
+              .s-consist__part
+                ul.consists
+                  li.consist.consist--yellow
+                    .band
+                      .band__inner
+                        p.text(data-xd='MBtCZdU-20') FRESHNESS AND YOUTH
+                    ul.list.list--disk
+                      li.list__item
+                        .list__part
+                          span.list__ball
+                        .list__part
+                          p.text.text--dark(data-xd='wuuqJnQ-26')
+                            | The extract of unrefined
+                            span.t--imp.t--bold Argan oil activates the production of protein.
+                      li.list__item
+                        .list__part
+                          span.list__ball
+                        .list__part
+                          p.text.text--dark(data-xd='HqLAjDT-32') A high level of protein in the skin does not allow wrinkles to be formed and eliminates imperfections of pigments at the level of the dermis.
+                    .num
+                      .num__dash
+                      i.ico.i-argan
+                      .num__inner
+                        .num__border
+                        p.text(data-xd='IXQCZmg-38') 1
+                  li.consist.consist--green
+                    .band
+                      .band__inner
+                        p.text(data-xd='YEniHpZ-42') KIVI-ANTIOXIDANT
+                    ul.list.list--disk
+                      li.list__item
+                        .list__part
+                          span.list__ball
+                        .list__part
+                          p.text.text--dark(data-xd='ZCazlSs-48')
+                            span.t--imp.t--bold Extract of kiwi accelerates the process of division and maturation of keratinocytes
+                            | in the subcutaneous layer of fat.
+                      li.list__item
+                        .list__part
+                          span.list__ball
+                        .list__part
+                          p.text.text--dark(data-xd='REJQvZr-54') These cells form the basis of the skin and are responsible for the production of healthy pigments.
+                      li.list__item
+                        .list__part
+                          span.list__ball
+                        .list__part
+                          p.text.text--dark(data-xd='KtQNFNL-59') The result is a fresh and healthy tone of the face.
+                    .num
+                      .num__dash
+                      i.ico.i-kiwi-2
+                      .num__inner
+                        .num__border
+                        p.text(data-xd='XrlildZ-65') 2
+                  li.consist.consist--blue
+                    .band
+                      .band__inner
+                        p.text(data-xd='LYUUhgz-69') Moisturizing
+                    ul.list.list--disk
+                      li.list__item
+                        .list__part
+                          span.list__ball
+                        .list__part
+                          p.text.text--dark(data-xd='ShVvggt-75')
+                            span.t--imp.t--bold Olive extract
+                            | nourishes the skin and maintains the necessary level of moisture in the tissues.
+                      li.list__item
+                        .list__part
+                          span.list__ball
+                        .list__part
+                          p.text.text--dark(data-xd='CeMnLHx-81') Extract of the olive seeds creates a weightless film barrier, protecting the skin from the negative influence of the external environment.
+                    .num
+                      .num__dash
+                      i.ico.i-oliva
+                      .num__inner
+                        .num__border
+                        p.text(data-xd='qzSRHjL-87') 3
+              .s-consist__part
+                .prod
+                  img.prod__img(src='polyansky/09.2017/MicellarLand/responsive/img/desktop/prod.png', alt='')
+          .card
+            ul.card__grid
+              li.card__part
+                .gmo
+                  .gmo__inner
+                    h4.gmo__title(data-xd='emVuGBe-96') Important
+                    p.text.t--light.t--ttu(data-xd='EkbMvge-97') Hypoallergenic and non-toxic
+              li.card__part
+                .calendar
+                  .calendar__skew
+                  .calendar__inner
+                    p.text(data-xd='rwosvDV-102')
+                      | Minimum duration of use
+                      span.t--bold.t--imp 4 weeks
+      section.s-doc
+        .container
+          .band__wrap
+            .band.band--blue
+              .band__inner
+                p.text(data-xd='XniMjBB-7') What do specialists say?
+          .shtamp.only-desktop
+            .shtamp__inner
+              p.text(data-xd='fokuEiX-10') Approved
+          ul.s-doc__grid
+            li.s-doc__part
+              .doc
+                .doc__inner
+                  .doc__content
+                    h4.doc__name(data-xd='JgkAMfA-16') Alan Watson
+                    h5.doc__info(data-xd='CIgAxoG-17') Doctor - Dermatologist in cosmetology centre
+            li.s-doc__part
+              h2.title
+                .title__info(data-xd='OquGZlQ-20') Female beauty begins with
+                span.title__text.t--imp.t--bold(data-xd='SXGBKQO-21') Micellar
+                span.title__text(data-xd='IHwjDQI-22') water
+              ul.list.list--disk.list--icons
+                li.list__item.only-desktop
+                  .list__part
+                    span.list__ball
+                    i.ico.i-cos
+                  .list__part
+                    p.text.text--dark(data-xd='VsYKBVP-29') Every day every girl uses a large amount of nurturing and decorative cosmetics. Creams, tonics, lotions, and serums - dozens of different bottles and jars still do not bring the desired effect. The skin is still tightened and the greasy shine does not go away.
+                li.list__item
+                  .list__part
+                    span.list__ball
+                    i.ico.i-spray
+                  .list__part
+                    h5.list__title
+                      b.t--bold(data-xd='SykAoUi-36')
+                        span.t--imp Micellar water
+                        | successfully replaces these numerous and ineffective means.
+                    p.text.text--dark(data-xd='oKqtVSW-38') Micellar water is unique - it can safely be considered a number one skincare product. Micellar Water does not just cleanse the skin of dirt, it gently cares for it and protects it.
+                li.list__item
+                  .list__part
+                    span.list__ball
+                    i.ico.i-head
+                  .list__part
+                    p.text.text--dark(data-xd='BsUSXKk-44')
+                      b.t--bold
+                        span.t--imp My clients
+                        | noted
+                      | a significant improvement in the face: toning, moisturizing, freshness, and little lifting effect. A smooth tone of skin allows to reduce the use of make-up.
+      section.s-review
+        .container
+          h2.title.title--border
+            span.title__text.t--imp(data-xd='ooLkwvm-5') WHAT DO
+            span.title__text(data-xd='sDoqmrV-6') WOMEN SAY,
+            .title__info(data-xd='PLMuYoZ-7')
+              | who already used
+              b.t--bold the MICELLAR WATER
+              | :
+          ul.reviews.bxslider
+            li.review.review__item
+              .review__grid
+                .review__part
+                  .user
+                    .frame
+                      .frame__inner
+                        i.frame__img.photo.photo-5
+                    .box
+                      .box__inner
+                        span.user__name(data-xd='LKAkCNL-19') Olivia
+                        span.user__age(data-xd='qPSQOKw-20') 27 years
+                .review__part
+                  .review__content
+                    p.text(data-xd='WOYxIUM-23') I really like micellar water. I have tried many different things, but this is simply a WOW! It looks like usual water, but it replaces a lot of nurturing aids. And since I'm constantly on business trips - for me Micellar Water is just a blessing in a little bottle. Among other things, I have noticed that my face has become tighter. I carry it always in my bag, and during the day at any convenient time, I wipe my face.
+            li.review.review__item
+              .review__grid
+                .review__part
+                  .user
+                    .frame
+                      .frame__inner
+                        i.frame__img.photo.photo-4
+                    .box
+                      .box__inner
+                        span.user__name(data-xd='cxbKpbd-33') Julie
+                        span.user__age(data-xd='tPKCsEr-34') 33 years
+                .review__part
+                  .review__content
+                    p.text(data-xd='SDOjpRo-37') Earlier, I suffered from acne, which left many dark spots on my face, I was not able to remove them by anything. I had to use dark tone to level the complexion. And I like light colour skin, almost like porcelain. The cosmetologist advised me to try Micellar Water. I did not really expect to get a result from this usual micellar water ... But I was wrong. Now my face is clean and white, no stains. Advise it to everyone.
+            li.review.review__item
+              .review__grid
+                .review__part
+                  .user
+                    .frame
+                      .frame__inner
+                        i.frame__img.photo.photo-3
+                    .box
+                      .box__inner
+                        span.user__name(data-xd='UWWGUar-47') Evelyn
+                        span.user__age(data-xd='ZPazvsm-48') 26 years
+                .review__part
+                  .review__content
+                    p.text(data-xd='MJROrFj-51') I have a very oily skin, and mattifying creams block the pores so much that acne formation starts. Micellar Water does an excellent job - everything works. I use it in the morning and in the evening. My face has become evener. I almost do not use tonal cream.
+            li.review.review__item
+              .review__grid
+                .review__part
+                  .user
+                    .frame
+                      .frame__inner
+                        i.frame__img.photo.photo-2
+                    .box
+                      .box__inner
+                        span.user__name(data-xd='ifWYOSO-61') Hannah
+                        span.user__age(data-xd='ILWpAND-62') 31 years
+                .review__part
+                  .review__content
+                    p.text(data-xd='RuLuoTn-65') I do not like fair skin, I always get sunburn. True, pigmentation, in this case, can not be avoided, but Micellar Water helps. The product does not say that it has SPF protection, but on the beach, I constantly rub it. In this season I do not look like leopard, and the skin is soft, moistened, even if I am in the sun all day. Also, I use it as a base under my makeup, and it remains whole day without the shine.
+            li.review.review__item
+              .review__grid
+                .review__part
+                  .user
+                    .frame
+                      .frame__inner
+                        i.frame__img.photo.photo-1
+                    .box
+                      .box__inner
+                        span.user__name(data-xd='ZBTBRsv-75') Irene
+                        span.user__age(data-xd='ISTmrRt-76') 37 years
+                .review__part
+                  .review__content
+                    p.text(data-xd='RzUOHcR-79') I like Micellar Water. It mattifies my face delicately, not overdrying the skin. Finally, I got rid of swelling and dark circles under the eyes - it is thanks to the kiwi, present in the composition. My face always shines with freshness, pleasant to touch, I constantly want to touch it, although I know that hands could be full of microbes. In general - it is a good product, I will use it again.
+      section.s-sea
+        .container
+          .s-sea__fish
+          .s-sea__grid
+            .s-sea__part
+              h2.title
+                span.title__text(data-xd='ItMlFoX-8') Micellar
+                span.title__text(data-xd='hnbspSJ-9') water
+                .title__info(data-xd='yKdXphr-10') improves any type of skin at any age
+            .s-sea__part
+              .perc
+                .perc__num(data-xd='tyWMGmu-13') 86%
+                p.text(data-xd='YfoFTBN-14') women have abandoned the usual nurturing means and makeup in its favour
+              .band.band--blue
+                .band__inner
+                  p.text(data-xd='lgxMdzE-17')
+                    span.t--bold Micellar
+                    | Water
+      section.s-form
+        .container
+          .s-form__woman
+          .s-form__grid
+            .s-form__part
+              h2.toptitle
+                span.toptitle__top(data-xd='fqgRhdc-8') Micellar
+                span.toptitle__bottom(data-xd='pSlwzjK-9') Water
+              p.text.s-form__text(data-xd='oUDkRzo-10')
+                | It is a step closer to
+                span.t--block ideal skin
+              .timer
+                h5.timer__title
+                  p.text(data-xd='bdLGukx-14') Until the end of the promotion, there are:
+                ul.timer__list
+                  li.timer__item.timer__hours
+                    span.timer__num.timer__first
+                    span.timer__num.timer__last
+                    p.timer__info(data-xd='UBqBAwb-19') hours
+                  li.timer__item.timer__min
+                    span.timer__num.timer__first
+                    span.timer__num.timer__last
+                    p.timer__info(data-xd='PFqxtXj-23') minutes
+                  li.timer__item.timer__sec
+                    span.timer__num.timer__first
+                    span.timer__num.timer__last
+                    p.timer__info(data-xd='BnRxAlW-27') seconds
+            .s-form__part
+              .s-form__rotate
+                .s-form__rotate-part
+                  .s-form__cover
+                    .sale
+                      .sale__inner
+                        p.sale__num(data-xd='bENkHpm-34') 50%
+                        p.sale__text(data-xd='GWQPdAW-35') OFF
+                    .prod
+                      .only-mobile
+                        img.prod__img(src='polyansky/09.2017/MicellarLand/responsive/img/prod.png', alt='')
+                      .only-desktop
+                        img.prod__img(src='polyansky/09.2017/MicellarLand/responsive/img/desktop/prod.png', alt='')
+                    .price
+                      .price__grid
+                        li.price__part.price__part-old
+                          p.price__text(data-xd='CkvWbsH-44') Old price
+                          del.price__old(data-xd='BsXiQAu-45') {{ old_price }}{{ currency }}
+                        li.price__part.price__part-new
+                          .price__angle
+                            .price__angle-inner
+                              p.price__info
+                                span.price__info-text(data-xd='WWMBAqK-50') New price
+                              p.price__num
+                                span.price__num-text.price__new(data-xd='HsfZqoI-52') {{ price }}{{ currency }}
+                    .form__wrap
+                      form.form(method='POST', action='#')
+                        .form__title(data-xd='yXrtUXj-55') place the order
+                        .form__inner
+                          .form__field-wrap
+                            .field
+                              .field__select-wrap
+                                .field__arrow
+                                select.field__select.field__part#country_code_selector(name='country_code', data-xd='iFnbMMY-61')
+                                  option(value='TH') Thailand
+                            .field
+                              input.field__input.field__part(type='text', name='name', placeholder='Your name')
+                            .field
+                              input.field__input.field__part.only_number(type='text', name='phone', placeholder='Telephone number')
+                            .field.field__info
+                              .field__row
+                                .field__text.field__label(data-xd='SDUQvfP-69') Shipping:
+                                .field__number.field__label(data-xd='rQvOycj-70') {{ shipment_price }} {{ currency }}
+                              .field__row
+                                .field__text.field__label(data-xd='rJMqtiQ-72') Total:
+                                .field__number.field__label(data-xd='YcFtnrE-73') {{ total_price|int }} {{ currency }}
+                            .button
+                              button.button__text.js_submit(data-xd='XJHuYlT-76') Order now
+                .s-form__rotate-part
+                  .counter
+                    ul.counter__grid
+                      li.counter__part
+                        span.counter__num(data-xd='khmbYwB-84') 40
+                      li.counter__part
+                        p.text(data-xd='WCvzKkO-86') packages left

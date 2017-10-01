@@ -1,0 +1,164 @@
+.button{
+
+	// ======================================
+	//
+	//  PUG структрура элемента
+	//
+	//	.button
+	//		a(href='#' traget='_blank').button__text Кнопка
+	//
+	//	Данный элемент разворачивает кнопку
+	//  Поддерживает a,input(submit,button), button
+	//
+	//  Модификаторы
+	//	добавляються на корневой класс
+	//
+	//  .button--text-center  - выровнеет текст по центру блока абсалютом и transform 	(ВЫКЛ)
+	//  Задает минимальную высоту!
+	//
+	//
+	//	Элементы в структуре можно удалять, но не следует менять их порядок.
+	//  Все media запросы для элемента осуществляются непосредственно в блоке, где импользуется данный элемент.
+	//
+	// ======================================
+
+
+
+
+	//=========================== Базовые настроки элемента
+
+	
+
+	$button-max-width: 290px;												// Максимальная ширина контейнера
+	$button-border: 0;											// Толщина и стиль бордера
+	$button-border-radius: em(8px);												// Скругления кнопки
+	$button-height: auto;														// Высота кнопки
+
+	$button-text-transform: uppercase;							// Регистр текста
+	$button-padding: 18px 0 12px 0;													// padding кнопки
+	$button-font-weight: 900;												// Толщина кнопки
+	$button-text-align: center;											// Выравнивание текста
+
+	$button-animate: .2s;														// Скорость анимации
+
+
+	//===========================  Базовое оформление
+
+	$button-style: false;										// Включить базовое оформление
+
+
+	$button-color: #3185FC;									// Заливка кнопки
+	$button-border-color: currentColor;			// Цвет бордера
+	$button-color-text: #ffffff;						// Цвет текста
+	
+	
+
+	//===========================  Действия пользователя по умолчанию
+
+
+	$button-user-action : false;			// Включить офрмления действий пользователя (active,hover)
+
+	$button-color-hover: darken($button-color,5%);								// Цвет заливки при наведение
+	$button-text-color-hover: darken($button-color-text,20%);			// Цвет текста при наведение
+	$button-color-active: lighten($button-color,5%);							// Цвет заливки при клики
+	$button-text-color-active: rgba($button-color-text,.5);				// Цвет текста при клике
+
+
+
+
+	//===========================  Модификаторы
+
+
+	$button-modificators-on : true;								// Включить модификаторы
+
+	$button-modificators--text-center: false;			// Включить модификатор --text-center
+
+
+
+
+
+	//=========================== Стили для более детальных настроек
+
+
+	display: block;
+	text-align: $button-text-align;
+	position: relative;
+	border: $button-border;
+	max-width: $button-max-width;
+	margin: 0;
+	padding: 0;
+	transition: $button-animate;
+	border-radius: $button-border-radius;
+	height: $button-height;
+	font-size: 100%;
+	&__text{
+		user-select: none;
+		padding: $button-padding;
+		display: block;
+		text-decoration: none;
+		width: 100%;
+		cursor: pointer;
+		font-family: inherit;
+		background-color: transparent;
+		outline: none;
+		font-weight: $button-font-weight;
+		border: 0;
+		text-transform: $button-text-transform;
+		transition: $button-animate;
+	}
+
+
+	// Цветовая схема
+
+	@if($button-style){
+
+		background-color: $button-color;
+		border-color: $button-border-color;
+		&__text{
+			color: $button-color-text;
+		}
+
+	}
+
+
+	// Действия пользователя
+
+
+	@if($button-user-action){
+
+		&:hover{
+			background-color: $button-color-hover;
+			.button__text{
+				color: $button-text-color-hover;
+			}
+		}
+		&:active{
+			background-color: $button-color-active;
+			.button__text{
+				color: $button-text-color-active;
+			}
+		}
+
+	}
+
+	// Модификаторы
+
+	@if($button-modificators-on){
+
+		@if($button-modificators--text-center){
+
+				&--text-center{
+					min-height: 50px;
+					.button__text{
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%,-50%);
+					}
+				}
+
+		}
+	
+	}
+
+}

@@ -1,0 +1,126 @@
+header.header
+  .header__top
+    .container.header__top-container
+      ul.header__top-grid
+        li.header__top-part
+          .first
+            .first__part
+              h2.first__title(data-xd!='CoaMYze-9')
+                | Skincare product
+            .first__part
+              .first__num
+                span.first__num-text(data-xd!='CAMZdax-12')
+                  | №1
+        li.header__top-part
+          .header__info
+            p.text(data-xd!='gUyBGRN-15')
+              | for the Asian skin as well as for dry and prone to pigmentation
+              span.header__info-text skin types
+      ul.label
+        li.label__item.label--1
+        li.label__item.label--2
+        li.label__item.label--3
+  .header__content
+    .container.header__content-container
+      .header__content-grid
+        .header__content-part
+          h1.toptitle
+            span.toptitle__top(data-xd!='vRTFkIp-26')
+              | Micellar
+            span.toptitle__bottom(data-xd!='UBWtHdy-27')
+              | Water
+          .steps
+            ul.steps__grid
+              li.steps__part
+                p.text(data-xd!='ROqWWfw-31')
+                  | Excellent skin in
+              li.steps__part
+                .steps__num(data-xd!='LuXVBVD-33')
+                  | 4 steps
+          ul.skills
+            li.skills__item
+              .skills__part
+                i.ico.i-mark
+              .skills__part(data-xd!='oqNKEtL-38')
+                | Cleansing
+            li.skills__item
+              .skills__part
+                i.ico.i-mark
+              .skills__part(data-xd!='eQnqpYt-42')
+                | Whitening
+            li.skills__item
+              .skills__part
+                i.ico.i-mark
+              .skills__part(data-xd!='nmrmSFz-46')
+                | Moisturizing
+            li.skills__item
+              .skills__part
+                i.ico.i-mark
+              .skills__part.header__skill--last(data-xd!='ujcsGTw-50')
+                | Protection
+          .sale
+            .sale__inner
+              p.sale__num(data-xd!='FlZRbtj-53')
+                | 50%
+              p.sale__text(data-xd!='xIDleaZ-54')
+                | OFF
+          .prod
+            //removeIf(desktop)
+            .only-mobile
+              img.prod__img(src!="img/prod.png" alt!="")
+            //endRemoveIf(desktop)
+            //removeIf(mobile)
+            .only-desktop
+              img.prod__img(src!="img/desktop/prod.png" alt!="")
+            //endRemoveIf(mobile)
+        .header__content-part
+          .price
+            .price__grid
+              li.price__part.price__part-old
+                p.price__text(data-xd!='tacOPYu-64')
+                  | Old price
+                del.price__old(data-xd!='xzSSLHk-65')
+                  | {{ old_price }}{{ currency }}
+              li.price__part.price__part-new
+                .price__angle
+                  .price__angle-inner
+                    p.price__info
+                      span.price__info-text(data-xd!='yuCRyox-70')
+                        | New price
+                    p.price__num
+                      span.price__num-text.price__new(data-xd!='OYLrNsr-72')
+                        | {{ price }}{{ currency }}
+          .button__wrap.only-mobile
+            .button.toform
+              button.button__text(data-xd!='AqqOeeA-75')
+                | Order now
+          //removeIf(mobile)
+          .form__wrap
+            form.form.only-desktop(method!='POST' action!='#' data-xd!='form-123')
+              .form__title Оформление заказа
+              .form__inner
+                .form__field-wrap
+                  .field
+                    .field__select-wrap
+                      .field__arrow
+                      select#country_code_selector.field__select.field__part(name!='country_code')
+                        option(value!='TH') Тайланд
+                  .field
+                    input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
+                  .field
+                    input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
+                  .field.field__info
+                    .field__row
+                      .field__text.field__label Доставка:
+                      .field__number.field__label {{ shipment_price }} {{ currency }}
+                    .field__row
+                      .field__text.field__label Итого:
+                      .field__number.field__label {{ total_price|int }} {{ currency }}
+                .button
+                  button.button__text.js_submit  
+                    | Заказать сейчас
+          //endRemoveIf(mobile)
+      .warn__wrap
+        .warn.only-desktop
+          p.text(data-xd!='tqarshS-101')
+            | Attention! Promotion is valid till the end of the day!

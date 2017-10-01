@@ -9,8 +9,9 @@ const del = require('del');
 
 
 
-// Модуль ищет фотографии с одинаковым именем и удяляем лишнее
+// Чистит html от лишних img
 module.exports = function (params,cb){
+    if(!params.enable) return cb();
     glob(params.index + '**/*.html', (err,files) =>{
         files.forEach(item => {
             let totalPath = path.resolve(item);

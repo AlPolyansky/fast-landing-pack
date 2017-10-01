@@ -37,6 +37,7 @@ module.exports = function (){
   // Объекты клонирования
 
   let scssLibs = {};
+  let jsLibs = {};
 
     if(params.pug){
       const pugTemplate = require('./files/_template-pug.js')(params);
@@ -89,6 +90,11 @@ module.exports = function (){
       cssFile = {path: `./${src.folder}/${src.css}/style.css`, content: cssContent};
     }
 
+    jsLibs = {
+      root: './gulp/generate/default/libs/js',
+      output: `./${src.folder}/${src.js}/`
+    }
+
   //------  Пользовательская логика
 
   
@@ -120,6 +126,7 @@ module.exports = function (){
     // - fonts
     {path: `./${src.folder}/${src.fonts}`},
     // - html (pug)
+    {path: `./makets`},
     template,
     pagesPug,
     headerPug,
@@ -145,7 +152,8 @@ module.exports = function (){
   // Массив с файлами, которые будут клонированы
   // объект - директория (клонируется вся директория с поддиректориями)
   const cloneArray = [
-    scssLibs
+    scssLibs,
+    jsLibs
   ]
 
 

@@ -1,0 +1,19 @@
+section.s-doc
+  .container
+    h2.title Nourishing #[span.t--block.t--ex Day Cream]
+      span.title__info ЧТО ГОВОРЯТ СПЕЦИАЛИСТЫ
+    .s-doc__inner
+      .pigment.s-doc__top
+        h3.pigment__title Пигментация
+          span.pigment__svg
+            include ../svg/_paint.pug
+        p.text серьезный косметический дефект, который часто принимает отталкивающие формы. Это наносит существенный удар по самооценке женщины.
+      .doc.s-doc__part
+        span.doc__name Акимура Нагасаки
+        p.doc__text Дерматолог косметологического центра "Здоровая кожа"
+      .s-doc__content.s-doc__part
+        p.text Чтобы обезопасить своих клиенток, я рекомендую им использовать Nourishing Day Cream как основное уходовое средство. Крем нормализует выработку меланина, что препятствует возникновению пигментации. Функция глубокого увлажнения и восстановления pH способствует регенерации кожи. Кожа обновляется и разглаживается, постепенно избавляясь от имеющихся пигментных пятен.
+    //removeIf(mobile)
+    .prod.only-desktop
+      img(src!="img/desktop/prod-2.png" alt!="")
+    //endRemoveIf(mobile)

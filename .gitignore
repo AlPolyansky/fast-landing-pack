@@ -37,10 +37,6 @@ makets
 public
 build
 dist
+old
 sftp-config.json
 ftp.json
-src/img-default
-src/images
-src/img
-src/img-origin
-src
