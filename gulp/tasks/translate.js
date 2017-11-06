@@ -11,7 +11,7 @@ const args = process.argv.slice(2);
 // Переводи Исходники на нужный язык
 
 module.exports = function translate (params){
-  let lang = args[1] ? args[1].replace('-','') : '';
+  let lang = args[1] ? args[1].replace('--','') : '';
 
 
 	//Копируем старые исходники

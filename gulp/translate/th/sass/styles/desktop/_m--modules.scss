@@ -1,0 +1,24 @@
+%grid-m{
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+%part-m{
+  display: table-cell;
+  vertical-align: top;
+  &:first-of-type{
+  
+  }
+  &:last-of-type{
+    
+  }
+}
+
+@mixin grid(){
+  @extend %grid-m;
+}
+
+@mixin part(){
+  @extend %grid-m;
+}

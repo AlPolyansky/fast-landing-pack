@@ -72,8 +72,9 @@ gulp.task( 'script' ,tasks.script({
 // - Выполняем таск script
 gulp.task( 'sass' ,tasks.sass({                            
     files:   [
-        `${sourse.folder}/${sourse.sass}/media.scss`,
-        `${sourse.folder}/${sourse.sass}/style.scss`,
+        `!${sourse.folder}/${sourse.sass}/**/*`,
+        `${sourse.folder}/${sourse.sass}/[!_]*.+(scss|sass)`,
+        
       ], 
     build:  `${build.folder}/${build.css}`,
     autoprefixer: op.prefix
@@ -164,7 +165,7 @@ gulp.task( 'dist-server' ,tasks.server({
 
 
 gulp.task('create-start-template',tasks[ 'generate-folders']({
-  template: './gulp/generate/default/default.js',
+  template: `./gulp/generate/${op.template}/${op.template}.js`,
   replace: false,
 }));
 
@@ -263,7 +264,7 @@ const reload = global._browserSync.reload;
 
 // Классический вотчер для build
 gulp.task('watch', function () {
-  watch(`${sourse.folder}/${sourse.sass}/**/*.scss`,gulp.series([
+  watch(`${sourse.folder}/${sourse.sass}/**/*.+(scss|sass)`,gulp.series([
     'sass'
   ]))
 

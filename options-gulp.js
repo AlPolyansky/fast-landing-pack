@@ -10,9 +10,9 @@ const options = {
   prefix : 'last 15 versions',     // Настройки автопрефиксера
   open : false,                    // Автоматически открывать новую вкладку для запуска gulp
   mobileFirst: true,                // Разработка в стиле mobileFirst,
-  template: 'default',             // Шаблон для генерации файлов( находятся в gulp-tasks/generate)
+  template: 'procl',             // Шаблон для генерации файлов( находятся в gulp-tasks/generate)
   removeDuplicateImg: false,       // Читстить фотографии при сборке
-  lang: 'en',                      // Язык исходников 
+  lang: 'th',                      // Язык исходников 
 
   path:{
 

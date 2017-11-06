@@ -1,0 +1,197 @@
+.sandwich{
+
+	// ======================================
+	//
+	//  PUG структрура элемента
+	//
+	//	.sandwich
+	//		sandwich__line
+	//		sandwich__line
+	//		sandwich__line
+	//
+	//
+	//  PUG NOJS структрура элемента
+	//
+	//	label.sandwich
+	//		input(type='checkbox').sandwich__input
+	//		sandwich__line
+	//		sandwich__line
+	//		sandwich__line
+	//
+	//
+	//	HTML Струтура
+	//
+	//	<div class='sandwich'>
+	//		<div class='sandwich__line'></div>
+	//		<div class='sandwich__line'></div>
+	//		<div class='sandwich__line'></div>
+	//	<div>
+	//
+	//
+	//	HTML NoJS Струтура
+	//
+	//	<label class='sandwich'>
+	//		<input type='checkbox' class='sandwich__input'>
+	//		<div class='sandwich__line'></div>
+	//		<div class='sandwich__line'></div>
+	//		<div class='sandwich__line'></div>
+	//	<label>
+	//
+	// PUG mixin
+	//
+	//	+sandwich(2,false)
+	// 	где 2 = количество линий, по умолчанию 3 (аргумент можно не указывать),
+	//	где false = второй не обязательный параметр, отвечающий за noJs стркутуру. По умолчанию false
+	//
+	//	Данный элемент разворачивает sandwich  (Иконку мобильного меню)
+	//  Поддерживает любые логичные теги для этого элемента (h1-h5,a,span,div  и тд) 
+	//
+	//  ВАЖНО!
+	//	Для правильного расчета следует указать количество линий. Подерживется любое количество
+	// 	Для того что бы появилась анимация, нужно добавлять модификатор .sandwich--active при клике на sandwich (JS)
+	//		
+	//	$('.sandwich').on('click',function(){ $(this).toggleClass('sandwich--active'); });
+	//
+	//  или использовать режим noJS и HTML (PUG) конструкцию для noJS, предоставленную выше
+	//
+	//  Модификаторы
+	//	добавляються на корневой класс
+	//
+	//	--- пока нет
+	//
+	//	Для сокращения CSS можно отключать все базовые настроки (Цвета, модификаторы)
+	//
+	//
+	//	Элементы в структуре можно удалять, но не следует менять их порядок.
+	//  Все media запросы для элемента осуществляются непосредственно в блоке, где используется данный элемент.
+	//
+	// ======================================
+
+
+	
+	//===========================  Базовые настроки элемента
+
+
+
+
+
+
+	$sandwich--lines: 3;								// Количество линий (Обязательно для расчетов!)
+	$sandwich--containerHeight: 30px;		// Высота контейнера
+	$sandwich--containerWidth : 35px;		// Ширина контейнера
+	$sandwich--lineHeight: 4px;					// Размер линий
+	$sandwich--border-radius: 5px;			// Размер скругления линий
+	$sandwich--noJs: false;							// Анимация работает без JS
+	
+
+
+	//===========================  Базовое оформление
+
+	$sandwich-style: false;						// Включить базовое оформление
+	$sandwich-color: #333;						// Цвет линий
+
+
+	//===========================  Анимация
+
+	$sandwich-animate: .3s;									// Скорость анимации
+	$sandwich-default-deg : (45 * 3) + deg; 	// Угол при анимации (умножение идет только на нечетные числа)
+	$sandwich-animate-reverse: true; 				// Обратная анимация
+
+
+	
+	height: $sandwich--containerHeight;
+	width: $sandwich--containerWidth;
+	cursor: pointer;
+	position: relative;
+	display: block;
+	&__line{
+		width: 100%;
+		height: $sandwich--lineHeight;
+		transition: $sandwich-animate;
+		border-radius: $sandwich--border-radius;
+		margin-bottom: ($sandwich--containerHeight - ($sandwich--lineHeight * $sandwich--lines)) / ($sandwich--lines - 1);
+		&:last-child{
+			margin-bottom: 0;
+		}
+	}
+
+	
+
+	@if($sandwich-style){
+
+			&__line{
+				background-color: $sandwich-color;
+				&:after,&:before{
+					background-color: $sandwich-color;
+				}
+			}
+	}
+	@if($sandwich--noJs == false){
+		&__input{
+			display: none;
+		}
+
+		&--active{
+			.sandwich__line{
+				opacity: 0;
+				&:first-of-type{
+					opacity: 1;
+					@if($sandwich-animate-reverse){
+						transform: translateY(($sandwich--containerHeight / 2) - ($sandwich--lineHeight / 2)) rotate(-$sandwich-default-deg);
+					}
+					@else{
+						transform: translateY(($sandwich--containerHeight / 2) - ($sandwich--lineHeight / 2)) rotate($sandwich-default-deg);
+					}
+					
+				}
+				&:last-of-type{
+					opacity: 1;
+					
+					@if($sandwich-animate-reverse){
+						transform: translateY(-($sandwich--containerHeight / 2) + ($sandwich--lineHeight / 2)) rotate($sandwich-default-deg);
+					}
+					@else{
+						transform: translateY(-($sandwich--containerHeight / 2) + ($sandwich--lineHeight / 2)) rotate(-$sandwich-default-deg);
+					}
+				}
+			}
+		}
+	}
+	
+	@if($sandwich--noJs){
+
+
+		&__input{
+			position: absolute;
+			opacity: 0;
+			width: 100%;
+			height: 100%;
+			cursor: pointer;
+			&:checked{
+				~ .sandwich__line{
+					opacity: 0;
+					&:first-of-type{
+						opacity: 1;
+						@if($sandwich-animate-reverse){
+							transform: translateY(($sandwich--containerHeight / 2) - ($sandwich--lineHeight / 2)) rotate(-$sandwich-default-deg);
+						}
+						@else{
+							transform: translateY(($sandwich--containerHeight / 2) - ($sandwich--lineHeight / 2)) rotate($sandwich-default-deg);
+						}
+						
+					}
+					&:last-of-type{
+						opacity: 1;
+						
+						@if($sandwich-animate-reverse){
+							transform: translateY(-($sandwich--containerHeight / 2) + ($sandwich--lineHeight / 2)) rotate($sandwich-default-deg);
+						}
+						@else{
+							transform: translateY(-($sandwich--containerHeight / 2) + ($sandwich--lineHeight / 2)) rotate(-$sandwich-default-deg);
+						}
+					}
+				}
+			}
+		}
+	}
+}
