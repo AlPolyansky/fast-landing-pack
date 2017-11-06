@@ -1,0 +1,286 @@
+// Классы стилизации
+
+
+// text style
+.ttu{
+	text-transform: uppercase;
+	&-M{
+		text-transform: uppercase;
+	}
+}
+
+.regular{
+	font-weight: 400;
+	&-M{
+		font-weight: 400;
+	}
+}
+
+.medium{
+	font-weight: 500;
+	&-M{
+		font-weight: 500;
+	}
+}
+
+.bold{
+	font-weight: 700;
+	&-M{
+		font-weight: 700;
+	}
+}
+
+.italic{
+	font-style: italic;
+	&-M{
+		font-style: italic;
+	}
+}
+
+
+// text color
+.color-base{
+	color: $colorBase;
+	&-M{
+		color: $colorBase;
+	}
+}
+
+.color-ex{
+	color: $colorExtra;
+	&-M{
+		color: $colorExtra;
+	}
+}
+
+// text font
+
+.font-base{
+	font-family: $fontBase;
+}
+
+.font-extra{
+	font-family: $fontExtra;
+}
+
+
+.only-desktop{
+	display: none;
+}
+
+.only-mobile{
+	display: block;
+}
+
+// display
+
+.dis-i{
+	display: inline;
+}
+
+.dis-i-block{
+	display: inline-block;
+}
+
+.dis-block{
+	display: block;
+}
+
+.dis-table{
+	display: table;
+}
+
+.dis-table-cell{
+	display: table-cell;
+}
+
+.dis-table-caption{
+	display: table-caption;
+}
+
+
+
+
+// gutter
+
+
+.gutter{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+.gutter-top{
+	margin-top: 20px;
+}
+
+.gutter-bottom{
+	margin-bottom: 20px;
+}
+
+.gutter-right{
+	margin-right: 20px;
+}
+
+.gutter-left{
+	margin-left: 20px;
+}
+
+
+// reset
+
+.reset{
+	margin: 0;
+	padding: 0;
+}
+
+.reset-margin{
+	margin: 0;
+}
+
+.reset-padding{
+	padding: 0;
+}
+
+
+
+.reset-all{
+	@extend %reset;
+}
+
+
+// center
+
+.center{
+	margin: 0 auto;
+}
+
+.center-t{
+	text-align: center;
+}
+
+
+// float
+
+.float-left{
+	float: left;
+	margin-bottom: 10px;
+	margin-right: 10px;
+}
+
+.float-right{
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+.clear{
+	@include clear();
+}
+
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width: $notebook ){
+
+	// text style
+
+	.ttu{
+		text-transform: uppercase;
+
+		&-M{
+			text-transform: none;
+		}
+		&-D{
+			text-transform: uppercase;
+		}
+		
+	}
+
+	.regular{
+		font-weight: 400;
+		&-M{
+			font-weight: inherit;
+		}
+
+		&-D{
+			font-weight: 400;
+		}
+	}
+
+	.medium{
+		font-weight: 500;
+		&-M{
+			font-weight: inherit;
+		}
+
+		&-D{
+			font-weight: 500;
+		}
+	}
+
+	.bold{
+		font-weight: 700;
+		&-M{
+			font-weight: inherit;
+		}
+
+		&-D{
+			font-weight: 700;
+		}
+	}
+
+
+	.italic{
+		font-style: italic;
+		&-M{
+			font-style: normal;
+		}
+		&-D{
+			font-style: italic;
+		}
+	}
+
+	// text color
+	.color-base{
+		color: $colorBase;
+		&-M{
+			color: inherit;
+		}
+		&-D{
+			color: $colorBase;
+		}
+	}
+
+	.color-ex{
+		color: $colorExtra;
+		&-M{
+			color: inherit;
+		}
+		&-D{
+			color: $colorExtra;
+		}
+	}
+
+
+
+
+
+
+
+
+
+.only-desktop{
+	display: block;
+}
+
+.only-mobile{
+	display: none;
+}
+
+}

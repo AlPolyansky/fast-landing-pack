@@ -1,3 +1,9 @@
+
+p{
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
 %grid{
   display: table;
   table-layout: fixed;
@@ -23,14 +29,6 @@
   @extend %part;
 }
 
-p{
-  margin-top: 0;
-  margin-bottom: 20px;
-  &:last-of-type{
-    margin-bottom: 0;
-  }
-}
-
 a{
   color: $colorBase;
   font-weight: 700;
@@ -42,6 +40,8 @@ a{
 
 .title{
   @extend %reset;
+  font-weight: 700;
+  font-size: 22px;
 }
 
 
@@ -65,4 +65,9 @@ a{
 
 .comment{
   @extend %reset;
+}
+
+// Сетка
+.main__part--last{
+  display: none;
 }

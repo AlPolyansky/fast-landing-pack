@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const plugins = require('gulp-load-plugins')();
 const through = require('through2');
+const mqpacker = require("css-mqpacker");
 
 module.exports = function (params){
 
@@ -13,6 +14,9 @@ module.exports = function (params){
   // params.errCb         - колбек функция, которая произойдет, при ошибке
   // params.mobileFirst   - true/false
 
+  let postcssPlugin = [
+    mqpacker
+  ]
 
   return function sass(){
     return gulp.src(params.files)
@@ -22,6 +26,7 @@ module.exports = function (params){
           errLogToConsole: true,
         })).on('error', plugins.notify.onError({title: 'Style'}))
       .pipe(plugins.autoprefixer(params.autoprefixer, {cascade: true}))
+      .pipe(plugins.postcss(postcssPlugin))
       .pipe(plugins.sourcemaps.write())
       .pipe(gulp.dest(params.build))
       .pipe(global._browserSync.stream())

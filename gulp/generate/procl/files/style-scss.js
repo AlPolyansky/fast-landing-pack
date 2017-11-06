@@ -7,19 +7,23 @@ const
 
 
 let content = 
-	`
-// libs
+`
+// Точка входа (корневой файл)
+
+// libs (Кастомная библиотека)
 @import 'libs/orb/_orb.scss';
 
 
 // core
-
+// Переменные
 @import 'core/_vars.scss';
+// Базовые стили
 @import 'core/_base.scss';
 
-// Основные стили
-@import 'styles/${mobileFirst ? 'mobile' : 'desktop'}/_modules.scss';
-@import 'styles/${mobileFirst ? 'mobile' : 'desktop'}/_sections.scss';
+// Подключаемые модули
+
+// Основные стили 
+@import 'styles/_${mobileFirst ? 'mobile' : 'desktop'}.scss';
 
 
 
@@ -42,9 +46,6 @@ let content =
 @media only screen and (${mediaWidth}-width: $notebook ${mediaFix}){
     
 
-
-    @import 'libs/orb/_orb.scss';
-
     body,html{
         font-family: $fontBase;
     }
@@ -64,10 +65,8 @@ let content =
 
 
 
-
-@import 'styles/${mobileFirst ? 'desktop' : 'mobile'}/_m--modules.scss';
-@import 'styles/${mobileFirst ? 'desktop' : 'mobile'}/_m--sections.scss';
-
+// Основные стили для media
+@import 'styles/_${mobileFirst ? 'desktop' : 'mobile'}.scss';
 
 }
 

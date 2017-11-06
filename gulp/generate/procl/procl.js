@@ -26,9 +26,7 @@ module.exports = function (){
     baseFile = {path : ''},
     varsFile = {path : ''},
     modulesScss = {path : ''},
-    sectionsScss = {path : ''},
     mediaModulesScss = {path : ''},
-    mediaSectionsScss = {path : ''},
     cssFile = {path : ''};
 
 
@@ -117,7 +115,7 @@ module.exports = function (){
       let folderTypeDesktop = params.mobileFirst ? 'desktop' : 'mobile';
 
       modulesScss = {
-        path: `./${src.folder}/${src.sass}/styles/${folderTypeMobile}/_modules.scss`,
+        path: `./${src.folder}/${src.sass}/styles/_${folderTypeMobile}.scss`,
         content:
 `%grid{
   display: table;
@@ -147,9 +145,6 @@ module.exports = function (){
 p{
   margin-top: 0;
   margin-bottom: 20px;
-  &:last-of-type{
-    margin-bottom: 0;
-  }
 }
 
 a{
@@ -163,6 +158,8 @@ a{
 
 .title{
   @extend %reset;
+  font-weight: 700;
+  font-size: 22px;
 }
 
 
@@ -187,17 +184,15 @@ a{
 .comment{
   @extend %reset;
 }
+
+// Сетка
+.main__part--last{
+  display: none;
+}
 `
       };
-      sectionsScss = {
-        path: `./${src.folder}/${src.sass}/styles/${folderTypeMobile}/_sections.scss`,
-        content: 
-`.main__part--last{
-  display: none;
-}`
-    };
       mediaModulesScss = {
-        path: `./${src.folder}/${src.sass}/styles/${folderTypeDesktop}/_m--modules.scss`, 
+        path: `./${src.folder}/${src.sass}/styles/_${folderTypeDesktop}.scss`, 
         content: 
 `%grid-m{
   display: table;
@@ -229,12 +224,12 @@ a{
     display: block;
   }
 }
-`
-      };
-      mediaSectionsScss = {
-        path: `./${src.folder}/${src.sass}/styles/${folderTypeDesktop}/_m--sections.scss`,
-        content: 
-`// Сетка
+
+.title{
+  font-size: 26px;
+}
+
+// Сетка
 .main__grid{
   @include grid();
 }
@@ -247,7 +242,8 @@ a{
   &--last{
     width: 300px;
   }
-}`
+}
+`
       };
 
       // Клонировние
@@ -308,9 +304,7 @@ a{
     baseFile,
     varsFile,
     modulesScss,
-    sectionsScss,
     mediaModulesScss,
-    mediaSectionsScss,
     // - css
     cssFile,
     // - js

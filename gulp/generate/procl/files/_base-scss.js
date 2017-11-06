@@ -1,19 +1,5 @@
 module.exports = params => {
 
-	const 
-		mobileFirst = params.mobileFirst,
-        minWidth = mobileFirst ? 
-        ''
-        :
-        `body{
-            //removeIf(noDesktop)
-            min-width: 975px;
-            //removeIf(noDesktop)
-            /*removeIf(desktop)*/
-            min-width: 100%;
-            /*endRemoveIf(desktop)*/
-    }`;
-
 
 	let content = 
 `*,*:after,*:before{
@@ -25,6 +11,8 @@ module.exports = params => {
 img,video{
     max-width: 100%;
     display: block;
+    max-height: 400px;
+
 }
 
 figure{
@@ -45,12 +33,12 @@ body,html{
     font-size: 100%;
     margin: 0;
     padding: 0;
-    line-height: 1.3;
+    line-height: 1.5;
     font-family: $fontBase;
     color: #3e3e3e;
 }
 
-${minWidth}
+
 
 .wrapper{
     width: 100%;

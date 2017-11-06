@@ -1,16 +1,23 @@
 
-// libs
+// Точка входа (корневой файл)
+
+// libs (Кастомная библиотека)
 @import 'libs/orb/_orb.scss';
 
 
 // core
-
+// Переменные
 @import 'core/_vars.scss';
+// Базовые стили
 @import 'core/_base.scss';
 
-// Основные стили
-@import 'styles/mobile/_modules.scss';
-@import 'styles/mobile/_sections.scss';
+// Подключаемые модули
+
+
+@import 'modules/_classes.scss';
+
+// Основные стили 
+@import 'styles/_mobile.scss';
 
 
 
@@ -32,10 +39,6 @@
 
 @media only screen and (min-width: $notebook ){
     
-
-
-    @import 'libs/orb/_orb.scss';
-
     body,html{
         font-family: $fontBase;
     }
@@ -55,10 +58,8 @@
 
 
 
-
-@import 'styles/desktop/_m--modules.scss';
-@import 'styles/desktop/_m--sections.scss';
-
+// Основные стили для media
+@import 'styles/_desktop.scss';
 
 }
 
