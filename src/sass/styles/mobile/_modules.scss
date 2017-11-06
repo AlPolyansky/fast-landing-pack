@@ -22,3 +22,47 @@
 @mixin part(){
   @extend %part;
 }
+
+p{
+  margin-top: 0;
+  margin-bottom: 20px;
+  &:last-of-type{
+    margin-bottom: 0;
+  }
+}
+
+a{
+  color: $colorBase;
+  font-weight: 700;
+  &:hover{
+    text-decoration: none;
+  }
+
+}
+
+.title{
+  @extend %reset;
+}
+
+
+.comments{
+  @extend %reset;
+  text-align: left;
+  .comment{
+    margin-bottom: 10px;
+    &:last-of-type{
+      margin-bottom: 0;
+    }
+  }
+  .comment{
+    display: none;
+  }
+
+  .comment:nth-last-of-type(-n + 5) {
+    display: block;
+  }
+}
+
+.comment{
+  @extend %reset;
+}

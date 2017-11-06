@@ -76,6 +76,17 @@ module.exports = function (){
   h4.title Комментарии
   ul.comments
     li.comment
+      p 1
+    li.comment
+      p 2
+    li.comment
+      p 3
+    li.comment
+      p 4
+    li.comment
+      p 5
+    li.comment
+      p 6
 `
         },
         {
@@ -132,6 +143,50 @@ module.exports = function (){
 @mixin part(){
   @extend %part;
 }
+
+p{
+  margin-top: 0;
+  margin-bottom: 20px;
+  &:last-of-type{
+    margin-bottom: 0;
+  }
+}
+
+a{
+  color: $colorBase;
+  font-weight: 700;
+  &:hover{
+    text-decoration: none;
+  }
+
+}
+
+.title{
+  @extend %reset;
+}
+
+
+.comments{
+  @extend %reset;
+  text-align: left;
+  .comment{
+    margin-bottom: 10px;
+    &:last-of-type{
+      margin-bottom: 0;
+    }
+  }
+  .comment{
+    display: none;
+  }
+
+  .comment:nth-last-of-type(-n + 5) {
+    display: block;
+  }
+}
+
+.comment{
+  @extend %reset;
+}
 `
       };
       sectionsScss = {
@@ -167,6 +222,12 @@ module.exports = function (){
 
 @mixin part(){
   @extend %part-m;
+}
+
+.comments{
+  .comment{
+    display: block;
+  }
 }
 `
       };

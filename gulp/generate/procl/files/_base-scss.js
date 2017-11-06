@@ -45,7 +45,7 @@ body,html{
     font-size: 100%;
     margin: 0;
     padding: 0;
-    line-height: 1;
+    line-height: 1.3;
     font-family: $fontBase;
     color: #3e3e3e;
 }
@@ -55,7 +55,6 @@ ${minWidth}
 .wrapper{
     width: 100%;
     overflow: hidden;
-    line-height: 1;
 }
 
 .container{

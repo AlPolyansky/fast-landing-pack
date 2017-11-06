@@ -20,5 +20,11 @@
 }
 
 @mixin part(){
-  @extend %grid-m;
+  @extend %part-m;
+}
+
+.comments{
+  .comment{
+    display: block;
+  }
 }

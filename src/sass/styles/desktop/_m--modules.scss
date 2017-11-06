@@ -22,3 +22,9 @@
 @mixin part(){
   @extend %part-m;
 }
+
+.comments{
+  .comment{
+    display: block;
+  }
+}
