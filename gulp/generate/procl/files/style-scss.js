@@ -21,6 +21,7 @@ let content =
 @import 'core/_base.scss';
 
 // Подключаемые модули
+@import 'modules/_classes.scss';
 
 // Основные стили 
 @import 'styles/_${mobileFirst ? 'mobile' : 'desktop'}.scss';

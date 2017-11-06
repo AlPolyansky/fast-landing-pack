@@ -12,8 +12,6 @@
 @import 'core/_base.scss';
 
 // Подключаемые модули
-
-
 @import 'modules/_classes.scss';
 
 // Основные стили 
@@ -39,9 +37,6 @@
 
 @media only screen and (min-width: $notebook ){
     
-
-
-    @import 'libs/orb/_orb.scss';
 
     body,html{
         font-family: $fontBase;

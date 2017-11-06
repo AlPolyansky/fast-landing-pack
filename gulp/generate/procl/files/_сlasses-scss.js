@@ -1,4 +1,8 @@
-// Классы стилизации
+module.exports = params => {
+
+
+	let content = 
+`// Классы стилизации
 
 
 // text style
@@ -472,4 +476,8 @@
 
 
 
+}
+`;
+
+	return content;
 }

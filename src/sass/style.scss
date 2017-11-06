@@ -12,8 +12,6 @@
 @import 'core/_base.scss';
 
 // Подключаемые модули
-
-
 @import 'modules/_classes.scss';
 
 // Основные стили 
@@ -39,6 +37,7 @@
 
 @media only screen and (min-width: $notebook ){
     
+
     body,html{
         font-family: $fontBase;
     }

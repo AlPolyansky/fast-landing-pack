@@ -29,6 +29,10 @@
   }
 }
 
+.title{
+  font-size: 26px;
+}
+
 // Сетка
 .main__grid{
   @include grid();

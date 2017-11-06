@@ -26,6 +26,7 @@ module.exports = function (){
     baseFile = {path : ''},
     varsFile = {path : ''},
     modulesScss = {path : ''},
+    classesScssFile = {path : ''};
     mediaModulesScss = {path : ''},
     cssFile = {path : ''};
 
@@ -105,10 +106,12 @@ module.exports = function (){
       const scssContent = require('./files/style-scss.js')(params);
       const baseContent = require('./files/_base-scss.js')(params);
       const varsContent = require('./files/_var-scss.js')(params);
+      const classesContent = require('./files/_сlasses-scss.js')(params);
 
       styleFile = {path: `./${src.folder}/${src.sass}/style.scss`,content: scssContent};
       baseFile = {path: `./${src.folder}/${src.sass}/core/_base.scss`,content: baseContent};
       varsFile = {path: `./${src.folder}/${src.sass}/core/_vars.scss`,content: varsContent};
+      classesFile = {path: `./${src.folder}/${src.sass}/modules/_classes.scss`,content: classesContent};
 
       
       let folderTypeMobile = params.mobileFirst ? 'mobile' : 'desktop';
@@ -303,6 +306,7 @@ a{
     mediaFile,
     baseFile,
     varsFile,
+    classesFile,
     modulesScss,
     mediaModulesScss,
     // - css
