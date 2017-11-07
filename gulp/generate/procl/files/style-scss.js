@@ -22,6 +22,8 @@ let content =
 
 // Подключаемые модули
 @import 'modules/_classes.scss';
+@import 'modules/_comment.scss';
+@import 'modules/_button.scss';
 
 // Основные стили 
 @import 'styles/_${mobileFirst ? 'mobile' : 'desktop'}.scss';

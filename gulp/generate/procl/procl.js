@@ -20,13 +20,18 @@ module.exports = function (){
     template = {path: ''},
     pagesPug = {path: ''},
     sectionsPug = {path: ''},
+    contentPug = {path: ''},
+    commentsPug = {path: ''},
+    headerPug = {path: ''},
     mixinsPug = {path: ''},
     styleFile = {path: ''},
     mediaFile = {path: ''},
     baseFile = {path : ''},
     varsFile = {path : ''},
     modulesScss = {path : ''},
-    classesScssFile = {path : ''};
+    classesScssFile = {path : ''},
+    commentScssFile = {path : ''},
+    buttonScssFile = {path : ''},
     mediaModulesScss = {path : ''},
     cssFile = {path : ''};
 
@@ -38,56 +43,30 @@ module.exports = function (){
   let jsLibs = {};
 
     if(params.pug){
-      const pugTemplate = require('./files/_template-pug.js')(params);
-      const pugIndex = require('./files/index-pug.js')();
-      const pugMixins = require('./files/_mixins-pug.js')();
+      const 
+        pugTemplate = require('./files/_template-pug.js')(params),
+        pugIndex = require('./files/index-pug.js')(),
+        pugMixins = require('./files/_mixins-pug.js')(),
+        pugContent = require('./files/_content-pug.js')(),
+        pugComments = require('./files/_comments-pug.js')(),
+        pugHeader = require('./files/_header-pug.js')();
+        pugSidebarRight = require('./files/_sidebar-right-pug.js')(),
+
 
 
       template = {path: `./${src.folder}/${src.pugRoot}/_template.pug`,content: pugTemplate};
       pagesPug = {path: `./${src.folder}/${src.pugRoot}/${src.pug}/index.pug`, content: pugIndex};
       mixinsPug = {path: `./${src.folder}/${src.pugRoot}/core/_mixins.pug`, content: pugMixins};
+
       sectionsPug = [
-        {
-          path: `./${src.folder}/${src.pugRoot}/sections/_header.pug`,
-          content: 
-`header.header
-  .container
-    p Шапка проклы
-`
-        },
-        {
-          path: `./${src.folder}/${src.pugRoot}/sections/_content.pug`,
-          content: 
-`h1.title Заголовок`
-        },
-        
+        headerPug = {path: `./${src.folder}/${src.pugRoot}/sections/_header.pug`, content: pugHeader},
+        contentPug = {path: `./${src.folder}/${src.pugRoot}/sections/_content.pug`, content: pugContent},
+        commentsPug = {path: `./${src.folder}/${src.pugRoot}/sections/_comments.pug`, content: pugComments},
+        sibebarRightPug = {path: `./${src.folder}/${src.pugRoot}/sections/_sidebar-right.pug`, content: pugSidebarRight},
+
         {path: `./${src.folder}/${src.pugRoot}/sections/_sidebar-left.pug`},
-        {
-          path: `./${src.folder}/${src.pugRoot}/sections/_sidebar-right.pug`,
-          content: 
-`aside.sidebar
-  p Сайдбар`
-        },
-        {
-          path: `./${src.folder}/${src.pugRoot}/sections/_comments.pug`,
-          content: 
-`section.s-comments
-  h4.title Комментарии
-  ul.comments
-    li.comment
-      p 1
-    li.comment
-      p 2
-    li.comment
-      p 3
-    li.comment
-      p 4
-    li.comment
-      p 5
-    li.comment
-      p 6
-`
-        },
+        
+        
         {
           path: `./${src.folder}/${src.pugRoot}/sections/_footer.pug`,
           content : 
@@ -107,11 +86,16 @@ module.exports = function (){
       const baseContent = require('./files/_base-scss.js')(params);
       const varsContent = require('./files/_var-scss.js')(params);
       const classesContent = require('./files/_сlasses-scss.js')(params);
+      const commentContent = require('./files/_comment-scss.js')(params);
+      const buttonContent = require('./files/_button-scss.js')(params);
+
 
       styleFile = {path: `./${src.folder}/${src.sass}/style.scss`,content: scssContent};
       baseFile = {path: `./${src.folder}/${src.sass}/core/_base.scss`,content: baseContent};
       varsFile = {path: `./${src.folder}/${src.sass}/core/_vars.scss`,content: varsContent};
       classesFile = {path: `./${src.folder}/${src.sass}/modules/_classes.scss`,content: classesContent};
+      commentScssFile = {path: `./${src.folder}/${src.sass}/modules/_comment.scss`,content: commentContent};
+      buttonScssFile = {path: `./${src.folder}/${src.sass}/modules/_button.scss`,content: buttonContent};
 
       
       let folderTypeMobile = params.mobileFirst ? 'mobile' : 'desktop';
@@ -184,14 +168,22 @@ a{
   }
 }
 
-.comment{
-  @extend %reset;
+.date{
+  font-style: italic;
+  opacity: .6;
 }
 
 // Сетка
 .main__part--last{
   display: none;
 }
+
+.s-content{
+  .date{
+    margin-bottom: 10px;
+  }
+}
+
 `
       };
       mediaModulesScss = {
@@ -265,6 +257,11 @@ a{
       output: `./${src.folder}/${src.js}/`
     }
 
+    images = {
+      root: './gulp/generate/procl/libs/img',
+      output: `./${src.folder}/${src.img}/users`
+    }
+
   //------  Пользовательская логика
 
   
@@ -309,6 +306,8 @@ a{
     classesFile,
     modulesScss,
     mediaModulesScss,
+    commentScssFile,
+    buttonScssFile,
     // - css
     cssFile,
     // - js
@@ -322,7 +321,8 @@ a{
   // объект - директория (клонируется вся директория с поддиректориями)
   const cloneArray = [
     scssLibs,
-    jsLibs
+    jsLibs,
+    images
   ]
 
 

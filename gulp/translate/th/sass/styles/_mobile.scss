@@ -62,11 +62,19 @@ a{
   }
 }
 
-.comment{
-  @extend %reset;
+.date{
+  font-style: italic;
+  opacity: .6;
 }
 
 // Сетка
 .main__part--last{
   display: none;
 }
+
+.s-content{
+  .date{
+    margin-bottom: 10px;
+  }
+}
+

@@ -1,4 +1,8 @@
-section.s-content
+module.exports = params => {
+
+
+	let content = 
+`section.s-content
 	h1.title Заголовок
 	.date
 		script(type='text/javascript').
@@ -8,3 +12,7 @@ section.s-content
 	.center-t.gutter
 		.button
 			a(href="").button__text Заказать
+`;
+
+	return content;
+}

@@ -1,4 +1,8 @@
-section.s-comments
+module.exports = params => {
+
+
+	let content = 
+`section.s-comments
 	h4.title.gutter-bottom Комментарии
 	ul.comments
 		li.comment
@@ -30,3 +34,7 @@ section.s-comments
 	.center-t.gutter
 		.button
 			a(href="").button__text Заказать
+`;
+
+	return content;
+}
