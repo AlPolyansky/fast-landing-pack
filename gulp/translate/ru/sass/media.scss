@@ -5,12 +5,10 @@
 
 $container: 980px;
 $gutter: 15px;
-
+$fontBase: 'Open Sans', sans-serif;
 
 
 $imgPath : '../img/desktop';
-
-$fontExtra: 'Exo 2', sans-serif;
 
 
 
@@ -19,11 +17,13 @@ $fontExtra: 'Exo 2', sans-serif;
 /* endRemoveIf(desktop) */
 
     @import 'libs/orb/_orb.scss';
+    @import 'modules/_classes--m.scss';
 
     body,html{
         font-family: $fontBase;
         /* removeIf(mobile) */
         min-width: 975px;
+        font-size: 20px;
         /* endRemoveIf(mobile) */
     }
 
@@ -63,3 +63,35 @@ $fontExtra: 'Exo 2', sans-serif;
 /* removeIf(desktop) */
 }
 /* endRemoveIf(desktop) */
+
+
+
+@media only screen and (min-width: 1784px ){
+    
+    .header{
+        &:before,&:after{
+            display: block;
+        }
+    }
+
+    .header .container{
+        &:before,&:after{
+            display: none;
+        }
+    }
+
+}
+
+@media only screen and (min-width: 2040px ){
+    .s-doc{
+        &:before{
+            display: block;
+        }
+    }
+
+    .s-doc .container{
+        &:before{
+            display: none;
+        }
+    }
+}

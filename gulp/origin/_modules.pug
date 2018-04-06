@@ -1,157 +1,185 @@
 style.
   body{
-  	background-color: #0facd1;
+  	background: #eee;
   }
-  
   .row{
   	border-top: 1px solid red;
   	border-bottom: 1px solid red;
-  	padding-top: 20px;
-  	padding-bottom: 20px;
-  	margin-top: 20px;
-  	margin-bottom: 20px;
-  }
-  
-  .right{
-  	text-align: right;
-  }
-  
-  .left{
-  	text-align: left;
-  }
-  
-  .center{
-  	text-align: center;
-  }
-  
-  .dark{
-  	background-color: #b4d6e3;
-  }
-  
-  .bg-light{
-    background-color: #fff;
-  }
-  
-  .red{
-  	color: red;
-  }
-  
-  .bg-red{
-    background-color: red;
-  }
-  
-  .light-color{
-    color: #fff;
+  	padding: 10px 0;
+  	margin: 10px 0;
   }
   
   
   
-  
-.row.light-color.center
+//- Name
+.row
   .container
-    .toptitle
-      .toptitle__inner  
-        p.text Разработано специально для #[span.t--imp азиатского] типа кожи
-      .toptitle__border
-        include ../svg/_border.pug
-.row.light-color.center
+    .name DENTA SEAL
+//- Info
+.row
   .container
-    h1.topname.t--ttu
-      span.text Nourishing
-      span.text.t--bold.topname__bottom Day Cream
-.row.light-color.center
+    .info зубная паста с эффектом пломбирования
+//- Info
+.row
   .container
-    .paint
-      p.text.paint__top  
-        span.paint__text ОСВЕТЛЕНИЕ ПИГМЕНТАЦИИ #[span.only-desktop на]
-        span.paint__svg
-          include ../svg/_paint.pug
-      p.text.paint__bottom #[span.only-mobile на] 3 тона
-.row.light-color.center
+    .price
+      .grid-D.price__top
+        .part-D
+          .price__info.bold Сегодня акция:
+        .part-D
+          del.price__item.price__old {{ price__old }} #[span.price__cur {{ currency}}]
+      p.price__item.price__new.bold {{ price}} #[span.price__cur {{ currency}}]
+//- button
+.row
   .container
-    .button.toform
-      a.button__text(href!="") Заказать сейчас
-.row.light-color.center
+    .center-t
+      .button.toform
+        button.button__text Заказать сейчас
+//- skills desk
+.row
+  .container
+    .skills
+      ul.skills__list
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-1
+            .part
+              p.text.bold.color-base Устраняет #[span.regular-D начальные кариесные] дефекты
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-2
+            .part
+              p.text.bold.color-base Пломбирует микротрещины #[span.regular-D и микропоры на зубах]
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-3
+            .part
+              p.text.bold.color-base Возвращает белизну, #[span.regular-D снижает чувствительность эмали]
+//- skills desk
+.row
+  .container
+    .skills.skills--desk.only-desktop
+      ul.skills__list
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-4
+            .part
+              p.text Оформляете заявку на нашем сайте
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-5
+            .part
+              p.text Наш менеджер звонит вам
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-6
+            .part
+              p.text Доставка до двери
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-7
+            .part
+              p.text Оплата после получения
+.row
+  .container
+    .rang.only-desktop
+      .rang__title Рейтинг товара
+      ul.rang__list
+        li.rang__item
+          i.ico.ico-star
+        li.rang__item
+          i.ico.ico-star
+        li.rang__item
+          i.ico.ico-star
+        li.rang__item
+          i.ico.ico-star
+        li.rang__item
+          i.ico.ico-star
+//- .row
+//- 	.container
+//- 		.sale
+//- 			.sale__inner
+//- 				p.text -50%
+.row
+  .container
+    nav.menu.ttu.bold.color-base.only-desktop
+      .menu__inner
+        .menu__part
+          a.text(href!="") Аптека
+        .menu__part
+          a.text(href!="") Продукт
+        .menu__part
+          a.text(href!="") Описание
+        .menu__part
+          a.text(href!="") Отзывы
+.row
   .container
     .prod
       //removeIf(desktop)
-      img.only-mobile(src!="img/prod.png" alt!="")
+      img.prod__img.only-mobile(src!="img/prod.png" alt!="")
       //endRemoveIf(desktop)
       //removeIf(mobile)
-      img.only-desktop(src!="img/desktop/prod.png" alt!="")
+      img.prod__img.only-desktop(src!="img/desktop/prod.png" alt!="")
       //endRemoveIf(mobile)
-.row.light-color.center
+.row
   .container
-    .sale
-      .sale__inner
-        span.sale__num -50
-        span.sale__perc %
-.row.right.bg-light
+    .prod
+      .sale
+        .sale__inner
+          p.text -50%
+      //removeIf(desktop)
+      img.prod__img.only-mobile(src!="img/prod.png" alt!="")
+      //endRemoveIf(desktop)
+      //removeIf(mobile)
+      img.prod__img.only-desktop(src!="img/desktop/prod.png" alt!="")
+      //endRemoveIf(mobile)
+.row
   .container
-    .band-ar
-      .band-ar__inner
-        p.text Формула "White Light"
+    .num
+      p.text 1
+.row
+  .container
+    .cover
+      p.text Основа восстанавливающей формулы #[span.bold.ttu.color-base DENTA&nbsp;SEAL] - гидроксиапатит. Его частицы пломбируют поры и фиссуры, образующиеся на поверхности эмали.
+      p.text В результате #[span.bold.color-base эмаль становится белоснежной и более устойчивой] к воздействию бактерий зубного налета.
+.row
+  .container
+    .hand.only-desktop
+.row
+  .container
+    .arrow.only-desktop
       +angle('left')
-.row.only-desktop.center.bg-light
+      .arrow__cover
+        .arrow__inner
+          p.text DENTA SEAL
+.row
   .container
-    .bacilli
-      .bacilli__inner ФОРМУЛА ЗДОРОВОЙ КОЖИ
-.row.center
+    .devider
+      .round
+        i.ico.ico-8
+.row
   .container
-    .cover
-      .cover__inner
-.row.center
-  .container
-    .cover
-      .cover__inner
-        ul.list
-          li.list__item
-            .list__part
-              i.ico.i-shield
-            .list__part
-              h3.list__title Блокирует
-              p.text избыточную выработку меланина
-          li.list__item
-            .list__part
-              i.ico.i-hear
-            .list__part
-              h3.list__title Отбеливает
-              p.text и выравнивает тон лица
-          li.list__item
-            .list__part
-              i.ico.i-cap
-            .list__part
-              h3.list__title Восстанавливает
-              p.text гидробаланс кожи
-          li.list__item
-            .list__part
-              i.ico.i-cap
-            .list__part
-              h3.list__title Разглаживает
-              p.text морщины и замедляет старение
-.row.center.bg-light
-  .container
-    .price
-      .price__top  
-        del.price__item.price__old
-          span.price__text Старая цена 
-          span.price__num {{old_price}} {{currency}}
-      .price__bottom
-        .price__shadow
-        span.price__num {{price}} {{currency}}
-.row.center
+    .doc
+      h2.title.color-imp ЧТО ГОВОРЯТ О #[span.dis-block.color-base DENTA&nbsp;SEAL] СПЕЦИАЛИСТЫ?
+      .doc__inner.dis-table-M
+        .doc__content
+          p.text.only-desktop Многие зубные пасты не способны защитить от кариеса - они только помогают вычищать остатки пищи из зубов, создавая хорошую пену. Для полноценного ухода этого недостаточно.
+          p.text #[span.ttu.color-base.bold DENTA&nbsp;SEAL] - прорыв в области домашнего ухода за ротовой полостью. Благодаря гидроксиапатиту паста уже на этапе чистки проникает в эмаль и #[span.color-imp заполняет все трещины, восстанавливая зубы и восполняя недостаток кальция и фосфата.]
+        .doc__user.dis-table-caption-M
+          .doc__photo.only-mobile
+          p.text #[span.bold-D.italic-D доктор стоматологического центра] Ирэн Муник
+.row
   .container
     .form__wrap
       form#toform.form(method!='POST' action!='#')
-        .form__title Оформление #[span.form__title-text заказа]
-        .price
-          .price__top  
-            del.price__item.price__old
-              span.price__text Старая цена 
-              span.price__num {{old_price}} {{currency}}
-          .price__bottom
-            .price__shadow
-            span.price__num {{price}} {{currency}}
+        .form__title.bold Оформление заказа
         .form__inner
           .form__field-wrap
             .field
@@ -163,6 +191,13 @@ style.
               input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
             .field
               input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
+            .price
+              .grid.price__top
+                .part
+                  .price__info.bold Сегодня акция:
+                .part
+                  del.price__item.price__old {{ price__old }} #[span.price__cur {{ currency}}]
+              p.price__item.price__new.bold {{ price}} #[span.price__cur {{ currency}}]
             .field.field__info
               .field__row
                 .field__text.field__label Доставка:
@@ -170,9 +205,38 @@ style.
               .field__row
                 .field__text.field__label Итого:
                 .field__number.field__label {{ total_price|int }} {{ currency }}
-          .button
+          .button.button--border
             button.button__text.js_submit  
               | Заказать сейчас
-          .timer
-            p.text Осталось всего
-            p.text.timer__imp #[span.timer__num 7] упаковок!   
+.row
+  .container
+    .label
+      .label__inner
+        p.text.label__img Зубы
+        p.text в порядке
+.row
+  .container
+    .counter.center-t-M.color-base.bold
+      p.text Внимание!
+      p.text На складе сталось #[span.counter__num 9 штук!]
+.row
+  .container
+    .block.block--orange
+      p.text до
+    .block.block--blue
+      p.text после
+    .block.block--gr
+      p.text Ольга
+    .block.block--line
+.row
+  .container
+    .frame.only-desktop
+      .frame__inner
+        span.frame__num 1
+        i.ico.ico-9
+      .frame__arrow
+.row
+  .container
+    .logo.only-desktop
+      .logo__inner
+        p.text Для здоровья зубов

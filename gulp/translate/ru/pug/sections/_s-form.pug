@@ -1,85 +1,60 @@
-section.s-form
+section#sform.s-form
   .container
-    .s-form__woman
-    .s-form__grid
-      .s-form__part
-        h2.toptitle
-          span.toptitle__top(data-xd!='fqgRhdc-8') Micellar 
-          span.toptitle__bottom(data-xd!='pSlwzjK-9') Water
-        p.text.s-form__text(data-xd!='oUDkRzo-10') На шаг ближе #[span.t--block к идеальной коже]
-        .timer
-          h5.timer__title
-            p.text(data-xd!='bdLGukx-14') До конца акции осталось:
-          ul.timer__list
-            li.timer__item.timer__hours
-              span.timer__num.timer__first
-              span.timer__num.timer__last
-              p.timer__info(data-xd!='UBqBAwb-19') часов
-            li.timer__item.timer__min
-              span.timer__num.timer__first
-              span.timer__num.timer__last
-              p.timer__info(data-xd!='PFqxtXj-23') минут
-            li.timer__item.timer__sec
-              span.timer__num.timer__first
-              span.timer__num.timer__last
-              p.timer__info(data-xd!='BnRxAlW-27') секунд
-      .s-form__part
-        .s-form__rotate
-          .s-form__rotate-part
-            .s-form__cover
-              .sale
-                .sale__inner
-                  p.sale__num(data-xd!='bENkHpm-34') 50%
-                  p.sale__text(data-xd!='GWQPdAW-35') OFF
-              .prod
-                //removeIf(desktop)
-                .only-mobile
-                  img.prod__img(src!="img/prod.png" alt!="")
-                //endRemoveIf(desktop)
-                //removeIf(mobile)
-                .only-desktop
-                  img.prod__img(src!="img/desktop/prod.png" alt!="")
-                //endRemoveIf(mobile)
-              .price
-                .price__grid
-                  li.price__part.price__part-old
-                    p.price__text(data-xd!='CkvWbsH-44') Старая цена
-                    del.price__old(data-xd!='BsXiQAu-45') {{ old_price }}{{ currency }}
-                  li.price__part.price__part-new
-                    .price__angle
-                      .price__angle-inner
-                        p.price__info
-                          span.price__info-text(data-xd!='WWMBAqK-50') Новая цена
-                        p.price__num
-                          span.price__num-text.price__new(data-xd!='HsfZqoI-52') {{ price }}{{ currency }}
-              .form__wrap
-                form.form(method!='POST' action!='#' data-xd!='form-1234')
-                  .form__title Оформление заказа
-                  .form__inner
-                    .form__field-wrap
-                      .field
-                        .field__select-wrap
-                          .field__arrow
-                          select#country_code_selector.field__select.field__part(name!='country_code')
-                            option(value!='TH') Тайланд
-                      .field
-                        input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
-                      .field
-                        input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
-                      .field.field__info
-                        .field__row
-                          .field__text.field__label Доставка:
-                          .field__number.field__label {{ shipment_price }} {{ currency }}
-                        .field__row
-                          .field__text.field__label Итого:
-                          .field__number.field__label {{ total_price|int }} {{ currency }}
-                      .button
-                        button.button__text.js_submit  
-                          | Заказать сейчас
-          .s-form__rotate-part
-            .counter
-              ul.counter__grid
-                li.counter__part  
-                  span.counter__num(data-xd!='khmbYwB-84') 40
-                li.counter__part
-                  p.text(data-xd!='WCvzKkO-86') упаковок осталось
+    //---------
+    .s-form__top
+      h2.name(data-xd!='GXGdpmH-5') DENTA SEAL
+      h3.title.color-base(data-xd!='PuYFNuQ-6') Забудьте про кресло стоматолога навсегда!
+    //---------
+    .s-form__prod
+      .prod
+        .sale
+          .sale__inner
+            p.text(data-xd!='asqobur-11') -50%
+        .label
+          .label__inner
+            p.text.label__img(data-xd!='hZcNHAq-14') Зубы
+            p.text(data-xd!='UdHTETJ-15') в порядке
+        //removeIf(desktop)
+        img.prod__img.only-mobile(src!="img/prod.png" alt!="")
+        //endRemoveIf(desktop)
+        //removeIf(mobile)
+        img.prod__img.only-desktop(src!="img/desktop/prod.png" alt!="")
+        //endRemoveIf(mobile)
+    //---------
+    .grid-D.s-form__grid
+      .part-D.s-form__part
+        .counter.center-t-M.color-base.bold
+          p.text(data-xd!='hNkdsiS-21') Внимание!
+          p.text(data-xd!='fXCVhJE-22') На складе сталось #[span.counter__num 30] штук!
+      .part-D.s-form__part
+        .form__wrap
+          form#toform.form(method!='POST' action!='#')
+            .form__title.bold(data-xd!='qLfzqzV-27') Оформление заказа
+            .form__inner
+              .form__field-wrap
+                .field
+                  .field__select-wrap
+                    .field__arrow
+                    select#country_code_selector.field__select.field__part(name!='country_code' data-xd!='zivptOF-33')
+                      option(value!='RU') Россия
+                .field(data-xd!='qpdMcik-36')
+                  input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
+                .field(data-xd!='oBaeJgG-38')
+                  input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
+                .price
+                  .grid.price__top
+                    .part
+                      .price__info.bold(data-xd!='JFOiECk-42') Сегодня акция:
+                    .part
+                      del.price__item.price__old(data-xd!='VSfDnZy-44') {{ price__old }} #[span.price__cur {{ currency}}]
+                  p.price__item.price__new.bold(data-xd!='vLgAWLy-46') {{ price}} #[span.price__cur {{ currency}}]
+                .field.field__info
+                  .field__row
+                    .field__text.field__label(data-xd!='RMYqIFX-50') Доставка:
+                    .field__number.field__label(data-xd!='ukHfsJF-51') {{ shipment_price }} {{ currency }}
+                  .field__row
+                    .field__text.field__label(data-xd!='SJtanDz-53') Итого:
+                    .field__number.field__label(data-xd!='TNfOMpN-54') {{ total_price|int }} {{ currency }}
+              .button.button--border
+                button.button__text.js_submit(data-xd!='SKXUfoB-56')  
+                  | Заказать сейчас

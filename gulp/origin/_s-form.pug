@@ -1,69 +1,35 @@
-section.s-form
+section#sform.s-form
   .container
-    .header__pseudo.header__pseudo-item-1
-    .header__pseudo.header__pseudo-item-2
-    .header__pseudo.header__pseudo-item-3
-    .s-form__grid
-      .s-form__part
-        h1.topname.t--ttu.topname--water
-          span.text Nourishing
-          span.text.t--bold.topname__bottom Day Cream
-        .paint
-          p.text.paint__top  
-            span.paint__text до здоровой кожи #[span.paint__step 1 шаг]
-            span.paint__svg
-              include ../svg/_paint.pug
-        .cover.only-desktop
-          .cover__inner
-            .timer
-              h3.timer__title До конца акции осталось:
-              ul.timer__inner
-                li.timer__item.timer__hours
-                  .timer__nums
-                    .timer__num.timer__num--first 1
-                    .timer__num.timer__num--last 2
-                  p.text.timer__text часов
-                li.timer__item.timer__min
-                  .timer__nums
-                    .timer__num.timer__num--first 3
-                    .timer__num.timer__num--last 5
-                  p.text.timer__text минут
-                li.timer__item.timer__sec
-                  .timer__nums
-                    .timer__num.timer__num--first 5
-                    .timer__num.timer__num--last 9
-                  p.text.timer__text секунд
-        .price.price--inner
-          .price__top  
-            del.price__item.price__old
-              span.price__text Старая цена 
-              span.price__num {{old_price}} {{currency}}
-          .price__bottom
-            .price__shadow
-            span.price__num {{price}} {{currency}}
-          .prod
-            //removeIf(desktop)
-            img.only-mobile(src!="img/prod.png" alt!="")
-            //endRemoveIf(desktop)
-            //removeIf(mobile)
-            img.only-desktop(src!="img/desktop/prod.png" alt!="")
-            //endRemoveIf(mobile)
-            .sale
-              .sale__inner
-                span.sale__num -50
-                span.sale__perc %
-      .s-form__part
+    //---------
+    .s-form__top
+      h2.name DENTA SEAL
+      h3.title.color-base Забудьте про кресло стоматолога навсегда!
+    //---------
+    .s-form__prod
+      .prod
+        .sale
+          .sale__inner
+            p.text -50%
+        .label
+          .label__inner
+            p.text.label__img Зубы
+            p.text в порядке
+        //removeIf(desktop)
+        img.prod__img.only-mobile(src!="img/prod.png" alt!="")
+        //endRemoveIf(desktop)
+        //removeIf(mobile)
+        img.prod__img.only-desktop(src!="img/desktop/prod.png" alt!="")
+        //endRemoveIf(mobile)
+    //---------
+    .grid-D.s-form__grid
+      .part-D.s-form__part
+        .counter.center-t-M.color-base.bold
+          p.text Внимание!
+          p.text На складе сталось #[span.counter__num 30] штук!
+      .part-D.s-form__part
         .form__wrap
           form#toform.form(method!='POST' action!='#')
-            .form__title Оформление #[span.form__title-text заказа]
-            .price
-              .price__top  
-                del.price__item.price__old
-                  span.price__text Старая цена 
-                  span.price__num {{old_price}} {{currency}}
-              .price__bottom
-                .price__shadow
-                span.price__num {{price}} {{currency}}
+            .form__title Оформление заказа
             .form__inner
               .form__field-wrap
                 .field
@@ -77,12 +43,11 @@ section.s-form
                   input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
                 .field.field__info
                   .field__row
-                    .field__label.field__before Доставка: {{ shipment_price }} {{ currency }}
+                    .field__text.field__label Доставка:
+                    .field__number.field__label {{ shipment_price }} {{ currency }}
                   .field__row
-                    .field__label.field__all Итого: {{ total_price|int }} {{ currency }}
-              .button
+                    .field__text.field__label Итого:
+                    .field__number.field__label {{ total_price|int }} {{ currency }}
+              .button.button--border
                 button.button__text.js_submit  
                   | Заказать сейчас
-              .counter
-                p.text Осталось всего
-                p.text.counter__imp упаковок: #[span.counter__num 30]!

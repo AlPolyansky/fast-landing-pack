@@ -1,24 +1,111 @@
-.form__wrap
-  form#toform.form(method!='POST' action!='#')
-    .form__title Оформление заказа
-    .form__inner
-      .form__field-wrap
-        .field
-          .field__select-wrap
-            .field__arrow
-            select#country_code_selector.field__select.field__part(name!='country_code')
-              option(value!='RU') Россия
-        .field
-          input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
-        .field
-          input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
-        .field.field__info
-          .field__row
-            .field__text.field__label Доставка:
-            .field__number.field__label {{ shipment_price }} {{ currency }}
-          .field__row
-            .field__text.field__label Итого:
-            .field__number.field__label {{ total_price|int }} {{ currency }}
-      .button
-        button.button__text.js_submit  
-          | Заказать 
+header.header
+  .container
+    .prod
+      .sale
+        .sale__inner
+          p.text -50%
+      //removeIf(desktop)
+      img.prod__img.only-mobile(src!="img/prod.png" alt!="")
+      //endRemoveIf(desktop)
+      //removeIf(mobile)
+      img.prod__img.only-desktop(src!="img/desktop/prod.png" alt!="")
+      //endRemoveIf(mobile)
+    .header__top.only-desktop
+      .grid-D.header__top-grid
+        .part-D.header__top-part
+          .logo.only-desktop
+            .logo__inner
+              p.text Для здоровья зубов
+        .part-D.header__top-part
+          nav.menu.ttu.bold.color-base.only-desktop
+            .menu__inner
+              .menu__part
+                a.text(href!="#prof") Как работает
+              .menu__part
+                a.text(href!="#doc") Мнение эксперта
+              .menu__part
+                a.text(href!="#reviews") Отзывы покупателей
+              .menu__part
+                a.text(href!="#sform") Заказать 
+      .header__rang
+        .rang
+          .rang__title Рейтинг товара
+          ul.rang__list
+            li.rang__item
+              i.ico.ico-star
+            li.rang__item
+              i.ico.ico-star
+            li.rang__item
+              i.ico.ico-star
+            li.rang__item
+              i.ico.ico-star
+            li.rang__item
+              i.ico.ico-star
+    .header__name
+      .name DENTA SEAL
+      .info зубная паста с эффектом пломбирования
+    .grid-M.header__total-grid
+      .header__content
+        .grid-D.header__content-grid
+          .part-D.header__content-part
+            .skills.skills__simple
+              ul.skills__list
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-1
+                    .part
+                      p.text.bold.color-base Устраняет #[span.regular-D начальные кариесные] дефекты
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-2
+                    .part
+                      p.text.bold.color-base Пломбирует микротрещины #[span.regular-D и микропоры на зубах]
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-3
+                    .part
+                      p.text.bold.color-base Возвращает белизну, #[span.regular-D снижает чувствительность эмали]
+          .only-desktop.part-D.header__content-part
+            .skills.skills--desk
+              .title.ttu.color-base Как заказать:
+              ul.skills__list
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-4
+                    .part
+                      p.text Оформляете заявку на нашем сайте
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-5
+                    .part
+                      p.text Наш менеджер звонит вам
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-6
+                    .part
+                      p.text Доставка до двери
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-7
+                    .part
+                      p.text Оплата после получения
+      .header__bottom.dis-table-caption-M
+        .grid-D.header__controll
+          .part-D.header__controll-part
+            .price
+              .grid-D.price__top
+                .part-D
+                  .price__info.bold Сегодня акция:
+                .part-D
+                  del.price__item.price__old {{ price__old }} #[span.price__cur {{ currency}}]
+              p.price__item.price__new.bold {{ price}} #[span.price__cur {{ currency}}]
+          .part-D.header__controll-part
+            .button.toform
+              button.button__text Заказать сейчас

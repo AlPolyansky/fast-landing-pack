@@ -1,5 +1,7 @@
 module.exports = params => {
-
+		mobileFirst = params.mobileFirst,
+    mediaWidth = mobileFirst ? 'min' : 'max',
+    mediaFix = mobileFirst ? '' : '- 1px';
 
 	let content = 
 `
@@ -75,7 +77,7 @@ $button--transition : all .3s;									// transition
 
 
 
-@media only screen and (min-width: $notebook ){
+@media only screen and (${mediaWidth}-width: $notebook ${mediaFix}){
 	.button{
 		font-size: 24px;
 	}

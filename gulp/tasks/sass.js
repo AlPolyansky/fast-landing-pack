@@ -15,7 +15,7 @@ module.exports = function (params){
   // params.mobileFirst   - true/false
 
   let postcssPlugin = [
-    mqpacker
+    //mqpacker
   ]
 
   return function sass(){

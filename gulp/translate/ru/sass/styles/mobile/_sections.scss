@@ -1,133 +1,50 @@
 .header{
-	&__top{
-		@extend %reset;
-		background-color: #e4f3f9;
-		padding-top: 6px;
+	background: linear-gradient(to bottom,transparent,#ebfbff);
+	.container{
+		padding-top: 25px;
+		padding-bottom: 58px;
 		position: relative;
-
-		&-container{
-			max-width: $container;
-		}
-
-		&-grid{
-			@extend %reset;
-			@extend %grid;
-		}
-
-		&-part{
-			@extend %reset;
-			@extend %part;
-			vertical-align: top;
-			&:first-of-type{
-				width: 88px;
-				vertical-align: top;
-			}
-			&:last-of-type{
-				padding-top: 0;
-				padding-bottom: 15px;
-				padding-left: 14px;
-			}
-		}
-
-		.text{
-			color: #555555;
-		}
-		
-		.label{
-			position: absolute;
-			bottom: -72px;
-			right: 59px;
-			z-index: 10;
-		}
-
 	}
 
-
-	&__content{
-		padding-top: 10px;
-		&-container{
-			position: relative;
-		}
-		&-part{
-			&:first-of-type{
-				position: relative;
-			}
-			&:last-of-type{
-				padding-bottom: 15px;
-			}
-		}
+	&__name{
+		min-height: 181px;
 	}
 
-	.steps{
-		margin-bottom: 10px;
+	.name{
+		margin-bottom: 14px;
 	}
 
-
-	.sale{
-		position: absolute;
-		bottom: 50px;
-		right: 54px;
-		z-index: 10;
-	}
-
-	.toptitle{
-		padding-right: 111px;
+	.info{
+		margin-bottom: 50px;
 	}
 
 
 	.prod{
 		position: absolute;
-		bottom: -16px;
-		right: -22px;
-	}
-
-	&__info{
-		.text{
-			font-size: 16px;
-			line-height: 1.1;
-		}
-		&-text{
-			margin-top: 2px;
-			display: block;
-			max-width: 100px;
+		top: 0;
+		right: 0;
+		max-width: 136px;
+		top: 45px;
+		.sale{
+			right: 40px;
 		}
 	}
 
+	.button{
+		width: 100%;
+	}
 
 	.price{
-		margin-top: -19px;
 		margin-bottom: 10px;
 	}
 
-	&__skill--last.skills__part{
-		padding-right: 163px;
-	}
-
-
-}
-
-
-
-
-.s-book{
-	background-color: #90c3d7;
-	.container{
-		padding-top: 40px;
-		padding-bottom: 40px;
-	}
-
-	.title{
-		margin-bottom: 23px;
-	}
-
-	&__content{
+	.button{
 		margin-bottom: 20px;
-		.text{
-			line-height: 1.2;
-			text-align: center;
-		}
 	}
 
+	.skills__simple{
+		margin-left: -10px;
+	}
 }
 
 
@@ -136,218 +53,158 @@
 
 
 
-
-
-.s-change{
-	opacity: .99;
+.s-prof{
 	.container{
-		padding-top: 40px;
-		padding-bottom: 40px;
+		padding-top: 30px;
+		padding-bottom: 30px;
 	}
 
 	.title{
-		margin-bottom: 15px;
-		&:after{
-			background-color: #ffd200;
-		}
-		&__info{
-			font-size: 17px;
-		}
-	}
-
-	&__content{
-		text-align: center;
-		padding-bottom: 20px;
-		border-bottom: 1px solid #dedede;
-		margin-bottom: 20px;
-		.text{
-			color: #555555;
-			font-size: 16px;
-			line-height: 1.3;
-		}
-	}
-
-	&__list{
-		@extend %reset;
-		text-align: center;
-		color: #7dd11e;
-		.num{
-			margin-bottom: 10px;
-		}
-	}
-
-
-	//--
-	.rolls{
-		color: #7ad01d;
-		padding: 0 10px;
+		font-size: 26px;
+		line-height: 1.1;
+		margin-bottom: 30px;
 	}
 	
 
-		//--
-	.roll{
-			margin-bottom: 20px;
-			&:last-of-type{
-				margin-bottom: 0;
-			}
-	}
 
-
-}
-
-
-
-
-
-
-
-
-
-
-.s-consist{
-	background: #fafafa;
-	.container{
-		padding-top: 50px;
-		padding-bottom: 50px;
-	}
-
-
-	.title{
-		margin-bottom: 20px;
-		&__info{
-			margin-top: 5px;
-			.only-mobile{
-				display: inline;
-			}
+	&__part{
+		&:first-of-type{
+		
 		}
+		&:last-of-type{
+			display: none;
+		}
+	}
+
+
+	&__content{
+
+	}
+
+	&__item{
+		margin-bottom: 20px;
+		padding-bottom: 20px;
+		border-bottom: 1px solid #a6e6fd;
+		&:last-of-type{
+			margin-bottom: 0;
+		}
+	}
+
+	.block--line{
+		display: none;
 	}
 
 	.num{
 		display: none;
 	}
 
-	.prod{
-		display: none;
+	&__caption{
+		@extend %reset;
+		margin-bottom: 10px;
 	}
 
-	&__inner{
-		margin-bottom: 35px;
+
+	&__photo{
+		min-height: 250px;
+		display: none;
 	}
 }
 
 
 
 
+
+
+
+
+
+
+
+.s-hand{
+	background: #56d2e7;
+	background: linear-gradient(#58d3e6,#93eea7);
+	.container{
+		padding-top: 40px;
+		padding-bottom: 40px;
+		&:before{
+			content: '';
+			display: block;
+			width: 0;
+			height: 0;
+			border-left: 14px solid transparent;
+			border-right: 14px solid transparent;
+			position: absolute;
+			border-bottom: 16px solid #58d3e5;
+			top: -16px;
+			left: $gutter;
+		}
+	}
+
+	.title{
+		color: #fff;
+		font-size: 36px;
+		text-transform: uppercase;
+		line-height: 1.1;
+		margin-bottom: 30px;
+	}
+}
 
 
 
 
 
 .s-doc{
-	background: #b4d6e3;
-	box-shadow: inset 0 6px 5px rgba(#000,.1),inset 0 -6px 5px rgba(#000,.1);
+	background-color: #fbfbfb;
+	opacity: .99;
+	position: relative;
 	.container{
-		padding-top: 40px;
-		padding-bottom: 40px;
+		padding-top: 30px;
+		padding-bottom: 30px;
 	}
-
-
-	.band{
-		margin-bottom: 30px;
-	}
-
-	.doc{
-		margin-bottom: 20px;
-	}
-
-	.title__info{
-		font-size: 17px;
-	}
-
-	.title{
-		margin-bottom: 15px;
-	}
-
-	&__grid{
-		@extend %reset;
-	}
-
-	&__part{
-		@extend %reset;
-	}
-
 }
 
 
 
 
 
+
+
+
+
+.s-tooth{
+	background: #53d1eb;
+	background: linear-gradient(to right,#53d1eb,#94eea6);
+	opacity: .99;
+	.container{
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+
+	.title{
+		font-size: 32px;
+		color: #fff;
+		margin-bottom: 30px;
+	}
+}
 
 
 
 
 
 .s-review{
-	background-color: #fafaeb;
 	.container{
-		padding-top: 38px;
-		padding-bottom: 38px;
-	}
-
-	.title{
-		font-size: 22px;
-		line-height: 1.3;
-		margin-bottom: 30px;
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-.s-sea{
-	
-	background: #208fd2;
-	background: linear-gradient(to bottom,#208fd2,#57ddf0);
-	text-align: center;
-
-	.title{
-		color: #fff;
-		margin-bottom: 10px;
-		&__info{
-
-		}
-	}
-
-	.container{
-		padding-top: 40px;
+		padding-top: 30px;
 		padding-bottom: 40px;
 	}
 
-	.perc{
+	.title{
+		font-size: 36px;
+		line-height: 1.2;
 		margin-bottom: 20px;
 	}
-
-	.band{
-		transform: skew(-45deg);
-		max-width: 90%;
-		margin: 0 auto;
-		&__inner{
-			transform: skew(45deg);
-		}
-		.text{
-			font-weight: 400;
-		}
-	}
-
-
 }
+
+
 
 
 
@@ -356,105 +213,121 @@
 
 
 .s-form{
-	text-align: center;
-
 	.container{
-		padding-top: 30px;
-		padding-bottom: 10px;
+		padding-top: 40px;
+		padding-bottom: 40px;
 	}
 
-	.toptitle{
+
+	&__prod{
+		text-align: center;
+	}
+
+
+	.name{
+		text-align: center;
+		max-width: 100%;
+		font-size: 48px;
 		margin-bottom: 10px;
 	}
-
-	&__text{
-		font-size: 18px;
-		text-transform: uppercase;
-		font-weight: 300;
-		line-height: 1.2;
-		margin-bottom: 20px;
-	}
-
-	&__cover{
-		position: relative;
-		padding-left: 72px;
-		padding-bottom: 15px;
+	.title{
+		text-align: center;
+		margin-bottom: 42px;
+		font-size: 24px;
 	}
 
 	.prod{
-		position: absolute;
-		z-index: 10;
-		left: -21px;
-		top: 50%;
-		transform: translateY(-50%);
-	}
+		.label{
+			position: absolute;
+			top: 30px;
+			right: -50px;
+		}
 
-	.sale{
-		position: absolute;
-		left: 36px;
-		z-index: 20;
-		top: 50%;
-		transform: translateY(-50%);
-		margin-top: -145px;
+		.sale{
+			top: -4px;
+			left: 40px;
+			right: auto;
+		}
 	}
 
 	.counter{
+		margin-bottom: 30px;
+	}
+}
+
+
+
+
+
+
+
+.s-mac{
+	.container{
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}
+
+	&__top{
+		text-align: center;
+	}
+
+	&__content{
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+
+	.title{
+		font-size: 36px;
+	}
+
+	.name{
+		max-width: 100%;
+		font-size: 44px;
+		margin-bottom: 20px;
+	}
+}
+
+
+
+
+.s-delivery{
+	background-color: #fbfbfb;
+	text-align: center;
+	.container{
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+	.title{
+		font-size: 32px;
+    color: #e59231;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    
+	}
+
+	.name{
+		max-width: 100%;
+		text-transform: uppercase;
+		font-size: 48px;
+		color: #00529e;
+		margin-bottom: 5px;
+	}
+
+	&__info{
+		text-transform: uppercase;
+		font-size: 18px;
+		color: #333333;
+		margin-bottom: 15px;
+	}
+
+	&__content{
 		margin-bottom: 20px;
 	}
 
-
-	.price{
-		&__grid{
-			display: block;
-		}
-		&__part{
-			display: block;
-			&:first-of-type{
-				width: 52%;
-				padding-bottom: 10px;
-			}
-			&:last-of-type{
-				
-			}
+	&__part{
+		margin-bottom: 20px;
+		&:last-of-type{
+			margin-bottom: 0;
 		}
 	}
-
-	.form__title{
-		font-size: 18px;
-	}
-
-	.button{
-		font-size: 16px;
-		&:hover{
-			transform: none;
-		}
-	}
-
-	.form__inner{
-		padding: 20px 5px 15px;
-	}
-
-	.price{
-		padding-left: 9px;
-	}
-
-	.field__part{
-		padding: 8px 10px 8px 12px;
-	}
-
-	.field__info .field__row{
-		font-size: 14px;
-	}
-
-
-	&__rotate{
-		@extend %grid;
-		&-part{
-			&:last-of-type{
-				display: table-caption;
-			}
-		}
-	}
-
-
 }

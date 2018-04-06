@@ -1,0 +1,19 @@
+section.s-hand
+  .container
+    .s-hand__top
+      .grid-D
+        .part-D.s-hand__part
+          .name.color-base.only-desktop DENTA #[span.name__bottom SEAL]
+        .part-D.s-hand__part
+          h2.title Минеральное восстановление ваших зубов
+    .s-hand__content
+      .cover
+        p.text Основное вещество #[span.color-base.bold Denta&nbsp;Seal], которое и укрепляет зубы - гидроксиапатит. Это компонент зубной эмали природного происхождения. 
+        p.text Уже при первой чистке он начинает #[span.color-base.bold восстанавливать эмаль], делая зубы #[span.color-base.bold здоровыми], а улыбку #[span.color-base.bold привлекательной].
+      .hand.only-desktop
+      picture.prod
+        <!--[if IE 9]><video style="display: none;"><![endif]-->
+        source.prod__img(srcset!='img/prod.png' media!='(max-width: 991px)')
+        source.prod__img(srcset!='img/desktop/prod.png')
+        <!--[if IE 9]></video><![endif]-->
+        img(srcset!='img/desktop/prod.png')

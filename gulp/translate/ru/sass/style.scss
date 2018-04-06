@@ -8,18 +8,22 @@
 @import 'core/_vars.scss';
 @import 'core/_base.scss';
 
+
+
 // Основные стили
 @import 'styles/mobile/_modules.scss';
 @import 'styles/mobile/_sections.scss';
 
+@import 'modules/_classes.scss';
 
 
 
-.only{
-    &-mobile{
-        display: block;
-    }
-    &-desktop{
-        display: none;
-    }
-}
+
+// .only{
+//     &-mobile{
+//         display: block;
+//     }
+//     &-desktop{
+//         display: none;
+//     }
+// }

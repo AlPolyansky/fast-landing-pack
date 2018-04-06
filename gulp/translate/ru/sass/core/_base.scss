@@ -24,10 +24,10 @@ svg{
 
 body,html{
     height: 100%;
-    font-size: 100%;
+    font-size: 18px;
     margin: 0;
     padding: 0;
-    line-height: 1;
+    line-height: 1.3;
     font-family: $fontBase;
     color: $colorDark;
 }
@@ -37,7 +37,6 @@ body,html{
 .wrapper{
     width: 100%;
     overflow: hidden;
-    line-height: 1;
 }
 
 .container{
@@ -54,32 +53,37 @@ body,html{
     background: $colorBase;
 }
 
-.t{
-    &--light{
-        font-weight: 300;
-    }
-    &--bold{
-        font-weight: 700;
-    }
-    &--italic{
-        font-style: italic;
-    }
-    &--medium{
-        font-weight: 500;
-    }
-    &--ttu{
-        text-transform: uppercase;
-    }
-    &--ttl{
-        text-transform: lowercase;
-    }
-    &--imp{
-        color: $colorBase;
-    }
-    &--ex{
-        color: $colorExtra;
-    }
-    &--block{
-        display: block;
-    }
+// .t{
+//     &--light{
+//         font-weight: 300;
+//     }
+//     &--bold{
+//         font-weight: 700;
+//     }
+//     &--italic{
+//         font-style: italic;
+//     }
+//     &--medium{
+//         font-weight: 500;
+//     }
+//     &--ttu{
+//         text-transform: uppercase;
+//     }
+//     &--ttl{
+//         text-transform: lowercase;
+//     }
+//     &--imp{
+//         color: $colorBase;
+//     }
+//     &--ex{
+//         color: $colorExtra;
+//     }
+//     &--block{
+//         display: block;
+//     }
+// }
+
+
+.color-imp{
+    color: #44cafb;
 }

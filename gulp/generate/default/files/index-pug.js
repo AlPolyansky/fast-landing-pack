@@ -6,7 +6,8 @@ let content =
 block variables
   - pageTitle = 'Site Name'
 block content
-  include ../sections/_header`;
+  include ../sections/_header
+  include ../sections/_modules`;
 
 return content;
 }

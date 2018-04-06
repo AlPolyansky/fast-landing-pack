@@ -21,6 +21,7 @@ module.exports = function (){
     template = {path: ''},
     pagesPug = {path: ''},
     headerPug = {path: ''},
+    modulesPug = {path: ''},
     mixinsPug = {path: ''},
     styleFile = {path: ''},
     mediaFile = {path: ''},
@@ -49,8 +50,37 @@ module.exports = function (){
       pagesPug = {path: `./${src.folder}/${src.pugRoot}/${src.pug}/index.pug`, content: pugIndex};
       headerPug = {path: `./${src.folder}/${src.pugRoot}/sections/_header.pug`, content: 
         `header.header
-          .container
-            h1 Привет! Я готов к верстке!`
+          .container`
+      };
+      modulesPug = {path: `./${src.folder}/${src.pugRoot}/sections/_modules.pug`, content: 
+        `style.
+  body{
+    background: pink;
+  }
+
+  .row{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid red;
+    border-bottom: 1px solid red;
+  }
+
+  .center{
+    text-align: center;
+  }
+
+  .modules{
+    margin-top: 50px;
+  }
+
+
+section.modules
+  .row
+    .container
+      h1 Привет! Я готов к верстке12123!
+`
       };
       mixinsPug = {path: `./${src.folder}/${src.pugRoot}/core/_mixins.pug`, content: pugMixins};
     }else{
@@ -130,6 +160,7 @@ module.exports = function (){
     template,
     pagesPug,
     headerPug,
+    modulesPug,
     mixinsPug,
     // - scss
     styleFile,

@@ -12,6 +12,8 @@
 *.vi
 *~
 
+src
+
 # OS or Editor folders
 *.sublime-grunt.cache
 *.sublime-project
@@ -40,3 +42,5 @@ dist
 old
 sftp-config.json
 ftp.json
+video
+ignore

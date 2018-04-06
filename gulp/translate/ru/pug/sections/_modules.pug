@@ -1,335 +1,242 @@
 style.
   body{
-  	background-color: #fff;
+  	background: #eee;
   }
-  
   .row{
   	border-top: 1px solid red;
   	border-bottom: 1px solid red;
-  	padding-top: 20px;
-  	padding-bottom: 20px;
-  	margin-top: 20px;
-  	margin-bottom: 20px;
-  }
-  
-  .right{
-  	text-align: right;
-  }
-  
-  .left{
-  	text-align: left;
-  }
-  
-  .center{
-  	text-align: center;
-  }
-  
-  .dark{
-  	background-color: #b4d6e3;
-  }
-  
-  .red{
-  	color: red;
+  	padding: 10px 0;
+  	margin: 10px 0;
   }
   
   
-.container
-  //- first
-  .row
-    .first
-      .first__part
-        h2.first__title(data-xd!='FIhETMm-6') Средство
-      .first__part
-        .first__num
-          span.first__num-text(data-xd!='GWzzhyS-9') №1
-  .row
-    p.topinfo(data-xd!='pXrKVix-11') Для азиатской, сухой и склонной к пигментации кожи
-  .row.right
-    ul.label
-      li.label__item.label--1
-      li.label__item.label--2
-      li.label__item.label--3
-  .row
-    h1.toptitle
-      span.toptitle__top(data-xd!='ANrpDOB-19') Micellar 
-      span.toptitle__bottom(data-xd!='PVlEbij-20') Water
-  .row
-    .steps
-      ul.steps__grid
-        li.steps__part
-          p.text(data-xd!='NjkBpkC-25') Превосходная кожа в
-        li.steps__part
-          .steps__num(data-xd!='dnmUiJi-27') 4 шага
-  .row
-    .sale
-      .sale__inner
-        p.sale__num(data-xd!='DbAFLvr-31') 50%
-        p.sale__text(data-xd!='OrjyTcj-32') OFF
-  .row
+  
+//- Name
+.row
+  .container
+    .name(data-xd!='UhxIBcN-4') DENTA SEAL
+//- Info
+.row
+  .container
+    .info(data-xd!='dAWIBsw-7') зубная паста с эффектом пломбирования
+//- Info
+.row
+  .container
     .price
-      .price__grid
-        li.price__part.price__part-old
-          p.price__text(data-xd!='bfMYNyK-37') Старая цена
-          del.price__old(data-xd!='ZWAYHxv-38') {{ old_price }}{{ currency }}
-        li.price__part.price__part-new
-          .price__angle
-            .price__angle-inner
-              p.price__info
-                span.price__info-text(data-xd!='GDheRuK-43') Новая цена
-              p.price__num
-                span.price__num-text.price__new(data-xd!='jvthkNH-45') {{ price }}{{ currency }}
-  .row
-    .button__wrap
+      .grid-D.price__top
+        .part-D
+          .price__info.bold(data-xd!='ZqgvJiY-13') Сегодня акция:
+        .part-D
+          del.price__item.price__old(data-xd!='TDGRNJM-15') {{ price__old }} #[span.price__cur {{ currency}}]
+      p.price__item.price__new.bold(data-xd!='vZgbtEV-17') {{ price}} #[span.price__cur {{ currency}}]
+//- button
+.row
+  .container
+    .center-t
       .button.toform
-        button.button__text(data-xd!='nluBuHt-49') Заказать сейчас
-  .row
-    ul.skills
-      li.skills__item
-        .skills__part
-          i.ico.i-mark
-        .skills__part(data-xd!='otJLpHf-55') Очищение
-      li.skills__item
-        .skills__part
-          i.ico.i-mark
-        .skills__part(data-xd!='XcndSrR-59') Отбеливание
-      li.skills__item
-        .skills__part
-          i.ico.i-mark
-        .skills__part(data-xd!='gGoUGMh-63') Увлажнение
-      li.skills__item
-        .skills__part
-          i.ico.i-mark
-        .skills__part(data-xd!='MOjWYJF-67') Защита
-  .row
+        button.button__text(data-xd!='MXluQdt-23') Заказать сейчас
+//- skills desk
+.row
+  .container
+    .skills
+      ul.skills__list
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-1
+            .part
+              p.text.bold.color-base(data-xd!='YzEBwCx-33') Устраняет #[span.regular-D начальные кариесные] дефекты
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-2
+            .part
+              p.text.bold.color-base(data-xd!='sgvancF-40') Пломбирует микротрещины #[span.regular-D и микропоры на зубах]
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-3
+            .part
+              p.text.bold.color-base(data-xd!='MWalgsp-47') Возвращает белизну, #[span.regular-D снижает чувствительность эмали]
+//- skills desk
+.row
+  .container
+    .skills.skills--desk.only-desktop
+      ul.skills__list
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-4
+            .part
+              p.text(data-xd!='nmJGQzy-58') Оформляете заявку на нашем сайте
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-5
+            .part
+              p.text(data-xd!='gFXRIWm-64') Наш менеджер звонит вам
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-6
+            .part
+              p.text(data-xd!='tBXqoyc-70') Доставка до двери
+        li.skills__item
+          .grid
+            .part
+              i.ico.ico-7
+            .part
+              p.text(data-xd!='OycfWCA-76') Оплата после получения
+.row
+  .container
+    .rang.only-desktop
+      .rang__title(data-xd!='InWAaMr-80') Рейтинг товара
+      ul.rang__list
+        li.rang__item
+          i.ico.ico-star
+        li.rang__item
+          i.ico.ico-star
+        li.rang__item
+          i.ico.ico-star
+        li.rang__item
+          i.ico.ico-star
+        li.rang__item
+          i.ico.ico-star
+//- .row
+//- 	.container
+//- 		.sale
+//- 			.sale__inner
+//- 				p.text -50%
+.row
+  .container
+    nav.menu.ttu.bold.color-base.only-desktop
+      .menu__inner
+        .menu__part
+          a.text(href!="" data-xd!='kAqSMdJ-97') Аптека
+        .menu__part
+          a.text(href!="" data-xd!='IDJyFzl-99') Продукт
+        .menu__part
+          a.text(href!="" data-xd!='jPxGalq-101') Описание
+        .menu__part
+          a.text(href!="" data-xd!='pdVugLi-103') Отзывы
+.row
+  .container
     .prod
       //removeIf(desktop)
-      .only-mobile
-        img.prod__img(src!="img/prod.png" alt!="")
+      img.prod__img.only-mobile(src!="img/prod.png" alt!="")
       //endRemoveIf(desktop)
       //removeIf(mobile)
-      .only-desktop
-        img.prod__img(src!="img/desktop/prod.png" alt!="")
+      img.prod__img.only-desktop(src!="img/desktop/prod.png" alt!="")
       //endRemoveIf(mobile)
-  .row
+.row
+  .container
+    .prod
+      .sale
+        .sale__inner
+          p.text(data-xd!='gKfPyPm-114') -50%
+      //removeIf(desktop)
+      img.prod__img.only-mobile(src!="img/prod.png" alt!="")
+      //endRemoveIf(desktop)
+      //removeIf(mobile)
+      img.prod__img.only-desktop(src!="img/desktop/prod.png" alt!="")
+      //endRemoveIf(mobile)
+.row
+  .container
+    .num
+      p.text(data-xd!='ZurNZTs-120') 1
+.row
+  .container
+    .cover
+      p.text(data-xd!='oRXsAyH-124') Основа восстанавливающей формулы #[span.bold.ttu.color-base DENTA&nbsp;SEAL] - гидроксиапатит. Его частицы пломбируют поры и фиссуры, образующиеся на поверхности эмали.
+      p.text(data-xd!='cHACIuE-126') В результате #[span.bold.color-base эмаль становится белоснежной и более устойчивой] к воздействию бактерий зубного налета.
+.row
+  .container
+    .hand.only-desktop
+.row
+  .container
+    .arrow.only-desktop
+      +angle('left')
+      .arrow__cover
+        .arrow__inner
+          p.text(data-xd!='imiLWCs-136') DENTA SEAL
+.row
+  .container
+    .devider
+      .round
+        i.ico.ico-8
+.row
+  .container
+    .doc
+      h2.title.color-imp(data-xd!='NwbwcDp-145') ЧТО ГОВОРЯТ О #[span.dis-block.color-base DENTA&nbsp;SEAL] СПЕЦИАЛИСТЫ?
+      .doc__inner.dis-table-M
+        .doc__content
+          p.text.only-desktop(data-xd!='VqEaEJx-149') Многие зубные пасты не способны защитить от кариеса - они только помогают вычищать остатки пищи из зубов, создавая хорошую пену. Для полноценного ухода этого недостаточно.
+          p.text(data-xd!='ixuTdhP-150') #[span.ttu.color-base.bold DENTA&nbsp;SEAL] - прорыв в области домашнего ухода за ротовой полостью. Благодаря гидроксиапатиту паста уже на этапе чистки проникает в эмаль и #[span.color-imp заполняет все трещины, восстанавливая зубы и восполняя недостаток кальция и фосфата.]
+        .doc__user.dis-table-caption-M
+          .doc__photo.only-mobile
+          p.text(data-xd!='BRgmVxM-155') #[span.bold-D.italic-D доктор стоматологического центра] Ирэн Муник
+.row
+  .container
     .form__wrap
       form#toform.form(method!='POST' action!='#')
-        .form__title(data-xd!='IqxFmyO-77') Оформление заказа
+        .form__title.bold(data-xd!='hiTBKPH-161') Оформление заказа
         .form__inner
           .form__field-wrap
             .field
               .field__select-wrap
                 .field__arrow
-                select#country_code_selector.field__select.field__part(name!='country_code' data-xd!='EWZGxTm-83')
+                select#country_code_selector.field__select.field__part(name!='country_code' data-xd!='YJjPuEP-167')
                   option(value!='RU') Россия
-            .field
+            .field(data-xd!='jvKJOaV-170')
               input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
-            .field
+            .field(data-xd!='wcnSXPa-172')
               input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
+            .price
+              .grid.price__top
+                .part
+                  .price__info.bold(data-xd!='xSBRqhL-176') Сегодня акция:
+                .part
+                  del.price__item.price__old(data-xd!='YNPzFEh-178') {{ price__old }} #[span.price__cur {{ currency}}]
+              p.price__item.price__new.bold(data-xd!='btVzlhz-180') {{ price}} #[span.price__cur {{ currency}}]
             .field.field__info
               .field__row
-                .field__text.field__label(data-xd!='PwLaqHl-91') Доставка:
-                .field__number.field__label(data-xd!='KMKzfam-92') {{ shipment_price }} {{ currency }}
+                .field__text.field__label(data-xd!='vFHXYjA-184') Доставка:
+                .field__number.field__label(data-xd!='nrQxaoA-185') {{ shipment_price }} {{ currency }}
               .field__row
-                .field__text.field__label(data-xd!='TFcVJzC-94') Итого:
-                .field__number.field__label(data-xd!='YGvsbiX-95') {{ total_price|int }} {{ currency }}
-          .button
-            button.button__text.js_submit(data-xd!='mVbVtks-97')  
+                .field__text.field__label(data-xd!='YjnQTwm-187') Итого:
+                .field__number.field__label(data-xd!='TJedtgD-188') {{ total_price|int }} {{ currency }}
+          .button.button--border
+            button.button__text.js_submit(data-xd!='bNZRokS-190')  
               | Заказать сейчас
-  .row
-    .warn.only-desktop
-      p.text(data-xd!='SXMocvG-100') Внимание! Акция до конца дня!
-  .row
-    h2.title
-      span.title__text(data-xd!='wHaNOAD-103') Micellar 
-      span.title__text(data-xd!='mDKNrkt-104') waterf
-      .title__info(data-xd!='iENkeUt-105') которые уже попробовали
-  .row.dark
-    .book
-      ul.book__grid
-        li.book__part
-          p.text.book__toptext(data-xd!='fQrAWuT-110') Открытие революционной молекулы мицеллы - основы Micellar water, стало прорывом современной косметологии.
-          .magnet
-            h4.magnet__title(data-xd!='QemFSIV-112') Эти микрочастицы работают как #[b.t--imp магнит]
-            p.magnet__text.text(data-xd!='NGSKmjL-114') вытягивают из кожи загрязнения и удерживают их в себе.
-        li.book__part
-          .micel
-            .micel__img
-            .micel__info
-              span.micel__text(data-xd!='Lvmokiz-119') Мицеллы
-              span.micel__text(data-xd!='HndGpop-120') Загрязнения
-          p.text(data-xd!='lhTHLIj-121') #[span.t--imp Мицеллы] очищают кожу  не только от косметики, но и от излишков себума, токсинов и свободных радикалов.
-  .row
-    .band.band--blue
-      .band__inner
-        p.text(data-xd!='tjspJcG-126') Киви-антиоксидант
-  .row
-    .ball
-      .ball__inner
-  .row
-    ul.list.list--disk
-      li.list__item
-        .list__part
-          span.list__ball
-        .list__part  
-          p.text.text--dark(data-xd!='ljqrKyA-136') Вытяжка из нерафинированного #[span.t--imp масла арганы активизирует выработку протеина.]
-      li.list__item
-        .list__part
-          span.list__ball
-        .list__part  
-          p.text.text--dark(data-xd!='ioqMkDP-142') Высокий уровень белка в коже позволяет не образовываться морщинам и устраняет пигментные несовершенства на уровне дермы.
-  .row
-    ul.consists
-      li.consist.consist--yellow
-        .band
-          .band__inner
-            p.text(data-xd!='QJHRYJK-148') Свежесть и молодость
-        ul.list.list--disk
-          li.list__item
-            .list__part
-              span.list__ball
-            .list__part  
-              p.text.text--dark(data-xd!='AfoeWai-154') Вытяжка из нерафинированного #[span.t--imp.t--bold масла арганы активизирует выработку протеина.]
-          li.list__item
-            .list__part
-              span.list__ball
-            .list__part  
-              p.text.text--dark(data-xd!='APSwfhe-160') Высокий уровень белка в коже позволяет не образовываться морщинам и устраняет пигментные несовершенства на уровне дермы.
-      li.consist.consist--green
-        .band
-          .band__inner
-            p.text(data-xd!='RrQmbFK-164') Киви-антиоксидант
-        ul.list.list--disk
-          li.list__item
-            .list__part
-              span.list__ball
-            .list__part  
-              p.text.text--dark(data-xd!='bqOWuHH-170') #[span.t--imp.t--bold Вытяжки из киви ускоряют  процесс деления и созревания кератиноцитов] в подкожном жировом слое.
-          li.list__item
-            .list__part
-              span.list__ball
-            .list__part  
-              p.text.text--dark(data-xd!='MFDZXKV-176') Эти клетки составляют основу кожи и отвечают за уровень выработки здорового пигмента.
-          li.list__item
-            .list__part
-              span.list__ball
-            .list__part  
-              p.text.text--dark(data-xd!='XbPxgHD-181') Результат - свежий и здоровый тон лица.
-      li.consist.consist--blue
-        .band
-          .band__inner
-            p.text(data-xd!='AAGaEhI-185') Увлажнение
-        ul.list.list--disk
-          li.list__item
-            .list__part
-              span.list__ball
-            .list__part  
-              p.text.text--dark(data-xd!='KnBCLTp-191') #[span.t--imp.t--bold Экстракт оливы] питает кожу  и   сохраняет необходимый уровень влаги в тканях.
-          li.list__item
-            .list__part
-              span.list__ball
-            .list__part  
-              p.text.text--dark(data-xd!='nCgoZLZ-197') Вытяжка из косточки оливы создает невесомую пленку-барьер, защищая кожу от негативного влияния внешней среды.
-  .row
-    .gmo
-      .gmo__inner
-        h4.title(data-xd!='avELpnn-201') ВАЖНО
-        p.text.t--light.t--ttu(data-xd!='YcESEjb-202') Гиполаллергенно и нетоксично
-  .row
-    .calendar
-      .calendar__skew
-      .calendar__inner
-        p.text(data-xd!='VJAPfAs-207') Минимальная продолжительность использования #[span.t--bold.t--imp 4 недели]
-  .row
-    .card
-      ul.card__grid
-        li.card__part
-          .gmo
-            .gmo__inner
-              h4.title(data-xd!='GzOomxl-215') ВАЖНО
-              p.text.t--light.t--ttu(data-xd!='xhcOYcz-216') Гиполаллергенно и нетоксично
-        li.card__part
-          .calendar
-            .calendar__skew
-            .calendar__inner
-              p.text(data-xd!='FjMJnzD-221') Минимальная продолжительность использования #[span.t--bold.t--imp 4 недели]
-  .row
-    .num.num--bg
-      .num__inner
-        .num__border
-        p.text(data-xd!='ZzroPDb-227') 1
-  .row
-    .box.box--red.only-desktop
-      span.box__inner(data-xd!='iUhBUWY-230') ДО
-  .row
-    .doc
-      .doc__inner
-        .doc__content
-          h4.doc__name(data-xd!='LJzzout-235') Иванов И. П.
-          h5.doc__info(data-xd!='PLgrYgu-236') Врач - дерматолог косметологического центра
-  .row
-    ul.list.list--disk.list--icons
-      li.list__item.only-desktop
-        .list__part
-          span.list__ball
-          i.ico.i-cos
-        .list__part  
-          p.text.text--dark(data-xd!='WcxZAXL-244') Ежедневно  каждая девушка использует большое количество уходовой и декоративной косметики. Кремы, тоники, лосьоны и сыворотки - десятки различных флаконов и баночек все равно не приносят желаемого эффекта. Кожа все так же стянута и жирный блеск никуда не уходит.
-      li.list__item
-        .list__part
-          span.list__ball
-          i.ico.i-spray
-        .list__part
-          h5.list__title #[b.t--bold(data-xd!='wiagHVd-251') #[span.t--imp Micellar&nbsp;Water] с успехом заменит многочисленные и малоэффективные средства.]
-          p.text.text--dark(data-xd!='AhLHzwZ-253') Эта мицеллярная вода уникальна - ее можно смело считать уходовым средством номер один. Micellar&nbsp;Water не просто очищает кожу от загрязнений, она бережно ухаживает за ней и защищает.
-      li.list__item
-        .list__part
-          span.list__ball
-          i.ico.i-head
-        .list__part
-          p.text.text--dark(data-xd!='WFJxxya-259') #[b.t--bold #[span.t--imp Мои клиентки] отметили] значительное улучшение состояния лица: тонизирование, увлажненность, свежесть и легкий лифтинг-эффект. А ровный тон кожи позволяет меньше использовать декоративную косметику.
-  .row
-    .shtamp.only-desktop
-      .shtamp__inner
-        p.text(data-xd!='cjEgLzN-265') Одобрено
-  .row
-    .natural.only-desktop
-      .natural__inner
-        span.natural__num(data-xd!='KDORRYD-269') 100%
-        span.natural__text(data-xd!='ewBCoFj-270') натуральные компоненты
-  .row.center.dark
-    .frame
+.row
+  .container
+    .label
+      .label__inner
+        p.text.label__img(data-xd!='zWJSjCq-195') Зубы
+        p.text(data-xd!='RqUIFKq-196') в порядке
+.row
+  .container
+    .counter.center-t-M.color-base.bold
+      p.text(data-xd!='szhbmAb-200') Внимание!
+      p.text(data-xd!='atCrEpq-201') На складе сталось #[span.counter__num 9 штук!]
+.row
+  .container
+    .block.block--orange
+      p.text(data-xd!='HsUqQvO-206') до
+    .block.block--blue
+      p.text(data-xd!='IYpqkgf-208') после
+    .block.block--gr
+      p.text(data-xd!='iEgqCef-210') Ольга
+    .block.block--line
+.row
+  .container
+    .frame.only-desktop
       .frame__inner
-        i.frame__img.photo.photo-1
-  .row.dark
-    .user
-      .frame
-        .frame__inner
-          i.frame__img.photo.photo-5
-      .box
-        .box__inner
-          span.user__name(data-xd!='DxxLPgn-282') ИРЭН 
-          span.user__age(data-xd!='yXWhEOA-283') 37 лет
-  .row.center
-    .timer
-      h5.timer__title
-        p.text(data-xd!='RssyjxF-287') До конца акции осталось:
-      ul.timer__list
-        li.timer__item.timer__hours
-          span.timer__num.timer__first
-          span.timer__num.timer__last
-          p.timer__info(data-xd!='hEyTWpQ-292') часов
-        li.timer__item.timer__min
-          span.timer__num.timer__first
-          span.timer__num.timer__last
-          p.timer__info(data-xd!='HAlfoRm-296') минут
-        li.timer__item.timer__sec
-          span.timer__num.timer__first
-          span.timer__num.timer__last
-          p.timer__info(data-xd!='yRifJPk-300') секунд
-  .row
-    .counter
-      ul.counter__grid
-        li.counter__part  
-          span.counter__num(data-xd!='dXvIuDq-305') 40
-        li.counter__part
-          p.text(data-xd!='nRcelmR-307') упаковок осталось
+        span.frame__num(data-xd!='NwukcWr-216') 1
+        i.ico.ico-9
+      .frame__arrow
+.row
+  .container
+    .logo.only-desktop
+      .logo__inner
+        p.text(data-xd!='oHGLOAH-223') Для здоровья зубов

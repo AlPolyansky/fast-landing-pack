@@ -1,5 +1,7 @@
 module.exports = params => {
-
+    mobileFirst = params.mobileFirst,
+    mediaWidth = mobileFirst ? 'min' : 'max',
+    mediaFix = mobileFirst ? '' : '- 1px';
 
 	let content = 
 `// Классы стилизации
@@ -210,7 +212,7 @@ module.exports = params => {
 
 
 
-@media only screen and (min-width: $notebook ){
+@media only screen and (${mediaWidth}-width: $notebook ${mediaFix}){
 
     // text style
 

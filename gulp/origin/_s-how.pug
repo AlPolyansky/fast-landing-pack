@@ -1,0 +1,41 @@
+//removeIf(mobile)
+section#how.s-how.only-desktop
+  .container
+    .s-how__inner
+      .s-how__top
+        h2.title.ttu Как заказать 
+        h3.name.ttu.color-base DENTA SEAL
+      .grid.center-t.s-how__grid
+        .part.s-how__part
+          .frame
+            .frame__inner
+              span.frame__num 1
+              i.ico.ico-9
+            .frame__arrow
+          p.text #[span.bold.color-base Заполните форму] заказа
+        .part.s-how__part
+          .frame
+            .frame__inner
+              span.frame__num 2
+              i.ico.ico-10
+            .frame__arrow
+          p.text Примите #[span.bold.color-base звонок от] нашего #[span.bold.color-base оператора]
+        .part.s-how__part
+          .frame
+            .frame__inner
+              span.frame__num 3
+              i.ico.ico-11
+            .frame__arrow
+          p.text Вы #[span.bold.color-base получите] посылку #[span.bold.color-base по почте]
+        .part.s-how__part
+          .frame
+            .frame__inner
+              span.frame__num 4
+              i.ico.ico-12
+          p.text Производите #[span.bold.color-base оплату по факту] получения
+    picture.prod
+      <!--[if IE 9]><video style="display: none;"><![endif]-->
+      source.prod__img(srcset!='img/desktop/prod.png' media!='(min-width: 992px)')
+      <!--[if IE 9]></video><![endif]-->
+      img
+//endRemoveIf(mobile)

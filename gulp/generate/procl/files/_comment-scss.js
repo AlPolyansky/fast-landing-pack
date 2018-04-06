@@ -1,5 +1,8 @@
 module.exports = params => {
-
+const 
+		mobileFirst = params.mobileFirst,
+        mediaWidth = mobileFirst ? 'min' : 'max',
+        mediaFix = mobileFirst ? '' : '- 1px';
 
 	let content = 
 `.comment{
@@ -21,7 +24,7 @@ module.exports = params => {
 	}
 }
 
-@media only screen and (min-width: $notebook ){
+@media only screen and (${mediaWidth}-width: $notebook ${mediaFix}){
 	.comment{
 		position: relative;
 		padding-left: 80px;

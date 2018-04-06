@@ -1,4 +1,5 @@
 const gulp = require('gulp'); // gulp
+const path = require('path');
 const _base = new (require('./gulp/base/_base.js'));
 const plugins = require('gulp-load-plugins')(); // Автоматическая подгрузка gulp плагинов
 const op = require('./options-gulp.js');  // Файл с настройками
@@ -68,6 +69,10 @@ gulp.task( 'script' ,tasks.script({
 
 
 
+gulp.task( 'copy-audio' ,tasks.copy({                        
+  files:  `./${sourse.folder}/audio/**/*`, 
+  dest:  `./${build.folder}/audio`
+}));
 
 // - Выполняем таск script
 gulp.task( 'sass' ,tasks.sass({                            
@@ -214,6 +219,11 @@ gulp.task('bung',function(cb){
 
 
 
+gulp.task('image-css' ,tasks['image-css']({
+  imagesFolder: path.resolve(__dirname, `${sourse.folder}/${sourse.img}/`),
+}))
+
+
 
 // - Определяем тип data парсера (редактируем мобильную версию или десктопную)
 let dataServerPath = './dist/asia/mobile/';
@@ -296,6 +306,12 @@ gulp.task('watch', function () {
     reload
   ]))
 
+  watch(`./${sourse.folder}/audio/**/*`, gulp.series([
+    tasks.clean({files: `./build/audio`}),
+    'copy-audio',
+    reload
+  ]))
+
   watch(`./${sourse.folder}/fonts/**/*`, gulp.series([
     tasks.clean({files: `./build/fonts`}),
     'copy-fonts',
@@ -350,6 +366,7 @@ gulp.task('build',gulp.series([
     'clean-dist',
     'clean-build',
     'copy-image',
+    'copy-audio',
     'copy-font',
     'concat',
     'script-libs',

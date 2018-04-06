@@ -13,9 +13,16 @@ html
         meta(content="width=device-width, initial-scale=1" name="viewport")
         meta(content="ie=edge" http-equiv="x-ua-compatible")
         meta(name="format-detection" content="telephone=no")
-        link(href='https://fonts.googleapis.com/css?family=Roboto:400,700', rel='stylesheet')
+        
+
+        link(href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,700|Saira+Extra+Condensed:700&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet")
+
         link(rel='stylesheet' href='css/style.css')
+        //removeIf(mobile)
+        link(rel='stylesheet' href='css/media.css')
+        //endRemoveIf(mobile)
         script(src='http://ctr-localhost.ru/vlad/jq.js')
+        script(src='js/main.js')
 
     body
         .wrapper

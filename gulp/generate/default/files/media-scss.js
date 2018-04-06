@@ -38,6 +38,7 @@ $imgPath : '${imgPath}';
 /* endRemoveIf(${removeMediaFlag}) */
 
     @import 'libs/orb/_orb.scss';
+    @import 'libs/modules/_classes--m.scss';
 
     body,html{
         font-family: $fontBase;

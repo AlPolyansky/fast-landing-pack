@@ -1,106 +1,111 @@
 header.header
-  .header__top
-    .container.header__top-container
-      ul.header__top-grid
-        li.header__top-part
-          .first
-            .first__part
-              h2.first__title(data-xd!='CoaMYze-9') Средство
-            .first__part
-              .first__num
-                span.first__num-text(data-xd!='CAMZdax-12') №1
-        li.header__top-part
-          .header__info
-            p.text(data-xd!='gUyBGRN-15') Для азиатской, сухой и склонной к пигментации #[span.header__info-text кожи]
-      ul.label
-        li.label__item.label--1
-        li.label__item.label--2
-        li.label__item.label--3
-  .header__content
-    .container.header__content-container
-      .header__content-grid
-        .header__content-part
-          h1.toptitle
-            span.toptitle__top(data-xd!='vRTFkIp-26') Micellar 
-            span.toptitle__bottom(data-xd!='UBWtHdy-27') Water
-          .steps
-            ul.steps__grid
-              li.steps__part
-                p.text(data-xd!='ROqWWfw-31') Превосходная кожа в
-              li.steps__part
-                .steps__num(data-xd!='LuXVBVD-33') 4 шага
-          ul.skills
-            li.skills__item
-              .skills__part
-                i.ico.i-mark
-              .skills__part(data-xd!='oqNKEtL-38') Очищение
-            li.skills__item
-              .skills__part
-                i.ico.i-mark
-              .skills__part(data-xd!='eQnqpYt-42') Отбеливание
-            li.skills__item
-              .skills__part
-                i.ico.i-mark
-              .skills__part(data-xd!='nmrmSFz-46') Увлажнение
-            li.skills__item
-              .skills__part
-                i.ico.i-mark
-              .skills__part.header__skill--last(data-xd!='ujcsGTw-50') Защита
-          .sale
-            .sale__inner
-              p.sale__num(data-xd!='FlZRbtj-53') 50%
-              p.sale__text(data-xd!='xIDleaZ-54') OFF
-          .prod
-            //removeIf(desktop)
-            .only-mobile
-              img.prod__img(src!="img/prod.png" alt!="")
-            //endRemoveIf(desktop)
-            //removeIf(mobile)
-            .only-desktop
-              img.prod__img(src!="img/desktop/prod.png" alt!="")
-            //endRemoveIf(mobile)
-        .header__content-part
-          .price
-            .price__grid
-              li.price__part.price__part-old
-                p.price__text(data-xd!='tacOPYu-64') Старая цена
-                del.price__old(data-xd!='xzSSLHk-65') {{ old_price }}{{ currency }}
-              li.price__part.price__part-new
-                .price__angle
-                  .price__angle-inner
-                    p.price__info
-                      span.price__info-text(data-xd!='yuCRyox-70') Новая цена
-                    p.price__num
-                      span.price__num-text.price__new(data-xd!='OYLrNsr-72') {{ price }}{{ currency }}
-          .button__wrap.only-mobile
+  .container
+    .prod
+      .sale
+        .sale__inner
+          p.text(data-xd!='LSHGTSz-7') -50%
+      //removeIf(desktop)
+      img.prod__img.only-mobile(src!="img/prod.png" alt!="")
+      //endRemoveIf(desktop)
+      //removeIf(mobile)
+      img.prod__img.only-desktop(src!="img/desktop/prod.png" alt!="")
+      //endRemoveIf(mobile)
+    .header__top.only-desktop
+      .grid-D.header__top-grid
+        .part-D.header__top-part
+          .logo.only-desktop
+            .logo__inner
+              p.text(data-xd!='EBJzMIk-15') Для здоровья зубов
+        .part-D.header__top-part
+          nav.menu.ttu.bold.color-base.only-desktop
+            .menu__inner
+              .menu__part
+                a.text(href!="#prof" data-xd!='eBjwZeX-20') Как работает
+              .menu__part
+                a.text(href!="#doc" data-xd!='fcqyeIB-22') Мнение эксперта
+              .menu__part
+                a.text(href!="#reviews" data-xd!='dLIxoVZ-24') Отзывы покупателей
+              .menu__part
+                a.text(href!="#sform" data-xd!='gOEWtKJ-26') Заказать 
+      .header__rang
+        .rang
+          .rang__title(data-xd!='QyAiNso-29') Рейтинг товара
+          ul.rang__list
+            li.rang__item
+              i.ico.ico-star
+            li.rang__item
+              i.ico.ico-star
+            li.rang__item
+              i.ico.ico-star
+            li.rang__item
+              i.ico.ico-star
+            li.rang__item
+              i.ico.ico-star
+    .header__name
+      .name(data-xd!='IilrxOB-42') DENTA SEAL
+      .info(data-xd!='LQnDmUN-43') зубная паста с эффектом пломбирования
+    .grid-M.header__total-grid
+      .header__content
+        .grid-D.header__content-grid
+          .part-D.header__content-part
+            .skills.skills__simple
+              ul.skills__list
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-1
+                    .part
+                      p.text.bold.color-base(data-xd!='hEjVUAH-55') Устраняет #[span.regular-D начальные кариесные] дефекты
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-2
+                    .part
+                      p.text.bold.color-base(data-xd!='AQHauqR-62') Пломбирует микротрещины #[span.regular-D и микропоры на зубах]
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-3
+                    .part
+                      p.text.bold.color-base(data-xd!='npkiiHs-69') Возвращает белизну, #[span.regular-D снижает чувствительность эмали]
+          .only-desktop.part-D.header__content-part
+            .skills.skills--desk
+              .title.ttu.color-base(data-xd!='iCpSQZQ-73') Как заказать:
+              ul.skills__list
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-4
+                    .part
+                      p.text(data-xd!='CReRDbu-80') Оформляете заявку на нашем сайте
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-5
+                    .part
+                      p.text(data-xd!='vyzJEXx-86') Наш менеджер звонит вам
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-6
+                    .part
+                      p.text(data-xd!='ncGhBVt-92') Доставка до двери
+                li.skills__item
+                  .grid
+                    .part
+                      i.ico.ico-7
+                    .part
+                      p.text(data-xd!='VxdpGfN-98') Оплата после получения
+      .header__bottom.dis-table-caption-M
+        .grid-D.header__controll
+          .part-D.header__controll-part
+            .price
+              .grid-D.price__top
+                .part-D
+                  .price__info.bold(data-xd!='UVNXpOj-105') Сегодня акция:
+                .part-D
+                  del.price__item.price__old(data-xd!='DUhXxTA-107') {{ price__old }} #[span.price__cur {{ currency}}]
+              p.price__item.price__new.bold(data-xd!='PBTFWgH-109') {{ price}} #[span.price__cur {{ currency}}]
+          .part-D.header__controll-part
             .button.toform
-              button.button__text(data-xd!='AqqOeeA-75') Заказать сейчас
-          //removeIf(mobile)
-          .form__wrap
-            form.form.only-desktop(method!='POST' action!='#' data-xd!='form-123')
-              .form__title Оформление заказа
-              .form__inner
-                .form__field-wrap
-                  .field
-                    .field__select-wrap
-                      .field__arrow
-                      select#country_code_selector.field__select.field__part(name!='country_code')
-                        option(value!='TH') Тайланд
-                  .field
-                    input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
-                  .field
-                    input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
-                  .field.field__info
-                    .field__row
-                      .field__text.field__label Доставка:
-                      .field__number.field__label {{ shipment_price }} {{ currency }}
-                    .field__row
-                      .field__text.field__label Итого:
-                      .field__number.field__label {{ total_price|int }} {{ currency }}
-                .button
-                  button.button__text.js_submit  
-                    | Заказать сейчас
-          //endRemoveIf(mobile)
-      .warn__wrap
-        .warn.only-desktop
-          p.text(data-xd!='tqarshS-101') Внимание! Акция до конца дня!
+              button.button__text(data-xd!='gQTYFVm-113') Заказать сейчас

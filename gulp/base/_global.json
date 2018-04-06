@@ -1,14 +1,12 @@
 {
   "langs": [
-    "ru",
-    "en",
-    "th"
+    "ru"
   ],
   "arrayVersionLang": [
-    "th",
-    "th"
+    "ru",
+    "ru"
   ],
-  "currentLang": "th",
-  "beforeLang": "th",
+  "currentLang": "ru",
+  "beforeLang": null,
   "change": false
 }

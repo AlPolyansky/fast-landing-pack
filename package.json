@@ -36,6 +36,7 @@
     "gulp-watch": "^4.3.11",
     "gulp.spritesmith": "^6.3.0",
     "html-minifier": "^3.5.2",
+    "image-size": "^0.6.2",
     "isdir": "^2.0.1",
     "lodash": "^4.17.4",
     "pretty": "^2.0.0",
@@ -49,5 +50,7 @@
   },
   "author": "eclerr",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "convert-snippets-to-vscode": "^1.0.2"
+  }
 }

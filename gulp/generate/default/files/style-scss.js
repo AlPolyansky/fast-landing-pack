@@ -17,8 +17,10 @@ let content =
 @import 'core/_base.scss';
 
 // Основные стили
+@import 'libs/modules/_classes.scss';
 @import 'styles/${styleFolder}/_modules.scss';
 @import 'styles/${styleFolder}/_sections.scss';
+
 
 
 

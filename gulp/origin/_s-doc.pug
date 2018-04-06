@@ -1,19 +1,35 @@
-section.s-doc
-  .container
-    h2.title Nourishing #[span.t--block.t--ex Day Cream]
-      span.title__info ЧТО ГОВОРЯТ СПЕЦИАЛИСТЫ
-    .s-doc__inner
-      .pigment.s-doc__top
-        h3.pigment__title Пигментация
-          span.pigment__svg
-            include ../svg/_paint.pug
-        p.text серьезный косметический дефект, который часто принимает отталкивающие формы. Это наносит существенный удар по самооценке женщины.
-      .doc.s-doc__part
-        span.doc__name Акимура Нагасаки
-        p.doc__text Дерматолог косметологического центра "Здоровая кожа"
-      .s-doc__content.s-doc__part
-        p.text Чтобы обезопасить своих клиенток, я рекомендую им использовать Nourishing Day Cream как основное уходовое средство. Крем нормализует выработку меланина, что препятствует возникновению пигментации. Функция глубокого увлажнения и восстановления pH способствует регенерации кожи. Кожа обновляется и разглаживается, постепенно избавляясь от имеющихся пигментных пятен.
-    //removeIf(mobile)
-    .prod.only-desktop
-      img(src!="img/desktop/prod-2.png" alt!="")
-    //endRemoveIf(mobile)
+section.s-doc-wrap
+  .s-doc
+    .container
+      .doc
+        .doc__wrap
+          h2.title.title--line.color-imp
+            span.title__top мнение эксперта:
+            span.title__bottom профессиональное восстановление эмали у вас дома
+          .grid-M
+            .doc__inner.dis-table-M
+              .doc__content
+                p.text Со временем зубная эмаль изнашивается. Появляются трещины, эрозия, кариес, чрезмерная чувствительность. В запущенном варианте это грозит потерей зубов или дорогостоящим восстановлением.
+                p.text Чтобы не допустить этого и укрепить эмаль, я рекомендую использовать пасту #[span.ttu.color-base.bold Denta&nbsp;Seal]. Насыщенный минеральный состав пасты с  микрочастицами гидроксиапатита #[span.color-imp заполняет трещины в эмали и устраняет повреждения].
+            .doc__user.dis-table-caption-M
+              .grid-M
+                .part-M.doc__part
+                  .doc__photo.photo.photo-doc-1.only-mobile
+                .part-M.doc__part
+                  p.text.italic #[span.bold.dis-block стоматолог] Ян Лэй
+  .s-doc.s-doc--reverse
+    .container
+      .doc.doc--reverse
+        .doc__wrap
+          .grid-M
+            .doc__inner.dis-table-M
+              .doc__content
+                p.text Протитип #[span.color-base.bold.ttu Denta&nbsp;Seal] был создан на базе Московского интитута стоматологии и гигиены полости рта в 1970 году. Тогда при любых повреждениях эмали был только один выход - пломбирование. А это означало удаление нерва и умертвление зуба. Прослужить он мог уже более короткое время.
+                p.text Чтобы способствовать сохранению зубов, ученые исследовали минерал #[span.color-imp гидроксиапатит] и активно начали вводить его в стоматологическую практику. Однако тогда метод извлечения материала был довольно дорогостоящим. Сегодня, когда обнаружены более доступные методы, средство стало доступно миллионам. И это позволит сохранить зубы в хорошем состоянии до преклонного возраста.
+                p.text Для достижения наилучшего и долгосрочного  результата чистите зубы  с #[span.color-base.bold.ttu Denta&nbsp;Seal] не менее двух раз в день в течение 2-3 минут.
+            .doc__user.dis-table-caption-M
+              .grid-M.doc__grid-reverse
+                .part-M.doc__part
+                  .doc__photo.photo.photo-doc-2.only-mobile
+                .part-M.doc__part
+                  p.text.italic #[span.bold.dis-block стоматолог] Иван Федоров

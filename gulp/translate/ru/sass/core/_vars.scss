@@ -6,11 +6,12 @@ $phone: 320px;
 
 // container
 $container : 320px;
-$gutter: 15px;
+$gutter: 10px;
 
 
 // шрифт
 $fontBase: 'Roboto', sans-serif;
+$fontExtra: 'Play', sans-serif;
 
 
 // img
@@ -19,7 +20,7 @@ $imgPath : '../img';
 
 // Цвета
 
-$colorBase:  #2aaee4;
-$colorExtra: #e0a8ce;
-$colorDark: #333;
+$colorBase:  #00529e;
+$colorExtra: #e59231;
+$colorDark: #000;
 $colorLight: #fff;

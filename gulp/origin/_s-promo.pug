@@ -1,0 +1,121 @@
+header.promo
+  //- top
+  .promo__top
+    .container.promo__top-container
+      .grid-D.promo__top-grid
+        .part-D.promo__top-part
+          .logo
+            i.ico.ico--logo.logo__ico
+            .logo__inner
+              p.text.logo__name.ttu Denta&nbsp;seal
+              p.text.logo__small жидкая эмаль 
+        .part-D.promo__top-part.only-desktop
+          .flag
+            i.ico.ico-flag.flag__ico
+            .flag__inner
+              p.text Разработан советскими учеными
+              p.text.flag__bottom Теперь в продаже во Вьетнаме
+  //- middle
+  .promo__middle.container
+    .grid.promo__middle-grid
+      .part.promo__middle-part
+        h3.text.promo__title #[span.ttu.dis-block.promo__title__top Восстановление зубов] без посещения стоматолога
+      .part.promo__middle-part
+        .promo__rang
+          .rang
+            .rang__title Рейтинг товара
+            ul.rang__list
+              li.rang__item
+                i.ico.ico-star
+              li.rang__item
+                i.ico.ico-star
+              li.rang__item
+                i.ico.ico-star
+              li.rang__item
+                i.ico.ico-star
+              li.rang__item
+                i.ico.ico-star
+  //- inner
+  .promo__total
+    .container
+      .grid-D.promo__total-grid
+        .part-D.promo__total-part
+          .prod
+            .sale
+              .sale__inner
+                p.text -50%
+            picture
+              <!--[if IE 9]><video style="display: none;"><![endif]-->
+              source.prod__img(srcset!='img/prod.png' media!='(max-width: 991px)')
+              source.prod__img(srcset!='img/desktop/prod.png')
+              <!--[if IE 9]></video><![endif]-->
+              img(srcset!='img/desktop/prod.png')
+          .promo__name
+            .name.only-mobile DENTA SEAL
+            .info Зубная паста с эффектом пломбирования
+          .flag.only-mobile
+            .grid.flag__grid
+              .part.flag__part
+                .circle
+                  .circle__inner.photo.photo-flag
+              .part.flag__part
+                p.text Разработан советскими учеными
+                p.text Теперь в продаже во Вьетнаме
+          .promo__content
+            .grid-M.promo__content-grid
+              .promo__content-part
+                .skills.skills__simple
+                  ul.skills__list
+                    li.skills__item
+                      .grid
+                        .part
+                          i.ico.ico-1
+                        .part
+                          p.text.color-base #[b.bold Заполняет трещины] в эмали
+                    li.skills__item
+                      .grid
+                        .part
+                          i.ico.ico-2
+                        .part
+                          p.text.color-base #[b.bold Препятствует] образованию кариеса и #[b.bold зубного камня]
+                    li.skills__item
+                      .grid
+                        .part
+                          i.ico.ico-3
+                        .part
+                          p.text.color-base #[b.bold Отбеливает зубы]
+              .promo__content-part.dis-table-caption-M
+                .price
+                  .grid.price__top
+                    .part
+                      .price__info.bold Сегодня акция:
+                    .part
+                      del.price__item.price__old {{ price__old }} #[span.price__cur {{ currency}}]
+                  p.price__item.price__new.bold {{ price}} #[span.price__cur {{ currency}}]
+        .part-D.promo__total-part
+          .form__wrap
+            span.form__border.form__border--1
+            span.form__border.form__border--2
+            form#toform.form(method!='POST' action!='#')  
+              .form__title Оформление заказа
+              .form__inner
+                .form__field-wrap
+                  .field
+                    .field__select-wrap
+                      .field__arrow
+                      select#country_code_selector.field__select.field__part(name!='country_code')
+                        option(value!='RU') Россия
+                  .field
+                    input.field__input.field__part(type!='text' name!='name' placeholder!='Ваше имя')
+                  .field
+                    input.field__input.field__part.only_number(type!='text' name!='phone' placeholder!='Номер телефона')
+                  .field.field__info
+                    .field__row
+                      .field__text.field__label Доставка:
+                      .field__number.field__label {{ shipment_price }} {{ currency }}
+                    .field__row
+                      .field__text.field__label Итого:
+                      .field__number.field__label {{ total_price|int }} {{ currency }}
+                .button.button--border
+                  button.button__text.js_submit  
+                    | Заказать сейчас

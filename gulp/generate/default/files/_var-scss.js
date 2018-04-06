@@ -20,6 +20,7 @@ $gutter: 20px;
 
 // шрифт
 $fontBase: 'Roboto', sans-serif;
+$fontExtra: 'Roboto', sans-serif;
 
 
 // img
