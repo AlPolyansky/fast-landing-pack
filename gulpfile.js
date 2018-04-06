@@ -6,6 +6,7 @@ const op = require('./options-gulp.js');  // Файл с настройками
 const fs = require('fs');     // Управление файлами
 const watch = plugins.watch;
 const args = process.argv.slice(2);
+const run = require('gulp-run-command').default
 
 
 const sourse = op.path.sourse;                 // Объект с путями исходников
@@ -13,6 +14,8 @@ const build = op.path.build;                   // Объект с путями �
 const dist = op.path.dist;                     // Объект с путями файлов продакшена
 
 const tasks = require('./gulp/tasks-init.js');  // Подключаем таски
+
+
 
 
 
@@ -219,9 +222,6 @@ gulp.task('bung',function(cb){
 
 
 
-gulp.task('image-css' ,tasks['image-css']({
-  imagesFolder: path.resolve(__dirname, `${sourse.folder}/${sourse.img}/`),
-}))
 
 
 
@@ -259,6 +259,10 @@ gulp.task( 'data-server' ,tasks.server({
 }));
 
 
+gulp.task('image-css' ,tasks['image-css']({
+  imagesFolder: path.resolve(__dirname, `${sourse.folder}/${sourse.img}/`),
+  createFileFolder: path.resolve(__dirname, `${sourse.folder}/${sourse.sass}/core/`),
+}))
 
 
 
@@ -297,6 +301,7 @@ gulp.task('watch', function () {
     ], gulp.series([
     tasks.clean({files: `./build/img`}),
     'copy-image',
+    run('gulp image-css'),
     reload
   ]))
 
@@ -431,3 +436,22 @@ gulp.task('create', gulp.series(
 gulp.task('translate',tasks['translate']({
 
 }));
+
+
+
+
+
+
+
+
+
+
+// ----developers
+
+
+
+gulp.task('dev', function () {
+  watch(`./gulp/tasks/image-css.js`,gulp.series([
+    run('gulp image-css')
+  ]))
+});

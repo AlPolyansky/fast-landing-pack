@@ -9,24 +9,29 @@ const _base = new (require('../base/_base'))
 
 
 module.exports = function ImageCss(params) {
-	
-	
-
-	const { imagesFolder } = params
 
 
+	const { imagesFolder, createFileFolder } = params
 
-	function filterImage(imgs){
+	function filterImage(imgs, filePath){
 		let photos = [];
 		let icons = [];
 
+		
+
 		imgs.forEach( item => {
 			if(item.indexOf('ico-') + 1){
-				icons.push(item)
+				icons.push({
+					name: item,
+					path: path.resolve(filePath, item)
+				})
 			}
 
 			if(item.indexOf('photo-') + 1){
-				photos.push(item)
+				photos.push({
+					name: item,
+					path: path.resolve(filePath, item)
+				})
 			}
 		})
 		
@@ -40,43 +45,84 @@ module.exports = function ImageCss(params) {
 
 	function createPhotoStr(photos){
 
-		var output = `
-			.photo{
-				background: no-repeat center / cover;
-			`; 
+
+		let output = `.photo{background: no-repeat center / cover;`;
 
 		photos.forEach( (item,idx) => {
-
-			
-
-			output = output + `&-${idx + 1}{
-					background-image: url(#{$imgPath}/photo-${idx + 1}.jpg);
-				}
-			`
+			const itemNum = item.name.match(/\d/g).join('')
+			output = output + `	&-${itemNum}{background-image: url(#{$imgPath}/${item.name});}`
 
 		})
 
-		console.log(output)
+		return output + `}`
 
 	}
 
 
 
 	function getImageParams(path){
-		sizeOf(path, (err, img) => console.log(img))
+		return sizeOf(path)
+	}
+
+
+
+	
+	function createIconSrc(icons){
+		let output = `.ico{
+			display: inline-block;
+			font-style: normal;
+			background: no-repeat center / contain;
+		`
+
+		icons.forEach( (item,idx) => {
+
+			const params = getImageParams(item.path)
+
+			
+
+			
+
+			const itemNum = item.name.match(/\d/g).join('')
+			output = output + `	&-${itemNum}{
+				background-image: url(#{$imgPath}/${item.name});
+				width: ${params.width}px;
+				height: ${params.height}px;
+			}`
+
+		})
+
+		return output + `}`
+	}
+
+
+
+	function createCssFile(content){
+		return createFile({
+			path: path.resolve(createFileFolder, '_image.scss'),
+			replace: true,
+			content
+		})
 	}
 
 
 
 
 
+
+
 	fs.readdir(imagesFolder,  (err, item) => {
+		if(err) throw err
+
 		if(_base.fileOrFolder(item) === 'file'){
 
-			const filtered = filterImage(item)
+
+			const filtered = filterImage(item,imagesFolder)
 
 
-			createPhotoStr(filtered.photos)
+			let photosContent = createPhotoStr(filtered.photos)
+			let iconsContent = createIconSrc(filtered.icons)
+			
+			createCssFile(`${photosContent}\n\n${iconsContent}`)
 
 			//item.forEach(image => getImageParams(path.resolve(imagesFolder, image)))
 		}

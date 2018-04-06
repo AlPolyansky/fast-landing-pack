@@ -12,7 +12,7 @@
 *.vi
 *~
 
-src
+/src
 
 # OS or Editor folders
 *.sublime-grunt.cache
