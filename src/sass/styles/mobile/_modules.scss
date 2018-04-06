@@ -1,0 +1,68 @@
+.logo{
+	@extend %reset;
+	font-size: 60px;
+	color: #ececec;
+	text-transform: uppercase;
+	font-family: $fontExtra2;
+	font-weight: 700;
+	-webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(#ffffff 20%, #b8b8b8, #ececec);
+  background: -o-linear-gradient(#ffffff 20%, #b8b8b8, #ececec);
+  -webkit-background-clip: text;
+}
+
+
+.text{
+	@extend %reset;
+}
+
+
+.promo{
+	text-align: center;
+	font-size: 18px;
+	&__text{
+		font-family: $fontExtra;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+}
+
+
+
+
+
+.list{
+	@extend %reset;
+	margin-bottom: 15px;
+	display: inline-block;
+	width: 100%;
+	max-width: 360px;
+	&:last-of-type{
+		margin-bottom: 0;
+	}
+
+	&__part{
+		&:last-of-type{
+			vertical-align: middle;
+		}
+	}
+	&__item{
+		@extend %reset;
+		margin-bottom: 15px;
+		&:last-of-type{
+			margin-bottom: 0;
+		}
+	}
+
+
+	&--skills{
+		.list__part{
+			&:first-of-type{
+				width: 40px;
+			}
+			&:last-of-type{
+				padding-left: 10px;
+			}
+		}
+	}
+}
