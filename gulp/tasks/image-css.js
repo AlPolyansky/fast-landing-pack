@@ -96,9 +96,9 @@ module.exports = function ImageCss(params) {
 
 
 
-	function createCssFile(content){
+	function createCssFile(content, fileName){
 		return createFile({
-			path: path.resolve(createFileFolder, '_image.scss'),
+			path: path.resolve(createFileFolder, fileName),
 			replace: true,
 			content
 		})
@@ -106,30 +106,52 @@ module.exports = function ImageCss(params) {
 
 
 
+	let desktop = false
+	
+	function create(folder){
+
+		//console.log(folder)
+
+		fs.readdir(folder,  (err, items) => {
+			if(err) throw err
 
 
+			
+			let files = []
+			
+
+			items.forEach(item => {
 
 
-	fs.readdir(imagesFolder,  (err, item) => {
-		if(err) throw err
+				if(_base.fileOrFolder(item) === 'file'){
+					files.push(item)
+				}
+				else if(_base.fileOrFolder(item) === 'dir'){
+					desktop = true
+					let newPath = path.resolve(folder, item)
+					create(newPath)
+				}
+				else {
+					return false
+				}
 
-		if(_base.fileOrFolder(item) === 'file'){
+			})
 
-
-			const filtered = filterImage(item,imagesFolder)
-
+			const filtered = filterImage(files,folder)
 
 			let photosContent = createPhotoStr(filtered.photos)
 			let iconsContent = createIconSrc(filtered.icons)
-			
-			createCssFile(`${photosContent}\n\n${iconsContent}`)
 
-			//item.forEach(image => getImageParams(path.resolve(imagesFolder, image)))
-		}
-		else{
-			return false;
-		}
-	})
+			console.log(desktop)
+
+			createCssFile(`${photosContent}\n\n${iconsContent}`, desktop ? 
+				'_image--m.scss' : '_image.scss'
+			)
+		})
+
+	}
+
+	create(imagesFolder)
 
 
 
